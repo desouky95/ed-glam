@@ -4,7 +4,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
-    "build:publish": "lerna exec --scope @ed-glam/* -- npm run build:publish "
+    "build:publish": "lerna publish from-package --dist-tag latest --contents build"
   },
   "author": "desouky",
   "license": "ISC",
