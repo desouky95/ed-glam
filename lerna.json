@@ -4,9 +4,5 @@
   ],
   "npmClient": "npm",
   "version": "0.1.0",
-  "command": {
-    "bootstrap": {
-      "ignore": "build"
-    }
-  }
+  "useWorkspaces": true
 }

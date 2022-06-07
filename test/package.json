@@ -9,8 +9,5 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@eduact/admin-theme": "^1.0.0",
-    "ed-glam": "^1.0.0"
-  }
+  "dependencies": {}
 }

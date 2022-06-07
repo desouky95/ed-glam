@@ -106,28 +106,30 @@ const webpackComplier = () => {
 const rollupCompiler = async () => {
   const baseConfig = defineConfig({
     context: resolve(__dirname, __pkgPath),
-    input: __pkgFiles,
-    // input: `${__pkgPath}/src/index.ts`,
+    // input: __pkgFiles,
+    input: `./src/index.ts`,
     output: {
       format: "esm",
+      extend: true,
       name: "[name].js",
       dir: "build",
       esModule: true,
-      // compact: true,
-      // minifyInternalExports: true,
-      // sourcemap: true,
+      preserveModules: true,
     },
+    shimMissingExports: true,
+    treeshake: "safest",
 
     plugins: [
       external({ packageJsonPath: `${__pkgPath}/package.json` }),
-      nodeResolve({ browser: true }),
+      nodeResolve({ modulesOnly: true }),
       typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
       // commonjs({}),
       babel({
-        babelHelpers: "bundled",
+        exclude: [/node_modules/],
+        // babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
-      terser({ ecma: 5 }),
+      terser({ ecma: 5, format: { ecma: 2020 }, keep_fnames: true }),
     ],
   });
   const { write } = await rollup(baseConfig);
@@ -138,7 +140,7 @@ program.action(async () => {
   if (!pkgPath) throw new Error("Package path is needed");
   __pkgPath = getPkgPath(pkgPath);
   __pkgFiles = getPkgFiles();
-  rmSync(`${__pkgPath}/build`, { force: true });
+  rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
   await rollupCompiler();
   copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });

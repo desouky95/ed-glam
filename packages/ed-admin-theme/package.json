@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "build": " npm run prebuild && node ../../scripts/build.js --path ed-admin-theme",
+    "build": " node ../../scripts/build.js --path ed-admin-theme",
     "prebuild": "node ../../scripts/prebuild.js --path ed-admin-theme"
   },
   "author": "desouky",

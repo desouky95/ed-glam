@@ -1,2 +1,1 @@
-export * from "./Theme/theme";
-export const VERSION = "1.0.0";
+export * as default from "./Theme/theme";
