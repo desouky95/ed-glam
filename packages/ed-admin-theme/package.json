@@ -5,17 +5,13 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
-    "build": "node ../../build.js --path ed-admin-theme",
-    "build:publish": "npm run build && npm pack && npm publish"
+    "build": "node ../../scripts/build.js --path ed-admin-theme"
   },
   "author": "desouky",
   "license": "ISC",
   "peerDependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com"
+    "react-dom": "^17.0.2",
+    "@types/react": "^18.0.12"
   }
 }

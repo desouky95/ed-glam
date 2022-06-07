@@ -5,30 +5,29 @@
     "moduleResolution": "Node",
     "declaration": true,
     "noImplicitAny": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "lib": ["ES2015", "DOM"],
     "sourceMap": true,
-    "target": "es5",
+    "target": "ESNext",
     "outDir": "lib",
     "allowJs": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    // "baseUrl": "./",
     "noErrorTruncation": false,
     "paths": {
       "@/*": ["./src/*"],
       "@configs/*": ["./configs/*"],
       "@ed-glam/admin-theme": ["./packages/ed-admin-theme/src/*"]
-    },
-    "types": ["node", "react"]
-  },
-  "files": ["src/index.ts"],
-  "exclude": ["**/.*/", "*/build", "**/node_modules", "node_modules", ""],
-  "ts-node": {
-    "files": true,
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "*/build",
+    "**/node_modules",
+    "",
+    "test",
+    "packages/**/build"
+  ]
 }
