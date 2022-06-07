@@ -1,1 +1,1 @@
-export * as default from "./Theme/theme";
+export * from "./Theme/theme";
