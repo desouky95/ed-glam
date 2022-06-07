@@ -11,7 +11,7 @@ const typescript = require("rollup-plugin-typescript2");
 const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const { babel } = require("@rollup/plugin-babel");
 const cleaner = require("rollup-plugin-cleaner");
-const { rmSync, copyFileSync, readdir, readFile, readdirSync } = require("fs");
+const { rmSync, copyFileSync } = require("fs");
 const commonjs = require("@rollup/plugin-commonjs");
 const external = require("rollup-plugin-peer-deps-external");
 const { terser } = require("rollup-plugin-terser");
@@ -138,7 +138,7 @@ program.action(async () => {
   if (!pkgPath) throw new Error("Package path is needed");
   __pkgPath = getPkgPath(pkgPath);
   __pkgFiles = getPkgFiles();
-  rmSync(`${__pkgPath}/build`, { recursive: true, force: true });
+  rmSync(`${__pkgPath}/build`, { force: true });
   await rollupCompiler();
   copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
