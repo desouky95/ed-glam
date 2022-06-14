@@ -28,11 +28,12 @@ const options = program.opts();
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
 const getPkgFiles = () => {
   const pkgFiles = glob.sync(
-    "!(build|node_modules)/**/*.{ts,js}".replace(/\\/g, "/"),
+    "!(build|node_modules)/**/*.{ts,js,tsx}".replace(/\\/g, "/"),
     {
       root: `${__pkgPath.replace(/\\/g, "/")}`,
     }
   );
+  console.log({pkgFiles})
   const __pkgFiles = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
     const splittedPath = entryParsedFile.dir.split("/");
@@ -56,7 +57,6 @@ const getPkgFiles = () => {
     }
     return entries;
   }, {});
-  console.dir(__files);
   return __pkgFiles;
 };
 
