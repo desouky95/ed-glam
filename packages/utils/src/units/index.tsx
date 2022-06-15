@@ -6,7 +6,13 @@ export type ContentType =
   | "survey"
   | "webinar"
   | "content";
-
+export type UnitProgressStatus =
+  | "not started"
+  | "registered"
+  | "in progress"
+  | "failed"
+  | "not attended"
+  | "completed";
 type ContentInfo<P> = {
   type: P;
   mdIcon: string;
