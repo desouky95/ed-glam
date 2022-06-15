@@ -29,32 +29,22 @@ export const useConditionalController = <
   T,
   Name
 > => {
-  let controllerProps = useRef<UseConditionalControllerReturn<T,Name>>();
-  let _useController = useController;
-  const returnProps = useMemo(() => {
-    if (!skip && name && control) {
-      const returnItems = _useController({
-        name,
-        control,
-        ...props,
-      });
+  if (skip) {
+    return {
+      field: undefined,
+      fieldState: undefined,
+      formState: undefined,
+      registered: false,
+    };
+  }
 
-      controllerProps.current = {
-        registered: true,
-        field: returnItems.field,
-        fieldState: returnItems.fieldState,
-        formState: returnItems.formState,
-      };
-    } else {
-      controllerProps.current = {
-        registered: false,
-        field: undefined,
-        fieldState: undefined,
-        formState: undefined,
-      };
-    }
-    return controllerProps.current;
-  }, [skip]);
+  const returnItems = useController({
+    name,
+    control,
+    ...props,
+  });
 
-  return { ...returnProps };
+  
+
+  return { ...returnItems, registered: true };
 };
