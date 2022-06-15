@@ -1,2 +1,2 @@
-export { ContentType as UnitType, ContentConfig } from "./units/index";
+export { ContentType as UnitType, ContentConfig ,UnitProgressStatus} from "./units/index";
 export * from './hooks/index'
