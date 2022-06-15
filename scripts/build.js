@@ -33,7 +33,7 @@ const getPkgFiles = () => {
       root: `${__pkgPath.replace(/\\/g, "/")}`,
     }
   );
-  console.log({pkgFiles})
+  console.log({ pkgFiles });
   const __pkgFiles = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
     const splittedPath = entryParsedFile.dir.split("/");
@@ -57,7 +57,7 @@ const getPkgFiles = () => {
     }
     return entries;
   }, {});
-  return __pkgFiles;
+  return __files;
 };
 
 const webpackComplier = () => {
@@ -109,27 +109,25 @@ const rollupCompiler = async () => {
     // input: __pkgFiles,
     input: `./src/index.ts`,
     output: {
-      format: "esm",
+      format: "cjs",
       extend: true,
       name: "[name].js",
       dir: "build",
       esModule: true,
       preserveModules: true,
+      sourcemap: true,
     },
     shimMissingExports: true,
-    treeshake: "safest",
-
+    treeshake: "recommended",
     plugins: [
       external({ packageJsonPath: `${__pkgPath}/package.json` }),
-      nodeResolve({ modulesOnly: true }),
       typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
-      // commonjs({}),
+      commonjs({}),
       babel({
         exclude: [/node_modules/],
-        // babelHelpers: "bundled",
+        babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
-      terser({ ecma: 5, format: { ecma: 2020 }, keep_fnames: true }),
     ],
   });
   const { write } = await rollup(baseConfig);
