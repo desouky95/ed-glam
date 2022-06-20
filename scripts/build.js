@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const { program } = require("commander");
 const webpack = require("webpack");
 const { join, parse, resolve } = require("path");
@@ -109,7 +110,7 @@ const rollupCompiler = async () => {
     // input: __pkgFiles,
     input: `./src/index.ts`,
     output: {
-      format: "cjs",
+      format: "esm",
       extend: true,
       name: "[name].js",
       dir: "build",
