@@ -5,7 +5,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { DefaultTheme, ThemeProvider } from "styled-components";
+import {
+  DefaultTheme,
+  ThemeProvider as SThemeProvider,
+} from "styled-components";
 import { Theme } from "./theme";
 
 type ThemeTogglerOptions = {
@@ -23,9 +26,9 @@ const ThemeProviderWrapper: React.FC = ({ children }) => {
     <ThemeContextProvider.Provider
       value={{ theme: defaultTheme, setTheme: setTheme }}
     >
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
+      <SThemeProvider theme={defaultTheme}>{children}</SThemeProvider>
     </ThemeContextProvider.Provider>
   );
 };
 
-export default ThemeProviderWrapper;
+export const ThemeProvider = ThemeProviderWrapper;
