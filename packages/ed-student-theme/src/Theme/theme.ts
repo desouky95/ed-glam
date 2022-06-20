@@ -171,7 +171,7 @@ interface ITheme {
   direction: "rtl" | "ltr";
 }
 
-const Theme: ITheme = {
+export const Theme: ITheme = {
   colors: Colors,
   modes: {
     rtl: {
@@ -482,7 +482,6 @@ export const getTheme = (mode?: Mode) => {
   });
 };
 
-export default Theme;
 declare module "styled-components" {
   export interface DefaultTheme extends ITheme {}
 }
