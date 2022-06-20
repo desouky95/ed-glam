@@ -6,7 +6,8 @@
     "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
     "build:all": "npm run prebuild && lerna exec  -- npm run build ",
     "build:publish": "lerna publish from-package --dist-tag latest --contents build",
-    "prebuild": "lerna exec -- npm run prebuild"
+    "prebuild": "lerna exec -- npm run prebuild",
+    "cleanup": "node scripts/cleanup.js"
   },
   "author": "desouky",
   "license": "ISC",
@@ -23,8 +24,8 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.2",
     "@types/glob": "^7.2.0",
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@types/rollup": "^0.54.0",
     "@types/styled-components": "^5.1.25",
     "babel-loader": "^8.2.5",
