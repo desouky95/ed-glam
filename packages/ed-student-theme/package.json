@@ -1,0 +1,15 @@
+{
+  "name": "@eduact/ed-student-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/styled-system": "^5.1.15"
+  }
+}
