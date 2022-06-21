@@ -3,6 +3,7 @@
   "description": "My webpack project",
   "main": "./src/index.ts",
   "scripts": {
+    "lerna:version" : "npm run cleanup && lerna version",
     "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
     "build": "npm run cleanup && lerna exec  -- npm run build ",
     "prepare" : "node scripts/prepublish.js",
