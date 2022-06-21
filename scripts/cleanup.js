@@ -13,7 +13,7 @@ program.action(async () => {
   const files = glob.sync("packages/**/build".replace(/\\/g, "/"), {});
   files.forEach((_) => {
     if (existsSync(path.resolve(_))) {
-      rmSync(path.resolve(_), { force: true, recursive: true, maxRetries: 2 });
+      rmSync(path.resolve(_), { force: true, recursive: true, maxRetries: 1 });
     }
   });
 });

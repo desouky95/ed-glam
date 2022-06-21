@@ -152,7 +152,7 @@ program.action(async () => {
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
   await rollupCompiler();
-  // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
+  copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 
 program.parse(process.argv);
