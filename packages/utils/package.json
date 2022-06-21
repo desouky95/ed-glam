@@ -1,6 +1,6 @@
 {
   "name": "@eduact/utils",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@eduact/ed-system": "^1.0.2",
-    "@eduact/student-theme": "^1.0.6"
+    "@eduact/student-theme": "^1.0.7"
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319"
 }
