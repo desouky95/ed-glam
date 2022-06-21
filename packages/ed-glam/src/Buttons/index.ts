@@ -1,3 +1,3 @@
-export * from "./IconButton/index";
-export * from "./RaisedButton/index";
-export * from "./TextButton/index";
+export * from './IconButton'
+export * from './RaisedButton'
+export * from './TextButton'

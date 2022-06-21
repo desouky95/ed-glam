@@ -1,11 +1,11 @@
 {
   "name": "@eduact/ed-glam",
-  "version": "1.0.1",
+  "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
   "license": "ISC",
-  "main": "index.ts",
+  "main": "lib/ed-glam.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,27 +18,17 @@
     "url": "git+https://github.com/desouky95/ed-glam.git"
   },
   "scripts": {
-    "build": " node ../../scripts/build.js --path ed-glam",
-    "prebuild": "node ../../scripts/prebuild.js --path ed-glam",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": " node ../../scripts/build.js --path ed-admin-theme",
+    "prebuild": "node ../../scripts/prebuild.js --path ed-admin-theme"
   },
   "bugs": {
     "url": "https://github.com/desouky95/ed-glam/issues"
   },
-  "dependencies": {
-    "@eduact/student-theme": "^1.0.6"
-  },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-interactions": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/builder-webpack4": "^6.5.9",
-    "@storybook/manager-webpack4": "^6.5.9",
-    "@storybook/react": "^6.5.9",
-    "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.2.5"
+    "@eduact/ed-system": "^1.0.2",
+    "@eduact/student-theme": "^1.0.6",
+    "react-router-dom": "^6.3.0",
+    "styled-components": "^5.3.5",
+    "styled-system": "^5.1.5"
   }
 }
