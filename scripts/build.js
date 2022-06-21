@@ -29,7 +29,10 @@ const options = program.opts();
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
 const getPkgFiles = () => {
   const pkgFiles = glob.sync(
-    "!(build|node_modules)/**/*.{ts,js,tsx}".replace(/\\/g, "/"),
+    "!(build|node_modules|__tests__)/**/!(*.stories).{ts,js,tsx}".replace(
+      /\\/g,
+      "/"
+    ),
     {
       root: `${__pkgPath.replace(/\\/g, "/")}`,
     }
@@ -43,7 +46,7 @@ const getPkgFiles = () => {
         splittedPath[splittedPath.length - 1];
     }
     const entryName =
-      entryParsedFile.dir === "src"
+      entryParsedFile.dir === "src" || entryParsedFile.dir === "lib"
         ? entryParsedFile.name
         : splittedPath.join("/");
     entries[entryName] = `./${entry}`;
@@ -51,7 +54,7 @@ const getPkgFiles = () => {
   }, {});
   const __files = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
-    if (entryParsedFile.dir === "src") {
+    if (entryParsedFile.dir === "src" || entryParsedFile.dir === "lib") {
       entries[entryParsedFile.name] = entry;
     } else {
       entries[entry] = entry;
@@ -114,16 +117,24 @@ const rollupCompiler = async () => {
       extend: true,
       name: "[name].js",
       dir: "build",
+      exports: "auto",
       esModule: true,
       preserveModules: true,
       sourcemap: true,
+      generatedCode: {
+        arrowFunctions: true,
+        constBindings: true,
+        objectShorthand: true,
+      },
+      minifyInternalExports: true,
     },
     shimMissingExports: true,
+
     treeshake: "recommended",
     plugins: [
       external({ packageJsonPath: `${__pkgPath}/package.json` }),
       typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
-      commonjs({}),
+      // commonjs(),
       babel({
         exclude: [/node_modules/],
         babelHelpers: "bundled",
@@ -141,7 +152,7 @@ program.action(async () => {
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
   await rollupCompiler();
-  copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
+  // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 
 program.parse(process.argv);

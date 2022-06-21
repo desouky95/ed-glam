@@ -4,7 +4,7 @@ type FormatterOptions = {
   withTime?: boolean;
 } & Intl.DateTimeFormatOptions;
 
-export function DateFormatter(date?: Date, options?: FormatterOptions): string {
+function DateFormatter(date?: Date, options?: FormatterOptions): string {
   if (!date) throw new Error("Date isn't provided");
   const _newDate = new Date(date);
   let locale = localStorage.getItem("lang");
@@ -21,3 +21,4 @@ export function DateFormatter(date?: Date, options?: FormatterOptions): string {
 }
 
 export default DateFormatter;
+export { DateFormatter };
