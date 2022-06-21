@@ -5,7 +5,6 @@
   "scripts": {
     "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
     "build:all": "npm run cleanup && lerna exec  -- npm run build ",
-    "prepublishOnly": "lerna exec -- npm run prebuild",
     "publish": "lerna publish from-package --dist-tag latest --contents build",
     "prepublish": "node scripts/prepublish.js",
     "cleanup": "node scripts/cleanup.js"
