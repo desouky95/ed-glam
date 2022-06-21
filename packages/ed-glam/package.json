@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-glam",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/desouky95/ed-glam/issues"
   },
   "dependencies": {
-    "@eduact/student-theme": "^1.0.4"
+    "@eduact/student-theme": "^1.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
