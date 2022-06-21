@@ -1,5 +1,5 @@
 {
-  "name": "@eduact/ed-glam",
+  "name": "@eduact/ed-components",
   "version": "0.0.2",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
@@ -18,8 +18,8 @@
     "url": "git+https://github.com/desouky95/ed-glam.git"
   },
   "scripts": {
-    "build": " node ../../scripts/build.js --path ed-glam",
-    "prebuild": "node ../../scripts/prebuild.js --path ed-glam"
+    "build": " node ../../scripts/build.js --path ed-components",
+    "prebuild": "node ../../scripts/prebuild.js --path ed-components"
   },
   "bugs": {
     "url": "https://github.com/desouky95/ed-glam/issues"
