@@ -18,8 +18,8 @@
     "url": "git+https://github.com/desouky95/ed-glam.git"
   },
   "scripts": {
-    "build": " node ../../scripts/build.js --path ed-admin-theme",
-    "prebuild": "node ../../scripts/prebuild.js --path ed-admin-theme"
+    "build": " node ../../scripts/build.js --path ed-glam",
+    "prebuild": "node ../../scripts/prebuild.js --path ed-glam"
   },
   "bugs": {
     "url": "https://github.com/desouky95/ed-glam/issues"
