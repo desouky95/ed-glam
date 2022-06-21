@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-system",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -23,8 +23,6 @@
   },
   "bugs": {
     "url": "https://github.com/desouky95/ed-glam/issues"
-  },
-  "dependencies": {
   },
   "devDependencies": {
     "styled-components": "^5.3.5",
