@@ -1,6 +1,0 @@
-export * from './DatePicker/index'
-export * from './Dropdown/index'
-export * from './PhoneInput/index'
-export * from './Select/Select'
-export * from './TextInput/index'
-export * from './TextInputValidationMessage/TextInputValidationMessage'

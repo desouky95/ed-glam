@@ -18,7 +18,8 @@
     "url": "git+https://github.com/desouky95/ed-glam.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": " node ../../scripts/build.js --path ed-system",
+    "prebuild": "node ../../scripts/prebuild.js --path ed-system"
   },
   "bugs": {
     "url": "https://github.com/desouky95/ed-glam/issues"
