@@ -4,7 +4,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
-    "build:all": "npm run cleanup && lerna exec  -- npm run build ",
+    "build": "npm run cleanup && lerna exec  -- npm run build ",
+    "prepare" : "node scripts/prepublish.js",
     "publish": "lerna publish from-package --dist-tag latest --contents build",
     "cleanup": "node scripts/cleanup.js"
   },

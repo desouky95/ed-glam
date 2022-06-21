@@ -27,5 +27,6 @@
   "devDependencies": {
     "styled-components": "^5.3.5",
     "styled-system": "^5.1.5"
-  }
+  },
+  "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319"
 }
