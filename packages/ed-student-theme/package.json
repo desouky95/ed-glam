@@ -1,6 +1,6 @@
 {
   "name": "@eduact/student-theme",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
@@ -15,6 +15,6 @@
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "dependencies": {
-    "@eduact/ed-system": "^1.0.2"
+    "@eduact/ed-system": "^1.0.3"
   }
 }
