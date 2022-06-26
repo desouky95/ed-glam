@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "build": " node ../../scripts/build.js --path ed-student-theme",
+    "build": " node ../../scripts/build.js --path ed-student-theme ",
     "prebuild": "node ../../scripts/prebuild.js --path ed-student-theme"
   },
   "author": "",

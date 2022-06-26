@@ -32,6 +32,25 @@ export interface TableLayoutProps {
   tableLayout?: TableLayout;
 }
 
+export type FontFamily = 'Montserrat' | 'Mulish' | 'Cairo' | 'AvantGarde'
+export type MaterialIconsType = 'Regular' | 'Outlined' | 'Round' | 'Sharp' | 'TwoTone'
+export type FontWeight = 'normal' | '500' | 'bold' | 'bolder' | 'light' | '400' | '300' | '200' | '100' | 'lighter' | '800' | '700' | '600' | '900'
+export interface Fonts {
+	fonts: {
+		[key in FontFamily]: {
+			[key in FontWeight]?: any
+		}
+	}
+}
+export type MaterialIconFontFace = {
+	[key in MaterialIconsType]?: {
+		src: string
+		mapped_name?: string
+	}
+}
+
+
+
 const breakpoints = ["40em", "52em", "64em", "80em"];
 
 export type ResponsiveVal<T> = T | { [key in Breakpoint]?: T };
@@ -484,4 +503,61 @@ export const getTheme = (mode?: Mode) => {
 
 declare module "styled-components" {
   export interface DefaultTheme extends ITheme {}
+}
+
+
+export const generateMaterialIconsFontFaces = (material_icons : MaterialIconFontFace) => {
+	let css_string = ''
+	const familyBaseName = 'Material Icons'
+	const getTypeName = (type: string) => {
+		return material_icons[type as MaterialIconsType]?.mapped_name ?? ` ${type}`
+	}
+
+	Object.keys(material_icons).forEach(type => {
+		const src = material_icons[type as MaterialIconsType]?.src
+		const typeFamilyName = `${familyBaseName}${getTypeName(type).length > 0 ? ` ${getTypeName(type)}` : ''}`
+		const typeClassName = `.material-icons${`${getTypeName(type).length > 0 ? '-' : ''}${getTypeName(type).toLocaleLowerCase()}`}`
+		const typeCss = `
+		@font-face {
+		  font-family: "${typeFamilyName}";
+		  font-style: normal;
+		  font-weight: 400;
+		  src: url(${src}) ;
+		}
+		${typeClassName}{
+		  font-family: "${typeFamilyName}";
+		  font-weight: normal;
+		  font-style: normal;
+		  // font-size: 24px;
+		  line-height: 1;
+		  letter-spacing: normal;
+		  text-transform: none;
+		  display: inline-block;
+		  white-space: nowrap;
+		  word-wrap: normal;
+		  direction: ltr;
+		  -webkit-font-feature-settings: "liga";
+		  -webkit-font-smoothing: antialiased;
+		}
+	  `
+		css_string += typeCss
+	})
+	return css`
+		${css_string}
+	`
+}
+
+export const createGlobalFont = (font: FontFamily,fontWeightsSrc : Fonts): FlattenSimpleInterpolation => {
+	const weights = fontWeightsSrc.fonts[font]
+	let styles = ''
+	Object.keys(weights).forEach((weight, index) => {
+		styles += `@font-face {
+	    font-family : '${font}';
+      	src: url(${Object.values(weights)[index]});
+	    font-weight : ${weight};
+	  }`
+	})
+	return css`
+		${styles}
+	`
 }

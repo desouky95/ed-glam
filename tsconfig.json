@@ -13,12 +13,20 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    // "baseUrl": "./",
+    "baseUrl": "./",
     "noErrorTruncation": false,
     "paths": {
-      "@/*": ["./src/*"],
-      "@configs/*": ["./configs/*"],
-      "@ed-glam/admin-theme": ["./packages/ed-admin-theme/src/*"]
+      "@eduact/student-theme" :  ["packages/ed-student-theme/src"],
+      "@eduact/student-theme/*": ["./packages/ed-student-theme/src/*"],
+      "@eduact/ed-system": ["./packages/ed-system/src"],
+      "@eduact/ed-system/*": ["./packages/ed-system/src/*"],
+      "@ed-glam/admin-theme": ["./packages/ed-admin-theme/src"],
+      "@ed-glam/admin-theme/*": ["./packages/ed-admin-theme/src/*"],
+      "@eduact/ed-components": ["./packages/ed-components/src"],
+      "@eduact/ed-components/*": ["./packages/ed-components/src/*"],
+      "@eduact/utils": ["./packages/utils/src"],
+      "@eduact/utils/*": ["./packages/utils/src/*"],
+      "scripts/*" : ["./scripts/*"]
     }
   },
   "exclude": [

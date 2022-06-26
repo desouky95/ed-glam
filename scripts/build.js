@@ -16,11 +16,13 @@ const { rmSync, copyFileSync } = require("fs");
 const commonjs = require("@rollup/plugin-commonjs");
 const external = require("rollup-plugin-peer-deps-external");
 const { terser } = require("rollup-plugin-terser");
+const copy = require("rollup-plugin-copy-assets");
 //
 // global.__filename = fileURLToPath(const.meta.url);
 // global.__dirname = path.dirname(__filename);
 
 program.option("-p, --path <pathValue>", "Packages Path");
+program.option("-wa, --withAssets", "Copy Assets to build", false);
 
 let __pkgPath = "";
 let __pkgFiles = [];
@@ -29,7 +31,7 @@ const options = program.opts();
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
 const getPkgFiles = () => {
   const pkgFiles = glob.sync(
-    "!(build|node_modules|__tests__)/**/!(*.stories).{ts,js,tsx}".replace(
+    "!(build|node_modules|__tests__|stories|.stories)/**/!(*.stories).{ts,js,tsx,ttf}".replace(
       /\\/g,
       "/"
     ),
@@ -107,10 +109,9 @@ const webpackComplier = () => {
   );
 };
 
-const rollupCompiler = async () => {
+const rollupCompiler = async (withAssets) => {
   const baseConfig = defineConfig({
     context: resolve(__dirname, __pkgPath),
-    // input: __pkgFiles,
     input: `./src/index.ts`,
     output: {
       format: "esm",
@@ -129,8 +130,8 @@ const rollupCompiler = async () => {
       minifyInternalExports: true,
     },
     shimMissingExports: true,
-
     treeshake: "recommended",
+
     plugins: [
       external({ packageJsonPath: `${__pkgPath}/package.json` }),
       typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
@@ -140,18 +141,21 @@ const rollupCompiler = async () => {
         babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
+      copy({
+        assets: withAssets ? ["./src/Assets"] : [],
+      }),
     ],
   });
   const { write } = await rollup(baseConfig);
   await write(baseConfig);
 };
 program.action(async () => {
-  const { path: pkgPath } = options;
+  const { path: pkgPath, withAssets } = options;
   if (!pkgPath) throw new Error("Package path is needed");
   __pkgPath = getPkgPath(pkgPath);
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
-  await rollupCompiler();
+  await rollupCompiler(withAssets);
   // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 
