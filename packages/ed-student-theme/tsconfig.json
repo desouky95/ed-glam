@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "sourceMap": true,
+    "outDir": "build",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "Fonts" :["./src/Assets"],
+      "Fonts/*" : ["./Assets/Fonts/*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["build", "node_modules"]
+}

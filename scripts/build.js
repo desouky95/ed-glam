@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const { program } = require("commander");
 const webpack = require("webpack");
 const { join, parse, resolve } = require("path");
@@ -15,11 +16,16 @@ const { rmSync, copyFileSync } = require("fs");
 const commonjs = require("@rollup/plugin-commonjs");
 const external = require("rollup-plugin-peer-deps-external");
 const { terser } = require("rollup-plugin-terser");
+const copy = require("rollup-plugin-cpy");
+const url = require("@rollup/plugin-url");
+const gulp = require("gulp");
+const assets = require("rollup-plugin-asset");
 //
 // global.__filename = fileURLToPath(const.meta.url);
 // global.__dirname = path.dirname(__filename);
 
 program.option("-p, --path <pathValue>", "Packages Path");
+program.option("-wa, --withAssets", "Copy Assets to build", false);
 
 let __pkgPath = "";
 let __pkgFiles = [];
@@ -28,12 +34,14 @@ const options = program.opts();
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
 const getPkgFiles = () => {
   const pkgFiles = glob.sync(
-    "!(build|node_modules)/**/*.{ts,js,tsx}".replace(/\\/g, "/"),
+    "!(build|node_modules|__tests__|stories|.stories)/**/!(*.stories).{ts,js,tsx}".replace(
+      /\\/g,
+      "/"
+    ),
     {
       root: `${__pkgPath.replace(/\\/g, "/")}`,
     }
   );
-  console.log({pkgFiles})
   const __pkgFiles = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
     const splittedPath = entryParsedFile.dir.split("/");
@@ -42,7 +50,7 @@ const getPkgFiles = () => {
         splittedPath[splittedPath.length - 1];
     }
     const entryName =
-      entryParsedFile.dir === "src"
+      entryParsedFile.dir === "src" || entryParsedFile.dir === "lib"
         ? entryParsedFile.name
         : splittedPath.join("/");
     entries[entryName] = `./${entry}`;
@@ -50,14 +58,14 @@ const getPkgFiles = () => {
   }, {});
   const __files = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
-    if (entryParsedFile.dir === "src") {
+    if (entryParsedFile.dir === "src" || entryParsedFile.dir === "lib") {
       entries[entryParsedFile.name] = entry;
     } else {
       entries[entry] = entry;
     }
     return entries;
   }, {});
-  return __pkgFiles;
+  return __files;
 };
 
 const webpackComplier = () => {
@@ -89,6 +97,10 @@ const webpackComplier = () => {
               presets: ["@babel/preset-env", "@babel/preset-typescript"],
             },
           },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            type: "asset/resource",
+          },
         ],
       },
       resolve: {
@@ -103,46 +115,61 @@ const webpackComplier = () => {
   );
 };
 
-const rollupCompiler = async () => {
+const rollupCompiler = async (withAssets) => {
   const baseConfig = defineConfig({
     context: resolve(__dirname, __pkgPath),
-    // input: __pkgFiles,
     input: `./src/index.ts`,
     output: {
       format: "esm",
       extend: true,
       name: "[name].js",
       dir: "build",
+      exports: "auto",
       esModule: true,
       preserveModules: true,
+      sourcemap: true,
+      generatedCode: {
+        arrowFunctions: true,
+        constBindings: true,
+        objectShorthand: true,
+      },
+      minifyInternalExports: true,
+      assetFileNames: "[name]-[hash]",
     },
     shimMissingExports: true,
-    treeshake: "safest",
+    treeshake: "recommended",
 
     plugins: [
       external({ packageJsonPath: `${__pkgPath}/package.json` }),
-      nodeResolve({ modulesOnly: true }),
       typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
-      // commonjs({}),
+      // commonjs(),
       babel({
         exclude: [/node_modules/],
-        // babelHelpers: "bundled",
+        babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
-      terser({ ecma: 5, format: { ecma: 2020 }, keep_fnames: true }),
+      url(),
+      // copy({
+      //   files: ["./src/**/*.ttf"],
+      //   dest : './build'
+      // }),
+      // copy({
+      //   assets: withAssets ? ["./src/Assets"] : [],
+      // }),
     ],
   });
   const { write } = await rollup(baseConfig);
   await write(baseConfig);
 };
 program.action(async () => {
-  const { path: pkgPath } = options;
+  const { path: pkgPath, withAssets } = options;
   if (!pkgPath) throw new Error("Package path is needed");
   __pkgPath = getPkgPath(pkgPath);
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
-  await rollupCompiler();
-  copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
+  await rollupCompiler(withAssets);
+  // webpackComplier();
+  // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 
 program.parse(process.argv);

@@ -1,9 +1,11 @@
+/*jshint esversion: 6 */
+
 const { join } = require("path");
 const { fileURLToPath } = require("url");
 const glob = require("glob");
 
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
-const getPkgFiles = () => {
+const getPkgFiles = (__pkgPath) => {
   const pkgFiles = glob.sync(
     "!(build|node_modules)/**/*.{ts,js}".replace(/\\/g, "/"),
     {
