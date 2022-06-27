@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@eduact/ed-system": "^1.0.4",
-    "@eduact/student-theme": "../ed-student-theme",
+    "@eduact/ed-system": "file:../ed-system",
+    "@eduact/student-theme": "file:../ed-student-theme",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",

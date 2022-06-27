@@ -7,14 +7,14 @@ const CairoSemiBold = require("./Cairo-SemiBold.ttf");
 const CairoRegular = require("./Cairo-Regular.ttf");
 const CairoMedium = require("./Cairo-Medium.ttf");
 
-const CairoBlackCSS = require("./Cairo-Black.css");
-const CairoBoldCSS = require("./Cairo-Bold.css");
-const CairoExtraBoldCSS = require("./Cairo-ExtraBold.css");
-const CairoExtraLightCSS = require("./Cairo-ExtraLight.css");
-const CairoLightCSS = require("./Cairo-Light.css");
-const CairoSemiBoldCSS = require("./Cairo-SemiBold.css");
-const CairoRegularCSS = require("./Cairo-Regular.css");
-const CairoMediumCSS = require("./Cairo-Medium.css");
+// const CairoBlackCSS = require("./Cairo-Black.css");
+// const CairoBoldCSS = require("./Cairo-Bold.css");
+// const CairoExtraBoldCSS = require("./Cairo-ExtraBold.css");
+// const CairoExtraLightCSS = require("./Cairo-ExtraLight.css");
+// const CairoLightCSS = require("./Cairo-Light.css");
+// const CairoSemiBoldCSS = require("./Cairo-SemiBold.css");
+// const CairoRegularCSS = require("./Cairo-Regular.css");
+// const CairoMediumCSS = require("./Cairo-Medium.css");
 
 module.exports = {
   CairoBlack,
@@ -26,12 +26,12 @@ module.exports = {
   CairoMedium,
   CairoRegular,
   CairoSemiBold,
-  CairoBlackCSS,
-  CairoBoldCSS,
-  CairoExtraBoldCSS,
-  CairoExtraLightCSS,
-  CairoLightCSS,
-  CairoMediumCSS,
-  CairoRegularCSS,
-  CairoSemiBoldCSS,
+  // CairoBlackCSS,
+  // CairoBoldCSS,
+  // CairoExtraBoldCSS,
+  // CairoExtraLightCSS,
+  // CairoLightCSS,
+  // CairoMediumCSS,
+  // CairoRegularCSS,
+  // CairoSemiBoldCSS,
 };

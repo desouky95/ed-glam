@@ -11,13 +11,13 @@ export type StepperItemUIProps = {
   isSelected?: boolean;
   finished?: boolean;
   index?: number;
+  isLast?: boolean;
 };
 
 export type StepperItemProps = {
-    isLast?: boolean;
-    children: {
-      icon?: React.ReactNode;
-    };
-  } & StepperItemUIProps &
-    Pick<React.HTMLProps<HTMLDivElement>, "onClick">;
-  
+  tooltip?: string;
+  icon?: React.ReactNode;
+  // children: {
+  // };
+} & StepperItemUIProps &
+  Pick<React.HTMLProps<HTMLDivElement>, "onClick">;

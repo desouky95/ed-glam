@@ -1,8 +1,13 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
 import Stepper from "./Stepper";
-import { MdAttachEmail } from "react-icons/md";
+import { MdWorkspacesFilled, MdAdUnits, MdClass } from "react-icons/md";
 export default {
+  component : Stepper,
+  argTypes : {
+    selectedIndex : {defaultValue : 0 ,type : 'number'}
+  },
+
   parameters: {
     docs: {
       source: {
@@ -13,23 +18,28 @@ export default {
 } as ComponentMeta<typeof Stepper>;
 
 export const StoryTemplate: ComponentStory<typeof Stepper> = (
-  { children, orientation, selectedIndex },
+  args,
   { hooks }
 ) => {
   // const [currentIndex, setCurrentIndex] = useState(0);
-  return <div>Stepper</div>
   return (
-    <Stepper selectedIndex={0} orientation="horizontal">
-      <Stepper.Item>
-        {{
-          icon: <MdAttachEmail />,
-        }}
-      </Stepper.Item>
-      <Stepper.Item>
-        {{
-          icon: <MdAttachEmail />,
-        }}
-      </Stepper.Item>
+    <Stepper {...args}>
+      <Stepper.Item />
+      <Stepper.Item />
+      <Stepper.Item />
+      <Stepper.Item />
+    </Stepper>
+  );
+};
+
+StoryTemplate.storyName = "Basic Form Stepper";
+
+export const StepperWithIcons: ComponentStory<typeof Stepper> = (args) => {
+  return (
+    <Stepper {...args}>
+      <Stepper.Item icon={<MdAdUnits />} />
+      <Stepper.Item icon={<MdWorkspacesFilled />} />
+      <Stepper.Item icon={<MdClass />} />
     </Stepper>
   );
 };
