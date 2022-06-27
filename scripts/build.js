@@ -148,14 +148,6 @@ const rollupCompiler = async (withAssets) => {
         babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
-      url(),
-      // copy({
-      //   files: ["./src/**/*.ttf"],
-      //   dest : './build'
-      // }),
-      // copy({
-      //   assets: withAssets ? ["./src/Assets"] : [],
-      // }),
     ],
   });
   const { write } = await rollup(baseConfig);
@@ -168,8 +160,6 @@ program.action(async () => {
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
   await rollupCompiler(withAssets);
-  // webpackComplier();
-  // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 
 program.parse(process.argv);

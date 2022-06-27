@@ -1,6 +1,13 @@
 @font-face {
-  font-family: "ITC Avant Garde Gothic Demi";
-  src: url("AvantGarde-Regular.ttf") format("truetype"); /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  font-style: normal;
-  font-weight: normal;
+    font-family: "ITC Avant Garde Gothic Demi";
+    src: url("AvantGarde-Regular.eot"); /* IE9 */
+    src: url("AvantGarde-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("AvantGarde-Regular.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("AvantGarde-Regular.woff") format("woff"), /* chrome, firefox */
+    url("AvantGarde-Regular.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("AvantGarde-Regular.svg#ITC Avant Garde Gothic Demi") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
 }
+
+
