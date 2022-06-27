@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "@eduact/ed-fonts": "file:../ed-fonts",
+    "@eduact/ed-system": "file:../ed-system",
+    "@eduact/student-theme": "file:../ed-student-theme",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^18.2.0",
@@ -33,8 +35,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@eduact/ed-system": "file:../ed-system",
-    "@eduact/student-theme": "file:../ed-student-theme",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
