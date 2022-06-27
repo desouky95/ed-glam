@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-components",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -10,7 +10,6 @@
     "lib": "lib",
     "test": "__tests__"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/desouky95/ed-glam.git"
