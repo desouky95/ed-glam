@@ -16,7 +16,10 @@ const { rmSync, copyFileSync } = require("fs");
 const commonjs = require("@rollup/plugin-commonjs");
 const external = require("rollup-plugin-peer-deps-external");
 const { terser } = require("rollup-plugin-terser");
-const copy = require("rollup-plugin-copy-assets");
+const copy = require("rollup-plugin-cpy");
+const url = require("@rollup/plugin-url");
+const gulp = require("gulp");
+const assets = require("rollup-plugin-asset");
 //
 // global.__filename = fileURLToPath(const.meta.url);
 // global.__dirname = path.dirname(__filename);
@@ -31,7 +34,7 @@ const options = program.opts();
 const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
 const getPkgFiles = () => {
   const pkgFiles = glob.sync(
-    "!(build|node_modules|__tests__|stories|.stories)/**/!(*.stories).{ts,js,tsx,ttf}".replace(
+    "!(build|node_modules|__tests__|stories|.stories)/**/!(*.stories).{ts,js,tsx}".replace(
       /\\/g,
       "/"
     ),
@@ -39,7 +42,6 @@ const getPkgFiles = () => {
       root: `${__pkgPath.replace(/\\/g, "/")}`,
     }
   );
-  console.log({ pkgFiles });
   const __pkgFiles = pkgFiles.reduce((entries, entry) => {
     const entryParsedFile = parse(entry);
     const splittedPath = entryParsedFile.dir.split("/");
@@ -95,6 +97,10 @@ const webpackComplier = () => {
               presets: ["@babel/preset-env", "@babel/preset-typescript"],
             },
           },
+          {
+            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            type: "asset/resource",
+          },
         ],
       },
       resolve: {
@@ -128,6 +134,7 @@ const rollupCompiler = async (withAssets) => {
         objectShorthand: true,
       },
       minifyInternalExports: true,
+      assetFileNames: "[name]-[hash]",
     },
     shimMissingExports: true,
     treeshake: "recommended",
@@ -141,9 +148,14 @@ const rollupCompiler = async (withAssets) => {
         babelHelpers: "bundled",
         configFile: resolve(__dirname, "../.babelrc.js"),
       }),
-      copy({
-        assets: withAssets ? ["./src/Assets"] : [],
-      }),
+      url(),
+      // copy({
+      //   files: ["./src/**/*.ttf"],
+      //   dest : './build'
+      // }),
+      // copy({
+      //   assets: withAssets ? ["./src/Assets"] : [],
+      // }),
     ],
   });
   const { write } = await rollup(baseConfig);
@@ -156,6 +168,7 @@ program.action(async () => {
   __pkgFiles = getPkgFiles();
   rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
   await rollupCompiler(withAssets);
+  // webpackComplier();
   // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
 });
 

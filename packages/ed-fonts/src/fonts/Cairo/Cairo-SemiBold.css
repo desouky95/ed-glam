@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Cairo SemiBold";
+    src: url("Cairo-SemiBold.eot"); /* IE9 */
+    src: url("Cairo-SemiBold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Cairo-SemiBold.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("Cairo-SemiBold.woff") format("woff"), /* chrome, firefox */
+    url("Cairo-SemiBold.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Cairo-SemiBold.svg#Cairo SemiBold") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+

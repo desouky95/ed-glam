@@ -1,13 +1,18 @@
-import { FlexLayout } from "@eduact/student-theme";
-import React from "react";
-import { Orientation } from "../../../ed-student-theme/src/Theme/theme";
-import { StepLine, StepperItemBullet, StepWrapper } from "./Stepper.styled";
+import { FlexLayout } from "@eduact/ed-system";
+import { Orientation } from "@eduact/student-theme";
+import React, { useState } from "react";
+import {
+  BulletContent,
+  StepLine,
+  StepperItemBullet,
+  StepWrapper,
+} from "./Stepper.styled";
+import {
+  StepperItemProps,
+  StepperItemUIProps,
+  StepperProps,
+} from "./Stepper.types";
 
-type StepperProps = {
-  orientation?: Orientation;
-  children: Array<React.ReactElement<StepperItemProps>>;
-  selectedIndex?: number | string;
-};
 export interface StepperComposition {
   Item: React.FC<StepperItemProps>;
 }
@@ -16,44 +21,48 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
   children,
   selectedIndex,
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(selectedIndex);
   return (
     <FlexLayout>
-      {React.Children.map(children, (child, index) => {
-        return React.cloneElement(
-          child as React.ReactElement<StepperItemProps>,
-          {
-            ...child.props,
-            isLast: React.Children.count(children) - 1 === index,
-            isSelected: selectedIndex === index,
-            finished: index < selectedIndex,
-            index,
+      {React.Children.map(
+        children as Array<React.ReactElement<StepperItemProps>>,
+        (child, index) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+              ...child.props,
+              isLast: React.Children.count(children) - 1 === index,
+              isSelected: currentIndex === index,
+              finished: index < currentIndex,
+              index,
+              onClick: (e: React.MouseEvent<any>) => {
+                // child.props.onClick?.(e);
+                setCurrentIndex(index);
+              },
+            });
           }
-        );
-      })}
+        }
+      )}
     </FlexLayout>
   );
 };
 
-export type StepperItemUIProps = {
-  isSelected?: boolean;
-  finished?: boolean;
-  index?: number;
-};
-type StepperItemProps = {
-  isLast?: boolean;
-  children?: {
-    icon?: JSX.Element;
-  };
-} & StepperItemUIProps;
 const StepperItem: React.FC<StepperItemProps> = ({
   isLast,
   isSelected,
   index,
+  children,
+  finished,
+  onClick,
 }) => {
   return (
-    <StepWrapper isSelected={isSelected}>
+    <StepWrapper onClick={onClick} finished={finished} isSelected={isSelected}>
       <FlexLayout alignItems={"center"}>
-        <StepperItemBullet>{index + 1}</StepperItemBullet>
+        <StepperItemBullet>
+          {isSelected ||
+            (finished && (
+              <BulletContent>{children?.icon ?? index + 1}</BulletContent>
+            ))}
+        </StepperItemBullet>
         {!isLast && <StepLine />}
       </FlexLayout>
     </StepWrapper>

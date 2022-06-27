@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "Montserrat ExtraLight";
+    src: url("Montserrat-ExtraLightItalic.eot"); /* IE9 */
+    src: url("Montserrat-ExtraLightItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Montserrat-ExtraLightItalic.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("Montserrat-ExtraLightItalic.woff") format("woff"), /* chrome, firefox */
+    url("Montserrat-ExtraLightItalic.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Montserrat-ExtraLightItalic.svg#Montserrat ExtraLight") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+
