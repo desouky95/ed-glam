@@ -2,7 +2,8 @@ import React from 'react'
 import { space, SpaceProps } from 'styled-system'
 import styled from 'styled-components'
 type Props = {} & SpaceProps
-const Spacer: React.FC<Props> = ({ ...props }) => {
+export type SpacerProps = Props
+const Spacer: React.FC<SpacerProps> = ({ ...props }) => {
 	return <SpacerStyled {...props} />
 }
 

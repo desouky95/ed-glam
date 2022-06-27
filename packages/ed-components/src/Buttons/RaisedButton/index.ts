@@ -1,3 +1,3 @@
-import RaisedButton from './RaisedButton'
+import RaisedButton , {RaisedButtonProps} from './RaisedButton'
 
-export { RaisedButton }
+export { RaisedButton ,RaisedButtonProps}

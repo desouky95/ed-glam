@@ -1,3 +1,3 @@
-import TextButton from './TextButton'
+import TextButton , {TextButtonProps} from './TextButton'
 
-export { TextButton }
+export { TextButton ,TextButtonProps}

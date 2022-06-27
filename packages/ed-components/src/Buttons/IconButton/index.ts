@@ -1,3 +1,3 @@
-import IconButton from './IconButton'
+import IconButton, { IconButtonProps } from "./IconButton";
 
-export { IconButton }
+export { IconButton, IconButtonProps };
