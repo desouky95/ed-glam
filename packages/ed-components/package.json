@@ -5,7 +5,7 @@
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
   "license": "ISC",
-  "main": "lib/ed-glam.js",
+  "main": "./src/index.ts",
   "directories": {
     "test": "__tests__"
   },
