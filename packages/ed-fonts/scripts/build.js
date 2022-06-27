@@ -41,7 +41,7 @@ async function gulpTaskRunner(task) {
 
 const copyAssets = () => {
   return gulp
-    .src(["./src/fonts/**/*.{ttf,css}"], {
+    .src(["./src/fonts/**/*.{ttf,css,eot,svg,woff}"], {
       stat: true,
       debug : true,
     })

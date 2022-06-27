@@ -17,6 +17,7 @@ export const StoryTemplate: ComponentStory<typeof Stepper> = (
   { hooks }
 ) => {
   // const [currentIndex, setCurrentIndex] = useState(0);
+  return <div>Stepper</div>
   return (
     <Stepper selectedIndex={0} orientation="horizontal">
       <Stepper.Item>
