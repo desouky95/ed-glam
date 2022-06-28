@@ -4,8 +4,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "lerna:version": "npm run cleanup && lerna version",
-    "build:lerna": "lerna exec --scope @ed-glam/* -- npm run build ",
-    "build": "npm run cleanup && lerna exec  -- npm run build ",
+    "release:build": "npm run cleanup && lerna run --parallel --no-bail --profile build",
     "prepare": "node scripts/prepublish.js",
     "publish": "lerna publish from-package --dist-tag latest --contents build",
     "cleanup": "node scripts/cleanup.js"
@@ -61,10 +60,8 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2"
   },
-  "workspaces": {
-    "packages": [
-      "packages/**"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "name": "ed-glam"
 }

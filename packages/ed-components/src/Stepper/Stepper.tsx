@@ -21,7 +21,7 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
   children,
   selectedIndex,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(selectedIndex);
+  const [currentIndex, setCurrentIndex] = useState(selectedIndex ?? 0);
   return (
     <FlexLayout>
       {React.Children.map(
@@ -60,7 +60,9 @@ const StepperItem: React.FC<StepperItemProps> = ({
         <StepperItemBullet>
           {isSelected ||
             (finished && (
-              <BulletContent>{children?.icon ?? index + 1}</BulletContent>
+              <BulletContent>
+                {children?.icon ?? index ?? 0 + 1 }
+              </BulletContent>
             ))}
         </StepperItemBullet>
         {!isLast && <StepLine />}

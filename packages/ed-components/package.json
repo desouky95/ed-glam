@@ -18,8 +18,11 @@
     "url": "git+https://github.com/desouky95/ed-glam.git"
   },
   "scripts": {
-    "build": " node ../../scripts/build.js --path ed-components",
-    "prebuild": "node ../../scripts/prebuild.js --path ed-components",
+    "build": "npm run build:babel && npm run build:types",
+    "build:babel" :"node ../../scripts/build.js legacy",
+    "build:types" :"node ../../scripts/buildTypes",
+    "build:copy-files" : "node ../../scripts/copy-files.js",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -37,7 +40,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@eduact/ed-system": "^1.0.3",
-    "@eduact/student-theme": "../ed-student-theme",
+    "@eduact/student-theme": "^1.0.8",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",

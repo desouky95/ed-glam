@@ -1,12 +1,7 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig",
   "compilerOptions": {
-    "composite": true,
-    "noEmit": true,
-    "outDir": "build",
-    "rootDir": "./src",
-    "baseUrl": "./src"
+    "skipLibCheck": true,
   },
-  "include": ["./src/**/*"],
-  "exclude": ["build", "node_modules"]
+  "include": ["src/**/*", "test/**/*"]
 }

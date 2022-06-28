@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
-    "declaration": true,
-    "noImplicitAny": true,
     "module": "ESNext",
-    "lib": ["ES2015", "DOM"],
-    "sourceMap": true,
-    "target": "ESNext",
-    "outDir": "lib",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "jsx": "react-jsx",
+    "target": "ES5",
+    "lib": ["ES2020", "DOM"],
+    "jsx": "preserve",
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
     "baseUrl": "./",
+    "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
+    "allowJs": true,
     "paths": {
-      "@eduact/student-theme" :  ["packages/ed-student-theme/src"],
+      "@eduact/student-theme": ["packages/ed-student-theme/src"],
       "@eduact/student-theme/*": ["./packages/ed-student-theme/src/*"],
       "@eduact/ed-system": ["./packages/ed-system/src"],
       "@eduact/ed-system/*": ["./packages/ed-system/src/*"],
@@ -26,16 +24,16 @@
       "@eduact/ed-components/*": ["./packages/ed-components/src/*"],
       "@eduact/utils": ["./packages/utils/src"],
       "@eduact/utils/*": ["./packages/utils/src/*"],
-      "scripts/*" : ["./scripts/*"]
-    }
+      "scripts/*": ["./scripts/*"]
+    },
+    "types": ["node", "react"]
   },
   "exclude": [
     "node_modules",
     "build",
-    "*/build",
+    "**/.*",
+    "**/build",
     "**/node_modules",
-    "",
-    "test",
-    "packages/**/build"
+    "test"
   ]
 }

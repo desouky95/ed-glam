@@ -1,175 +1,120 @@
-/*jshint esversion: 6 */
-const { program } = require("commander");
-const webpack = require("webpack");
-const { join, parse, resolve } = require("path");
-const glob = require("glob");
-const { rollup, defineConfig } = require("rollup");
-const esbuild = require("rollup-plugin-esbuild");
-const dts = require("rollup-plugin-dts");
-const typescriptPlugin = require("@rollup/plugin-typescript");
-const { fileURLToPath } = require("url");
-const typescript = require("rollup-plugin-typescript2");
-const { nodeResolve } = require("@rollup/plugin-node-resolve");
-const { babel } = require("@rollup/plugin-babel");
-const cleaner = require("rollup-plugin-cleaner");
-const { rmSync, copyFileSync } = require("fs");
-const commonjs = require("@rollup/plugin-commonjs");
-const external = require("rollup-plugin-peer-deps-external");
-const { terser } = require("rollup-plugin-terser");
-const copy = require("rollup-plugin-cpy");
-const url = require("@rollup/plugin-url");
-const gulp = require("gulp");
-const assets = require("rollup-plugin-asset");
-//
-// global.__filename = fileURLToPath(const.meta.url);
-// global.__dirname = path.dirname(__filename);
+const childProcess = require("child_process");
+const glob = require("fast-glob");
+const path = require("path");
+const { promisify } = require("util");
+const yargs = require("yargs");
 
-program.option("-p, --path <pathValue>", "Packages Path");
-program.option("-wa, --withAssets", "Copy Assets to build", false);
+const exec = promisify(childProcess.exec);
 
-let __pkgPath = "";
-let __pkgFiles = [];
-const options = program.opts();
+const validBundles = [
+  // legacy build using ES6 modules
+  "legacy",
+  // modern build with a rolling target using ES6 modules
+  "modern",
+  // build for node using commonJS modules
+  "node",
+  // build with a hardcoded target using ES6 modules
+  "stable",
+];
 
-const getPkgPath = (args) => join(__dirname, `../packages/${args}`);
-const getPkgFiles = () => {
-  const pkgFiles = glob.sync(
-    "!(build|node_modules|__tests__|stories|.stories)/**/!(*.stories).{ts,js,tsx}".replace(
-      /\\/g,
-      "/"
-    ),
+async function run(argv) {
+  const { bundle, largeFiles, outDir: relativeOutDir, verbose } = argv;
+  if (!validBundles.includes(bundle)) {
+    throw new TypeError(
+      `Unrecognized bundle '${bundle}'. Did you mean one of "${validBundles.join(
+        '", "'
+      )}"?`
+    );
+  }
+
+  const env = {
+    NODE_ENV: "production",
+    BABEL_ENV: bundle,
+    MUI_BUILD_VERBOSE: verbose,
+  };
+  const babelConfigPath = path.resolve(__dirname, "../.babelrc");
+  const srcDir = path.resolve("./src");
+  const extensions = [".js", ".ts", ".tsx"];
+  const ignore = [
+    "**/*.test.js",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.d.ts",
+  ];
+
+  const topLevelNonIndexFiles = glob
+    .sync(`*{${extensions.join(",")}}`, { cwd: srcDir, ignore })
+    .filter((file) => {
+      return path.basename(file, path.extname(file)) !== "index";
+    });
+  const topLevelPathImportsCanBePackages = topLevelNonIndexFiles.length === 0;
+
+  const outDir = path.resolve(
+    relativeOutDir,
     {
-      root: `${__pkgPath.replace(/\\/g, "/")}`,
-    }
+      node: topLevelPathImportsCanBePackages ? "./node" : "./",
+      modern: "./modern",
+      stable: topLevelPathImportsCanBePackages ? "./" : "./esm",
+      legacy: "",
+    }[bundle]
   );
-  const __pkgFiles = pkgFiles.reduce((entries, entry) => {
-    const entryParsedFile = parse(entry);
-    const splittedPath = entryParsedFile.dir.split("/");
-    if (splittedPath.length > 1) {
-      splittedPath[splittedPath.length - 2] =
-        splittedPath[splittedPath.length - 1];
-    }
-    const entryName =
-      entryParsedFile.dir === "src" || entryParsedFile.dir === "lib"
-        ? entryParsedFile.name
-        : splittedPath.join("/");
-    entries[entryName] = `./${entry}`;
-    return entries;
-  }, {});
-  const __files = pkgFiles.reduce((entries, entry) => {
-    const entryParsedFile = parse(entry);
-    if (entryParsedFile.dir === "src" || entryParsedFile.dir === "lib") {
-      entries[entryParsedFile.name] = entry;
-    } else {
-      entries[entry] = entry;
-    }
-    return entries;
-  }, {});
-  return __files;
-};
 
-const webpackComplier = () => {
-  webpack(
-    {
-      context: resolve(__dirname, __pkgPath),
-      entry: __pkgFiles,
-      output: {
-        path: resolve(__pkgPath, "build"),
-        filename: (path) => {
-          return "[name].js";
-        },
-        clean: true,
-        library: {
-          type: "module",
-        },
-      },
-      mode: "production",
-      experiments: {
-        outputModule: true,
-      },
-      module: {
-        rules: [
-          {
-            test: /\.(ts|js)$/,
-            loader: "babel-loader",
-            exclude: /node_modules/,
-            options: {
-              presets: ["@babel/preset-env", "@babel/preset-typescript"],
-            },
-          },
-          {
-            test: /\.(woff|woff2|eot|ttf|otf)$/i,
-            type: "asset/resource",
-          },
-        ],
-      },
-      resolve: {
-        extensions: [".ts", ".js"],
-      },
-    },
-    (err, result) => {
-      if (err || result.hasErrors()) {
-        console.dir(err || result.toJson().errors);
-      }
-    }
-  );
-};
+  const babelArgs = [
+    "--config-file",
+    babelConfigPath,
+    "--extensions",
+    `"${extensions.join(",")}"`,
+    srcDir,
+    "--out-dir",
+    outDir,
+    "--ignore",
+    // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
+    `"${ignore.join('","')}"`,
+  ];
 
-const rollupCompiler = async (withAssets) => {
-  const baseConfig = defineConfig({
-    context: resolve(__dirname, __pkgPath),
-    input: `./src/index.ts`,
-    output: {
-      format: "esm",
-      extend: true,
-      name: "[name].js",
-      dir: "build",
-      exports: "auto",
-      esModule: true,
-      preserveModules: true,
-      sourcemap: true,
-      generatedCode: {
-        arrowFunctions: true,
-        constBindings: true,
-        objectShorthand: true,
-      },
-      minifyInternalExports: true,
-      assetFileNames: "[name]-[hash]",
-    },
-    shimMissingExports: true,
-    treeshake: "recommended",
+  if (largeFiles) {
+    babelArgs.push("--compact false");
+  }
 
-    plugins: [
-      external({ packageJsonPath: `${__pkgPath}/package.json` }),
-      typescript({ tsconfig: `${__pkgPath}/tsconfig.json` }),
-      // commonjs(),
-      babel({
-        exclude: [/node_modules/],
-        babelHelpers: "bundled",
-        configFile: resolve(__dirname, "../.babelrc.js"),
-      }),
-      url(),
-      // copy({
-      //   files: ["./src/**/*.ttf"],
-      //   dest : './build'
-      // }),
-      // copy({
-      //   assets: withAssets ? ["./src/Assets"] : [],
-      // }),
-    ],
+  const command = ["babel", ...babelArgs].join(" ");
+
+  if (verbose) {
+    // eslint-disable-next-line no-console
+    console.log(`running '${command}' with ${JSON.stringify(env)}`);
+  }
+
+  const { stderr, stdout } = await exec(command, {
+    env: { ...process.env, ...env },
   });
-  const { write } = await rollup(baseConfig);
-  await write(baseConfig);
-};
-program.action(async () => {
-  const { path: pkgPath, withAssets } = options;
-  if (!pkgPath) throw new Error("Package path is needed");
-  __pkgPath = getPkgPath(pkgPath);
-  __pkgFiles = getPkgFiles();
-  rmSync(`${__pkgPath}/build`, { force: true, recursive: true });
-  await rollupCompiler(withAssets);
-  // webpackComplier();
-  // copyFileSync(`${__pkgPath}/package.json`, `${__pkgPath}/build/package.json`);
-});
+  if (stderr) {
+    throw new Error(`'${command}' failed with \n${stderr}`);
+  }
+}
 
-program.parse(process.argv);
+yargs
+  .command({
+    command: "$0 <bundle>",
+    description: "build package",
+    builder: (command) => {
+      return command
+        .positional("bundle", {
+          description: `Valid bundles: "${validBundles.join('" | "')}"`,
+          type: "string",
+        })
+        .option("largeFiles", {
+          type: "boolean",
+          default: false,
+          describe:
+            "Set to `true` if you know you are transpiling large files.",
+        })
+        .option("out-dir", { default: "./build", type: "string" })
+        .option("verbose", { type: "boolean" });
+    },
+    handler: run,
+  })
+  .help()
+  .strict(true)
+  .version(false)
+  .parse();

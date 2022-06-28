@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "./src",
+    "composite": true,
+    "outDir": "./build",
+    "incremental": true,
+    "emitDeclarationOnly": true
+  },
+  "include": ["src/**/*.ts*"],
+  "exclude": [
+    "src/**/*.d.ts",
+    "src/**/*.test.*",
+    "./**/*.spec.*",
+    "**/test-utils.tsx"
+  ],
+  "references": [
+    { "path": "../ed-system/tsconfig.build.json" },
+    { "path": "../ed-student-theme/tsconfig.build.json" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "noEmit": false,
+      "declaration": true,
+      "declarationMap": true,
+      "composite": true,
+      "rootDir": "./src",
+      "outDir": "./build",
+      "incremental": true,
+      "emitDeclarationOnly": true
+    },
+    "include": ["src/**/*.ts*"],
+    "exclude": [
+      "src/**/*.d.ts",
+      "src/**/*.test.*",
+      "./**/*.spec.*",
+      "**/test-utils.tsx"
+    ]
+  }
+  
