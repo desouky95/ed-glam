@@ -1,6 +1,6 @@
 {
   "name": "@eduact/utils",
-  "version": "0.4.16",
+  "version": "0.4.17",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,8 +20,8 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@eduact/ed-system": "^1.0.8",
-    "@eduact/student-theme": "^1.0.13",
+    "@eduact/ed-system": "^1.0.9",
+    "@eduact/student-theme": "^1.0.14",
     "@types/styled-system": "^5.1.15"
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319"
