@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-system",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -19,9 +19,9 @@
   },
   "scripts": {
     "build": "npm run build:babel && npm run build:types",
-    "build:babel" :"node ../../scripts/build.js legacy",
-    "build:types" :"node ../../scripts/buildTypes",
-    "build:copy-files" : "node ../../scripts/copy-files.js",
+    "build:babel": "node ../../scripts/build.js legacy",
+    "build:types": "node ../../scripts/buildTypes",
+    "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo"
   },
   "bugs": {

@@ -1,12 +1,12 @@
 {
   "name": "@ed-glam/admin-theme",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "",
   "scripts": {
     "build": "npm run build:babel && npm run build:types",
-    "build:babel" :"node ../../scripts/build.js legacy",
-    "build:types" :"node ../../scripts/buildTypes",
-    "build:copy-files" : "node ../../scripts/copy-files.js",
+    "build:babel": "node ../../scripts/build.js legacy",
+    "build:types": "node ../../scripts/buildTypes",
+    "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo"
   },
   "author": "desouky",
@@ -16,8 +16,8 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@eduact/ed-system": "^1.0.3",
-    "@eduact/student-theme": "^1.0.8"
+    "@eduact/ed-system": "^1.0.4",
+    "@eduact/student-theme": "^1.0.9"
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319"
 }
