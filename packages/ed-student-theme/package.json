@@ -18,6 +18,7 @@
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "dependencies": {
-    "@eduact/ed-system": "^1.0.7"
+    "@eduact/ed-system": "^1.0.7",
+    "@types/styled-system": "^5.1.15"
   }
 }
