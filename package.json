@@ -3,7 +3,7 @@
   "description": "My webpack project",
   "main": "./src/index.ts",
   "scripts": {
-    "lerna:version": "npm run cleanup && lerna version",
+    "release:version": "npm run cleanup && lerna version",
     "release:build": "npm run cleanup && lerna run --parallel --no-bail --profile build",
     "prepare": "node scripts/prepublish.js",
     "publish": "lerna publish from-package --dist-tag latest --contents build",
