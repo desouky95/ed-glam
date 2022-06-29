@@ -1,7 +1,14 @@
 import styled, { css } from "styled-components";
-import { typography, TypographyProps } from "styled-system";
-import { createGlobalFont } from './createGlobalFont';
-import { generateMaterialIconsFontFaces } from './generateMaterialIconsFontFaces';
+import {
+  space,
+  SpaceProps,
+  textStyle,
+  TextStyleProps,
+  typography,
+  TypographyProps,
+} from "styled-system";
+import { createGlobalFont } from "./createGlobalFont";
+import { generateMaterialIconsFontFaces } from "./generateMaterialIconsFontFaces";
 import {
   Fonts,
   FontFamily,
@@ -10,8 +17,10 @@ import {
   MaterialIconsType,
 } from "./typography.types";
 
-export const Typography = styled.div<TypographyProps>`
+export const Typography = styled.span<TypographyProps & TextStyleProps & SpaceProps>`
   ${typography}
+  ${textStyle}
+  ${space}
 `;
 
 export const SingleLineCssTrim = css`
@@ -27,5 +36,5 @@ export {
   MaterialIconFontFace,
   MaterialIconsType,
   createGlobalFont,
-  generateMaterialIconsFontFaces
+  generateMaterialIconsFontFaces,
 };
