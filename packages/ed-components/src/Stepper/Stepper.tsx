@@ -1,10 +1,13 @@
 import { FlexLayout } from "@eduact/ed-system";
 import { Orientation } from "@eduact/student-theme";
 import React, { useState } from "react";
+import { useMemo } from "react";
 import {
   BulletContent,
   StepLine,
+  StepperBulletWrapper,
   StepperItemBullet,
+  StepTooltip,
   StepWrapper,
 } from "./Stepper.styled";
 import {
@@ -19,9 +22,15 @@ export interface StepperComposition {
 const Stepper: React.FC<StepperProps> & StepperComposition = ({
   orientation = "horizontal",
   children,
-  selectedIndex,
+  initStep,
+  onChange,
+  clickable,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(selectedIndex ?? 0);
+  const [currentIndex, setCurrentIndex] = useState(initStep ?? 0);
+
+  const validCurrentIndex = useMemo(() => {
+    return clickable ? currentIndex : initStep ?? 0;
+  }, [currentIndex, initStep, clickable]);
   return (
     <FlexLayout>
       {React.Children.map(
@@ -31,12 +40,15 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
             return React.cloneElement(child, {
               ...child.props,
               isLast: React.Children.count(children) - 1 === index,
-              isSelected: currentIndex === index,
-              finished: index < currentIndex,
+              isSelected: validCurrentIndex === index,
+              finished: index < validCurrentIndex,
               index,
               onClick: (e: React.MouseEvent<any>) => {
-                // child.props.onClick?.(e);
-                setCurrentIndex(index);
+                child.props.onClick?.(e);
+                if (clickable) {
+                  setCurrentIndex(index);
+                  onChange && onChange(index);
+                }
               },
             });
           }
@@ -49,22 +61,29 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
 const StepperItem: React.FC<StepperItemProps> = ({
   isLast,
   isSelected,
-  index,
+  index = 0,
   children,
   finished,
   onClick,
+  icon,
+  tooltip,
+  disabled,
 }) => {
   return (
-    <StepWrapper onClick={onClick} finished={finished} isSelected={isSelected}>
-      <FlexLayout alignItems={"center"}>
-        <StepperItemBullet>
-          {isSelected ||
-            (finished && (
-              <BulletContent>
-                {children?.icon ?? index ?? 0 + 1 }
-              </BulletContent>
-            ))}
-        </StepperItemBullet>
+    <StepWrapper
+      onClick={(e) => !disabled && onClick && onClick(e)}
+      finished={finished}
+      isSelected={isSelected}
+      isLast={isLast}
+    >
+      <FlexLayout width={"100%"} alignItems={"center"}>
+        <StepperBulletWrapper>
+          <StepperItemBullet>
+            {isSelected ||
+              (finished && <BulletContent>{icon ?? index + 1}</BulletContent>)}
+          </StepperItemBullet>
+          {tooltip && <StepTooltip>{tooltip}</StepTooltip>}
+        </StepperBulletWrapper>
         {!isLast && <StepLine />}
       </FlexLayout>
     </StepWrapper>

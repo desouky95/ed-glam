@@ -2,6 +2,9 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
 import Stepper from "./Stepper";
 import { MdAttachEmail } from "react-icons/md";
+import { RaisedButton } from "../Buttons";
+import Spacer from "../Spacer";
+import { FlexLayout } from "@eduact/ed-system";
 export default {
   parameters: {
     docs: {
@@ -13,22 +16,38 @@ export default {
 } as ComponentMeta<typeof Stepper>;
 
 export const StoryTemplate: ComponentStory<typeof Stepper> = (
-  { children, orientation, selectedIndex },
+  { children, orientation, initStep, onChange },
   { hooks }
 ) => {
-  // const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   return (
-    <Stepper selectedIndex={0} orientation="horizontal">
-      <Stepper.Item>
-        {{
-          icon: <MdAttachEmail />,
-        }}
-      </Stepper.Item>
-      <Stepper.Item>
-        {{
-          icon: <MdAttachEmail />,
-        }}
-      </Stepper.Item>
-    </Stepper>
+    <>
+      <Stepper clickable initStep={currentIndex} orientation="horizontal">
+        <Stepper.Item  tooltip={"Sign up"} />
+        <Stepper.Item disabled icon={<MdAttachEmail />} />
+        <Stepper.Item icon={<MdAttachEmail />} />
+        <Stepper.Item icon={<MdAttachEmail />} />
+        {/* <Stepper.Item icon={<MdAttachEmail />} /> */}
+        {/* <Stepper.Item icon={<MdAttachEmail />} /> */}
+        {/* <Stepper.Item icon={<MdAttachEmail />} /> */}
+      </Stepper>
+      <Spacer mb={"1rem"} />
+      <FlexLayout>
+        <RaisedButton
+          btnSize={"small"}
+          onClick={() => setCurrentIndex(currentIndex + 1)}
+        >
+          +
+        </RaisedButton>
+        <Spacer mx={"1rem"} />
+        <RaisedButton
+          btnSize={"small"}
+          variant="princetonOrange"
+          onClick={() => setCurrentIndex(currentIndex - 1)}
+        >
+          -
+        </RaisedButton>
+      </FlexLayout>
+    </>
   );
 };
