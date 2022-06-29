@@ -4,3 +4,4 @@ test
 build
 # /packages/**/package.json
 /packages/**/build/
+tsconfig.build.tsbuildinfo
