@@ -49,13 +49,13 @@ export const Stack = styled.div<PositionProps>`
 
 export const Container = styled.div<MaxWidthProps>`
   max-width: 100%;
-  @media screen and (max-width: 832px) {
-    max-width: 800px;
+  @media (min-width: 832px) {
+	  max-width: 800px;
   }
-  @media screen and (max-width: 1024px) {
+  @media (min-width: 1024px) {
     max-width: 990px;
   }
-  @media screen and (max-width: 1280px) {
+  @media (min-width: 1280px) {
     max-width: 1200px;
   }
   ${maxWidth}
