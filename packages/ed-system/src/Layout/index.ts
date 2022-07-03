@@ -50,7 +50,7 @@ export const Stack = styled.div<PositionProps>`
 export const Container = styled.div<MaxWidthProps>`
   max-width: 100%;
   @media (min-width: 832px) {
-	  max-width: 800px;
+    max-width: 800px;
   }
   @media (min-width: 1024px) {
     max-width: 990px;
@@ -59,4 +59,5 @@ export const Container = styled.div<MaxWidthProps>`
     max-width: 1200px;
   }
   ${maxWidth}
+  margin: 0 auto;
 `;
