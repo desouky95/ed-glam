@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-components",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
-    "@eduact/ed-system": "^1.0.11",
-    "@eduact/student-theme": "^1.0.16",
+    "@eduact/ed-system": "^1.0.12",
+    "@eduact/student-theme": "^1.0.17",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",
