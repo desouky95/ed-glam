@@ -79,8 +79,8 @@ const StepperItem: React.FC<StepperItemProps> = ({
       <FlexLayout width={"100%"} alignItems={"center"}>
         <StepperBulletWrapper>
           <StepperItemBullet>
-            {isSelected ||
-              (finished && <BulletContent>{icon ?? index + 1}</BulletContent>)}
+            {(isSelected ||
+              finished) && <BulletContent>{icon ?? index + 1}</BulletContent>}
           </StepperItemBullet>
           {tooltip && <StepTooltip>{tooltip}</StepTooltip>}
         </StepperBulletWrapper>
