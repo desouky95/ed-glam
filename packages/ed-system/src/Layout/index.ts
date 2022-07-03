@@ -58,6 +58,6 @@ export const Container = styled.div<MaxWidthProps>`
   @media (min-width: 1280px) {
     max-width: 1200px;
   }
-  ${maxWidth}
+  ${maxWidth};
   margin: 0 auto;
 `;
