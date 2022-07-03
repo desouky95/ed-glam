@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
-import { addDecorator} from '@storybook/react'
-import {ThemeProvider} from '@eduact/student-theme'
+import { addDecorator } from "@storybook/react";
+import { createGlobalFont, Fonts } from "@eduact/ed-system";
+import { ThemeProvider } from "@eduact/student-theme";
+const { Cairo, AvantGarde, Montserrat } = require("@eduact/ed-fonts");
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -9,7 +11,21 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
+
+const fonts = {
+  fonts: {
+    Cairo: {
+      500: Cairo.CairoMedium,
+    },
+    Montserrat: {
+      500: Montserrat.MontserratMedium,
+    },
+    AvantGarde: {
+      normal: AvantGarde.AvantGardeRegular,
+    },
+  },
+};
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -37,6 +53,9 @@ html ,body {
 		transform : rotate(180deg);
 	  }
   }
+  ${createGlobalFont("Cairo", fonts)};
+  ${createGlobalFont("Montserrat", fonts)};
+  ${createGlobalFont("AvantGarde", fonts)};
 `;
 export const ThemeDecorator = (storyFn) => (
   <ThemeProvider>
@@ -47,4 +66,3 @@ export const ThemeDecorator = (storyFn) => (
 );
 
 addDecorator(ThemeDecorator);
-

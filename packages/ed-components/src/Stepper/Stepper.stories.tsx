@@ -23,11 +23,11 @@ export const StoryTemplate: ComponentStory<typeof Stepper> = (
   return (
     <>
       <Container>
-        <Stepper clickable initStep={currentIndex} orientation="horizontal">
+        <Stepper initStep={currentIndex} orientation="horizontal">
           <Stepper.Item tooltip={"Sign up"} />
-          <Stepper.Item disabled icon={<MdAttachEmail />} />
-          <Stepper.Item icon={<MdAttachEmail />} />
-          <Stepper.Item icon={<MdAttachEmail />} />
+          <Stepper.Item disabled tooltip="Verify" />
+          <Stepper.Item />
+          <Stepper.Item />
           {/* <Stepper.Item icon={<MdAttachEmail />} /> */}
           {/* <Stepper.Item icon={<MdAttachEmail />} /> */}
           {/* <Stepper.Item icon={<MdAttachEmail />} /> */}

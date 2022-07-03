@@ -1,4 +1,3 @@
-const AvantGardeRegular = reuqire("./AvantGarde-Regular.ttf");
-const AvantGardeRegularCSS = reuqire("./AvantGarde-Regular.css");
+const AvantGardeRegular = require("./AvantGarde-Regular.ttf");
 
-module.exports = { AvantGardeRegular, AvantGardeRegularCSS };
+module.exports = { AvantGardeRegular };

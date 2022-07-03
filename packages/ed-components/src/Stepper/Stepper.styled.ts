@@ -13,6 +13,7 @@ const FillAnimation = keyframes`
 
 export const BulletContent = styled.div`
   z-index: 4;
+  font-family: "AvantGarde";
 `;
 
 export const StepperBulletWrapper = styled.div`
@@ -24,6 +25,10 @@ export const StepTooltip = styled.div`
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  font-weight: 500;
+  font-family: "Montserrat";
+  font-size: 1.25rem;
+  color: ${(props) => props.theme.colors.primary};
   white-space: nowrap;
   ${({ theme }) => `${theme.mediaQueries.large}{
   display : block;
