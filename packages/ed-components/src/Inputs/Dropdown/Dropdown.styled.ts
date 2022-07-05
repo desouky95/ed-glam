@@ -1,11 +1,17 @@
 import { HTMLProps } from "react";
 import { animated } from "react-spring";
 import styled from "styled-components";
+import { layout, LayoutProps, space, SpaceProps } from "styled-system";
 import { Icon } from "../../Icons/Icons";
 // import {} from 'styled-system'
+import { InputBaseError } from "../BaseInputUtils/BaseInputs.types";
 
-export const DropdownWrapper = styled.div<{ $hasValue: boolean }>`
+type WrapperProps = SpaceProps &
+  LayoutProps &
+  InputBaseError & { $hasValue: boolean };
+export const DropdownWrapper = styled.div<WrapperProps>`
   display: flex;
+  position: relative;
   cursor: pointer;
   justify-content: space-between;
   border-bottom: 0.6px solid ${(props) => props.theme.colors.silver};
@@ -13,6 +19,14 @@ export const DropdownWrapper = styled.div<{ $hasValue: boolean }>`
   --color: ${(props) =>
     props.$hasValue ? props.theme.colors.dark : props.theme.colors.silver};
   color: var(--color);
+  align-items: center;
+  span {
+    flex: 1;
+  }
+  border-bottom-color: ${(props) =>
+    props.error ? props.theme.colors.red : ""};
+  ${layout};
+  ${space};
 `;
 
 export const DropdownIcon = styled(Icon)<{ $opened: boolean }>`
@@ -27,8 +41,8 @@ export const DropdownOptions = styled.div<{ $opened: boolean }>`
 export const AnimatedWrapper = styled(animated.div)`
   position: absolute;
   top: 100%;
-  width : 100%;
-  z-index : 999;
+  width: 100%;
+  z-index: 999;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   background: ${(props) => props.theme.colors.cultured};

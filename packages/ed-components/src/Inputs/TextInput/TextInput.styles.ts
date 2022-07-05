@@ -1,11 +1,19 @@
 import styled from "styled-components";
+import { layout, LayoutProps, space, SpaceProps } from "styled-system";
+import { InputBaseError } from "../BaseInputUtils";
 
-export const InputWrapper = styled.div`
+export const InputBaseWrapper = styled.div<SpaceProps & LayoutProps>`
+  ${space};
+  ${layout};
+`;
+export const InputWrapper = styled.div<InputBaseError>`
   display: flex;
   border-bottom: 0.6px solid ${(props) => props.theme.colors.silver};
   padding: 6px 0;
+  border-bottom-color: ${(props) =>
+    props.error ? props.theme.colors.red : ""};
 `;
-export const StyledInput = styled.input`
+export const StyledInput = styled.input<InputBaseError>`
   flex: 1;
   border: none;
   --color: ${(props) => props.theme.colors.silver};
@@ -21,9 +29,4 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: var(--color);
   }
-`;
-
-export const RequiredMark = styled.span`
-  color: ${({ theme }) => theme.colors.princetonOrange};
-  margin : 0 6px ;
 `;
