@@ -1,7 +1,7 @@
 import { FlexLayout } from "@eduact/ed-system";
 import styled, { css, keyframes } from "styled-components";
 import { StepperItemUIProps } from "./Stepper.types";
-
+// import {} from 'styled-system'
 const FillAnimation = keyframes`
  0% {
     transform: translateY(0) rotate(0deg);

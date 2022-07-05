@@ -2,7 +2,7 @@ import { HTMLProps } from "react";
 import { animated } from "react-spring";
 import styled from "styled-components";
 import { Icon } from "../../Icons/Icons";
-import { DropdownOptionProps } from "./Dropdown.types";
+// import {} from 'styled-system'
 
 export const DropdownWrapper = styled.div<{ $hasValue: boolean }>`
   display: flex;

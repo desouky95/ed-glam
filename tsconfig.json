@@ -26,7 +26,6 @@
       "@eduact/utils/*": ["./packages/utils/src/*"],
       "scripts/*": ["./scripts/*"]
     },
-    // "typeRoots": ["./node_modules/@types"],
     "types": ["node", "react"]
   },
   "exclude": [

@@ -3,11 +3,12 @@
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
+    "declarationMap": true,
     "composite": true,
     "rootDir": "./src",
     "outDir": "./build",
-    "emitDeclarationOnly": true,
-    "incremental": true
+    "incremental": true,
+    "emitDeclarationOnly": true
   },
   "include": ["src/**/*.ts*"],
   "exclude": [
