@@ -6,6 +6,7 @@ import {
   TextStyleProps,
   typography,
   TypographyProps,
+  variant,
 } from "styled-system";
 import { createGlobalFont } from "./createGlobalFont";
 import { generateMaterialIconsFontFaces } from "./generateMaterialIconsFontFaces";

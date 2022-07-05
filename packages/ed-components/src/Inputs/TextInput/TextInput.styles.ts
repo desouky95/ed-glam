@@ -22,3 +22,8 @@ export const StyledInput = styled.input`
     color: var(--color);
   }
 `;
+
+export const RequiredMark = styled.span`
+  color: ${({ theme }) => theme.colors.princetonOrange};
+  margin : 0 6px ;
+`;

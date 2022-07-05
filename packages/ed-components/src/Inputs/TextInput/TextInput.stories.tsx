@@ -16,6 +16,10 @@ export default {
     type: {
       type: "string",
     },
+    required: {
+      type: "boolean",
+      defaultValue: false,
+    },
   },
 } as ComponentMeta<typeof TextInput>;
 
@@ -24,6 +28,7 @@ export const TextInputDefault: ComponentStory<typeof TextInput> = (args) => {
   //   const [value, setValue] = useState("Init Value");
   return (
     <TextInput
+      required
       onChange={(e) => updateArgs({ ...args, value: e.currentTarget.value })}
       //   value={value}
       placeholder="City"

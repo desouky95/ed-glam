@@ -1,6 +1,7 @@
+import Spacer from "../../Spacer";
 import React, { useState } from "react";
 import { Icon, EyeIcon, EyeoffIcon } from "../../Icons/Icons";
-import { InputWrapper, StyledInput } from "./TextInput.styles";
+import { InputWrapper, RequiredMark, StyledInput } from "./TextInput.styles";
 
 export type TextInputProps = {
   withToggle?: boolean;
@@ -24,12 +25,15 @@ const TextInput = React.forwardRef<
       <InputWrapper>
         <StyledInput ref={ref as any} {...props} type={type} />
         {props.type === "password" && withToggle && (
-          <Icon
-            onClick={() => setType(type === "password" ? "text" : "password")}
-          >
-            {type === "password" ? <EyeIcon /> : <EyeoffIcon />}
-          </Icon>
+          <Spacer mx={'6px'}>
+            <Icon
+              onClick={() => setType(type === "password" ? "text" : "password")}
+            >
+              {type === "password" ? <EyeIcon /> : <EyeoffIcon />}
+            </Icon>
+          </Spacer>
         )}
+        {props.required && <RequiredMark>*</RequiredMark>}
       </InputWrapper>
     );
   }
