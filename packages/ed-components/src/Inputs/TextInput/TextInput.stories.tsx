@@ -4,6 +4,8 @@ import TextInput from "./TextInput";
 import { MdPassword } from "react-icons/md";
 import { useArgs } from "@storybook/client-api";
 import { GridLayout } from "@eduact/ed-system";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 export default {
   title: "Inputs/TextInput",
   component: TextInput,
@@ -75,6 +77,28 @@ export const TextInputWithError: ComponentStory<typeof TextInput> = (args) => {
         placeholder="City"
         {...args}
       />
+    </GridLayout>
+  );
+};
+
+export const TextInputWithReactHookForm: ComponentStory<typeof TextInput> = (
+  args
+) => {
+  return <WithRHS />;
+};
+
+const WithRHS = () => {
+  const { register, control } = useForm({
+    defaultValues: {
+      password: "",
+      name: "",
+    },
+  });
+  return (
+    <GridLayout gridTemplateColumns={"repeat(2,1fr)"}>
+      <DevTool control={control} />
+      <TextInput {...register("name")} />
+      <TextInput {...register("password")} type="password" />
     </GridLayout>
   );
 };

@@ -1,12 +1,8 @@
 import { Color } from "@eduact/student-theme";
 import { cloneElement, HTMLProps, ReactElement } from "react";
 import styled from "styled-components";
-import {
-  FontSizeProps,
-  typography,
-  TypographyProps,
-  variant,
-} from "styled-system";
+import React from "react";
+import { typography, TypographyProps, variant } from "styled-system";
 
 type IconProps = {
   color?: Color;

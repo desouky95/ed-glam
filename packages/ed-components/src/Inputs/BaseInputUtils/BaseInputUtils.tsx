@@ -8,8 +8,8 @@ export const RequiredMark = styled.span`
 
 export const InputBaseHelperText = styled.p<InputBaseError>`
   font-size: 0.625rem;
-  /* white-space: nowrap; */
   word-break: break-word;
+  margin: 0.5rem 0;
   min-height: 13px;
   color: ${(props) =>
     props.error ? props.theme.colors.red : props.theme.colors.silver};
