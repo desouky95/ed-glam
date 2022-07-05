@@ -1,4 +1,9 @@
-export type FontFamily = "Montserrat" | "Mulish" | "Cairo" | "AvantGarde";
+export type FontFamily =
+  | "Montserrat"
+  | "Mulish"
+  | "Cairo"
+  | "AvantGarde"
+  | "Roboto";
 
 export type FontWeight =
   | "normal"
@@ -24,12 +29,16 @@ export interface Fonts {
   };
 }
 
-export type MaterialIconsType = 'Regular' | 'Outlined' | 'Round' | 'Sharp' | 'TwoTone'
-
+export type MaterialIconsType =
+  | "Regular"
+  | "Outlined"
+  | "Round"
+  | "Sharp"
+  | "TwoTone";
 
 export type MaterialIconFontFace = {
-	[key in MaterialIconsType]?: {
-		src: string
-		mapped_name?: string
-	}
-}
+  [key in MaterialIconsType]?: {
+    src: string;
+    mapped_name?: string;
+  };
+};

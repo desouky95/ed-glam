@@ -19,6 +19,7 @@
   ],
   "references": [
     { "path": "../ed-system/tsconfig.build.json" },
+    { "path": "../utils/tsconfig.build.json" },
     { "path": "../ed-student-theme/tsconfig.build.json" }
   ]
 }

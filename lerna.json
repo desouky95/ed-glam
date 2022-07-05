@@ -1,5 +1,6 @@
 {
   "npmClient": "npm",
   "version": "independent",
-  "useWorkspaces" : true
+  "packages": ["packages/*"],
+  "useWorkspaces": true
 }

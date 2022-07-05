@@ -2,6 +2,6 @@ export {
   ContentType as UnitType,
   ContentConfig,
   UnitProgressStatus,
-} from "./units/index";
-export * from "./hooks/index";
-export * from "./DateFormatter/index";
+} from "./units";
+export * from "./hooks";
+export * from "./DateFormatter";
