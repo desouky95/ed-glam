@@ -94,7 +94,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
         <select
           value={value}
           onChange={(e) => onChange?.(e)}
-          style={{ visibility: "hidden", display: 'block' }}
+          style={{ visibility: "hidden", display: "none" }}
           ref={(node) => {
             myRef.current = node;
             if (typeof ref === "function") {
