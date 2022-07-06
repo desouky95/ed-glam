@@ -9,7 +9,6 @@ type Props<T> = {
 const TextInputRHF = <T extends {}>({
   control,
   name,
-  placeholder,
   ref,
   ...props
 }: Props<T>) => {
