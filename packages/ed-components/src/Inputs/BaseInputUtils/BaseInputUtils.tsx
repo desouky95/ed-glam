@@ -9,7 +9,7 @@ export const RequiredMark = styled.span`
 export const InputBaseHelperText = styled.p<InputBaseError>`
   font-size: 0.625rem;
   word-break: break-word;
-  margin: 0.5rem 0;
+  margin-top: 0.3rem;
   min-height: 13px;
   color: ${(props) =>
     props.error ? props.theme.colors.red : props.theme.colors.silver};
