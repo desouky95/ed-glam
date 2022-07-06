@@ -1,10 +1,12 @@
 import { FlexLayout, GridLayout } from "@eduact/student-theme";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { TextInput } from "../TextInput";
+import { RaisedButton } from "../../Buttons";
+import DropdownRHF from "./DropdownRHF";
 export default {
   title: "Inputs/Dropdown",
   argTypes: {
@@ -79,7 +81,7 @@ export const DropdownDefault: ComponentStory<typeof Dropdown> = (args) => {
           <Dropdown.Option value={4}>Option 4</Dropdown.Option>
         </Dropdown>
 
-        <Dropdown sx={{ px: "1rem"  , mx : '1rem' }} placeholder="Test">
+        <Dropdown sx={{ px: "1rem", mx: "1rem" }} placeholder="Test">
           <Dropdown.Option value={1}>Option 1</Dropdown.Option>
           <Dropdown.Option value={2}>Option 2</Dropdown.Option>
           <Dropdown.Option value={3}>Option 3</Dropdown.Option>
@@ -97,24 +99,35 @@ export const DropdownWithReactHookForm: ComponentStory<typeof Dropdown> = (
 };
 
 const WithRHS = () => {
-  const { register, control } = useForm({
+  const { register, control, setValue } = useForm<{ name?: string }>({
     defaultValues: { name: "" },
   });
 
+  const onReset = () => {
+    setValue("name", undefined);
+  };
+  const { name, onChange, ref } = register("name");
+
   return (
     <GridLayout>
+      <RaisedButton onClick={onReset}>Reset</RaisedButton>
       <DevTool control={control} />
-      <Dropdown placeholder="Name" {...register("name", {  })}>
+      {/* <Dropdown placeholder="Name" {...register("name")}>
         <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
         <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
         <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
-      </Dropdown>
+      </Dropdown> */}
       <Controller
         control={control}
         name={"name"}
-        render={({ field  , fieldState : {error}}) => {
+        render={({ field, fieldState: { error } }) => {
           return (
-            <Dropdown error helperText="Errrorororororororo" {...field}>
+            <Dropdown
+              placeholder="Name"
+              error
+              helperText="Errrorororororororo"
+              {...field}
+            >
               <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
               <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
               <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
@@ -122,6 +135,11 @@ const WithRHS = () => {
           );
         }}
       />
+      <DropdownRHF placeholder="Name" control={control} name="name">
+        <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
+        <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+      </DropdownRHF>
     </GridLayout>
   );
 };

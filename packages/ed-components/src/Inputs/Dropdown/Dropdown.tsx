@@ -50,10 +50,7 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({
 };
 
 const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
-  (
-    { children, value, placeholder, required, ref: _ref, onChange, ...props },
-    ref
-  ) => {
+  ({ children, value, placeholder, required, onChange, ...props }, ref) => {
     const myRef = useRef<HTMLSelectElement | null>(null);
 
     const [hasValue, setHasValue] = useState(false);
@@ -61,17 +58,22 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
     const [opened, setOpened] = useState(false);
 
     useEffect(() => {
-      setHasValue(value || myRef.current?.value ? true : false);
       const _children = React.Children.toArray(children) as Array<
         React.ReactElement<DropdownOptionProps>
       >;
       const _selected = _children.find(
-        (_) => _.props.value === value || myRef.current?.value === _.props.value
+        (_) =>
+          _.props.value === value ||
+          (value && myRef.current?.value === _.props.value)
       );
       if (_selected) {
         setSelectedLabel(_selected.props.children as string);
+        setHasValue(true);
+      } else {
+        setSelectedLabel(undefined);
+        setHasValue(false);
       }
-    }, [value]);
+    }, [value, myRef.current?.value]);
 
     const handleChange = (value: any, label: any) => {
       if (!myRef.current) return;
@@ -115,7 +117,9 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
           error={props.error}
           {...props.sx}
         >
-          <span>{selectedLabel ?? placeholder}</span>
+          <span>
+            {selectedLabel !== undefined ? selectedLabel : placeholder}
+          </span>
           <FlexLayout alignItems={"center"}>
             <DropdownIcon $opened={opened} size={20}>
               <ChevronMore />

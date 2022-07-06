@@ -7,7 +7,6 @@ export type DropdownOptionProps = {} & HTMLProps<HTMLOptionElement>;
 export type DropdownProps = {
   onChange?: (value: any) => void;
   sx?: SpaceProps & LayoutProps;
-  // children: Array<React.FC<DropdownOptionProps>>;
 } & Exclude<HTMLProps<HTMLDivElement>, "onChange"> &
   InputBaseError;
 
