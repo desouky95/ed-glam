@@ -92,7 +92,13 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
       setOpened(false);
     });
     return (
-      <div ref={outsideRef} style={{ position: "relative" }}>
+      <div
+        onBlur={(e) => {
+          debugger;
+        }}
+        ref={outsideRef}
+        style={{ position: "relative" }}
+      >
         <select
           value={value}
           onChange={(e) => onChange?.(e)}
@@ -111,8 +117,10 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
         </select>
 
         <DropdownWrapper
-          onBlur={props.onBlur}
-          onClick={(e: React.MouseEvent) => setOpened(!opened)}
+          onClick={(e: React.MouseEvent) => {
+            props?.onBlur?.(e as unknown as React.FocusEvent<HTMLDivElement>);
+            setOpened(!opened);
+          }}
           $hasValue={hasValue}
           error={props.error}
           {...props.sx}

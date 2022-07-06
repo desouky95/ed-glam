@@ -18,9 +18,18 @@ const DropdownRHF = <T extends {}>({
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value, ...others }, fieldState }) => {
+      render={({
+        field: { onChange, value, onBlur, ...others },
+        fieldState,
+      }) => {
         return (
-          <Dropdown {...props} value={value} onChange={onChange} {...others}>
+          <Dropdown
+            {...props}
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            {...others}
+          >
             {children}
           </Dropdown>
         );

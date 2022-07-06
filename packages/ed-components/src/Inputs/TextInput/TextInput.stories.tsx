@@ -107,6 +107,7 @@ const WithRHS = () => {
         {...register("name")}
       />
       <TextInputRHF
+        error={true}
         control={control}
         name="password"
         type="date"
