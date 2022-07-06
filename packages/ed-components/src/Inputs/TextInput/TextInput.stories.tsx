@@ -97,7 +97,14 @@ const WithRHS = () => {
   return (
     <GridLayout gridTemplateColumns={"repeat(2,1fr)"}>
       <DevTool control={control} />
-      <TextInput {...register("name")} />
+      <TextInput type="month" placeholder="Birthdate" {...register("name")} />
+      <TextInput type="time" placeholder="Birthdate" {...register("name")} />
+      <TextInput type="date"  {...register("name")} />
+      <TextInput
+        type="datetime-local"
+        placeholder="Birthdate"
+        {...register("name")}
+      />
       <TextInput {...register("password")} type="password" />
     </GridLayout>
   );

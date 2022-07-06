@@ -6,7 +6,7 @@ type Props<T> = {
   control: Control<T>;
   name: Path<T>;
 } & TextInputProps;
-const TextInputRHS = <T extends {}>({
+const TextInputRHF = <T extends {}>({
   control,
   name,
   placeholder,
@@ -24,4 +24,4 @@ const TextInputRHS = <T extends {}>({
   );
 };
 
-export default TextInputRHS;
+export default TextInputRHF;

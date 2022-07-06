@@ -10,7 +10,7 @@ import {
   InputBaseHelperText,
   RequiredMark,
 } from "../BaseInputUtils/BaseInputUtils";
-import { InputBaseError } from "../BaseInputUtils/BaseInputs.types";
+import { InputBaseError, isDatetime } from "../BaseInputUtils/BaseInputs.types";
 
 export type TextInputProps = {
   withToggle?: boolean;
@@ -29,11 +29,28 @@ const TextInput = React.forwardRef<
     }: React.PropsWithChildren<TextInputProps>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const [type, setType] = useState(props.type);
+    const [type, setType] = useState(
+      isDatetime(props.type) && props.placeholder ? "text" : props.type
+    );
 
     return (
       <InputBaseWrapper {...props}>
-        <InputWrapper  error={props.error}>
+        <InputWrapper
+          error={props.error}
+          onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
+            if (isDatetime(props.type)) {
+              setType(props.type);
+            }
+            props.onFocus && props.onFocus(e);
+          }}
+          onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
+            console.log(isDatetime(props.type));
+            if (isDatetime(props.type)) {
+              setType("text");
+            }
+            props.onBlur && props.onBlur(e);
+          }}
+        >
           <StyledInput ref={ref as any} {...props} type={type} />
           {props.type === "password" && withToggle && (
             <Spacer mx={"6px"}>

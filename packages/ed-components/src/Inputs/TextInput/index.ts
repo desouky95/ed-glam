@@ -1,4 +1,4 @@
 import TextInput, { TextInputProps } from "./TextInput";
-import TextInputRHS from "./TextInputRHS";
+import TextInputRHF from "./TextInputRHF";
 
-export { TextInput, TextInputProps, TextInputRHS };
+export { TextInput, TextInputProps, TextInputRHF };

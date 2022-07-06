@@ -25,7 +25,6 @@ export const StyledInput = styled.input<InputBaseError>`
   font-weight: 400;
   font-stretch: normal;
   font-style: normal;
-  line-height: 0.06;
   letter-spacing: normal;
   &::placeholder {
     color: var(--color);
