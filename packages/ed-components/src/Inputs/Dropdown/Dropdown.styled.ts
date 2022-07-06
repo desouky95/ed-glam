@@ -35,6 +35,8 @@ export const DropdownIcon = styled(Icon)<{ $opened: boolean }>`
 `;
 export const DropdownOptions = styled.div<{ $opened: boolean }>`
   height: auto;
+  max-height: 176px;
+  overflow: auto;
   box-shadow: 0 2px 2px 2px #000;
 `;
 
@@ -47,6 +49,7 @@ export const AnimatedWrapper = styled(animated.div)`
   border-bottom-left-radius: 5px;
   background: ${(props) => props.theme.colors.cultured};
   box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+  max-height: 11rem;
 `;
 export const StyledInput = styled.input`
   flex: 1;

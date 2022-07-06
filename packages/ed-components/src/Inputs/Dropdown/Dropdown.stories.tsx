@@ -120,6 +120,34 @@ const WithRHS = () => {
         <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
         <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
         <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
       </DropdownRHF>
       <DropdownRHF placeholder="Type" control={control} name="type">
         <Dropdown.Option value={1}>Type A</Dropdown.Option>
