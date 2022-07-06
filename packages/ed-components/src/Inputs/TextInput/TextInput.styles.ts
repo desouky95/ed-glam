@@ -15,6 +15,7 @@ export const InputWrapper = styled.div<InputBaseError>`
 `;
 export const StyledInput = styled.input<InputBaseError>`
   flex: 1;
+  width: 100%;
   border: none;
   --color: ${(props) => props.theme.colors.silver};
   outline: var(--color);
