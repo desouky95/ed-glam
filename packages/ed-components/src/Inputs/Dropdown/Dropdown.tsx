@@ -117,7 +117,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
         >
           <span>{selectedLabel ?? placeholder}</span>
           <FlexLayout alignItems={"center"}>
-            <DropdownIcon $opened={opened} size={24}>
+            <DropdownIcon $opened={opened} size={20}>
               <ChevronMore />
             </DropdownIcon>
             {required && <RequiredMark>*</RequiredMark>}
