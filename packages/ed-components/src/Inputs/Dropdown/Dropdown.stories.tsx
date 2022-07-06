@@ -98,13 +98,13 @@ export const DropdownWithReactHookForm: ComponentStory<typeof Dropdown> = (
 
 const WithRHS = () => {
   const { register, control } = useForm({
-    defaultValues: { name: "ismail" },
+    defaultValues: { name: "" },
   });
 
   return (
     <GridLayout>
       <DevTool control={control} />
-      <Dropdown {...register("name", { value: "ismail" })}>
+      <Dropdown placeholder="Name" {...register("name", {  })}>
         <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
         <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
         <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
