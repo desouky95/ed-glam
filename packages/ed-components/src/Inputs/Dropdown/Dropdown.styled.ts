@@ -63,6 +63,9 @@ export const StyledInput = styled.input`
 export const StyledDropdownOption = styled.option`
   padding: 6px 1.875rem;
   cursor: pointer;
-  color: ${props => props.theme.colors.dark};
+  color: ${(props) => props.theme.colors.dark};
   background: ${(props) => (props.selected ? "#eeeeee" : "")};
+  &:hover {
+    background: #eeeeee;
+  }
 `;

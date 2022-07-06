@@ -63,8 +63,8 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
       >;
       const _selected = _children.find(
         (_) =>
-          _.props.value === value ||
-          (value && myRef.current?.value === _.props.value)
+          _.props.value == value ||
+          (value && myRef.current?.value == _.props.value)
       );
       if (_selected) {
         setSelectedLabel(_selected.props.children as string);

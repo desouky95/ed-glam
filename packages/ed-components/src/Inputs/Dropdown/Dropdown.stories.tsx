@@ -99,7 +99,11 @@ export const DropdownWithReactHookForm: ComponentStory<typeof Dropdown> = (
 };
 
 const WithRHS = () => {
-  const { register, control, setValue } = useForm<{ name?: string }>({
+  const { register, control, setValue } = useForm<{
+    name?: string;
+    type: number;
+    lang: number;
+  }>({
     defaultValues: { name: "" },
   });
 
@@ -112,33 +116,19 @@ const WithRHS = () => {
     <GridLayout>
       <RaisedButton onClick={onReset}>Reset</RaisedButton>
       <DevTool control={control} />
-      {/* <Dropdown placeholder="Name" {...register("name")}>
-        <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
-        <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
-        <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
-      </Dropdown> */}
-      <Controller
-        control={control}
-        name={"name"}
-        render={({ field, fieldState: { error } }) => {
-          return (
-            <Dropdown
-              placeholder="Name"
-              error
-              helperText="Errrorororororororo"
-              {...field}
-            >
-              <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
-              <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
-              <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
-            </Dropdown>
-          );
-        }}
-      />
       <DropdownRHF placeholder="Name" control={control} name="name">
         <Dropdown.Option value={"ismail"}>Ismail</Dropdown.Option>
         <Dropdown.Option value={"joe"}>Joe</Dropdown.Option>
         <Dropdown.Option value={"marv"}>Marwan</Dropdown.Option>
+      </DropdownRHF>
+      <DropdownRHF placeholder="Type" control={control} name="type">
+        <Dropdown.Option value={1}>Type A</Dropdown.Option>
+        <Dropdown.Option value={2}>Type B</Dropdown.Option>
+        <Dropdown.Option value={3}>Type C</Dropdown.Option>
+      </DropdownRHF>
+      <DropdownRHF placeholder="Language" control={control} name="lang">
+        <Dropdown.Option value={1}>EN</Dropdown.Option>
+        <Dropdown.Option value={2}>AR</Dropdown.Option>
       </DropdownRHF>
     </GridLayout>
   );
