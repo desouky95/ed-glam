@@ -15,7 +15,7 @@ export default {
   },
   argTypes: {
     value: {
-      defaultValue: "1234",
+      // defaultValue: "1234",
       type: "string",
     },
     onChange: {

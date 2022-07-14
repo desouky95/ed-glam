@@ -97,7 +97,6 @@ const OtpInput: React.FC<Props> = ({
         case "Backspace":
         case "Delete": {
           e.preventDefault();
-          console.log(values[index]);
           if (values[index]) {
             changeCodeAtFocus("", index);
           } else {
@@ -146,13 +145,17 @@ const OtpInput: React.FC<Props> = ({
 
   const focusNextInput = useCallback(
     (cIndex: number) => {
-      inputs[cIndex + 1].focus();
+      if (cIndex + 1 < inputs.length) {
+        inputs[cIndex + 1].focus();
+      }
     },
     [inputs, activeInput]
   );
   const focusPrevInput = useCallback(
     (cIndex: number) => {
-      inputs[cIndex - 1].focus();
+      if (cIndex - 1 > -1) {
+        inputs[cIndex - 1].focus();
+      }
     },
     [inputs, activeInput]
   );
@@ -188,11 +191,8 @@ const OtpInput: React.FC<Props> = ({
   return (
     <FlexLayout onPaste={onPasteHandler}>
       {inputs.map((input, index) => {
-        console.log({ inputComponent });
-        return inputComponent ? (
-          generateCustomInput(input, index)
-        ) : (
-          <>
+        return (
+          <React.Fragment key={`${index}-ed-otp-input`}>
             <StyledInput
               maxLength={1}
               onFocus={(e) => setActiveInput(index)}
@@ -201,12 +201,11 @@ const OtpInput: React.FC<Props> = ({
               onKeyDown={(e) => onKeyDownHandler(e, index)}
               ref={(ref) => inputRefCallback(ref, index)}
               value={value?.[index] ?? ""}
-              key={`${input?.id}-${index}-ed-otp-input`}
             />
             <>
               {separator && index < inputsNum - 1 && <span>{separator}</span>}
             </>
-          </>
+          </React.Fragment>
         );
       })}
     </FlexLayout>

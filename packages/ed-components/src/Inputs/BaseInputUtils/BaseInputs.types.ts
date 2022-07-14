@@ -1,3 +1,6 @@
+import { Control, Path, UseFormRegister } from "react-hook-form";
+
+
 export type InputBaseError = {
   error?: boolean;
   helperText?: string;
