@@ -24,7 +24,7 @@ export const DropdownWrapper = styled.div<WrapperProps>`
     flex: 1;
   }
   border-bottom-color: ${(props) =>
-    props.error ? props.theme.colors.red : ""};
+    props.error ? props.theme.colors.princetonOrange : ""};
   ${layout};
   ${space};
 `;

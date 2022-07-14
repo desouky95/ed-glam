@@ -12,5 +12,5 @@ export const InputBaseHelperText = styled.p<InputBaseError>`
   margin-top: 0.3rem;
   min-height: 13px;
   color: ${(props) =>
-    props.error ? props.theme.colors.red : props.theme.colors.silver};
+    props.error ? props.theme.colors.princetonOrange : props.theme.colors.silver};
 `;

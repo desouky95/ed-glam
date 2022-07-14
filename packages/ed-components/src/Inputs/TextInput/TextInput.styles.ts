@@ -18,7 +18,7 @@ export const InputWrapper = styled.div<InputBaseError>`
   border-bottom: 0.6px solid ${(props) => props.theme.colors.silver};
   padding: 6px 0;
   border-bottom-color: ${(props) =>
-    props.error ? props.theme.colors.red : ""};
+    props.error ? props.theme.colors.princetonOrange : ""};
 `;
 export const StyledInput = styled.input<InputBaseError>`
   flex: 1;
