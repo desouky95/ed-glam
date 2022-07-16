@@ -1,11 +1,9 @@
 import { Control, Path, UseFormRegister } from "react-hook-form";
 
-
 export type InputBaseError = {
   error?: boolean;
   helperText?: string;
 };
-
 enum DateTimeInputTypes {
   "datetime-local",
   "date",
@@ -14,7 +12,7 @@ enum DateTimeInputTypes {
   "week",
 }
 
-export const isDatetime = (string: unknown) => {
+export const isDatetime = (string: unknown): string is DateTimeInputTypes => {
   return typeof string === "string" && string in DateTimeInputTypes;
 };
 export type DateTimeInput =

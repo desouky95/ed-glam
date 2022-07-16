@@ -44,7 +44,6 @@ const TextInput = React.forwardRef<
             props.onFocus && props.onFocus(e);
           }}
           onBlur={(e: React.FocusEvent<HTMLInputElement>) => {
-            console.log(isDatetime(props.type));
             if (isDatetime(props.type)) {
               setType("text");
             }

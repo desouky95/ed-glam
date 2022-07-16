@@ -28,19 +28,19 @@ export const PhoneNumberInputDefault: ComponentStory<typeof PhoneNumberInput> =
     });
     const watchPhone = watch("phone");
     console.log(watchPhone);
-    const { ref, ...others } = register("phone");
+
     return (
       <>
         <GridLayout gridTemplateColumns={"repeat(2,1fr)"}>
           <DevTool control={control} />
-          <PhoneNumberInput phonePrefix="+2" ref={ref} {...others} />
-          {/* <Controller
+          {/* <PhoneNumberInput phonePrefix="+2" {...register('phone')}  /> */}
+          <Controller
             control={control}
             name="phone"
             render={({ field }) => {
               return <PhoneNumberInput phonePrefix="+2" {...field} />;
             }}
-          /> */}
+          />
         </GridLayout>
       </>
     );
