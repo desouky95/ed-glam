@@ -19,7 +19,7 @@ const SingleOTPInput: React.FC<SingleOtpInputProps> = ({
   // console.log({prevFocus})
   useLayoutEffect(() => {
     if (inputRef.current) {
-      if (focus && autoFocus) {
+      if (focus) {
         inputRef.current.focus();
         if (focus !== prevFocus) {
           inputRef.current.select();

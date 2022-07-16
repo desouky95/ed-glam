@@ -18,7 +18,7 @@ const OtpInput: React.FC<Props> = ({
   onChange,
   isNumberInput = true,
 }) => {
-  const [activeInput, setActiveInput] = useState(0);
+  const [activeInput, setActiveInput] = useState(-1);
   const [otpValues, setOtpValues] = useState(
     Array<string>(inputsNum)
       .fill("")
@@ -144,7 +144,6 @@ const OtpInput: React.FC<Props> = ({
                 onFocus={handleOnFocus(index)}
                 focus={activeInput === index}
                 value={otpValues?.[index]}
-                autoFocus
                 onBlur={onBlur}
                 style={inputStyle}
               />
