@@ -8,6 +8,7 @@ export const Colors = {
   cultured: "#F9FAFC",
   darkCultured: "#F3F3F3",
   silver: "#c4c4c4",
+  darkSilver: "#757575",
   platinum: "#e6e6e6",
   purple: "#6C63FF",
   maxBluePurple: "#B5B1FF",
@@ -32,24 +33,41 @@ export interface TableLayoutProps {
   tableLayout?: TableLayout;
 }
 
-export type FontFamily = 'Montserrat' | 'Mulish' | 'Cairo' | 'AvantGarde'
-export type MaterialIconsType = 'Regular' | 'Outlined' | 'Round' | 'Sharp' | 'TwoTone'
-export type FontWeight = 'normal' | '500' | 'bold' | 'bolder' | 'light' | '400' | '300' | '200' | '100' | 'lighter' | '800' | '700' | '600' | '900'
+export type FontFamily = "Montserrat" | "Mulish" | "Cairo" | "AvantGarde";
+export type MaterialIconsType =
+  | "Regular"
+  | "Outlined"
+  | "Round"
+  | "Sharp"
+  | "TwoTone";
+export type FontWeight =
+  | "normal"
+  | "500"
+  | "bold"
+  | "bolder"
+  | "light"
+  | "400"
+  | "300"
+  | "200"
+  | "100"
+  | "lighter"
+  | "800"
+  | "700"
+  | "600"
+  | "900";
 export interface Fonts {
-	fonts: {
-		[key in FontFamily]: {
-			[key in FontWeight]?: any
-		}
-	}
+  fonts: {
+    [key in FontFamily]: {
+      [key in FontWeight]?: any;
+    };
+  };
 }
 export type MaterialIconFontFace = {
-	[key in MaterialIconsType]?: {
-		src: string
-		mapped_name?: string
-	}
-}
-
-
+  [key in MaterialIconsType]?: {
+    src: string;
+    mapped_name?: string;
+  };
+};
 
 const breakpoints = ["40em", "52em", "64em", "80em"];
 
@@ -362,6 +380,9 @@ export const Theme: ITheme = {
     silver: {
       backgroundColor: Colors.silver,
     },
+    darkSilver : {
+      backgroundColor : Colors.darkSilver
+    }
   },
   breakpoints: aliasBreakpoints,
   mediaQueries: {
@@ -505,19 +526,24 @@ declare module "styled-components" {
   export interface DefaultTheme extends ITheme {}
 }
 
+export const generateMaterialIconsFontFaces = (
+  material_icons: MaterialIconFontFace
+) => {
+  let css_string = "";
+  const familyBaseName = "Material Icons";
+  const getTypeName = (type: string) => {
+    return material_icons[type as MaterialIconsType]?.mapped_name ?? ` ${type}`;
+  };
 
-export const generateMaterialIconsFontFaces = (material_icons : MaterialIconFontFace) => {
-	let css_string = ''
-	const familyBaseName = 'Material Icons'
-	const getTypeName = (type: string) => {
-		return material_icons[type as MaterialIconsType]?.mapped_name ?? ` ${type}`
-	}
-
-	Object.keys(material_icons).forEach(type => {
-		const src = material_icons[type as MaterialIconsType]?.src
-		const typeFamilyName = `${familyBaseName}${getTypeName(type).length > 0 ? ` ${getTypeName(type)}` : ''}`
-		const typeClassName = `.material-icons${`${getTypeName(type).length > 0 ? '-' : ''}${getTypeName(type).toLocaleLowerCase()}`}`
-		const typeCss = `
+  Object.keys(material_icons).forEach((type) => {
+    const src = material_icons[type as MaterialIconsType]?.src;
+    const typeFamilyName = `${familyBaseName}${
+      getTypeName(type).length > 0 ? ` ${getTypeName(type)}` : ""
+    }`;
+    const typeClassName = `.material-icons${`${
+      getTypeName(type).length > 0 ? "-" : ""
+    }${getTypeName(type).toLocaleLowerCase()}`}`;
+    const typeCss = `
 		@font-face {
 		  font-family: "${typeFamilyName}";
 		  font-style: normal;
@@ -539,25 +565,28 @@ export const generateMaterialIconsFontFaces = (material_icons : MaterialIconFont
 		  -webkit-font-feature-settings: "liga";
 		  -webkit-font-smoothing: antialiased;
 		}
-	  `
-		css_string += typeCss
-	})
-	return css`
-		${css_string}
-	`
-}
+	  `;
+    css_string += typeCss;
+  });
+  return css`
+    ${css_string}
+  `;
+};
 
-export const createGlobalFont = (font: FontFamily,fontWeightsSrc : Fonts): FlattenSimpleInterpolation => {
-	const weights = fontWeightsSrc.fonts[font]
-	let styles = ''
-	Object.keys(weights).forEach((weight, index) => {
-		styles += `@font-face {
+export const createGlobalFont = (
+  font: FontFamily,
+  fontWeightsSrc: Fonts
+): FlattenSimpleInterpolation => {
+  const weights = fontWeightsSrc.fonts[font];
+  let styles = "";
+  Object.keys(weights).forEach((weight, index) => {
+    styles += `@font-face {
 	    font-family : '${font}';
       	src: url(${Object.values(weights)[index]});
 	    font-weight : ${weight};
-	  }`
-	})
-	return css`
-		${styles}
-	`
-}
+	  }`;
+  });
+  return css`
+    ${styles}
+  `;
+};
