@@ -38,10 +38,11 @@ const StyledInput = styled.input`
   outline-color: ${(props) => props.theme.colors.primary};
   border-radius: 5px;
   margin: 0 2.5px;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   width: 18px;
   height: 30px;
   background: ${(props) => rgba(props.theme.colors.primary, 0.15)};
+  text-align: center;
   ${({ theme }) => `${theme.mediaQueries.large}{
     width : 28px;
     height : 46px;
