@@ -1,6 +1,6 @@
 {
   "name": "@ed-glam/admin-theme",
-  "version": "0.4.21",
+  "version": "0.4.22",
   "description": "",
   "scripts": {
     "build": "npm run build:babel && npm run build:types",
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@eduact/ed-system": "^1.0.17",
-    "@eduact/student-theme": "^1.0.22",
+    "@eduact/student-theme": "^1.0.23",
     "@types/styled-system": "^5.1.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
