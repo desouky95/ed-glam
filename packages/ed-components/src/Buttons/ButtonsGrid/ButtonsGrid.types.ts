@@ -11,6 +11,7 @@ export type ButtonGridProps = {
   value: ButtonGridValue;
   onClick?: (value: ButtonGridValue) => void;
   isSelected?: boolean;
+  withBorder?: boolean;
 };
 
 export interface ButtonsGridComposition {
@@ -20,4 +21,5 @@ export interface ButtonsGridComposition {
 export type ButtonsGridProps = {
   onChange?: (value: ButtonGridValue | undefined) => void;
   value: ButtonGridValue;
+  withBorder?: boolean;
 };

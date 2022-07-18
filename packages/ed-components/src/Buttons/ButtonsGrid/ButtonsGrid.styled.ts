@@ -1,5 +1,8 @@
 import styled from "styled-components";
-export const ButtonGridItemStyled = styled.button<{ isSelected: boolean }>`
+export const ButtonGridItemStyled = styled.button<{
+  isSelected: boolean;
+  withBorder?: boolean;
+}>`
   padding: 0.2rem;
   display: flex;
   justify-content: center;
@@ -7,9 +10,13 @@ export const ButtonGridItemStyled = styled.button<{ isSelected: boolean }>`
   border: 0;
   border-radius: 3px;
   background: ${(props) =>
-    props.isSelected
+    props.isSelected && !props.withBorder
       ? props.theme.colors.maxBluePurple
       : props.theme.colors.light};
+  box-shadow: ${(props) =>
+    props.isSelected && props.withBorder
+      ? `0 0 0 2px ${props.theme.colors.maxBluePurple}`
+      : ""};
   cursor: pointer;
   min-height: 4rem;
   color: ${(props) =>

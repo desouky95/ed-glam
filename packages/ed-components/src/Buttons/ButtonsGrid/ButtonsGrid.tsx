@@ -9,14 +9,16 @@ import {
   ButtonsGridProps,
 } from "./ButtonsGrid.types";
 
-const ButtonGridItem : React.FC<ButtonGridProps> = ({
+const ButtonGridItem: React.FC<ButtonGridProps> = ({
   children,
   value,
   isSelected = false,
   onClick,
+  withBorder,
 }) => {
   return (
     <ButtonGridItemStyled
+      withBorder={withBorder}
       onClick={() => onClick && onClick(value)}
       isSelected={isSelected}
     >
@@ -29,6 +31,7 @@ const ButtonsGrid: React.FC<ButtonsGridProps> & ButtonsGridComposition = ({
   children,
   onChange,
   value,
+  withBorder,
 }) => {
   return (
     <GridLayout
@@ -81,6 +84,7 @@ const ButtonsGrid: React.FC<ButtonsGridProps> & ButtonsGridComposition = ({
                 }
               },
               isSelected: isSelected,
+              withBorder,
             }
           );
         }
@@ -91,4 +95,4 @@ const ButtonsGrid: React.FC<ButtonsGridProps> & ButtonsGridComposition = ({
 
 ButtonsGrid.Item = ButtonGridItem;
 
-export default ButtonsGrid
+export default ButtonsGrid;
