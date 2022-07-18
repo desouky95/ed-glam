@@ -19,7 +19,7 @@ import { textDecoration, TextDecorationProps } from "@eduact/ed-system";
 
 type Props = {
   variant: Color;
-  btnSize: MediaQuery;
+  btnSize: ResponsiveVal<MediaQuery>;
   textDecoration?: ResponsiveVal<Property.TextDecoration>;
 } & LayoutProps &
   SpaceProps &
@@ -32,14 +32,7 @@ export const TextButtonStyled = styled.button<Props>`
   padding: 1.125rem 2rem;
   font-weight: 500;
   font-size: ${(props) => `${props.theme.fontSizesAliases.body ?? 1}rem`};
-  ${variant({ scale: "textButtonColors", prop: "variant" })}
-  ${textAlign}
-	${flexbox}
-	${typography}
-  ${textDecoration}
-	${space}
-	${layout}
-	background: none;
+  background: none;
   border: none;
   cursor: pointer;
   /* font-size: 0.75rem; */
@@ -62,4 +55,11 @@ export const TextButtonStyled = styled.button<Props>`
     prop: "btnSize",
     scale: "buttonSizes",
   })}
+  ${variant({ scale: "textButtonColors", prop: "variant" })}
+  ${textAlign};
+  ${flexbox};
+  ${typography};
+  ${textDecoration};
+  ${space};
+  ${layout};
 `;

@@ -30,7 +30,7 @@ export const Button: ComponentStory<typeof TextButton> = ({
   label,
   ...args
 }) => (
-  <TextButton btnSize={"small"} variant={variant} {...args}>
+  <TextButton width={'100%'} btnSize={"small"} variant={variant} {...args} >
     <IoIosAdd />
     {label}
   </TextButton>

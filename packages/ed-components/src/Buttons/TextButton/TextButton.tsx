@@ -35,6 +35,7 @@ const TextButton: FC<Props> = ({
       variant={variant}
       btnSize={btnSize}
       textDecoration={"underline"}
+      justifyContent={justifyContent}
       {...props}
     >
       {children}
