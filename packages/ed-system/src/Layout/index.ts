@@ -37,6 +37,15 @@ export const FlexLayout = styled.div<
   ${layout};
   ${gridGap};
 `;
+
+export const FlexItem = styled.div<
+  SpaceProps & FlexboxProps & LayoutProps & GridGapProps
+>`
+  ${flexbox};
+  ${space};
+  ${layout};
+  ${gridGap};
+`;
 export const GridItem = styled.div<GridProps & FlexboxProps>`
   ${grid}
   ${flexbox}
