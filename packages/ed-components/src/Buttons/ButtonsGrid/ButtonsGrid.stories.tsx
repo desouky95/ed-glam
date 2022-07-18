@@ -12,6 +12,7 @@ export const ButtonsGridTemplate: ComponentStory<typeof ButtonsGrid> = (
   const [value, setValue] = useState(1);
   return (
     <ButtonsGrid
+      withBorder
       value={{ value }}
       onChange={(value) => {
         if (!value) return;

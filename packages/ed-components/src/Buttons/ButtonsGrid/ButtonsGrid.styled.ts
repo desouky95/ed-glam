@@ -20,7 +20,7 @@ export const ButtonGridItemStyled = styled.button<{
   cursor: pointer;
   min-height: 4rem;
   color: ${(props) =>
-    props.isSelected ? props.theme.colors.light : props.theme.colors.dark};
+    props.isSelected && !props.withBorder ? props.theme.colors.light : props.theme.colors.dark};
   * {
     color: ${(props) =>
       props.isSelected ? props.theme.colors.light : ""} !important;
