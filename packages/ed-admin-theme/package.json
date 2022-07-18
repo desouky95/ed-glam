@@ -1,6 +1,6 @@
 {
   "name": "@ed-glam/admin-theme",
-  "version": "0.4.22",
+  "version": "0.4.23",
   "description": "",
   "scripts": {
     "build": "npm run build:babel && npm run build:types",
@@ -17,10 +17,10 @@
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "devDependencies": {
-    "@types/styled-system": "^5.1.15",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.2",
     "@types/styled-components": "^5.1.25",
+    "@types/styled-system": "^5.1.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.5",
