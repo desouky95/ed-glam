@@ -1,2 +1,3 @@
+import ButtonsGrid from "./ButtonsGrid";
 export * from "./ButtonsGrid.types";
-export * from "./ButtonsGrid";
+export { ButtonsGrid };
