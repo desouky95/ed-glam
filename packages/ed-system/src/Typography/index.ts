@@ -18,7 +18,9 @@ import {
   MaterialIconsType,
 } from "./typography.types";
 
-export const Typography = styled.span<TypographyProps & TextStyleProps & SpaceProps>`
+export const Typography = styled.span<
+  TypographyProps & TextStyleProps & SpaceProps
+>`
   ${typography}
   ${textStyle}
   ${space}
@@ -30,6 +32,7 @@ export const SingleLineCssTrim = css`
   text-overflow: ellipsis;
 `;
 
+export * from "./textDecoration";
 export {
   Fonts,
   FontFamily,

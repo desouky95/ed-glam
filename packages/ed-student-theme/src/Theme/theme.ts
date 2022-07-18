@@ -1,5 +1,4 @@
-import { css, CSSObject, FlattenSimpleInterpolation } from "styled-components";
-import { borderColor, ThemeValue, RequiredTheme } from "styled-system";
+import { css, FlattenSimpleInterpolation } from "styled-components";
 import { get, merge } from "lodash";
 export const Colors = {
   primary: "#5AC0FC",
@@ -380,9 +379,9 @@ export const Theme: ITheme = {
     silver: {
       backgroundColor: Colors.silver,
     },
-    darkSilver : {
-      backgroundColor : Colors.darkSilver
-    }
+    darkSilver: {
+      backgroundColor: Colors.darkSilver,
+    },
   },
   breakpoints: aliasBreakpoints,
   mediaQueries: {

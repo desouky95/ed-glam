@@ -1,4 +1,4 @@
-import { Color, MediaQuery } from "@eduact/student-theme";
+import { Color, MediaQuery, ResponsiveVal } from "@eduact/student-theme";
 import styled from "styled-components";
 import {
   flexbox,
@@ -14,14 +14,19 @@ import {
   variant,
 } from "styled-system";
 
+import { Property } from "csstype";
+import { textDecoration, TextDecorationProps } from "@eduact/ed-system";
+
 type Props = {
   variant: Color;
   btnSize: MediaQuery;
+  textDecoration?: ResponsiveVal<Property.TextDecoration>;
 } & LayoutProps &
   SpaceProps &
   TextAlignProps &
   FlexboxProps &
   TypographyProps &
+  TextDecorationProps &
   React.HTMLProps<HTMLButtonElement>;
 export const TextButtonStyled = styled.button<Props>`
   padding: 1.125rem 2rem;
@@ -31,6 +36,7 @@ export const TextButtonStyled = styled.button<Props>`
   ${textAlign}
 	${flexbox}
 	${typography}
+  ${textDecoration}
 	${space}
 	${layout}
 	background: none;

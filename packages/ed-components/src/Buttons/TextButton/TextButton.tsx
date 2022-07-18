@@ -1,3 +1,4 @@
+import { TextDecorationProps } from "@eduact/ed-system";
 import { Color, MediaQuery, ResponsiveVal } from "@eduact/student-theme";
 import React, { FC } from "react";
 import {
@@ -19,6 +20,7 @@ type Props = {
   TextAlignProps &
   FlexboxProps &
   TypographyProps &
+  TextDecorationProps &
   React.HTMLProps<HTMLButtonElement>;
 export type TextButtonProps = Props;
 const TextButton: FC<Props> = ({
@@ -29,7 +31,12 @@ const TextButton: FC<Props> = ({
   ...props
 }) => {
   return (
-    <TextButtonStyled variant={variant} btnSize={btnSize} {...props}>
+    <TextButtonStyled
+      variant={variant}
+      btnSize={btnSize}
+      textDecoration={"underline"}
+      {...props}
+    >
       {children}
     </TextButtonStyled>
   );
