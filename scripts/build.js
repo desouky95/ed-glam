@@ -79,7 +79,7 @@ async function run(argv) {
     babelArgs.push("--compact false");
   }
 
-  const command = ["babel", ...babelArgs].join(" ");
+  const command = ["npx babel", ...babelArgs].join(" ");
 
   if (verbose) {
     // eslint-disable-next-line no-console

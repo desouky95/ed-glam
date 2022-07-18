@@ -9,7 +9,7 @@ import {
   ButtonsGridProps,
 } from "./ButtonsGrid.types";
 
-const ButtonGridItem: React.FC<ButtonGridProps> = ({
+const ButtonGridItem : React.FC<ButtonGridProps> = ({
   children,
   value,
   isSelected = false,

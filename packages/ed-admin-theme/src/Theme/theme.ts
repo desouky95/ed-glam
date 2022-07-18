@@ -15,12 +15,13 @@ export type ExtraColor =
 
 type ColorType = "color" | `${string}Color` | "border";
 
-export type ThemePropsBase = CSSPseudos & {
-  [Key in keyof React.CSSProperties &
-    string as `ed${Key}`]?: Key extends ColorType
-    ? ExtraColor
-    : React.CSSProperties[Key];
-};
+export type ThemePropsBase = CSSPseudos &
+  {
+    [Key in keyof React.CSSProperties &
+      string as `ed${Key}`]?: Key extends ColorType
+      ? ExtraColor
+      : React.CSSProperties[Key];
+  };
 
 interface VariantBase extends React.CSSProperties, CSSPseudos {}
 
@@ -40,8 +41,6 @@ const theme: EdThemeOptions = {
   buttons: {
     contained: {
       cadet: {
-        background: "red",
-        color: "#FFF",
       },
     },
   },
