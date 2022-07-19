@@ -70,6 +70,8 @@ async function run(argv) {
     srcDir,
     "--out-dir",
     outDir,
+    "--copy-files",
+    "--no-copy-ignored",
     "--ignore",
     // Need to put these patterns in quotes otherwise they might be evaluated by the used terminal.
     `"${ignore.join('","')}"`,
