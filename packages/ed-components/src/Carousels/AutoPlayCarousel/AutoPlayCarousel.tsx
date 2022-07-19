@@ -10,7 +10,7 @@ import {
   SwiperOptions,
 } from "swiper";
 import "swiper/css";
-import { NavIcon } from "Carousels/Carousels.styled";
+import { NavIcon } from "../Carousels.styled";
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,

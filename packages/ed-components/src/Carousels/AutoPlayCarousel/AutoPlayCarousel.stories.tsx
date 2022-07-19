@@ -22,12 +22,12 @@ export const AutoPlayCarouselDefault: ComponentStory<typeof AutoPlayCarousel> =
         slidesPerView={2}
         {...args}
       >
-        <SwiperSlide>
+        <AutoPlayCarousel.Item>
           <Avatar
             img="https://source.unsplash.com/featured/300x201"
             avatarSize={"large"}
           />
-        </SwiperSlide>
+        </AutoPlayCarousel.Item>
         <SwiperSlide>
           <Avatar background="dark" avatarSize={"large"} />
         </SwiperSlide>
