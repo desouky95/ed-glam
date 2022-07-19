@@ -1,6 +1,6 @@
 {
   "name": "@ed-glam/admin-theme",
-  "version": "0.4.26",
+  "version": "0.4.27",
   "description": "",
   "scripts": {
     "build": "npm run build:babel && npm run build:types",
@@ -11,8 +11,6 @@
   },
   "author": "desouky",
   "license": "ISC",
-  "dependencies": {
-  },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "devDependencies": {
     "@types/react": "^17.0.2",
