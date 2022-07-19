@@ -4,7 +4,7 @@ import { AvatarStyled } from "./Avatar.styled";
 
 export type AvatarProps = {
   shape?: Shapes;
-  avatarSize?: MediaQuery;
+  avatarSize?: ResponsiveVal<MediaQuery>;
   img?: string;
   background?: Color;
   onClick?: (e: React.MouseEvent) => void;
