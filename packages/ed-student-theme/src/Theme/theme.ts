@@ -20,6 +20,8 @@ export const Colors = {
   purpleNavy: "#575A89",
 };
 export type Breakpoint = "default" | "sm" | "md" | "lg" | "xl";
+
+export type BreakpointInPx = 832 | 1024 | 1280;
 export type MediaQuery = "small" | "medium" | "large" | "xlarge";
 export type Shapes = "circle" | "square";
 type FontAliases = "body" | "display" | "button";
@@ -68,8 +70,15 @@ export type MaterialIconFontFace = {
   };
 };
 
-const breakpoints = ["40em", "52em", "64em", "80em"];
+const breakpoints = ["40rem", "52rem", "64rem", "80rem"];
 
+const breakpointsInPx = {
+  sm: 0,
+  default: 0,
+  md: 832,
+  lg: 1024,
+  xl: 1280,
+};
 export type ResponsiveVal<T> = T | { [key in Breakpoint]?: T };
 
 const aliasBreakpoints: { [key in Breakpoint]?: string } = {
@@ -140,6 +149,7 @@ interface ITheme {
   breakpoints: {
     [key in Breakpoint]?: string;
   };
+  breakpointsInPx: { [key in Breakpoint]: number };
   mediaQueries: {
     [key in MediaQuery]?: string;
   };
@@ -384,6 +394,7 @@ export const Theme: ITheme = {
     },
   },
   breakpoints: aliasBreakpoints,
+  breakpointsInPx: breakpointsInPx,
   mediaQueries: {
     medium: `@media only screen and (min-width : ${aliasBreakpoints.md})`,
     large: `@media only screen and (min-width : ${aliasBreakpoints.lg})`,
