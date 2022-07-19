@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-components",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@eduact/ed-system": "^1.1.2",
-    "@eduact/student-theme": "^1.0.27",
+    "@eduact/student-theme": "^1.0.28",
     "@eduact/utils": "^0.4.31",
     "@hookform/devtools": "^4.1.1",
     "@react-spring/web": "^9.4.5",
