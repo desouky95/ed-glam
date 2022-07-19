@@ -12,8 +12,6 @@
   "author": "desouky",
   "license": "ISC",
   "dependencies": {
-    "@eduact/ed-system": "^1.1.2",
-    "@eduact/student-theme": "^1.0.26"
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "devDependencies": {

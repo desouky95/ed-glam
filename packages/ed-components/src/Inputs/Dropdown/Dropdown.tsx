@@ -1,4 +1,3 @@
-import { FlexLayout } from "@eduact/student-theme";
 import React, {
   ForwardedRef,
   forwardRef,
@@ -32,6 +31,7 @@ import {
   InputBaseHelperText,
   RequiredMark,
 } from "../BaseInputUtils/BaseInputUtils";
+import { FlexLayout } from "@eduact/ed-system";
 const DropdownOption: React.FC<DropdownOptionProps> = ({
   children,
   value,

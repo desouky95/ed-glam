@@ -2,5 +2,6 @@
   "npmClient": "npm",
   "version": "independent",
   "packages": ["packages/*"],
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "useNx": true
 }

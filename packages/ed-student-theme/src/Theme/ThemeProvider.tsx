@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useState } from "react";
 import {
   DefaultTheme,
   ThemeProvider as SThemeProvider,
@@ -15,9 +9,8 @@ type ThemeTogglerOptions = {
   theme: DefaultTheme;
   setTheme: React.Dispatch<DefaultTheme>;
 };
-export const ThemeContextProvider = createContext<ThemeTogglerOptions | null>(
-  null
-);
+export const ThemeContextProvider =
+  createContext<ThemeTogglerOptions | null>(null);
 
 const ThemeProviderWrapper: React.FC = ({ children }) => {
   const [defaultTheme, setTheme] = useState(Theme);
