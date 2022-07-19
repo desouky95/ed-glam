@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Swiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Controller,
   A11y,
@@ -17,9 +17,13 @@ import {
 } from "react-icons/io";
 import { FlexLayout } from "@eduact/ed-system";
 import { AutoPlayCarouselProps } from "./AutoPlayCarousel.types";
-import { Breakpoint, Theme } from "@eduact/student-theme";
-import { remToPx } from "polished";
-const AutoPlayCarousel: React.FC<AutoPlayCarouselProps> = ({
+
+interface AutoPlayCarouselComposition {
+  Item: typeof SwiperSlide;
+}
+
+const AutoPlayCarousel: React.FC<AutoPlayCarouselProps> &
+  AutoPlayCarouselComposition = ({
   children,
   withArrows = true,
   arrowColor = "primary",
@@ -37,8 +41,6 @@ const AutoPlayCarousel: React.FC<AutoPlayCarouselProps> = ({
       controller.slidePrev();
     }
   };
-
-  
 
   return (
     <FlexLayout alignItems={"center"}>
@@ -65,4 +67,5 @@ const AutoPlayCarousel: React.FC<AutoPlayCarouselProps> = ({
     </FlexLayout>
   );
 };
+AutoPlayCarousel.Item = SwiperSlide;
 export default AutoPlayCarousel;
