@@ -1,9 +1,8 @@
-import { Breakpoint, Color, MediaQuery, Shapes } from "@eduact/student-theme";
+import { Color, MediaQuery, ResponsiveVal, Shapes } from "@eduact/student-theme";
 import React from "react";
 import { AvatarStyled } from "./Avatar.styled";
 
-type ResponsiveVal<T> = T | { [key in Breakpoint]?: MediaQuery };
-type Props = {
+export type AvatarProps = {
   shape?: Shapes;
   avatarSize?: ResponsiveVal<MediaQuery>;
   img?: string;
@@ -12,7 +11,7 @@ type Props = {
   withBorder?: boolean;
   borderColor?: Color;
 };
-const Avatar: React.FC<Props> = ({
+const Avatar: React.FC<AvatarProps> = ({
   shape = "circle",
   avatarSize = "small",
   img,
