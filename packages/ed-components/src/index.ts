@@ -1,3 +1,5 @@
 export * from "./Buttons";
-export * from './Spacer'
-export * from './Stepper'
+export * from "./Spacer";
+export * from "./Stepper";
+export * from "./Inputs";
+export * from "./Icons";

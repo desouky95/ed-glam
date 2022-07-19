@@ -2,6 +2,10 @@
   "extends": "../../tsconfig",
   "compilerOptions": {
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "*" : ["src/*"],
+    }
   },
-  "include": ["src/**/*", "test/**/*"]
+  "include": ["src/**/*", "test/**/*"],
 }

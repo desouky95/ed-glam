@@ -12,45 +12,31 @@ const MontserratSemiBold = require("./Montserrat-SemiBold.ttf");
 const MontserratThin = require("./Montserrat-Thin.ttf");
 const MontserratThinItalic = require("./Montserrat-ThinItalic.ttf");
 
-const MontserratRegularCSS = require("./Montserrat-Normal.css");
-const MontserratBlackCSS = require("./Montserrat-Black.css");
-const MontserratBlackItalicCSS = require("./Montserrat-BlackItalic.css");
-const MontserratBoldCSS = require("./Montserrat-Bold.css");
-const MontserratBoldItalicCSS = require("./Montserrat-BoldItalic.css");
-const MontserratExtraLightCSS = require("./Montserrat-ExtraLight.css");
-const MontserratExtraLightItalicCSS = require("./Montserrat-ExtraLightItalic.css");
-const MontserratItalicCSS = require("./Montserrat-Italic.css");
-const MontserratLightCSS = require("./Montserrat-Light.css");
-const MontserratMediumCSS = require("./Montserrat-Medium.css");
-const MontserratSemiBoldCSS = require("./Montserrat-SemiBold.css");
-const MontserratThinCSS = require("./Montserrat-Thin.css");
-const MontserratThinItalicCSS = require("./Montserrat-ThinItalic.css");
-
 module.exports = {
   MontserratBlack,
-  MontserratBlackCSS,
+  // MontserratBlackCSS,
   MontserratBlackItalic,
-  MontserratBlackItalicCSS,
+  // MontserratBlackItalicCSS,
   MontserratBold,
-  MontserratBoldCSS,
+  // MontserratBoldCSS,
   MontserratBoldItalic,
-  MontserratBoldItalicCSS,
+  // MontserratBoldItalicCSS,
   MontserratExtraLight,
-  MontserratExtraLightCSS,
+  // MontserratExtraLightCSS,
   MontserratExtraLightItalic,
-  MontserratExtraLightItalicCSS,
+  // MontserratExtraLightItalicCSS,
   MontserratItalic,
-  MontserratItalicCSS,
+  // MontserratItalicCSS,
   MontserratLight,
-  MontserratLightCSS,
+  // MontserratLightCSS,
   MontserratMedium,
-  MontserratMediumCSS,
+  // MontserratMediumCSS,
   MontserratRegular,
-  MontserratRegularCSS,
+  // MontserratRegularCSS,
   MontserratSemiBold,
-  MontserratSemiBoldCSS,
+  // MontserratSemiBoldCSS,
   MontserratThin,
-  MontserratThinCSS,
+  // MontserratThinCSS,
   MontserratThinItalic,
-  MontserratThinItalicCSS,
+  // MontserratThinItalicCSS,
 };

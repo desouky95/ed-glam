@@ -8,17 +8,21 @@
     "composite": true,
     "outDir": "./build",
     "incremental": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "skipLibCheck": true,
   },
   "include": ["src/**/*.ts*"],
   "exclude": [
     "src/**/*.d.ts",
     "src/**/*.test.*",
     "./**/*.spec.*",
-    "**/test-utils.tsx"
+    "**/test-utils.tsx",
+    "src/**/*.stories.tsx",
+    "*.stories.tsx"
   ],
   "references": [
+    { "path": "../ed-student-theme/tsconfig.build.json" },
     { "path": "../ed-system/tsconfig.build.json" },
-    { "path": "../ed-student-theme/tsconfig.build.json" }
+    { "path": "../utils/tsconfig.build.json" },
   ]
 }

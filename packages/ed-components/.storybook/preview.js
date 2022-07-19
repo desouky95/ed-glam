@@ -1,6 +1,9 @@
 import { createGlobalStyle } from "styled-components";
-import { addDecorator} from '@storybook/react'
-import {ThemeProvider} from '@eduact/student-theme'
+import { addDecorator } from "@storybook/react";
+import { createGlobalFont, Fonts } from "@eduact/ed-system";
+import { Theme, ThemeProvider } from "@eduact/student-theme";
+// import { ThemeProvider } from "styled-components";
+const { Cairo, AvantGarde, Montserrat, Roboto } = require("@eduact/ed-fonts");
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -9,7 +12,32 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
+
+const fonts = {
+  fonts: {
+    Cairo: {
+      500: Cairo.CairoMedium,
+    },
+    Montserrat: {
+      500: Montserrat.MontserratMedium,
+    },
+    AvantGarde: {
+      normal: AvantGarde.AvantGardeRegular,
+    },
+    Roboto: {
+      100: Roboto.RobotoThin,
+      300: Roboto.RobotoLight,
+      400: Roboto.RobotoRegular,
+      normal: Roboto.RobotoRegular,
+      500: Roboto.RobotoMedium,
+      700: Roboto.RobotoBold,
+      bold: Roboto.RobotoBold,
+      900: Roboto.RobotoBlack,
+      bolder: Roboto.RobotoBlack,
+    },
+  },
+};
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -37,14 +65,16 @@ html ,body {
 		transform : rotate(180deg);
 	  }
   }
+  ${createGlobalFont("Cairo", fonts)};
+  ${createGlobalFont("Montserrat", fonts)};
+  ${createGlobalFont("AvantGarde", fonts)};
+  ${createGlobalFont("Roboto", fonts)};
 `;
 export const ThemeDecorator = (storyFn) => (
   <ThemeProvider>
-    {/* <Reset /> */}
     <GlobalStyles />
     {storyFn()}
   </ThemeProvider>
 );
 
 addDecorator(ThemeDecorator);
-

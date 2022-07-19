@@ -42,7 +42,7 @@ async function run(argv) {
     "**/*.spec.ts",
     "**/*.spec.tsx",
     "**/*.d.ts",
-    "**/*.stores.tsx",
+    "**/*.stories.tsx",
   ];
 
   const topLevelNonIndexFiles = glob
@@ -79,7 +79,7 @@ async function run(argv) {
     babelArgs.push("--compact false");
   }
 
-  const command = ["babel", ...babelArgs].join(" ");
+  const command = ["npx babel", ...babelArgs].join(" ");
 
   if (verbose) {
     // eslint-disable-next-line no-console

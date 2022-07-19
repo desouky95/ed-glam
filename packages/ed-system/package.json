@@ -1,6 +1,6 @@
 {
   "name": "@eduact/ed-system",
-  "version": "1.0.10",
+  "version": "1.1.1",
   "description": "> TODO: description",
   "author": "Ismail Moustafa <tubesniper@gmail.com>",
   "homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -25,11 +25,19 @@
     "url": "https://github.com/desouky95/ed-glam/issues"
   },
   "devDependencies": {
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "@types/styled-components": "^5.1.25",
+    "csstype": "^3.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "styled-components": "^5.3.5",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "typescript": "^4.7.4"
   },
   "gitHead": "42ddd2bd2ecec4a14e6227f60d07b6fecae45319",
   "dependencies": {
-    "@types/styled-system": "^5.1.15"
+    "@types/styled-system": "^5.1.15",
+    "styled-components": "^5.3.5"
   }
 }
