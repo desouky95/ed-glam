@@ -23,8 +23,12 @@ export const AvatarStyled = styled.div<{
   background-position: center;
   background-repeat: no-repeat;
   cursor: ${(props) => (props.onClick ? "pointer" : "")};
-  border: ${(props) => {
+  /* border: ${(props) => {
     if (!props.withBorder) return "";
     return `3px solid ${props.theme.colors[props.borderColor]}`;
+  }}; */
+  box-shadow: ${props => {
+    if(!props.withBorder) return ''
+    return `0 0 0 2px #FFF , 0 0 0 4px ${props.theme.colors[props.borderColor]}`
   }};
 `;
