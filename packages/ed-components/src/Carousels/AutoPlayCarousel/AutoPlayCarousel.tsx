@@ -8,7 +8,7 @@ import {
   Scrollbar,
   Swiper as SwiperClass,
 } from "swiper";
-import './Swiper.css'
+
 import { NavIcon } from "../Carousels.styled";
 import {
   IoIosArrowDropleftCircle,
