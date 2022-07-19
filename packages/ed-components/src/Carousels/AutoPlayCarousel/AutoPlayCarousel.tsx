@@ -16,7 +16,7 @@ import {
 } from "react-icons/io";
 import { FlexLayout } from "@eduact/ed-system";
 import { AutoPlayCarouselProps } from "./AutoPlayCarousel.types";
-
+import './Swiper.css'
 interface AutoPlayCarouselComposition {
   Item: typeof SwiperSlide;
 }
