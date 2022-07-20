@@ -1,5 +1,6 @@
 export * from "./Avatar";
 export * from "./Buttons";
+export * from "./Cards";
 export * from "./Carousels";
 export * from "./Icons";
 export * from "./Inputs";
