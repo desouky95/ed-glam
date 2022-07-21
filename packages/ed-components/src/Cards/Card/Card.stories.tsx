@@ -18,7 +18,7 @@ export const DefaultCard: ComponentStory<typeof Card> = (args) => {
   return (
     <Card variant={"maxBluePurple"} p={"4rem"}>
       <>
-        <Typography textDecoration={"underline"} wordSpacing={1}>
+        <Typography textDecoration={"underline"} wordSpacing={'1rem'}>
           fdsfsd sdf sdf sdf sdf sdf{" "}
         </Typography>
       </>

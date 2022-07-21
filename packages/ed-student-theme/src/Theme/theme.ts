@@ -396,6 +396,7 @@ export const Theme: ITheme = {
   breakpoints: aliasBreakpoints,
   breakpointsInPx: breakpointsInPx,
   mediaQueries: {
+    small :`@media only screen and (max-width : ${aliasBreakpoints.md})`,
     medium: `@media only screen and (min-width : ${aliasBreakpoints.md})`,
     large: `@media only screen and (min-width : ${aliasBreakpoints.lg})`,
     xlarge: `@media only screen and (min-width : ${aliasBreakpoints.xl})`,
