@@ -3,16 +3,20 @@ import Card from "./Card";
 
 export default {
   title: "Cards/Default",
-  component : Card,
-  argTypes : {
-    variant : {
-        control : {
-            type : 'radio'
-        }
-    }
-  }
+  component: Card,
+  argTypes: {
+    variant: {
+      control: {
+        type: "radio",
+      },
+    },
+  },
 } as ComponentMeta<typeof Card>;
 
 export const DefaultCard: ComponentStory<typeof Card> = (args) => {
-  return <Card  {...args} variant={'maxBluePurple'} p={"4rem"}></Card>;
+  return (
+    <Card variant={"maxBluePurple"} p={"4rem"}>
+      <>Card</>
+    </Card>
+  );
 };
