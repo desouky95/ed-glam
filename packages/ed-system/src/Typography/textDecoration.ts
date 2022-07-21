@@ -22,7 +22,7 @@ export interface TextDecorationProps<ThemeType extends Theme = RequiredTheme> {
    *
    * [MDN reference](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content)
    */
-  justifyContent?:
+   textDecoration?:
     | ResponsiveValue<Property.TextDecoration, ThemeType>
     | undefined;
 }
