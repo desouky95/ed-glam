@@ -27,5 +27,12 @@
   },
   "affected": {
     "defaultBase": "main"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    }
   }
 }

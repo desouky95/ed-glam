@@ -20,7 +20,6 @@ export interface StepperComposition {
   Item: React.FC<StepperItemProps>;
 }
 const Stepper: React.FC<StepperProps> & StepperComposition = ({
-  orientation = "horizontal",
   children,
   initStep,
   onChange,
@@ -62,7 +61,6 @@ const StepperItem: React.FC<StepperItemProps> = ({
   isLast,
   isSelected,
   index = 0,
-  children,
   finished,
   onClick,
   icon,
