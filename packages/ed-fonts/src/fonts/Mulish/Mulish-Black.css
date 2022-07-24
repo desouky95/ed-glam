@@ -1,13 +1,13 @@
 @font-face {
-    font-family: "Mulish Black";
-    src: url("Mulish-Black.eot"); /* IE9 */
-    src: url("Mulish-Black.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("Mulish-Black.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
-    url("Mulish-Black.woff") format("woff"), /* chrome, firefox */
-    url("Mulish-Black.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-    url("Mulish-Black.svg#Mulish Black") format("svg"); /* iOS 4.1- */
-    font-style: normal;
-    font-weight: normal;
+	font-family: 'Mulish Black';
+	src: url('Mulish-Black.eot'); /* IE9 */
+	src: url('Mulish-Black.eot?#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */ url('Mulish-Black.woff2') format('woff2'),
+		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */ url('Mulish-Black.woff')
+			format('woff'),
+		/* chrome, firefox */ url('Mulish-Black.ttf') format('truetype'),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+			url('Mulish-Black.svg#Mulish Black') format('svg'); /* iOS 4.1- */
+	font-style: normal;
+	font-weight: normal;
 }
-
-

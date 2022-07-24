@@ -1,5 +1,5 @@
-import AutoPlayCarousel from "./AutoPlayCarousel";
+import AutoPlayCarousel from './AutoPlayCarousel';
 
-export * from "./AutoPlayCarousel.types";
+export * from './AutoPlayCarousel.types';
 
 export { AutoPlayCarousel };

@@ -1,3 +1,3 @@
-import useDelayedUnmount from "./useDelayedUnmount";
+import useDelayedUnmount from './useDelayedUnmount';
 
 export { useDelayedUnmount };

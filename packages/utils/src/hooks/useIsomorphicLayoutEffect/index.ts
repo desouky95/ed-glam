@@ -1,3 +1,3 @@
-import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect';
 
 export { useIsomorphicLayoutEffect };

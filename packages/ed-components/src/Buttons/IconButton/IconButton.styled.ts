@@ -1,5 +1,5 @@
-import { Color } from '@eduact/student-theme'
-import styled from 'styled-components'
+import { Color } from '@eduact/student-theme';
+import styled from 'styled-components';
 import {
 	flexbox,
 	FlexboxProps,
@@ -12,17 +12,17 @@ import {
 	typography,
 	TypographyProps,
 	variant,
-} from 'styled-system'
+} from 'styled-system';
 
 type Props = {
-	color: Color
-	fontSize: number
-	tooltip: string
+	color: Color;
+	fontSize: number;
+	tooltip: string;
 } & LayoutProps &
 	SpaceProps &
 	TextAlignProps &
 	FlexboxProps &
-	TypographyProps
+	TypographyProps;
 export const IconButtonStyled = styled.div<Props>`
 	${typography}
 	${variant({
@@ -37,7 +37,7 @@ export const IconButtonStyled = styled.div<Props>`
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	border-radius: ${props => `${props.theme.borderRadii.large}px`};
+	border-radius: ${(props) => `${props.theme.borderRadii.large}px`};
 	border: none;
 	background: transparent;
 	position: relative;
@@ -51,7 +51,7 @@ export const IconButtonStyled = styled.div<Props>`
 	}
 	&:hover {
 		&::before {
-			content: ${props => `"${props.tooltip}"`};
+			content: ${(props) => `"${props.tooltip}"`};
 		}
 	}
-`
+`;

@@ -1,3 +1,3 @@
-import OtpInput from "./OtpInput";
+import OtpInput from './OtpInput';
 
 export { OtpInput };

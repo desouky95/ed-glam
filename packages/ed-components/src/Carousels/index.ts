@@ -1,1 +1,1 @@
-export * from "./AutoPlayCarousel";
+export * from './AutoPlayCarousel';

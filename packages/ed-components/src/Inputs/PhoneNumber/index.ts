@@ -1,2 +1,2 @@
-import PhoneNumberInput, { PhoneNumberProps } from "./PhoneNumberInput";
+import PhoneNumberInput, { PhoneNumberProps } from './PhoneNumberInput';
 export { PhoneNumberInput, PhoneNumberProps };

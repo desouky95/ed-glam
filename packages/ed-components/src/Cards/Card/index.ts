@@ -1,3 +1,3 @@
-import Card, { CardProps } from "./Card";
+import Card, { CardProps } from './Card';
 
 export { Card, CardProps };

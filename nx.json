@@ -1,38 +1,36 @@
 {
-  "extends": "nx/presets/npm.json",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:babel",
-          "build:types",
-          "build:copy-files",
-          "prebuild",
-          "storybook",
-          "build-storybook",
-          "minify"
-        ],
-        "accessToken": "NzA2OGE3NmQtZWJhZS00NmU3LTlkOTEtMGE0ZjE5NTU2MGVkfHJlYWQtd3JpdGU="
-      }
-    }
-  },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ]
-    }
-  },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    }
-  }
+	"extends": "nx/presets/npm.json",
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/nx-cloud",
+			"options": {
+				"cacheableOperations": [
+					"build",
+					"build:babel",
+					"build:types",
+					"build:copy-files",
+					"prebuild",
+					"storybook",
+					"build-storybook",
+					"minify"
+				],
+				"accessToken": "NzA2OGE3NmQtZWJhZS00NmU3LTlkOTEtMGE0ZjE5NTU2MGVkfHJlYWQtd3JpdGU="
+			}
+		}
+	},
+	"targetDefaults": {
+		"build": {
+			"dependsOn": ["^build"]
+		}
+	},
+	"affected": {
+		"defaultBase": "main"
+	},
+	"generators": {
+		"@nrwl/react": {
+			"application": {
+				"babel": true
+			}
+		}
+	}
 }

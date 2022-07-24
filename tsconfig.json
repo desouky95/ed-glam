@@ -1,69 +1,41 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "target": "ES5",
-    "lib": [
-      "ES2020",
-      "DOM"
-    ],
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noEmit": true,
-    "experimentalDecorators": true,
-    "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
-    "noErrorTruncation": false,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@ed-glam/admin-theme": [
-        "./packages/ed-admin-theme/src"
-      ],
-      "@ed-glam/admin-theme/*": [
-        "./packages/ed-admin-theme/src/*"
-      ],
-      "@eduact/ed-components": [
-        "./packages/ed-components/src"
-      ],
-      "@eduact/ed-components/*": [
-        "./packages/ed-components/src/*"
-      ],
-      "@eduact/ed-system": [
-        "./packages/ed-system/src"
-      ],
-      "@eduact/ed-system/*": [
-        "./packages/ed-system/src/*"
-      ],
-      "@eduact/student-theme": [
-        "packages/ed-student-theme/src"
-      ],
-      "@eduact/student-theme/*": [
-        "./packages/ed-student-theme/src/*"
-      ],
-      "@eduact/utils": [
-        "./packages/utils/src"
-      ],
-      "@eduact/utils/*": [
-        "./packages/utils/src/*"
-      ],
-      "scripts/*": [
-        "./scripts/*"
-      ]
-    },
-    "types": [
-      "node",
-      "react"
-    ]
-  },
-  "exclude": [
-    "node_modules",
-    "build",
-    "**/.*",
-    "**/build",
-    "**/node_modules",
-    "test"
-  ]
+	"compilerOptions": {
+		"module": "ESNext",
+		"target": "ES5",
+		"lib": ["ES2020", "DOM"],
+		"jsx": "react-jsx",
+		"esModuleInterop": true,
+		"moduleResolution": "Node",
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noEmit": true,
+		"experimentalDecorators": true,
+		"baseUrl": "./",
+		"allowSyntheticDefaultImports": true,
+		"noErrorTruncation": false,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"paths": {
+			"@ed-glam/admin-theme": ["./packages/ed-admin-theme/src"],
+			"@ed-glam/admin-theme/*": ["./packages/ed-admin-theme/src/*"],
+			"@eduact/ed-components": ["./packages/ed-components/src"],
+			"@eduact/ed-components/*": ["./packages/ed-components/src/*"],
+			"@eduact/ed-system": ["./packages/ed-system/src"],
+			"@eduact/ed-system/*": ["./packages/ed-system/src/*"],
+			"@eduact/student-theme": ["packages/ed-student-theme/src"],
+			"@eduact/student-theme/*": ["./packages/ed-student-theme/src/*"],
+			"@eduact/utils": ["./packages/utils/src"],
+			"@eduact/utils/*": ["./packages/utils/src/*"],
+			"scripts/*": ["./scripts/*"]
+		},
+		"types": ["node", "react"]
+	},
+	"exclude": [
+		"node_modules",
+		"build",
+		"**/.*",
+		"**/build",
+		"**/node_modules",
+		"test"
+	]
 }

@@ -1,19 +1,19 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 import {
-  background,
-  BackgroundProps,
-  layout,
-  LayoutProps,
-} from "styled-system";
+	background,
+	BackgroundProps,
+	layout,
+	LayoutProps,
+} from 'styled-system';
 
 export const StyledWrapper = styled.div<LayoutProps & BackgroundProps>`
-  overflow: hidden;
-  background: #eee;
-  height: unset;
-  min-height: 30vh;
-  padding: 1rem 0;
-  ${layout}
-  ${background}
+	overflow: hidden;
+	background: #eee;
+	height: unset;
+	min-height: 30vh;
+	padding: 1rem 0;
+	${layout}
+	${background}
 `;
 
 export const SkeletonLoadingAnimation = keyframes`

@@ -1,13 +1,14 @@
 @font-face {
-    font-family: "Montserrat ExtraBold";
-    src: url("Montserrat-ExtraBoldItalic.eot"); /* IE9 */
-    src: url("Montserrat-ExtraBoldItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("Montserrat-ExtraBoldItalic.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
-    url("Montserrat-ExtraBoldItalic.woff") format("woff"), /* chrome, firefox */
-    url("Montserrat-ExtraBoldItalic.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-    url("Montserrat-ExtraBoldItalic.svg#Montserrat ExtraBold") format("svg"); /* iOS 4.1- */
-    font-style: normal;
-    font-weight: normal;
+	font-family: 'Montserrat ExtraBold';
+	src: url('Montserrat-ExtraBoldItalic.eot'); /* IE9 */
+	src: url('Montserrat-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */ url('Montserrat-ExtraBoldItalic.woff2') format('woff2'),
+		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+			url('Montserrat-ExtraBoldItalic.woff') format('woff'),
+		/* chrome, firefox */ url('Montserrat-ExtraBoldItalic.ttf')
+			format('truetype'),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+			url('Montserrat-ExtraBoldItalic.svg#Montserrat ExtraBold') format('svg'); /* iOS 4.1- */
+	font-style: normal;
+	font-weight: normal;
 }
-
-

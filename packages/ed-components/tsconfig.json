@@ -1,11 +1,11 @@
 {
-  "extends": "../../tsconfig",
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*" : ["src/*"],
-    }
-  },
-  "include": ["src/**/*", "test/**/*"],
+	"extends": "../../tsconfig",
+	"compilerOptions": {
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@src/*": ["src/*"]
+		}
+	},
+	"include": ["src/**/*", "test/**/*"]
 }

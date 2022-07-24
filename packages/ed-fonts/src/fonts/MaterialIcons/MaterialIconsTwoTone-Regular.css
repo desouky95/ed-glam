@@ -1,13 +1,16 @@
 @font-face {
-    font-family: "Material Icons Two Tone";
-    src: url("MaterialIconsTwoTone-Regular.eot"); /* IE9 */
-    src: url("MaterialIconsTwoTone-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("MaterialIconsTwoTone-Regular.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
-    url("MaterialIconsTwoTone-Regular.woff") format("woff"), /* chrome, firefox */
-    url("MaterialIconsTwoTone-Regular.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-    url("MaterialIconsTwoTone-Regular.svg#Material Icons Two Tone") format("svg"); /* iOS 4.1- */
-    font-style: normal;
-    font-weight: normal;
+	font-family: 'Material Icons Two Tone';
+	src: url('MaterialIconsTwoTone-Regular.eot'); /* IE9 */
+	src: url('MaterialIconsTwoTone-Regular.eot?#iefix')
+			format('embedded-opentype'),
+		/* IE6-IE8 */ url('MaterialIconsTwoTone-Regular.woff2') format('woff2'),
+		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+			url('MaterialIconsTwoTone-Regular.woff') format('woff'),
+		/* chrome, firefox */ url('MaterialIconsTwoTone-Regular.ttf')
+			format('truetype'),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+			url('MaterialIconsTwoTone-Regular.svg#Material Icons Two Tone')
+			format('svg'); /* iOS 4.1- */
+	font-style: normal;
+	font-weight: normal;
 }
-
-

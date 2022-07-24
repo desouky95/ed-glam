@@ -1,10 +1,10 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Colors } from '@eduact/student-theme'
-import { IoMdAddCircle } from 'react-icons/io'
-import { RaisedButton } from '.'
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Colors } from '@eduact/student-theme';
+import { IoMdAddCircle } from 'react-icons/io';
+import { RaisedButton } from '.';
 
-import { RaisedButtonStyled } from './RaisedButton.styled'
-import Spacer from '../../Spacer'
+import { RaisedButtonStyled } from './RaisedButton.styled';
+import Spacer from '../../Spacer';
 
 export default {
 	title: 'Buttons/Raised Button',
@@ -31,27 +31,31 @@ export default {
 			options: [true, false],
 		},
 	},
-} as ComponentMeta<typeof RaisedButton>
+} as ComponentMeta<typeof RaisedButton>;
 
 const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
-	return <RaisedButton {...args}>{args.children}</RaisedButton>
-}
+	return <RaisedButton {...args}>{args.children}</RaisedButton>;
+};
 
-export const RaisedButtonStory = RaisedTemplate.bind({})
+export const RaisedButtonStory = RaisedTemplate.bind({});
 
-RaisedButtonStory.storyName = 'Raised Button'
+RaisedButtonStory.storyName = 'Raised Button';
 
-export const RaisedButtonOutlined = RaisedTemplate.bind({})
+export const RaisedButtonOutlined = RaisedTemplate.bind({});
 RaisedButtonOutlined.args = {
 	outlined: true,
-}
-RaisedButtonOutlined.storyName = 'Raised Button Outlined'
+};
+RaisedButtonOutlined.storyName = 'Raised Button Outlined';
 
-export const RaisedButtonIcon: ComponentStory<typeof RaisedButton> = ({ outlined, variant, children }) => (
+export const RaisedButtonIcon: ComponentStory<typeof RaisedButton> = ({
+	outlined,
+	variant,
+	children,
+}) => (
 	<RaisedButton outlined={outlined} variant={variant}>
 		<IoMdAddCircle />
 		<Spacer mx={4} />
 		{children}
 	</RaisedButton>
-)
-RaisedButtonIcon.storyName = 'Raised Button With Icon'
+);
+RaisedButtonIcon.storyName = 'Raised Button With Icon';

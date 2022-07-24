@@ -1,2 +1,2 @@
-export * from './Stepper'
-export  {StepperProps} from './Stepper.types'
+export * from './Stepper';
+export { StepperProps } from './Stepper.types';

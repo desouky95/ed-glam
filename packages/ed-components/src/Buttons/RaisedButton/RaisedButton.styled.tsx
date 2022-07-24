@@ -1,19 +1,35 @@
-import { Color, MediaQuery } from '@eduact/student-theme'
-import styled from 'styled-components'
-import { variant, layout, LayoutProps, space, SpaceProps, flexbox, FlexboxProps } from 'styled-system'
+import { Color, MediaQuery } from '@eduact/student-theme';
+import styled from 'styled-components';
+import {
+	variant,
+	layout,
+	LayoutProps,
+	space,
+	SpaceProps,
+	flexbox,
+	FlexboxProps,
+} from 'styled-system';
 
 export const RaisedButtonStyled = styled.button<
-	{ variant: Color; outlined?: boolean; btnSize: MediaQuery; bgFallback?: boolean } & LayoutProps & SpaceProps & FlexboxProps
+	{
+		variant: Color;
+		outlined?: boolean;
+		btnSize: MediaQuery;
+		bgFallback?: boolean;
+	} & LayoutProps &
+		SpaceProps &
+		FlexboxProps
 >`
-	border-width: ${props => (props.outlined ? '2px' : '')};
+	border-width: ${(props) => (props.outlined ? '2px' : '')};
 	border-style: solid;
 	${variant({ scale: 'buttonColors' })}
 
-	color: ${props => (props.outlined ? props.theme.colors[props.variant] : '')};
+	color: ${(props) =>
+		props.outlined ? props.theme.colors[props.variant] : ''};
 	font-weight: 500;
-	font-size: ${props => `${props.theme.fontSizesAliases.body ?? 1}rem`};
-	border-radius: ${props => `${props.theme.borderRadii.medium}px`};
-	cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+	font-size: ${(props) => `${props.theme.fontSizesAliases.body ?? 1}rem`};
+	border-radius: ${(props) => `${props.theme.borderRadii.medium}px`};
+	cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 	display: flex;
 	align-items: center;
 	padding: 0.5rem 2rem;
@@ -31,10 +47,10 @@ export const RaisedButtonStyled = styled.button<
 		prop: 'btnSize',
 		scale: 'buttonSizes',
 	})}
-	opacity: ${props => (props.disabled ? '0.6' : '')};
+	opacity: ${(props) => (props.disabled ? '0.6' : '')};
 	${layout};
 	${space};
 	${flexbox};
-	background: ${props => (props.outlined ? 'transparent' : '')};
-	background: ${props => (props.bgFallback ? props.theme.colors.light : '')};
-`
+	background: ${(props) => (props.outlined ? 'transparent' : '')};
+	background: ${(props) => (props.bgFallback ? props.theme.colors.light : '')};
+`;
