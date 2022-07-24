@@ -140,7 +140,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
               maxHeight: opened ? `${height}px` : "0px",
             }}
           >
-            {(sprintProps) => {
+            {(sprintProps : any) => {
               return (
                 <AnimatedWrapper style={{ ...sprintProps, overflow: "hidden" }}>
                   <DropdownOptions ref={wrapperRef} $opened={opened}>
