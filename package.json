@@ -5,10 +5,11 @@
   "scripts": {
     "release:version": "npm run cleanup && lerna version",
     "release:build": "npm run cleanup && nx run-many --target=build --all --parallel",
-    "prepare": "node scripts/prepublish.js",
+    "prepare": "node scripts/prepublish.js && husky install",
     "publish": "lerna publish from-package --dist-tag latest --contents build",
     "postpublish": "npm run cleanup",
-    "cleanup": "node scripts/cleanup.js"
+    "cleanup": "node scripts/cleanup.js",
+    "format": "prettier . --write"
   },
   "author": "desouky",
   "license": "ISC",
@@ -72,10 +73,13 @@
     "glob": "^8.0.3",
     "gulp": "^4.0.2",
     "gulp-fontmin": "^0.7.4",
+    "husky": "^8.0.1",
     "jest": "27.5.1",
     "lerna": "^5.0.0",
+    "lint-staged": "^13.0.3",
     "lodash": "^4.17.21",
     "nx": "14.4.3",
+    "prettier": "2.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rollup": "^2.75.6",
@@ -112,5 +116,9 @@
     "regenerator-runtime": "0.13.7",
     "styled-components": "5.3.5",
     "tslib": "^2.3.0"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.--write": "prettier --write"
   }
 }
