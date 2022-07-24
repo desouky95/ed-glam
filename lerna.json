@@ -1,6 +1,7 @@
 {
-  "npmClient": "npm",
-  "version": "independent",
-  "packages": ["packages/*"],
-  "useWorkspaces": true
+	"npmClient": "npm",
+	"version": "independent",
+	"packages": ["packages/*"],
+	"useWorkspaces": true,
+	"useNx": true
 }

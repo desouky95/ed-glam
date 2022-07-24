@@ -1,7 +1,7 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { Colors } from '@eduact/student-theme'
-import { IoMdAdd } from 'react-icons/io'
-import IconButton from './IconButton'
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Colors } from '@eduact/student-theme';
+import { IoMdAdd } from 'react-icons/io';
+import IconButton from './IconButton';
 
 export default {
 	title: 'Buttons/Icon Button',
@@ -27,23 +27,35 @@ export default {
 			},
 		},
 	},
-} as ComponentMeta<typeof IconButton>
+} as ComponentMeta<typeof IconButton>;
 
-const IconTemplate: ComponentStory<typeof IconButton> = ({ icon, tooltip, variant, size }) => {
-	return <IconButton icon={<IoMdAdd />} size={size} variant={variant} tooltip={tooltip} />
-}
+const IconTemplate: ComponentStory<typeof IconButton> = ({
+	icon,
+	tooltip,
+	variant,
+	size,
+}) => {
+	return (
+		<IconButton
+			icon={<IoMdAdd />}
+			size={size}
+			variant={variant}
+			tooltip={tooltip}
+		/>
+	);
+};
 
-export const IconButtonStory = IconTemplate.bind({})
+export const IconButtonStory = IconTemplate.bind({});
 IconButtonStory.args = {
 	icon: <IoMdAdd />,
 	variant: 'primary',
-}
-IconButtonStory.storyName = 'Icon Button'
+};
+IconButtonStory.storyName = 'Icon Button';
 
-export const IconButtonWithTooltip = IconButtonStory.bind({})
+export const IconButtonWithTooltip = IconButtonStory.bind({});
 IconButtonWithTooltip.argTypes = {
 	...IconButtonStory.argTypes,
 	tooltip: {
 		defaultValue: 'Tooltip',
 	},
-}
+};

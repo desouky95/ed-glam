@@ -1,3 +1,3 @@
-import SkeletonTitle from "./SkeletonTitle";
+import SkeletonTitle from './SkeletonTitle';
 
 export { SkeletonTitle };

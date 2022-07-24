@@ -1,3 +1,3 @@
-const AvantGardeRegular = require("./AvantGarde-Regular.ttf");
+const AvantGardeRegular = require('./AvantGarde-Regular.ttf');
 
 module.exports = { AvantGardeRegular };

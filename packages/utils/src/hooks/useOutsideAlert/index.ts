@@ -1,1 +1,1 @@
-export * from "./useOutsideAlert";
+export * from './useOutsideAlert';

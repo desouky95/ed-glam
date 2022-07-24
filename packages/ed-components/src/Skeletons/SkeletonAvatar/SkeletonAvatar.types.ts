@@ -1,6 +1,6 @@
-import { MediaQuery } from "@eduact/student-theme";
+import { MediaQuery } from '@eduact/student-theme';
 
 export type SkeletonAvatarProps = {
-  isLoading?: boolean;
-  size?: MediaQuery;
+	isLoading?: boolean;
+	size?: MediaQuery;
 };

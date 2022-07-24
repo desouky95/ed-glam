@@ -1,4 +1,7 @@
 {
-  "extends": "../../tsconfig",
-  "include": ["src/**/*", "test/**/*"]
+	"extends": "../../tsconfig",
+	"compilerOptions": {
+		"skipLibCheck": true
+	},
+	"include": ["src/**/*", "test/**/*"]
 }

@@ -1,24 +1,24 @@
-import { css } from "styled-components";
-import { MaterialIconFontFace, MaterialIconsType } from "./typography.types";
+import { css } from 'styled-components';
+import { MaterialIconFontFace, MaterialIconsType } from './typography.types';
 
 export const generateMaterialIconsFontFaces = (
-  material_icons: MaterialIconFontFace
+	material_icons: MaterialIconFontFace
 ) => {
-  let css_string = "";
-  const familyBaseName = "Material Icons";
-  const getTypeName = (type: string) => {
-    return material_icons[type as MaterialIconsType]?.mapped_name ?? ` ${type}`;
-  };
+	let css_string = '';
+	const familyBaseName = 'Material Icons';
+	const getTypeName = (type: string) => {
+		return material_icons[type as MaterialIconsType]?.mapped_name ?? ` ${type}`;
+	};
 
-  Object.keys(material_icons).forEach((type) => {
-    const src = material_icons[type as MaterialIconsType]?.src;
-    const typeFamilyName = `${familyBaseName}${
-      getTypeName(type).length > 0 ? ` ${getTypeName(type)}` : ""
-    }`;
-    const typeClassName = `.material-icons${`${
-      getTypeName(type).length > 0 ? "-" : ""
-    }${getTypeName(type).toLocaleLowerCase()}`}`;
-    const typeCss = `
+	Object.keys(material_icons).forEach((type) => {
+		const src = material_icons[type as MaterialIconsType]?.src;
+		const typeFamilyName = `${familyBaseName}${
+			getTypeName(type).length > 0 ? ` ${getTypeName(type)}` : ''
+		}`;
+		const typeClassName = `.material-icons${`${
+			getTypeName(type).length > 0 ? '-' : ''
+		}${getTypeName(type).toLocaleLowerCase()}`}`;
+		const typeCss = `
 		@font-face {
 		  font-family: "${typeFamilyName}";
 		  font-style: normal;
@@ -41,9 +41,9 @@ export const generateMaterialIconsFontFaces = (
 		  -webkit-font-smoothing: antialiased;
 		}
 	  `;
-    css_string += typeCss;
-  });
-  return css`
-    ${css_string}
-  `;
+		css_string += typeCss;
+	});
+	return css`
+		${css_string}
+	`;
 };
