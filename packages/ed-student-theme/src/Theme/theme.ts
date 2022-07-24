@@ -101,7 +101,7 @@ interface ITheme {
 	};
 	fontSizes: number[];
 	fontSizesAliases: {
-		[key in FontAliases]?: number;
+		[key in FontAliases]?: number | string;
 	};
 	space: {
 		[key in Spaces]: number[];
@@ -353,6 +353,20 @@ export const Theme: ITheme = {
 	fontSizes: [10, 12, 14],
 	fontSizesAliases: {
 		button: 0.875,
+		'small-t1': '0.5rem',
+		'small-t2': '0.625rem',
+		'small-t3': '0.75rem',
+		'small-t4': '0.875rem',
+		'small-t5': '1rem',
+		'medium-t1': '1.125rem',
+		'medium-t2': '1.25rem',
+		'medium-t3': '1.375rem',
+		'medium-t4': '1.5rem',
+		'medium-t5': '1.625rem',
+		'large-t1': '1.75rem',
+		'large-t2': '1.875rem',
+		'large-t3': '2rem',
+		'large-t4': '2.125rem',
 	},
 	space: {
 		margin: [],

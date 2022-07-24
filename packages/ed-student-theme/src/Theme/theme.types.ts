@@ -21,8 +21,10 @@ export const Colors = {
 export type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl';
 export type BreakpointInPx = 832 | 1024 | 1280;
 export type MediaQuery = 'small' | 'medium' | 'large' | 'xlarge';
+type FontScale = 't1' | 't2' | 't3' | 't4' | 't5';
+export type FontBx = `${MediaQuery}-${FontScale}`;
 export type Shapes = 'circle' | 'square';
-export type FontAliases = 'body' | 'display' | 'button';
+export type FontAliases = 'body' | 'display' | 'button' | FontBx;
 export type Spaces = 'margin' | 'margin-bottom';
 export type Mode = 'light' | 'dark' | 'rtl' | 'ltr';
 
