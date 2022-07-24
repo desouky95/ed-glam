@@ -8,5 +8,5 @@ module.exports = {
 		],
 		'@babel/preset-flow',
 	],
-	plugins: ['tsconfig-paths-module-resolver'],
+	plugins: ['tsconfig-paths-module-resolver', '@babel/plugin-syntax-jsx'],
 };

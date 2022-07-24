@@ -28,7 +28,7 @@
 			"@eduact/utils/*": ["./packages/utils/src/*"],
 			"scripts/*": ["./scripts/*"]
 		},
-		"types": ["node", "react"]
+		"types": ["node", "react", "jest", "mocha"]
 	},
 	"exclude": [
 		"node_modules",
