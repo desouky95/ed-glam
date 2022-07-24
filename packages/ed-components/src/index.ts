@@ -9,3 +9,4 @@ export * from './Spacer';
 export * from './Modal';
 export * from './Stepper';
 export * from './Skeletons';
+export * from './Tabs';
