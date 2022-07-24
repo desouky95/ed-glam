@@ -8,7 +8,6 @@ import {
 	TypographyProps,
 	variant,
 } from 'styled-system';
-import { FontBx } from '@eduact/student-theme';
 import { createGlobalFont } from './createGlobalFont';
 import { generateMaterialIconsFontFaces } from './generateMaterialIconsFontFaces';
 import { textDecoration, TextDecorationProps } from './textDecoration';
@@ -26,14 +25,13 @@ export const Typography = styled.span<
 		TextStyleProps &
 		SpaceProps &
 		TextDecorationProps &
-		WordSpacingProps & { size: FontBx }
+		WordSpacingProps
 >`
 	${typography};
 	${textStyle};
 	${space};
 	${textDecoration};
 	${wordSpacing};
-	${variant({ prop: 'size', scale: 'fontSizesAliases' })}
 `;
 
 export const SingleLineCssTrim = css`
