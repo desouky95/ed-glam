@@ -288,6 +288,9 @@ export const Theme: ITheme = {
 		orange: {
 			color: Colors.orange,
 		},
+		darkSilver: { color: Colors.darkSilver },
+		purpleNavy: { color: Colors.purpleNavy },
+		silver: { color: Colors.silver },
 	},
 	backgrounds: {
 		cultured: {
