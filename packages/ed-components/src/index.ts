@@ -6,6 +6,7 @@ export * from './Drawer';
 export * from './Icons';
 export * from './Inputs';
 export * from './Spacer';
+export * from './Snackbar';
 export * from './Modal';
 export * from './Stepper';
 export * from './Skeletons';

@@ -75,4 +75,10 @@ export type ResponsiveVal<T> = T | { [key in Breakpoint]?: T };
 
 export type Color = keyof typeof Colors;
 
-export type Position = 'left' | 'right' | 'top' | 'bottom';
+export type XPosition = 'left' | 'right' | 'center';
+export type YPosition = 'top' | 'bottom';
+export type Position = XPosition | YPosition;
+export type AxisPosition = {
+	vertical: YPosition;
+	horizontal: XPosition;
+};
