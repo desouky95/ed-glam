@@ -282,6 +282,12 @@ export const Theme: ITheme = {
 		yellow: {
 			color: Colors.yellow,
 		},
+		red: {
+			color: Colors.red,
+		},
+		orange: {
+			color: Colors.orange,
+		},
 	},
 	backgrounds: {
 		cultured: {
@@ -334,6 +340,9 @@ export const Theme: ITheme = {
 		},
 		darkSilver: {
 			backgroundColor: Colors.darkSilver,
+		},
+		orange: {
+			backgroundColor: Colors.orange,
 		},
 	},
 	breakpoints: aliasBreakpoints,

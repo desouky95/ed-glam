@@ -14,6 +14,7 @@ export const Colors = {
 	princetonOrange: '#FF8532',
 	lavender: '#F0EFFF',
 	yellow: '#ffdd6d',
+	orange: '#F55F44',
 	red: '#dc3545',
 	purpleNavy: '#575A89',
 };

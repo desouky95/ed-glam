@@ -4,15 +4,11 @@ import styled from 'styled-components';
 import React from 'react';
 import { typography, TypographyProps, variant } from 'styled-system';
 
-type IconProps = {
+export type IconProps = {
 	color?: Color;
 	opticalSize?: number;
 } & HTMLProps<HTMLOrSVGElement> &
 	TypographyProps;
-interface IIcons {
-	eye: ReactElement<IconProps>;
-	eyeoff: ReactElement<IconProps>;
-}
 
 const StyledIconSpan = styled.span<IconProps>`
 	${variant({ prop: 'color', scale: 'textButtonColors' })};

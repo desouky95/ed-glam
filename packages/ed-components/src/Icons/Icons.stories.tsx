@@ -8,7 +8,7 @@ export default {
 export const IconsDefault: ComponentStory<any> = () => {
 	return (
 		<div>
-			<Icon size={40} color="primary">
+			<Icon size={40} color="orange">
 				<EyeIcon />
 			</Icon>
 			<Icon size={40} color="primary">

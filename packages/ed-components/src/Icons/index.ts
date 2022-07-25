@@ -1,3 +1,3 @@
-import { EyeIcon, EyeoffIcon, Icon } from './Icons';
+import { EyeIcon, EyeoffIcon, Icon, IconProps } from './Icons';
 
-export { EyeIcon, EyeoffIcon, Icon };
+export { EyeIcon, EyeoffIcon, Icon, IconProps };
