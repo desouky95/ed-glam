@@ -14,6 +14,7 @@ const Portal: React.FC<PortalProps> = ({ children, parent }) => {
 		const classList = ['ed-portal-container'];
 		target.appendChild(el);
 		classList.forEach((_) => el.classList.add(_));
+		el.style.zIndex = '999999';
 
 		return () => {
 			target.removeChild(el);
