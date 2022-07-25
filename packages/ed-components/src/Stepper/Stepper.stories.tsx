@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { useState } from 'react';
 import Stepper from './Stepper';
-import { MdAttachEmail } from 'react-icons/md';
+import { MdAdd, MdAttachEmail } from 'react-icons/md';
 import { RaisedButton } from '../Buttons';
 import Spacer from '../Spacer';
 import { Container, FlexLayout } from '@eduact/ed-system';
@@ -23,14 +23,15 @@ export const StoryTemplate: ComponentStory<typeof Stepper> = (
 	return (
 		<>
 			<Container>
-				<Stepper initStep={currentIndex} orientation="horizontal">
+				<Stepper
+					finishedIcon={<MdAdd />}
+					initStep={currentIndex}
+					orientation="horizontal"
+				>
 					<Stepper.Item tooltip={'Sign up'} />
 					<Stepper.Item disabled tooltip="Verify" />
 					<Stepper.Item />
 					<Stepper.Item />
-					{/* <Stepper.Item icon={<MdAttachEmail />} /> */}
-					{/* <Stepper.Item icon={<MdAttachEmail />} /> */}
-					{/* <Stepper.Item icon={<MdAttachEmail />} /> */}
 				</Stepper>
 				<Spacer mb={'1rem'} />
 				<FlexLayout>

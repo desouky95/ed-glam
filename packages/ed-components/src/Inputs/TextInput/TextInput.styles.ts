@@ -7,10 +7,10 @@ export const InputBaseWrapper = styled.div<SpaceProps & LayoutProps>`
 	${layout};
 	font-family: 'Roboto';
 	font-size: 16px;
-	font-weight: 400;
 	font-stretch: normal;
 	font-style: normal;
 	letter-spacing: normal;
+	font-weight: 500;
 `;
 export const InputWrapper = styled.div<InputBaseError>`
 	display: flex;

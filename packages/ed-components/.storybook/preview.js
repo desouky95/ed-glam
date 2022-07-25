@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import { addDecorator } from '@storybook/react';
 import { createGlobalFont, Fonts } from '@eduact/ed-system';
 import { Theme, ThemeProvider } from '@eduact/student-theme';
@@ -40,6 +40,7 @@ const fonts = {
 };
 
 const GlobalStyles = createGlobalStyle`
+
   * {
     box-sizing: border-box;
 

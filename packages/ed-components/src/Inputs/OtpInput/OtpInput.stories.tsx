@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import OtpInput from './OtpInput';
-import { FlexLayout } from '@eduact/student-theme';
+import { FlexLayout } from '@eduact/ed-system';
 import { useForm, Controller } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 export default {

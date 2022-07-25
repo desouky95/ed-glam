@@ -13,6 +13,7 @@ const FillAnimation = keyframes`
 
 export const BulletContent = styled.div`
 	z-index: 4;
+	display: flex;
 	font-family: 'AvantGarde';
 `;
 
@@ -31,6 +32,7 @@ export const StepTooltip = styled.div`
 	color: ${(props) => props.theme.colors.primary};
 	white-space: nowrap;
 	${({ theme }) => `${theme.mediaQueries.large}{
+		margin-top : 0.75rem;
   display : block;
 }`}
 `;
@@ -43,6 +45,7 @@ export const StepperItemBullet = styled.div`
 	cursor: pointer;
 	${({ theme }) => `${theme.mediaQueries.large}{
      font-size: 1.625rem; 
+	 
   }`}
 	font-size: 0.625rem;
 	color: ${(props) => props.theme.colors.primary};
@@ -69,8 +72,11 @@ export const StepWrapper = styled(FlexLayout)<StepperItemUIProps>`
 		--width: 1rem;
 		width: var(--width);
 		height: var(--width);
+		transform: ${(props) =>
+			props.isSelected || props.finished ? 'scale(1.1)' : ''};
 		${({ theme, isSelected, finished }) => `${theme.mediaQueries.large}{
-      --width: ${isSelected || finished ? '2.625rem' : '2.188rem'};
+			--width: ${isSelected || finished ? '2.625rem' : '2.188rem'};
+      --width: 2.188rem;
   }`}
 	}
 	${StepperItemBullet} {

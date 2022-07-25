@@ -12,6 +12,8 @@ export const createGlobalFont = (
 	    font-family : '${font}';
       	src: url(${Object.values(weights)[index]});
 	    font-weight : ${weight};
+		font-display: swap;
+
 	  }`;
 	});
 	return css`

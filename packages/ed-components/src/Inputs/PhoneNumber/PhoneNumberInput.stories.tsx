@@ -1,4 +1,4 @@
-import { FlexLayout, GridLayout } from '@eduact/student-theme';
+import { FlexLayout, GridLayout } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';

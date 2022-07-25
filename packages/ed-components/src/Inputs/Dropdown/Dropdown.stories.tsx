@@ -1,4 +1,3 @@
-import { FlexLayout, GridLayout } from '@eduact/student-theme';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import Dropdown from './Dropdown';
@@ -7,6 +6,7 @@ import { DevTool } from '@hookform/devtools';
 import { TextInput } from '../TextInput';
 import { RaisedButton } from '../../Buttons';
 import DropdownRHF from './DropdownRHF';
+import { GridLayout } from '@eduact/ed-system';
 export default {
 	title: 'Inputs/Dropdown',
 	argTypes: {

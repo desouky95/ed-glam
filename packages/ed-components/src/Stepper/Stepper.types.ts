@@ -7,6 +7,7 @@ export type StepperProps = {
 	initStep?: number;
 	onChange?: (value: number) => void;
 	clickable?: boolean;
+	finishedIcon?: React.ReactNode;
 };
 
 export type StepperItemUIProps = {
@@ -19,5 +20,6 @@ export type StepperItemUIProps = {
 export type StepperItemProps = {
 	tooltip?: string;
 	icon?: React.ReactNode;
+	finishedIcon?: React.ReactNode;
 } & StepperItemUIProps &
 	Pick<React.HTMLProps<HTMLDivElement>, 'onClick' | 'disabled'>;

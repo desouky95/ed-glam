@@ -24,6 +24,7 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
 	initStep,
 	onChange,
 	clickable,
+	finishedIcon,
 }) => {
 	const [currentIndex, setCurrentIndex] = useState(initStep ?? 0);
 
@@ -42,6 +43,7 @@ const Stepper: React.FC<StepperProps> & StepperComposition = ({
 							isSelected: validCurrentIndex === index,
 							finished: index < validCurrentIndex,
 							index,
+							finishedIcon,
 							onClick: (e: React.MouseEvent<any>) => {
 								child.props.onClick?.(e);
 								if (clickable) {
@@ -66,7 +68,15 @@ const StepperItem: React.FC<StepperItemProps> = ({
 	icon,
 	tooltip,
 	disabled,
+	finishedIcon,
 }) => {
+	const toBeShown = useMemo(() => {
+		if (!isSelected && !finished) return;
+		const _ = icon ?? index + 1;
+		if (finished) return finishedIcon ?? _;
+		return _;
+	}, [finished, icon, isSelected]);
+	console.log({ toBeShown });
 	return (
 		<StepWrapper
 			onClick={(e) => !disabled && onClick && onClick(e)}
@@ -74,12 +84,10 @@ const StepperItem: React.FC<StepperItemProps> = ({
 			isSelected={isSelected}
 			isLast={isLast}
 		>
-			<FlexLayout width={'100%'} alignItems={'center'}>
+			<FlexLayout mb={{ lg: '.75rem' }} width={'100%'} alignItems={'center'}>
 				<StepperBulletWrapper>
 					<StepperItemBullet>
-						{(isSelected || finished) && (
-							<BulletContent>{icon ?? index + 1}</BulletContent>
-						)}
+						{toBeShown && <BulletContent>{toBeShown}</BulletContent>}
 					</StepperItemBullet>
 					{tooltip && isSelected && <StepTooltip>{tooltip}</StepTooltip>}
 				</StepperBulletWrapper>
