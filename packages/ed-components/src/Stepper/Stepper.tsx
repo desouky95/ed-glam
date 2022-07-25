@@ -76,7 +76,6 @@ const StepperItem: React.FC<StepperItemProps> = ({
 		if (finished) return finishedIcon ?? _;
 		return _;
 	}, [finished, icon, isSelected]);
-	console.log({ toBeShown });
 	return (
 		<StepWrapper
 			onClick={(e) => !disabled && onClick && onClick(e)}

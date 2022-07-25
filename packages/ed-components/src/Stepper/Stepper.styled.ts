@@ -42,7 +42,7 @@ export const StepperItemBullet = styled.div`
 	box-shadow: inset 0 0 0px 4px ${(props) => props.theme.colors.silver};
 	border-radius: 50%;
 	background: ${(props) => props.theme.colors.light};
-	cursor: pointer;
+	/* cursor: pointer; */
 	${({ theme }) => `${theme.mediaQueries.large}{
      font-size: 1.625rem; 
 	 
