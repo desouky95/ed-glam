@@ -5,8 +5,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { TextInput } from '../TextInput';
 import { RaisedButton } from '../../Buttons';
-import DropdownRHF from './DropdownRHF';
 import { GridLayout } from '@eduact/ed-system';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 export default {
 	title: 'Inputs/Dropdown',
 	argTypes: {
@@ -98,13 +99,18 @@ export const DropdownWithReactHookForm: ComponentStory<typeof Dropdown> = (
 	return <WithRHS />;
 };
 
+const schema = yup.object({
+	type: yup.number().required('Field is required'),
+});
 const WithRHS = () => {
 	const { register, control, setValue } = useForm<{
 		name?: string;
 		type: number;
 		lang: number;
 	}>({
+		mode: 'all',
 		defaultValues: { name: '' },
+		resolver: yupResolver(schema),
 	});
 
 	const onReset = () => {
@@ -116,48 +122,34 @@ const WithRHS = () => {
 		<GridLayout>
 			<RaisedButton onClick={onReset}>Reset</RaisedButton>
 			<DevTool control={control} />
-			<DropdownRHF placeholder="Name" control={control} name="name">
-				<Dropdown.Option value={'ismail'}>Ismail</Dropdown.Option>
-				<Dropdown.Option value={'joe'}>Joe</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-				<Dropdown.Option value={'marv'}>Marwan</Dropdown.Option>
-			</DropdownRHF>
-			<DropdownRHF placeholder="Type" control={control} name="type">
-				<Dropdown.Option value={1}>Type A</Dropdown.Option>
-				<Dropdown.Option value={2}>Type B</Dropdown.Option>
-				<Dropdown.Option value={3}>Type C</Dropdown.Option>
-			</DropdownRHF>
-			<DropdownRHF placeholder="Language" control={control} name="lang">
-				<Dropdown.Option value={1}>EN</Dropdown.Option>
-				<Dropdown.Option value={2}>AR</Dropdown.Option>
-			</DropdownRHF>
+			<Controller
+				control={control}
+				name="type"
+				render={({
+					field: { name, onChange, value, ref, onBlur },
+					fieldState: { isDirty, error, isTouched },
+				}) => {
+					console.log({ error, isTouched, isDirty });
+					return (
+						<Dropdown
+							placeholder="ttttt"
+							error={!!error}
+							helperText={error?.message ?? ''}
+							// onTouchEnd={onBlur}
+							onBlur={onBlur}
+							ref={ref}
+							value={value}
+							onChange={onChange}
+							name={name}
+						>
+							<Dropdown.Option value={1}>Test 1</Dropdown.Option>
+							<Dropdown.Option value={2}>Test 2</Dropdown.Option>
+							<Dropdown.Option value={3}>Test 3</Dropdown.Option>
+							<Dropdown.Option value={4}>Test 4</Dropdown.Option>
+						</Dropdown>
+					);
+				}}
+			/>
 		</GridLayout>
 	);
 };

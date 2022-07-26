@@ -16,6 +16,8 @@ export const DropdownWrapper = styled.div<WrapperProps>`
 	justify-content: space-between;
 	border-bottom: 0.6px solid ${(props) => props.theme.colors.silver};
 	padding: 6px 0;
+	font-family: 'Roboto';
+	font-weight: 500;
 	--color: ${(props) =>
 		props.$hasValue ? props.theme.colors.dark : props.theme.colors.silver};
 	color: var(--color);
@@ -66,6 +68,7 @@ export const StyledInput = styled.input`
 export const StyledDropdownOption = styled.option`
 	padding: 6px 1.875rem;
 	cursor: pointer;
+	font: inherit;
 	color: ${(props) => props.theme.colors.dark};
 	background: ${(props) => (props.selected ? '#eeeeee' : '')};
 	&:hover {
