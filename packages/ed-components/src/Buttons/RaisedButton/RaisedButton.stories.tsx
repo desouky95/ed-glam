@@ -5,6 +5,7 @@ import { RaisedButton } from '.';
 
 import { RaisedButtonStyled } from './RaisedButton.styled';
 import Spacer from '../../Spacer';
+import { useCountdown } from '@eduact/utils';
 
 export default {
 	title: 'Buttons/Raised Button',
@@ -34,7 +35,39 @@ export default {
 } as ComponentMeta<typeof RaisedButton>;
 
 const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
-	return <RaisedButton {...args}>{args.children}</RaisedButton>;
+	const handleOnEnd = () => {
+		resetCountdown();
+		// startCountdown();
+	};
+	const { countdown, startCountdown, resetCountdown, stopCountdown } =
+		useCountdown({
+			start: { seconds: 4 },
+			end: { seconds: 7 },
+			onEnd: handleOnEnd,
+			isIncrement: true,
+			step: 4,
+		});
+
+	console.log(countdown);
+	return (
+		<>
+			<RaisedButton onClick={() => startCountdown()} {...args}>
+				{countdown ? (
+					<>
+						{countdown.minutes} {countdown.seconds}
+					</>
+				) : (
+					args.children
+				)}
+			</RaisedButton>
+			<RaisedButton variant="princetonOrange" onClick={() => stopCountdown()}>
+				Stop
+			</RaisedButton>
+			<RaisedButton variant="princetonOrange" onClick={() => resetCountdown()}>
+				Reset
+			</RaisedButton>
+		</>
+	);
 };
 
 export const RaisedButtonStory = RaisedTemplate.bind({});
