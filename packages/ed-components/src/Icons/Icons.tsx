@@ -52,3 +52,43 @@ export const ChevronMore = (props: any) => (
 		<path d="M20 26.167 9.458 15.625l2.5-2.5L20 21.208l8.083-8.083 2.459 2.542Z" />
 	</svg>
 );
+
+const Bolt = (props: any) => (
+	<svg
+		width="13"
+		height="20"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path d="M13 8.125H7.583V0L0 11.375h5.417V19.5L13 8.125z" />
+		<path d="M7.583 8.125V0L6.5 1.625v16.25l6.5-9.75H7.583z" />
+	</svg>
+);
+
+const Warning = (props: any) => (
+	<svg
+		width="6"
+		height="20"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path d="M3 .07c-.863 0-1.563.699-1.563 1.562v10.062a1.562 1.562 0 1 0 3.125 0V1.632C4.563.769 3.864.069 3 .069zM3 19.388a2.11 2.11 0 1 0 0-4.22 2.11 2.11 0 0 0 0 4.22z" />
+	</svg>
+);
+const Check = (props: any) => (
+	<svg
+		width="24"
+		height="18"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path d="M22.976.846a1.428 1.428 0 0 0-1.985 0L7.715 14.122 3.011 9.418a1.428 1.428 0 1 0-2.055 1.985l.035.035 5.715 5.714a1.429 1.429 0 0 0 2.02 0L23.011 2.867a1.43 1.43 0 0 0-.036-2.02z" />
+	</svg>
+);
+
+const Icons = { EyeIcon, EyeoffIcon, ChevronMore, Bolt, Warning, Check };
+
+export { Icons };
