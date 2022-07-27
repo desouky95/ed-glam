@@ -71,6 +71,8 @@ export const TabsStory: ComponentStory<typeof Tabs> = () => {
 };
 
 const Wrapper = styled.div`
-	background: red;
+	background: #dbdbdb;
+	padding: 1rem;
+	border-radius: 20px;
 	overflow: hidden;
 `;

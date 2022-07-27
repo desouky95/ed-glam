@@ -101,7 +101,7 @@ const TabContentsSwiperWrapper = styled.div<LayoutProps>`
 	overflow: hidden;
 	min-width: 100%;
 	${layout};
-	/* transition: height ease-in-out 200ms; */
+	transition: height ease-in-out 200ms;
 `;
 
 const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
