@@ -6,7 +6,6 @@ import { useArgs } from '@storybook/client-api';
 import { GridLayout } from '@eduact/ed-system';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import TextInputRHF from './TextInputRHF';
 export default {
 	title: 'Inputs/TextInput',
 	component: TextInput,
@@ -106,13 +105,7 @@ const WithRHS = () => {
 				placeholder="Birthdate"
 				{...register('name')}
 			/>
-			<TextInputRHF
-				error={true}
-				control={control}
-				name="password"
-				type="date"
-				placeholder="Date Placeholder"
-			/>
+
 			<TextInput {...register('password')} type="password" />
 		</GridLayout>
 	);
