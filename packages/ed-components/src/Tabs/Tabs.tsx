@@ -1,5 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
 import React, {
+	createRef,
 	MutableRefObject,
 	useLayoutEffect,
 	useRef,
@@ -10,6 +11,7 @@ import { layout, LayoutProps } from 'styled-system';
 import { TabsProps } from './Tabs.types';
 import { useTabsContext } from './TabsProvider';
 import { uniqueId } from 'lodash';
+import { useEffect } from 'react';
 const Tabs = <T extends {}>({
 	list,
 	children,
@@ -22,7 +24,9 @@ const Tabs = <T extends {}>({
 	}
 
 	const { activeTabIndex, activeTab } = context;
-	const tabsRefs = useRef<Array<MutableRefObject<HTMLElement>>>([]);
+	const tabsRefs = useRef<Array<MutableRefObject<HTMLElement | null>>>(
+		list ? list.map((_) => createRef()) : []
+	);
 
 	const [validHeight, setValidHeight] = useState<string | undefined>();
 
@@ -35,7 +39,7 @@ const Tabs = <T extends {}>({
 			const { height } = current?.getBoundingClientRect();
 			setValidHeight(`${height}px`);
 		}
-	}, [activeTabIndex, tabsRefs]);
+	}, [activeTabIndex]);
 
 	if (typeof list === 'undefined' && list === undefined) {
 		return (
@@ -45,12 +49,6 @@ const Tabs = <T extends {}>({
 			</React.Fragment>
 		);
 	}
-
-	const handleAssignRef = (e: HTMLDivElement | null) => {
-		if (!e) return;
-		const _tabsRefs = tabsRefs;
-		_tabsRefs.current.push({ current: e });
-	};
 
 	return (
 		<div>
@@ -69,13 +67,17 @@ const Tabs = <T extends {}>({
 			)}
 			{children.contents && (
 				<TabContentsSwiperWrapper height={validHeight}>
-					<TabContentsSwiper activeIndex={activeTabIndex}>
+					<TabContentsSwiper height={validHeight} activeIndex={activeTabIndex}>
 						{list &&
 							list.map((item, index) => {
 								return (
 									<TabContentWrapper
 										key={`${uniqueId('tab-content-')}`}
-										ref={(e) => handleAssignRef(e)}
+										ref={
+											tabsRefs.current[
+												index
+											] as MutableRefObject<HTMLDivElement>
+										}
 									>
 										{children.contents &&
 											typeof children.contents === 'function' &&
@@ -99,7 +101,7 @@ const TabContentsSwiperWrapper = styled.div<LayoutProps>`
 	overflow: hidden;
 	min-width: 100%;
 	${layout};
-	transition: height ease-in-out 200ms;
+	/* transition: height ease-in-out 200ms; */
 `;
 
 const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
