@@ -29,8 +29,6 @@ export const TabsProvider: React.FC<TabsProviderProps> = ({
 		index ?? 0
 	);
 
-	console.log({ active });
-
 	return (
 		<TabsContext.Provider
 			value={{

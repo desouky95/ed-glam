@@ -67,6 +67,7 @@
 		"@eduact/utils": "^0.4.35",
 		"@react-spring/web": "^9.4.5",
 		"immer": "^9.0.15",
+		"lodash": "^4.17.21",
 		"lodash.uniqueid": "^4.0.1",
 		"polished": "^4.2.2",
 		"react-icons": "^4.4.0",

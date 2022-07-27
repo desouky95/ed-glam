@@ -1,9 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
 import React, {
-	createRef,
 	MutableRefObject,
-	RefObject,
-	useEffect,
 	useLayoutEffect,
 	useRef,
 	useState,
@@ -12,7 +9,7 @@ import styled from 'styled-components';
 import { layout, LayoutProps } from 'styled-system';
 import { TabsProps } from './Tabs.types';
 import { useTabsContext } from './TabsProvider';
-
+import { uniqueId } from 'lodash';
 const Tabs = <T extends {}>({
 	list,
 	children,
@@ -38,7 +35,7 @@ const Tabs = <T extends {}>({
 			const { height } = current?.getBoundingClientRect();
 			setValidHeight(`${height}px`);
 		}
-	}, [activeTabIndex]);
+	}, [activeTabIndex, tabsRefs]);
 
 	if (typeof list === 'undefined' && list === undefined) {
 		return (
@@ -62,19 +59,24 @@ const Tabs = <T extends {}>({
 					{list &&
 						list.map((item, index) => {
 							return (
-								typeof children.tabs === 'function' &&
-								children.tabs({ index, item })
+								<React.Fragment key={`${uniqueId('tabs-header-')}`}>
+									{typeof children.tabs === 'function' &&
+										children.tabs({ index, item })}
+								</React.Fragment>
 							);
 						})}
 				</FlexLayout>
 			)}
 			{children.contents && (
 				<TabContentsSwiperWrapper height={validHeight}>
-					<TabContentsSwiper height={validHeight} activeIndex={activeTabIndex}>
+					<TabContentsSwiper activeIndex={activeTabIndex}>
 						{list &&
 							list.map((item, index) => {
 								return (
-									<TabContentWrapper ref={(e) => handleAssignRef(e)}>
+									<TabContentWrapper
+										key={`${uniqueId('tab-content-')}`}
+										ref={(e) => handleAssignRef(e)}
+									>
 										{children.contents &&
 											typeof children.contents === 'function' &&
 											children.contents({
@@ -94,10 +96,10 @@ const Tabs = <T extends {}>({
 
 export default Tabs;
 const TabContentsSwiperWrapper = styled.div<LayoutProps>`
-	/* display: flex; */
 	overflow: hidden;
 	min-width: 100%;
 	${layout};
+	transition: height ease-in-out 200ms;
 `;
 
 const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
@@ -114,6 +116,7 @@ const TabContentWrapper = styled.div`
 	flex: 1;
 	flex-grow: 1;
 	overflow: hidden;
+	height: fit-content;
 	/* border: 1px solid red; */
 	min-width: 100%;
 `;
