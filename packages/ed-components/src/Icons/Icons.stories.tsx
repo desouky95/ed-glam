@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { EyeoffIcon, EyeIcon, Icon } from './Icons';
+import { EyeoffIcon, EyeIcon, Icon, Icons } from './Icons';
 
 export default {
 	title: 'Icons',
@@ -8,11 +8,20 @@ export default {
 export const IconsDefault: ComponentStory<any> = () => {
 	return (
 		<div>
-			<Icon size={24} color="orange">
-				<EyeIcon />
+			<Icon size={24} color="purple">
+				<Icons.Bolt />
 			</Icon>
-			<Icon size={40} color="primary">
+			<Icon size={24} color="primary">
+				<Icons.Check />
+			</Icon>
+			<Icon size={24} color="primary">
 				<EyeoffIcon />
+			</Icon>
+			<Icon size={24} color="primary">
+				<Icons.EyeIcon />
+			</Icon>
+			<Icon size={24} color="primary">
+				<Icons.ChevronMore />
 			</Icon>
 		</div>
 	);

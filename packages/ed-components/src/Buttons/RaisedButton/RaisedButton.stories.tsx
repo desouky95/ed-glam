@@ -36,16 +36,15 @@ export default {
 
 const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 	const handleOnEnd = () => {
+		alert('Finished');
 		resetCountdown();
 		// startCountdown();
 	};
 	const { countdown, startCountdown, resetCountdown, stopCountdown } =
 		useCountdown({
-			start: { seconds: 4 },
-			end: { seconds: 7 },
+			start: { hours: 0, minutes: 0, seconds: 3 },
+			end: { hours: 0, minutes: 0, seconds: 0 },
 			onEnd: handleOnEnd,
-			isIncrement: true,
-			step: 4,
 		});
 
 	console.log(countdown);
@@ -54,7 +53,7 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 			<RaisedButton onClick={() => startCountdown()} {...args}>
 				{countdown ? (
 					<>
-						{countdown.minutes} {countdown.seconds}
+						{countdown.hours} : {countdown.minutes} : {countdown.seconds}
 					</>
 				) : (
 					args.children
