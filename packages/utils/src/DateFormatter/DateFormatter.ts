@@ -8,7 +8,7 @@ function DateFormatter(date?: Date, options?: FormatterOptions): string {
 	if (!date) throw new Error("Date isn't provided");
 	const _newDate = new Date(date);
 	let locale = localStorage.getItem('lang');
-	const mappedLocale = !locale ? 'en-US' : locale === 'ar' ? 'ar-EG' : 'en-US';
+	const mappedLocale = !locale ? 'en-GB' : locale === 'ar' ? 'ar-EG' : 'en-GB';
 
 	const _parsedDate = new Intl.DateTimeFormat([mappedLocale], {
 		hour12: options?.hour12,

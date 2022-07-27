@@ -6,6 +6,7 @@ import { useArgs } from '@storybook/client-api';
 import { GridLayout } from '@eduact/ed-system';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import { DateFormatter } from '@eduact/utils';
 export default {
 	title: 'Inputs/TextInput',
 	component: TextInput,
@@ -94,9 +95,11 @@ const WithRHS = () => {
 			name: '',
 		},
 	});
+	const date = new Date('2022-07-26T18:21:16.239+00:00');
 	return (
 		<GridLayout gridTemplateColumns={'repeat(2,1fr)'}>
 			<DevTool control={control} />
+			{DateFormatter(date)}
 			<TextInput type="month" placeholder="Birthdate" {...register('name')} />
 			<TextInput type="time" placeholder="Birthdate" {...register('name')} />
 			<TextInput type="date" {...register('name')} />
