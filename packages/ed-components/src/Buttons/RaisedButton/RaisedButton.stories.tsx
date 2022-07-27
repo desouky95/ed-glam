@@ -6,6 +6,7 @@ import { RaisedButton } from '.';
 import { RaisedButtonStyled } from './RaisedButton.styled';
 import Spacer from '../../Spacer';
 import { useCountdown } from '@eduact/utils';
+import { useState } from 'react';
 
 export default {
 	title: 'Buttons/Raised Button',
@@ -35,14 +36,17 @@ export default {
 } as ComponentMeta<typeof RaisedButton>;
 
 const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
+	const [status, setStatus] = useState('Not Attended');
 	const handleOnEnd = () => {
-		alert('Finished');
-		resetCountdown();
+		// alert('Finished');
+		// resetCountdown();
 		// startCountdown();
+		setStatus('Finished');
 	};
+	const startDate = new Date();
 	const { countdown, startCountdown, resetCountdown, stopCountdown } =
 		useCountdown({
-			start: { hours: 0, minutes: 0, seconds: 3 },
+			start: { hours: 0, minutes: 5, seconds: 0 },
 			end: { hours: 0, minutes: 0, seconds: 0 },
 			onEnd: handleOnEnd,
 		});
@@ -59,6 +63,7 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 					args.children
 				)}
 			</RaisedButton>
+			<div>{status}</div>
 			<RaisedButton variant="princetonOrange" onClick={() => stopCountdown()}>
 				Stop
 			</RaisedButton>

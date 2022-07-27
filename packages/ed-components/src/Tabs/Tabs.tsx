@@ -1,6 +1,7 @@
 import { FlexLayout } from '@eduact/ed-system';
 import React, {
 	createRef,
+	MutableRefObject,
 	RefObject,
 	useEffect,
 	useLayoutEffect,
@@ -24,27 +25,20 @@ const Tabs = <T extends {}>({
 	}
 
 	const { activeTabIndex, activeTab } = context;
-	const tabsRefs = useRef<Array<RefObject<HTMLElement>>>([]);
-	const [refsCreated, setRefsCreated] = useState(false);
+	const tabsRefs = useRef<Array<MutableRefObject<HTMLElement>>>([]);
 
-	useEffect(() => {
-		if (list && children.contents && tabsRefs.current.length === 0) {
-			tabsRefs.current = list.map((item) => createRef());
-			setRefsCreated(true);
-		}
-	}, [list, children.contents]);
-	//
 	const [validHeight, setValidHeight] = useState<string | undefined>();
 
 	useLayoutEffect(() => {
-		if (!refsCreated || activeTabIndex === undefined) return;
+		if (activeTabIndex === undefined) return;
+
 		const nodeRef = tabsRefs.current[activeTabIndex];
 		if (nodeRef && nodeRef.current) {
 			const { current } = nodeRef;
 			const { height } = current?.getBoundingClientRect();
 			setValidHeight(`${height}px`);
 		}
-	}, [refsCreated, activeTabIndex]);
+	}, [activeTabIndex]);
 
 	if (typeof list === 'undefined' && list === undefined) {
 		return (
@@ -54,6 +48,12 @@ const Tabs = <T extends {}>({
 			</React.Fragment>
 		);
 	}
+
+	const handleAssignRef = (e: HTMLDivElement | null) => {
+		if (!e) return;
+		const _tabsRefs = tabsRefs;
+		_tabsRefs.current.push({ current: e });
+	};
 
 	return (
 		<div>
@@ -74,7 +74,7 @@ const Tabs = <T extends {}>({
 						{list &&
 							list.map((item, index) => {
 								return (
-									<TabContentWrapper>
+									<TabContentWrapper ref={(e) => handleAssignRef(e)}>
 										{children.contents &&
 											typeof children.contents === 'function' &&
 											children.contents({

@@ -20,29 +20,32 @@ export const TabsStory: ComponentStory<typeof Tabs> = () => {
 		{ id: 4, text: 'text 4' },
 	];
 	return (
-		<TabsProvider active={active}>
-			<Tabs list={list}>
-				{{
-					tabs: ({ index, item }) => {
-						return (
-							<TabsHeader
-								value={item.id.toString()}
-								index={index}
-								label={item.text}
-							/>
-						);
-					},
-					contents: ({ index, item, ref }) => {
-						return (
-							<TabsContent value={item.id.toString()}>
-								<div>
-									{item.id} :: {item.text}
-								</div>
-							</TabsContent>
-						);
-					},
-				}}
-			</Tabs>
-		</TabsProvider>
+		<>
+			<TabsProvider onChange={(val) => setActive(val)} active={active}>
+				<Tabs list={list}>
+					{{
+						tabs: ({ index, item }) => {
+							return (
+								<TabsHeader
+									value={item.id.toString()}
+									index={index}
+									label={item.text}
+								/>
+							);
+						},
+						contents: ({ index, item, ref }) => {
+							return (
+								<TabsContent value={item.id.toString()}>
+									<div>
+										{item.id} :: {item.text}
+									</div>
+								</TabsContent>
+							);
+						},
+					}}
+				</Tabs>
+			</TabsProvider>
+			{/* <TabsProvider></TabsProvider> */}
+		</>
 	);
 };
