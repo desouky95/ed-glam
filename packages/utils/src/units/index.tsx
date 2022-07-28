@@ -5,7 +5,7 @@ export type ContentType =
 	| 'test'
 	| 'survey'
 	| 'webinar'
-	| 'content';
+	| 'webcontent';
 export type UnitProgressStatus =
 	| 'not started'
 	| 'registered'
@@ -47,8 +47,8 @@ export const ContentConfig: ContentInfoConfig = {
 		type: 'webinar',
 		mdIcon: 'podcasts',
 	},
-	content: {
-		type: 'content',
+	webcontent: {
+		type: 'webcontent',
 		mdIcon: 'document_scanner_black_24dp',
 	},
 };
