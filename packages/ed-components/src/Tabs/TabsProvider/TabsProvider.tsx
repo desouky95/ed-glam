@@ -3,8 +3,10 @@ import React, { createContext, Context, useContext, useState } from 'react';
 type TabsContextProp = {
 	activeTab: string;
 	activeTabIndex: number | undefined;
+	oldIndex: number | undefined;
 	setActiveTab: React.Dispatch<string>;
 	setActiveTabIndex: React.Dispatch<number | undefined>;
+	setOldIndex: React.Dispatch<number | undefined>;
 	onChange?: (value: any) => void;
 };
 
@@ -29,6 +31,8 @@ export const TabsProvider: React.FC<TabsProviderProps> = ({
 		index ?? 0
 	);
 
+	const [oldIndex, setOldIndex] = useState<number | undefined>(index ?? 0);
+
 	return (
 		<TabsContext.Provider
 			value={{
@@ -37,6 +41,8 @@ export const TabsProvider: React.FC<TabsProviderProps> = ({
 				setActiveTabIndex,
 				activeTabIndex,
 				onChange,
+				oldIndex,
+				setOldIndex,
 			}}
 		>
 			{children}

@@ -6,7 +6,7 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { layout, LayoutProps } from 'styled-system';
 import { TabsProps } from './Tabs.types';
 import { useTabsContext } from './TabsProvider';
@@ -23,7 +23,7 @@ const Tabs = <T extends {}>({
 		throw new Error("Tabs isn't wrapped by TabsProvider");
 	}
 
-	const { activeTabIndex, activeTab } = context;
+	const { activeTabIndex, activeTab, oldIndex } = context;
 	const tabsRefs = useRef<Array<MutableRefObject<HTMLElement | null>>>(
 		list ? list.map((_) => createRef()) : []
 	);
@@ -72,6 +72,9 @@ const Tabs = <T extends {}>({
 							list.map((item, index) => {
 								return (
 									<TabContentWrapper
+										index={index}
+										current={activeTabIndex}
+										oldIndex={oldIndex ?? 0}
 										key={`${uniqueId('tab-content-')}`}
 										ref={
 											tabsRefs.current[
@@ -100,7 +103,6 @@ export default Tabs;
 const TabContentsSwiperWrapper = styled.div<LayoutProps>`
 	overflow: hidden;
 	min-width: 100%;
-	${layout};
 	transition: height ease-in-out 200ms;
 `;
 
@@ -108,17 +110,35 @@ const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
 	display: flex;
 	min-width: 100%;
 	flex: 1;
-
-	transform: ${(props) =>
-		props.activeIndex ? `translateX(-${props.activeIndex * 100}%)` : ''};
-	transition: all ease-in-out 300ms;
-	/* border: 1px solid #000; */
 `;
-const TabContentWrapper = styled.div`
+
+const SlideLeftKeyframes = keyframes`
+from { transform : translateX(100%)}
+to { transform : translateX(0)}
+`;
+const SlideLeftAnimation = css`
+	animation: ${SlideLeftKeyframes} 640ms cubic-bezier(0.65, 0.05, 0.36, 1)
+		forwards;
+`;
+const SlideRightKeyframes = keyframes`
+from { transform : translateX(-100%)}
+to { transform : translateX(0)}
+`;
+const SlideRightAnimation = css`
+	animation: ${SlideRightKeyframes} 640ms cubic-bezier(0.65, 0.05, 0.36, 1)
+		forwards;
+`;
+const TabContentWrapper = styled.div<{
+	index: number;
+	current?: number;
+	oldIndex: number;
+}>`
 	flex: 1;
 	flex-grow: 1;
 	overflow: hidden;
 	height: fit-content;
-	/* border: 1px solid red; */
 	min-width: 100%;
+	display: ${({ index, current }) => (index === current ? 'block' : 'none')};
+	${({ index, oldIndex }) => index > oldIndex && SlideLeftAnimation};
+	${({ index, oldIndex }) => index < oldIndex && SlideRightAnimation};
 `;

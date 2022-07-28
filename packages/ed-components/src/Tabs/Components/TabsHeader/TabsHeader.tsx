@@ -28,9 +28,17 @@ const TabsHeader: React.FunctionComponent<TabsHeaderProps> = ({
 	if (!context) {
 		throw new Error("Tabs isn't wrapped by TabsProvider");
 	}
-	const { activeTab, setActiveTab, setActiveTabIndex, onChange } = context;
+	const {
+		activeTab,
+		setActiveTab,
+		setActiveTabIndex,
+		onChange,
+		setOldIndex,
+		activeTabIndex,
+	} = context;
 	const handleOnClick = () => {
 		setActiveTab(value);
+		setOldIndex(activeTabIndex);
 		setActiveTabIndex(index);
 		onChange && onChange(value);
 	};
