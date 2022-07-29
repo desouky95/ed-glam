@@ -49,6 +49,6 @@ export const ContentConfig: ContentInfoConfig = {
 	},
 	webcontent: {
 		type: 'webcontent',
-		mdIcon: 'document_scanner_black_24dp',
+		mdIcon: 'document_scanner',
 	},
 };
