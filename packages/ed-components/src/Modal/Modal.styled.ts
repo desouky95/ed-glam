@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+import { position, PositionProps } from 'styled-system';
 
-export const Backdrop = styled.div<{ open: boolean; withBackdrop: boolean }>`
+export const Backdrop = styled.div<
+	{ open: boolean; withBackdrop: boolean } & PositionProps
+>`
 	position: fixed;
 	background: ${(props) => (props.withBackdrop ? 'rgba(0, 0, 0, 0.1)' : '')};
 	backdrop-filter: ${(props) => (props.withBackdrop ? 'blur(10px)' : '')};
@@ -13,4 +16,5 @@ export const Backdrop = styled.div<{ open: boolean; withBackdrop: boolean }>`
 	z-index: 99999;
 	${({ open }) => `opacity : ${open ? '1' : '0'};`};
 	transition: opacity ease-in-out 500ms;
+	${position}
 `;

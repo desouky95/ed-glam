@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 import Drawer from './Drawer';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
@@ -37,27 +37,41 @@ export const DrawerDefault: ComponentStory<typeof Drawer> = (args) => {
 	const handleClose = () => {
 		updateArgs({ ...args, open: false });
 	};
-	const divRef = useRef(null);
+	const divRef = useRef<HTMLDivElement>(null);
+
 	return (
-		<div ref={divRef}>
-			<Drawer
-				{...args}
-				{...events}
-				parent={divRef}
-				width={'30vw'}
-				open={open as boolean}
-				onClose={() => {
-					handleClose();
-					events.onClose();
-				}}
-			>
-				<IconButton
-					p={'1rem'}
-					icon={<MdClose />}
-					onClick={handleClose}
-					variant="light"
-				/>
-			</Drawer>
+		<div
+			style={{
+				width: '200px',
+				height: '200px',
+				position: 'relative',
+				background: 'red',
+				overflow: 'hidden',
+			}}
+			ref={(e) => {
+				(divRef as MutableRefObject<HTMLDivElement | null>).current = e;
+			}}
+		>
+			{divRef.current && (
+				<Drawer
+					{...args}
+					{...events}
+					width={'30vw'}
+					open={open as boolean}
+					withStyling={false}
+					onClose={() => {
+						handleClose();
+						events.onClose();
+					}}
+				>
+					<IconButton
+						p={'1rem'}
+						icon={<MdClose />}
+						onClick={handleClose}
+						variant="light"
+					/>
+				</Drawer>
+			)}
 		</div>
 	);
 };

@@ -13,6 +13,7 @@ const Drawer: React.FC<DrawerProps> = ({
 	variant = 'purpleNavy',
 	parent,
 	withBackdrop,
+	withStyling = true,
 	...props
 }) => {
 	const drawerRef = useRef(null);
@@ -23,6 +24,7 @@ const Drawer: React.FC<DrawerProps> = ({
 			withBackdrop={withBackdrop}
 			parent={parent}
 			open={open}
+			withStyling={withStyling}
 			onClose={onClose}
 		>
 			{(open || delayed) && (
