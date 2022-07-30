@@ -34,11 +34,13 @@ export const DrawerDefault: ComponentStory<typeof Drawer> = (args) => {
 	const handleClose = () => {
 		updateArgs({ ...args, open: false });
 	};
+	const divRef = useRef(null);
 	return (
-		<div>
+		<div ref={divRef}>
 			<Drawer
 				{...args}
 				{...events}
+				parent={divRef}
 				width={'30vw'}
 				open={open as boolean}
 				onClose={() => {

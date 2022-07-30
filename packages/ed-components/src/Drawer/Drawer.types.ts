@@ -1,5 +1,6 @@
 import { Color, Position } from '@eduact/student-theme';
 import { LayoutProps } from 'styled-system';
+import { ModalProps } from '..';
 
 export type BaseDrawerProps = {
 	position?: Position;
@@ -8,4 +9,5 @@ export type BaseDrawerProps = {
 } & LayoutProps;
 export type DrawerProps = {
 	onClose?: () => void;
-} & BaseDrawerProps;
+} & BaseDrawerProps &
+	ModalProps;

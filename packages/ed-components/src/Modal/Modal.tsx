@@ -5,10 +5,17 @@ import { Backdrop } from './Modal.styled';
 
 export type ModalProps = {
 	open: boolean;
+	withBackdrop?: boolean;
 	onClose?: () => void;
 } & PortalProps;
 
-const Modal: React.FC<ModalProps> = ({ children, open, onClose, ...props }) => {
+const Modal: React.FC<ModalProps> = ({
+	children,
+	open,
+	onClose,
+	withBackdrop = true,
+	...props
+}) => {
 	const modalRef = useRef(null);
 	const delayed = useDelayedUnmount({ delay: 1000, mounted: open });
 	useOutsideAlert(modalRef, () => {
@@ -17,7 +24,7 @@ const Modal: React.FC<ModalProps> = ({ children, open, onClose, ...props }) => {
 	return (
 		<Portal {...props}>
 			{(open || delayed) && (
-				<Backdrop open={open && delayed}>
+				<Backdrop withBackdrop={withBackdrop} open={open && delayed}>
 					<div ref={modalRef}>{children}</div>
 				</Backdrop>
 			)}

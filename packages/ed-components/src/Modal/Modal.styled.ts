@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-export const Backdrop = styled.div<{ open: boolean }>`
+export const Backdrop = styled.div<{ open: boolean; withBackdrop: boolean }>`
 	position: fixed;
-	background: rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(10px);
+	background: ${(props) => (props.withBackdrop ? 'rgba(0, 0, 0, 0.1)' : '')};
+	backdrop-filter: ${(props) => (props.withBackdrop ? 'blur(10px)' : '')};
 	height: 100vh;
 	width: 100vw;
 	top: 0;

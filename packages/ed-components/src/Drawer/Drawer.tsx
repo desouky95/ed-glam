@@ -11,13 +11,20 @@ const Drawer: React.FC<DrawerProps> = ({
 	position = 'left',
 	children,
 	variant = 'purpleNavy',
+	parent,
+	withBackdrop,
 	...props
 }) => {
 	const drawerRef = useRef(null);
 	const delayed = useDelayedUnmount({ delay: 500, mounted: open });
 	useOutsideAlert(drawerRef, () => onClose?.());
 	return (
-		<Modal open={open} onClose={onClose}>
+		<Modal
+			withBackdrop={withBackdrop}
+			parent={parent}
+			open={open}
+			onClose={onClose}
+		>
 			{(open || delayed) && (
 				<DrawerWrapper
 					variant={variant}
