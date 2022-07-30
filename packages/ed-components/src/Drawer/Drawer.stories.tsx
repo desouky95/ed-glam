@@ -40,39 +40,43 @@ export const DrawerDefault: ComponentStory<typeof Drawer> = (args) => {
 	const divRef = useRef<HTMLDivElement>(null);
 
 	return (
-		<div
-			style={{
-				width: '200px',
-				height: '200px',
-				position: 'relative',
-				background: 'red',
-				overflow: 'hidden',
-			}}
-			ref={(e) => {
-				(divRef as MutableRefObject<HTMLDivElement | null>).current = e;
-			}}
-		>
-			{divRef.current && (
-				<Drawer
-					{...args}
-					{...events}
-					width={'30vw'}
-					open={open as boolean}
-					withStyling={false}
-					onClose={() => {
-						handleClose();
-						events.onClose();
-					}}
-				>
-					<IconButton
-						p={'1rem'}
-						icon={<MdClose />}
-						onClick={handleClose}
-						variant="light"
-					/>
-				</Drawer>
-			)}
-		</div>
+		<>
+			<RaisedButton>Content</RaisedButton>
+			<div
+				style={{
+					width: '200px',
+					height: '200px',
+					position: 'relative',
+					background: 'red',
+					overflow: 'hidden',
+				}}
+				ref={(e) => {
+					(divRef as MutableRefObject<HTMLDivElement | null>).current = e;
+				}}
+			>
+				<div onClick={() => updateArgs({ ...args, open: !open })}>Click</div>
+				{divRef.current && (
+					<Drawer
+						{...args}
+						{...events}
+						parent={divRef}
+						width={'30vw'}
+						open={open as boolean}
+						onClose={() => {
+							handleClose();
+							events.onClose();
+						}}
+					>
+						<IconButton
+							p={'1rem'}
+							icon={<MdClose />}
+							onClick={handleClose}
+							variant="light"
+						/>
+					</Drawer>
+				)}
+			</div>
+		</>
 	);
 };
 

@@ -31,7 +31,7 @@ const Drawer: React.FC<DrawerProps> = ({
 				<DrawerWrapper
 					variant={variant}
 					drawerPosition={drawerPosition}
-					position={!!parent ? 'absolute' : 'fixed'}
+					position={!!parent ? 'relative' : 'fixed'}
 					open={open && delayed}
 					{...props}
 				>

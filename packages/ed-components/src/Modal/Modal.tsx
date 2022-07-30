@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({
 				<>
 					{withStyling && (
 						<Backdrop
-							position={!!props.parent ? 'absolute' : 'fixed'}
+							position={!!props.parent ? 'relative' : 'fixed'}
 							withBackdrop={withBackdrop}
 							open={open && delayed}
 						>
