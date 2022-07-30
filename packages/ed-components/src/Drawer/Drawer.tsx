@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import styled from 'styled-components';
 import { useDelayedUnmount, useOutsideAlert } from '@eduact/utils';
 import Modal from '@src/Modal/Modal';
 import { DrawerWrapper } from './Drawer.styled';
