@@ -5,6 +5,7 @@ export * from './Carousels';
 export * from './Drawer';
 export * from './Icons';
 export * from './Inputs';
+export * from './Progress';
 export * from './Spacer';
 export * from './Snackbar';
 export * from './Modal';

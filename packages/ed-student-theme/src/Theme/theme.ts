@@ -139,10 +139,11 @@ interface ITheme {
 	};
 	circularProgressSizes: {
 		[Key in MediaQuery]?: {
+			'--size': string;
 			width: string;
 			height: string;
-			r: string;
 			fontSize: string;
+			'--stroke-width': string;
 		};
 	};
 	stepperIconSizes: {
@@ -469,16 +470,25 @@ export const Theme: ITheme = {
 	},
 	circularProgressSizes: {
 		small: {
-			height: '30px',
+			'--size': '30',
 			width: '30px',
-			r: '13',
+			height: '30px',
 			fontSize: '0.5rem',
+			'--stroke-width': '3',
 		},
 		medium: {
-			height: '40px',
+			'--size': '40',
 			width: '40px',
-			r: '18',
+			height: '40px',
 			fontSize: '0.75rem',
+			'--stroke-width': '4',
+		},
+		large: {
+			'--size': '50',
+			width: '50px',
+			height: '50px',
+			fontSize: '0.75rem',
+			'--stroke-width': '4',
 		},
 	},
 };
