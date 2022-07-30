@@ -8,7 +8,7 @@ import { DrawerProps } from './Drawer.types';
 const Drawer: React.FC<DrawerProps> = ({
 	open,
 	onClose,
-	position = 'left',
+	drawerPosition = 'left',
 	children,
 	variant = 'purpleNavy',
 	parent,
@@ -28,9 +28,10 @@ const Drawer: React.FC<DrawerProps> = ({
 			{(open || delayed) && (
 				<DrawerWrapper
 					variant={variant}
-					{...props}
-					position={position}
+					drawerPosition={drawerPosition}
+					position={!!parent ? 'absolute' : 'fixed'}
 					open={open && delayed}
+					{...props}
 				>
 					<>{children}</>
 				</DrawerWrapper>

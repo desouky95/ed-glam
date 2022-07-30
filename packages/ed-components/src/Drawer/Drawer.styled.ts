@@ -1,19 +1,29 @@
 import styled from 'styled-components';
-import { layout, variant } from 'styled-system';
+import {
+	color,
+	backgroundColor,
+	BackgroundColorProps,
+	ColorProps,
+	layout,
+	position,
+	PositionProps,
+	variant,
+} from 'styled-system';
 import { BaseDrawerProps, DrawerProps } from './Drawer.types';
 
-export const DrawerWrapper = styled.div<BaseDrawerProps>`
-	position: fixed;
-	left: ${(props) => (props.position === 'left' ? '0' : '')};
-	top: ${(props) => (props.position === 'top' ? '0' : '')};
-	right: ${(props) => (props.position === 'right' ? '0' : '')};
-	bottom: ${(props) => (props.position === 'bottom' ? '0' : '')};
+export const DrawerWrapper = styled.div<
+	BaseDrawerProps & BackgroundColorProps & PositionProps
+>`
+	left: ${(props) => (props.drawerPosition === 'left' ? '0' : '')};
+	top: ${(props) => (props.drawerPosition === 'top' ? '0' : '')};
+	right: ${(props) => (props.drawerPosition === 'right' ? '0' : '')};
+	bottom: ${(props) => (props.drawerPosition === 'bottom' ? '0' : '')};
 	transition-delay: 400ms;
 	transform: ${(props) => {
 		if (props.open) {
 			return 'translate(0)';
 		}
-		switch (props.position) {
+		switch (props.drawerPosition) {
 			case 'bottom':
 				return 'translateY(100%)';
 			case 'top':
@@ -26,9 +36,15 @@ export const DrawerWrapper = styled.div<BaseDrawerProps>`
 	}};
 	transition: transform ease-in-out 300ms;
 	${variant({ prop: 'variant', scale: 'backgrounds' })};
-	${layout}
+	${layout};
 	height: ${(props) =>
-		props.position === 'left' || props.position === 'right' ? '100%' : ''};
+		props.drawerPosition === 'left' || props.drawerPosition === 'right'
+			? '100%'
+			: ''};
 	width: ${(props) =>
-		props.position === 'top' || props.position === 'bottom' ? '100%' : ''};
+		props.drawerPosition === 'top' || props.drawerPosition === 'bottom'
+			? '100%'
+			: ''};
+	${color};
+	${position};
 `;

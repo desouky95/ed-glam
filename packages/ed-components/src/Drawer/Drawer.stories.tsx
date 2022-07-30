@@ -18,6 +18,9 @@ export default {
 		onClose: {
 			action: 'Closed',
 		},
+		backgroundColor: {
+			type: 'string',
+		},
 	},
 	parameters: {
 		docs: {
@@ -63,6 +66,6 @@ export const DrawerBottomSheet = DrawerDefault.bind({});
 DrawerBottomSheet.args = {
 	...DrawerBottomSheet.args,
 	height: '40vh',
-	position: 'bottom',
+	drawerPosition: 'bottom',
 	open: true,
 };
