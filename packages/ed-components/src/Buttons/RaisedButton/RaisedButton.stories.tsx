@@ -7,6 +7,7 @@ import { RaisedButtonStyled } from './RaisedButton.styled';
 import Spacer from '../../Spacer';
 import { useCountdown } from '@eduact/utils';
 import { useState } from 'react';
+import styled from 'styled-components';
 
 export default {
 	title: 'Buttons/Raised Button',
@@ -70,9 +71,22 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 			<RaisedButton variant="princetonOrange" onClick={() => resetCountdown()}>
 				Reset
 			</RaisedButton>
+			<CustomButton Test></CustomButton>
 		</>
 	);
 };
+const CustomButton = styled(RaisedButton)`
+	background: red;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	background: green;
+}`}
+	${({ theme }) => `${theme.mediaQueries.large}{
+	background: navy;
+}`}
+${({ theme }) => `${theme.mediaQueries.xlarge}{
+	background: yellow;
+}`}
+`;
 
 export const RaisedButtonStory = RaisedTemplate.bind({});
 

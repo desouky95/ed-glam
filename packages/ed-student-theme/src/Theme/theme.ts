@@ -16,14 +16,14 @@ import {
 } from './theme.types';
 import { Mode } from 'fs';
 
-const breakpoints = ['640px', '832px', '1024px', '1280px'];
+const breakpoints = ['640px', '768px', '1200px', '1400px'];
 
 const breakpointsInPx = {
 	sm: 0,
 	default: 0,
-	md: 832,
-	lg: 1024,
-	xl: 1280,
+	md: 768,
+	lg: 1200,
+	xl: 1400,
 };
 
 const aliasBreakpoints: { [key in Breakpoint]?: string } = {
