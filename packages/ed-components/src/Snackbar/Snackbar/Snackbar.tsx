@@ -60,6 +60,8 @@ const StyledSnackbar = styled.div<SnackbarBaseProps>`
 	border-radius: 50px;
 	${variant({ prop: 'variant', scale: 'buttonColors' })}
 	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 	top: ${(props) => {
 		if (!props.vertical) {
 			return '0';

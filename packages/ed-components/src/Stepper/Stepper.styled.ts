@@ -18,6 +18,7 @@ export const BulletContent = styled.div`
 `;
 
 export const StepperBulletWrapper = styled.div`
+	direction: ltr;
 	position: relative;
 `;
 export const StepTooltip = styled.div`

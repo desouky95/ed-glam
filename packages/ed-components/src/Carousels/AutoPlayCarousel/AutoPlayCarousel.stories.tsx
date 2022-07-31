@@ -14,13 +14,13 @@ export const AutoPlayCarouselDefault: ComponentStory<
 > = (args) => {
 	return (
 		<AutoPlayCarousel
-			loop
+			// loop
 			slidesPerGroup={2}
+			slidesPerView={2}
 			breakpoints={{
 				[Theme.breakpointsInPx.md]: { slidesPerGroup: 3, slidesPerView: 3 },
-				[Theme.breakpointsInPx.lg]: { slidesPerGroup: 7, slidesPerView: 7 },
+				[Theme.breakpointsInPx.lg]: { slidesPerGroup: 8, slidesPerView: 4 },
 			}}
-			slidesPerView={2}
 			{...args}
 		>
 			<AutoPlayCarousel.Item>
