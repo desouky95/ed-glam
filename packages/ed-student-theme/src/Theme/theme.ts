@@ -16,14 +16,14 @@ import {
 } from './theme.types';
 import { Mode } from 'fs';
 
-const breakpoints = ['640px', '768px', '1200px', '1400px'];
+const breakpoints = ['640px', '768px', '1200px', '1440px'];
 
 const breakpointsInPx = {
 	sm: 0,
 	default: 0,
 	md: 768,
 	lg: 1200,
-	xl: 1400,
+	xl: 1440,
 };
 
 const aliasBreakpoints: { [key in Breakpoint]?: string } = {
@@ -352,10 +352,10 @@ export const Theme: ITheme = {
 	breakpoints: aliasBreakpoints,
 	breakpointsInPx: breakpointsInPx,
 	mediaQueries: {
-		small: `@media only screen and (max-width : ${aliasBreakpoints.md})`,
-		medium: `@media only screen and (min-width : ${aliasBreakpoints.md})`,
-		large: `@media only screen and (min-width : ${aliasBreakpoints.lg})`,
-		xlarge: `@media only screen and (min-width : ${aliasBreakpoints.xl})`,
+		small: `@media screen and (max-width : ${aliasBreakpoints.md})`,
+		medium: `@media screen and (min-width : ${aliasBreakpoints.md})`,
+		large: `@media screen and (min-width : ${aliasBreakpoints.lg})`,
+		xlarge: `@media screen and (min-width : ${aliasBreakpoints.xl})`,
 	},
 	borderRadii: {
 		small: 20,
