@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { FC } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { InfoTable, InfoTableCell } from '..';
+import { InfoTable, InfoTableCell, CellExpandContainer } from '..';
 import { TabsContent, TabsHeader, TabsHeaders } from './Components';
 import Tabs from './Tabs';
 import { TabsProvider } from './TabsProvider';
@@ -111,7 +111,11 @@ const TableCell: FC<{ index: number; item: number }> = ({ index, item }) => {
 		<InfoTableCell
 			expanded={expanded}
 			panel={() => {
-				return <div style={{ height: `${item * 1.5}vh` }}>{item}'s Panel</div>;
+				return (
+					<StyledCellExpandedContainer style={{ height: `${item * 1.5}vh` }}>
+						{item}'s Panel
+					</StyledCellExpandedContainer>
+				);
 			}}
 			index={index}
 		>
@@ -120,3 +124,7 @@ const TableCell: FC<{ index: number; item: number }> = ({ index, item }) => {
 		</InfoTableCell>
 	);
 };
+
+const StyledCellExpandedContainer = styled(CellExpandContainer)`
+	padding: 4rem 8rem;
+`;
