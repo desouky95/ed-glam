@@ -1,5 +1,6 @@
 import InfoTable from './InfoTable';
+import { CellExpandContainer } from './InfoTable.styled';
+export { InfoTable, CellExpandContainer };
 
-export { InfoTable };
 export * from './InfoTable';
 export * from './InfoTable.types';

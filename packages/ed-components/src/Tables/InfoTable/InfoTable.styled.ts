@@ -87,12 +87,8 @@ export const CellPanelWrapper = styled.div<{
 	width: 100%;
 `;
 export const CellExpandContainer = styled.div<{ bg?: Color }>`
-	padding: 1.438rem 0.75rem;
 	background: ${(props) => props.theme.colors.light};
 	${variant({ prop: 'bg', scale: 'backgrounds' })}
-	@media(min-width: 1024px) {
-		padding: 1.438rem 3.75rem;
-	}
 `;
 
 export const InfoTableCellWrapper = styled.div<{ expanded: boolean }>`
