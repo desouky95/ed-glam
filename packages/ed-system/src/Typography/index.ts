@@ -8,6 +8,7 @@ import {
 	TypographyProps,
 	variant,
 } from 'styled-system';
+import { cursor, CursorProps } from '../Utilities/cursor';
 import { createGlobalFont } from './createGlobalFont';
 import { generateMaterialIconsFontFaces } from './generateMaterialIconsFontFaces';
 import { textDecoration, TextDecorationProps } from './textDecoration';
@@ -25,13 +26,15 @@ export const Typography = styled.span<
 		TextStyleProps &
 		SpaceProps &
 		TextDecorationProps &
-		WordSpacingProps
+		WordSpacingProps &
+		CursorProps
 >`
 	${typography};
 	${textStyle};
 	${space};
 	${textDecoration};
 	${wordSpacing};
+	${cursor};
 `;
 
 export const SingleLineCssTrim = css`
