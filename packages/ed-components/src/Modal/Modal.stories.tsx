@@ -18,12 +18,16 @@ export const ModalStory: ComponentStory<typeof Modal> = (args) => {
 				onClose={() => setOpen(false)}
 				withBackdrop
 				withStyling
+				center
+				persistent
 			>
 				<FlexLayout
 					style={{ background: 'yellowgreen' }}
 					height="20vh"
 					width="50vh"
-				></FlexLayout>
+				>
+					<RaisedButton onClick={() => setOpen(false)}>Close</RaisedButton>
+				</FlexLayout>
 			</Modal>
 		</div>
 	);

@@ -10,6 +10,7 @@ export type ModalProps = {
 	withStyling?: boolean;
 	withDelay?: boolean;
 	center?: boolean;
+	persistent?: boolean;
 } & PortalProps;
 
 const Modal: React.FC<ModalProps> = ({
@@ -19,13 +20,16 @@ const Modal: React.FC<ModalProps> = ({
 	withBackdrop = true,
 	withStyling = false,
 	withDelay = true,
+	persistent = false,
 	center = false,
 	...props
 }) => {
 	const modalRef = useRef(null);
 	const delayed = useDelayedUnmount({ delay: 1000, mounted: open });
 	useOutsideAlert(modalRef, () => {
-		onClose?.();
+		if (!persistent) {
+			onClose?.();
+		}
 	});
 	return (
 		<Portal {...props}>
@@ -36,14 +40,9 @@ const Modal: React.FC<ModalProps> = ({
 							position={!!props.parent ? 'relative' : 'fixed'}
 							withBackdrop={withBackdrop}
 							open={open && delayed}
+							center={center}
 						>
-							<FlexLayout
-								alignItems={center ? 'center' : ''}
-								justifyContent={center ? 'center' : ''}
-								ref={modalRef}
-							>
-								{children}
-							</FlexLayout>
+							<div ref={modalRef}>{children}</div>
 						</Backdrop>
 					)}
 					{!withStyling && <div ref={modalRef}>{children}</div>}

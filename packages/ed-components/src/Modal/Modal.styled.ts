@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { position, PositionProps } from 'styled-system';
 
-export const Backdrop = styled.div<
-	{ open: boolean; withBackdrop: boolean } & PositionProps
->`
+type Props = { open: boolean; withBackdrop: boolean; center: boolean };
+export const Backdrop = styled.div<Props & PositionProps>`
 	position: fixed;
 	background: ${(props) => (props.withBackdrop ? 'rgba(0, 0, 0, 0.1)' : '')};
 	backdrop-filter: ${(props) => (props.withBackdrop ? 'blur(10px)' : '')};
+	display: flex;
+	align-items: ${(props) => props.center && 'center'};
+	justify-content: ${(props) => props.center && 'center'};
 	height: 100vh;
 	width: 100vw;
 	top: 0;
