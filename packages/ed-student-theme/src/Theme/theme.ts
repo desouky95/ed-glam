@@ -16,7 +16,7 @@ import {
 } from './theme.types';
 import { Mode } from 'fs';
 
-const breakpoints = ['640px', '767px', '1199px', '1439px'];
+const breakpoints = ['640px', '769px', '1201px', '1441px'];
 
 const breakpointsInPx = {
 	sm: 0,
