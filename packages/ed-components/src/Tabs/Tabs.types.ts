@@ -1,5 +1,5 @@
 import { ResponsiveVal } from '@eduact/student-theme';
-import { RefObject } from 'react';
+import React, { RefObject } from 'react';
 import TabsHeaders from './Components/TabHeaders/TabHeaders';
 import { TabsContents } from './Components/TabsContents';
 
@@ -12,6 +12,7 @@ type TabsInferProps<T> = {
 	noHeader?: boolean;
 	tabsGap?: ResponsiveVal<string>;
 	children: {
+		divider?: React.ReactNode;
 		tabs: (payload: {
 			index: number;
 			item: T;
@@ -28,6 +29,7 @@ type TabsDefaultProps = {
 	noHeader?: boolean;
 	tabsGap?: ResponsiveVal<string>;
 	children: {
+		divider?: React.ReactNode;
 		tabs?: React.ReactElement<typeof TabsHeaders>;
 		contents?: React.ReactElement<typeof TabsContents>;
 	};

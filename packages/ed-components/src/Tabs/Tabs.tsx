@@ -44,7 +44,12 @@ const Tabs = <T extends {}>({
 	if (typeof list === 'undefined' && list === undefined) {
 		return (
 			<React.Fragment>
-				{!noHeader && <FlexLayout>{children.tabs}</FlexLayout>}
+				{!noHeader && (
+					<>
+						<FlexLayout>{children.tabs}</FlexLayout>
+						{children.divider}
+					</>
+				)}
 				{children.contents && children.contents}
 			</React.Fragment>
 		);
@@ -53,18 +58,22 @@ const Tabs = <T extends {}>({
 	return (
 		<div>
 			{!noHeader && (
-				<FlexLayout gridGap={tabsGap}>
-					{list &&
-						list.map((item, index) => {
-							return (
-								<React.Fragment key={`${uniqueId('tabs-header-')}`}>
-									{typeof children.tabs === 'function' &&
-										children.tabs({ index, item })}
-								</React.Fragment>
-							);
-						})}
-				</FlexLayout>
+				<>
+					<FlexLayout gridGap={tabsGap}>
+						{list &&
+							list.map((item, index) => {
+								return (
+									<React.Fragment key={`${uniqueId('tabs-header-')}`}>
+										{typeof children.tabs === 'function' &&
+											children.tabs({ index, item })}
+									</React.Fragment>
+								);
+							})}
+					</FlexLayout>
+					{children.divider}
+				</>
 			)}
+
 			{children.contents && (
 				<TabContentsSwiperWrapper height={validHeight}>
 					<TabContentsSwiper height={validHeight} activeIndex={activeTabIndex}>

@@ -1,3 +1,4 @@
+import { FlexLayout } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { FC } from 'react';
 import { useState } from 'react';
@@ -52,6 +53,7 @@ export const TabsStory: ComponentStory<typeof Tabs> = () => {
 				<TabsProvider onChange={(val) => setActive(val)} active={active}>
 					<Tabs list={list}>
 						{{
+							divider: <FlexLayout height={'3px'} width="100%" />,
 							tabs: ({ index, item }) => {
 								return (
 									<TabsHeader
@@ -97,7 +99,7 @@ export const TabsStory: ComponentStory<typeof Tabs> = () => {
 };
 
 const Wrapper = styled.div`
-	background: #dbdbdb;
+	/* background: #dbdbdb; */
 	padding: 1rem;
 	border-radius: 20px;
 	overflow: hidden;

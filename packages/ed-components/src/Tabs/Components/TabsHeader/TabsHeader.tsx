@@ -78,6 +78,6 @@ const TTabHeaderStyled = styled.div<{ selected: boolean }>`
 		width: 100%;
 		background: rgb(181, 177, 255);
 		left: 0;
-		bottom: 0;
+		top: 100%;
 	}
 `;
