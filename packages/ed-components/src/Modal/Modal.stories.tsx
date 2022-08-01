@@ -11,7 +11,7 @@ export default { title: 'Modal', component: Modal } as ComponentMeta<
 export const ModalStory: ComponentStory<typeof Modal> = (args) => {
 	const [open, setOpen] = useState(false);
 	return (
-		<div>
+		<div style={{ minHeight: '200vh' }}>
 			<RaisedButton onClick={() => setOpen(true)}>Open</RaisedButton>
 			<Modal
 				open={open}
