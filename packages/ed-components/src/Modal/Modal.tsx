@@ -8,6 +8,7 @@ export type ModalProps = {
 	withBackdrop?: boolean;
 	onClose?: () => void;
 	withStyling?: boolean;
+	withDelay?: boolean;
 } & PortalProps;
 
 const Modal: React.FC<ModalProps> = ({
@@ -16,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({
 	onClose,
 	withBackdrop = true,
 	withStyling = false,
-
+	withDelay = true,
 	...props
 }) => {
 	const modalRef = useRef(null);
@@ -26,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
 	});
 	return (
 		<Portal {...props}>
-			{(open || delayed) && (
+			{(open || (delayed && withDelay)) && (
 				<>
 					{withStyling && (
 						<Backdrop
