@@ -83,7 +83,29 @@ const Check = (props: any) => (
 		<path d="M22.976.846a1.428 1.428 0 0 0-1.985 0L7.715 14.122 3.011 9.418a1.428 1.428 0 1 0-2.055 1.985l.035.035 5.715 5.714a1.429 1.429 0 0 0 2.02 0L23.011 2.867a1.43 1.43 0 0 0-.036-2.02z" />
 	</svg>
 );
+const Close = (props: any) => (
+	<svg
+		width="32"
+		height="29"
+		viewBox="0 0 32 29"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M24.2778 8.19141L7.88124 21.694"
+			stroke="#9E9F9E"
+			stroke-width="3"
+			stroke-linecap="round"
+		/>
+		<path
+			d="M23.7247 22.1809L8.43457 7.70117"
+			stroke="#9E9F9E"
+			stroke-width="3"
+			stroke-linecap="round"
+		/>
+	</svg>
+);
 
-const Icons = { EyeIcon, EyeoffIcon, ChevronMore, Bolt, Warning, Check };
+const Icons = { EyeIcon, EyeoffIcon, ChevronMore, Bolt, Warning, Check, Close };
 
 export { Icons };

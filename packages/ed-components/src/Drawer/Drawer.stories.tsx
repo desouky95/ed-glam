@@ -7,7 +7,7 @@ import { RaisedButton, IconButton } from '..';
 import { useArgs } from '@storybook/client-api';
 import { action, actions } from '@storybook/addon-actions';
 export default {
-	title: 'Drawer',
+	title: 'Navigation/Drawer',
 	component: Drawer,
 
 	argTypes: {

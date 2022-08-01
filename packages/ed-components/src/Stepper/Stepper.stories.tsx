@@ -6,6 +6,7 @@ import { RaisedButton } from '../Buttons';
 import Spacer from '../Spacer';
 import { Container, FlexLayout } from '@eduact/ed-system';
 export default {
+	title: 'Navigation/Stepper',
 	parameters: {
 		docs: {
 			source: {

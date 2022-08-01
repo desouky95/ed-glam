@@ -6,7 +6,7 @@ import useSnackbar from '../useSnackbar/useSnackbar';
 import Snackbar from './Snackbar';
 
 export default {
-	title: 'Snackbar',
+	title: 'Feedback/Snackbar',
 	component: Snackbar,
 	decorators: [
 		(Story) => (

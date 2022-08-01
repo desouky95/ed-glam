@@ -9,7 +9,7 @@ import Tabs from './Tabs';
 import { TabsProvider } from './TabsProvider';
 
 export default {
-	title: 'Tabs',
+	title: 'Navigation/Tabs',
 	component: Tabs,
 } as ComponentMeta<typeof Tabs>;
 

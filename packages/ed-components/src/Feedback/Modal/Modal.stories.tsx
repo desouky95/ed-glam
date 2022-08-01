@@ -1,10 +1,10 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useState } from 'react';
-import { RaisedButton } from '..';
+import { RaisedButton } from '../..';
 import Modal from './Modal';
 
-export default { title: 'Modal', component: Modal } as ComponentMeta<
+export default { title: 'Feedback/Modal', component: Modal } as ComponentMeta<
 	typeof Modal
 >;
 
