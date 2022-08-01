@@ -3,6 +3,7 @@ import { FlexboxProps, LayoutProps } from 'styled-system';
 import {
 	CellPanelWrapper,
 	InfoTableCellStyled,
+	InfoTableCellWrapper,
 	InfoTableColumnStyled,
 	InfoTableDataStyled,
 	InfoTableHeaderStyled,
@@ -98,10 +99,11 @@ export const InfoTableCell: React.FC<CellProps> = ({
 	return (
 		<>
 			<div>
-				<div>
+				<InfoTableCellWrapper expanded={expanded}>
 					<InfoTableCellStyled
 						disabled={disabled}
 						expandable={panel != null}
+						expanded={expanded}
 						index={index}
 						{...props}
 					>
@@ -114,7 +116,7 @@ export const InfoTableCell: React.FC<CellProps> = ({
 					>
 						{panel && panel()}
 					</CellPanelWrapper>
-				</div>
+				</InfoTableCellWrapper>
 			</div>
 		</>
 	);

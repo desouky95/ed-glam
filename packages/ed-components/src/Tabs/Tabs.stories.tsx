@@ -111,7 +111,7 @@ const TableCell: FC<{ index: number; item: number }> = ({ index, item }) => {
 		<InfoTableCell
 			expanded={expanded}
 			panel={() => {
-				return <div style={{ height: `${item * 1.5}px` }}>{item}'s Panel</div>;
+				return <div style={{ height: `${item * 1.5}vh` }}>{item}'s Panel</div>;
 			}}
 			index={index}
 		>

@@ -1,4 +1,5 @@
 import { Color } from '@eduact/student-theme';
+import { rgba } from 'polished';
 import styled from 'styled-components';
 import {
 	FlexBasisProps,
@@ -45,22 +46,26 @@ export const InfoTableWrapper = styled.div<{
 	overflow: hidden;
 	padding: 0;
 `;
-export const InfoTableCellStyled = styled.div<
-	{ index: number; expandable: boolean; disabled: boolean } & FlexBasisProps
->`
+type CellProps = {
+	index: number;
+	expandable: boolean;
+	disabled: boolean;
+	expanded: boolean;
+};
+export const InfoTableCellStyled = styled.div<CellProps & FlexBasisProps>`
 	display: flex;
 	align-items: center;
+	background: ${(props) => props.theme.colors.cultured};
+	background: ${(props) => props.index % 2 === 0 && props.theme.colors.light};
 	background: ${(props) =>
-		props.index % 2 === 0
-			? props.theme.colors.light
-			: props.theme.colors.cultured};
+		props.expanded && rgba(props.theme.colors.maxBluePurple, 0.1)};
+
 	padding: 1.438rem 1rem;
-	/* padding: 1.438rem 2.313rem; */
 	opacity: ${(props) => (props.disabled ? '0.5' : '')};
 	pointer-events: ${(props) => (props.disabled ? 'none' : '')};
-	${flexbox}
+	${flexbox};
 
-	@media(min-width: 1024px) {
+	@media (min-width: 1024px) {
 		padding: 1.438rem 3.75rem;
 	}
 `;
@@ -88,4 +93,12 @@ export const CellExpandContainer = styled.div<{ bg?: Color }>`
 	@media(min-width: 1024px) {
 		padding: 1.438rem 3.75rem;
 	}
+`;
+
+export const InfoTableCellWrapper = styled.div<{ expanded: boolean }>`
+	border-radius: ${(props) => props.expanded && '30px'};
+	border: solid 2px transparent;
+	border: ${(props) => props.expanded && 'solid 2px #dcdcdc'};
+	transition: all ease-in-out 200ms;
+	overflow: hidden;
 `;
