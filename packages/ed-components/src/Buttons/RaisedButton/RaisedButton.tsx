@@ -1,5 +1,18 @@
-import { Color, MediaQuery, ResponsiveVal } from '@eduact/student-theme';
-import React, { FC } from 'react';
+import {
+	Color,
+	MediaQuery,
+	ResponsiveVal,
+	Shapes,
+} from '@eduact/student-theme';
+import React, {
+	FC,
+	forwardRef,
+	ForwardRefExoticComponent,
+	ForwardRefRenderFunction,
+	LegacyRef,
+	MutableRefObject,
+	useRef,
+} from 'react';
 import { RaisedButtonStyled } from './RaisedButton.styled';
 import {
 	TextAlignProps,
@@ -7,37 +20,61 @@ import {
 	SpaceProps,
 	FlexboxProps,
 } from 'styled-system';
+import { RefObject } from 'react';
+import Ripple from '@src/Surface/Ripple/Ripple';
 
 export type RaisedButtonProps = {
 	variant?: Color;
 	outlined?: boolean;
 	btnSize?: ResponsiveVal<MediaQuery>;
+	btnShape?: Shapes;
 	bgFallback?: boolean;
+	withRipple?: boolean;
 } & React.ComponentProps<typeof RaisedButtonStyled> &
 	LayoutProps &
 	SpaceProps &
 	TextAlignProps &
 	FlexboxProps &
-	React.HTMLProps<HTMLButtonElement>;
+	Omit<React.HTMLProps<HTMLButtonElement>, 'ref'>;
 
-const RaisedButton: FC<RaisedButtonProps> = ({
-	children,
-	outlined = false,
-	variant = 'primary',
-	justifyContent = 'center',
-	btnSize = 'large',
-	...props
-}) => {
-	return (
-		<RaisedButtonStyled
-			btnSize={btnSize}
-			justifyContent={justifyContent}
-			variant={variant}
-			outlined={outlined}
-			{...props}
-		>
-			{children}
-		</RaisedButtonStyled>
+export const RaisedButton: ForwardRefExoticComponent<RaisedButtonProps> =
+	forwardRef<HTMLButtonElement, RaisedButtonProps>(
+		(
+			{
+				children,
+				outlined = false,
+				variant = 'primary',
+				justifyContent = 'center',
+				withRipple = false,
+				btnSize = 'large',
+				btnShape = 'circle',
+				...props
+			},
+			ref
+		) => {
+			const buttonRef = useRef<HTMLButtonElement | null>(null);
+			return (
+				<RaisedButtonStyled
+					{...props}
+					btnSize={btnSize}
+					justifyContent={justifyContent}
+					variant={variant}
+					outlined={outlined}
+					btnShape={btnShape}
+					ref={(e: HTMLButtonElement) => {
+						buttonRef.current = e;
+						if (typeof ref === 'object' && ref) ref.current = e;
+					}}
+				>
+					{children}
+					{withRipple && (
+						<Ripple
+							color={outlined ? variant : 'light'}
+							parentRef={buttonRef}
+						/>
+					)}
+				</RaisedButtonStyled>
+			);
+		}
 	);
-};
 export default RaisedButton;

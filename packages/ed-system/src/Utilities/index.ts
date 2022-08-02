@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+export * from './cursor';
+export * from './mixBlendMode';
 export const PageWrapper = styled.div`
 	padding: 1rem;
 	width: 100%;
