@@ -40,4 +40,5 @@ export const RippleWrapper = styled.div`
 	top: 0;
 	left: 0;
 	border-radius: inherit;
+	z-index: 1;
 `;
