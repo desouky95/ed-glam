@@ -33,16 +33,7 @@ const Modal: React.FC<ModalProps> = ({
 			onClose?.();
 		}
 	});
-	useEffect(() => {
-		if (scrollableBackground) return;
-		if (open || (delayed && withDelay)) {
-			document.documentElement.style.overflowY = 'hidden';
-			document.body.style.overflowY = 'hidden';
-		} else {
-			document.documentElement.style.overflowY = '';
-			document.body.style.overflowY = '';
-		}
-	}, [open, delayed, withDelay]);
+
 	return (
 		<Portal {...props}>
 			{(open || (delayed && withDelay)) && (
