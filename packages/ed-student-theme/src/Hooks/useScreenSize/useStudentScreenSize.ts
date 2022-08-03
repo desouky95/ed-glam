@@ -3,7 +3,7 @@ import {
 	useThemeScreenSize,
 	UseThemeScreenSizeArgs,
 	UseThemeScreenSizeReturn,
-} from '@eduact/ed-system';
+} from '../../../../ed-system/src/Utilities';
 import { Theme } from '../../Theme';
 
 type UseStudentScreenSizeArgs = Pick<UseThemeScreenSizeArgs, 'lgWithXl'>;
