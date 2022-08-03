@@ -242,6 +242,11 @@ export const Theme: ITheme = {
 			background: Colors.silver,
 			borderColor: Colors.silver,
 		},
+		purpleNavy: {
+			color: Colors.light,
+			background: Colors.purpleNavy,
+			borderColor: Colors.purpleNavy,
+		},
 	},
 	textButtonColors: {
 		primary: {
