@@ -4,12 +4,12 @@
 		"noEmit": false,
 		"declaration": true,
 		"declarationMap": true,
-		"composite": true,
 		"rootDir": "./src",
+		"composite": true,
 		"outDir": "./build",
 		"incremental": true,
 		"emitDeclarationOnly": true,
-		"typeRoots": ["./node_modules/@types"]
+		"skipLibCheck": true
 	},
 	"include": ["src/**/*.ts*"],
 	"exclude": [
@@ -17,5 +17,10 @@
 		"src/**/*.test.*",
 		"./**/*.spec.*",
 		"**/test-utils.tsx"
+	],
+	"references": [
+		{
+			"path": "../ed-system/tsconfig.build.json"
+		}
 	]
 }
