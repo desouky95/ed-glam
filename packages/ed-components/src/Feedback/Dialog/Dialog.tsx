@@ -58,4 +58,5 @@ const StyledDialogWrapper = styled.div<DialogUIProps>`
 `;
 const ToggleButton = styled(Stack)`
 	cursor: pointer;
+	z-index: 9999999;
 `;
