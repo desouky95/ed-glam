@@ -1,7 +1,14 @@
 import styled, { css } from 'styled-components';
-
+import useThemeScreenSize from './useThemeScreenSize';
+import useScreenSize from './useScreenSize';
+import useElementSize from './useElementSize';
+import useSwipe from './useSwipe';
+//
 export * from './cursor';
 export * from './mixBlendMode';
+export * from './useThemeScreenSize';
+export { useThemeScreenSize, useScreenSize, useElementSize, useSwipe };
+//
 export const PageWrapper = styled.div`
 	padding: 1rem;
 	width: 100%;
