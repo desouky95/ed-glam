@@ -16,6 +16,7 @@ function DateFormatter(date?: Date, options?: FormatterOptions): string {
 		month: options?.month ?? 'numeric',
 		year: options?.year,
 		hour: options?.withTime ? 'numeric' : undefined,
+		...options,
 	}).format(_newDate);
 	return _parsedDate;
 }
