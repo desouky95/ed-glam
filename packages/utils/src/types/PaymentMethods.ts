@@ -4,4 +4,5 @@ export type RechargeMethod =
 	| 'kiosk'
 	| 'fawry'
 	| 'aman'
-	| 'masary';
+	| 'masary'
+	| 'eduact';

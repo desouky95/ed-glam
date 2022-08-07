@@ -64,6 +64,7 @@ export const RaisedButton: ForwardRefExoticComponent<RaisedButtonProps> =
 					ref={(e: HTMLButtonElement) => {
 						buttonRef.current = e;
 						if (typeof ref === 'object' && ref) ref.current = e;
+						else ref?.(e);
 					}}
 				>
 					{children}
