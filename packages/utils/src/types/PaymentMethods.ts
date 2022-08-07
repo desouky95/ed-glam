@@ -5,4 +5,4 @@ export type RechargeMethod =
 	| 'fawry'
 	| 'aman'
 	| 'masary'
-	| 'eduact';
+	| 'wallet';
