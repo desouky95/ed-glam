@@ -62,8 +62,13 @@ const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
 	min-width: 100%;
 	flex: 1;
 
-	transform: ${(props) =>
-		props.activeIndex ? `translateX(-${props.activeIndex * 100}%)` : ''};
+	transform: ${(props) => {
+		const directionVal = props.theme.direction === 'rtl' ? 100 : -100;
+
+		return props.activeIndex
+			? `translateX(${props.activeIndex * directionVal}%)`
+			: '';
+	}};
 	transition: all ease-in-out 300ms;
 	/* border: 1px solid #000; */
 `;
