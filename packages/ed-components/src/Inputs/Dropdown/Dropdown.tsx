@@ -39,11 +39,7 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({
 	...props
 }) => {
 	return (
-		<StyledDropdownOption
-			onClick={props.onClick}
-			value={value}
-			selected={selected}
-		>
+		<StyledDropdownOption onClick={props.onClick} selected={selected}>
 			{children}
 		</StyledDropdownOption>
 	);
@@ -153,7 +149,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 												return React.cloneElement(child, {
 													...child.props,
 													selected: value === child.props.value,
-													onClick: (e: React.MouseEvent<HTMLOptionElement>) => {
+													onClick: (e: React.MouseEvent<HTMLDivElement>) => {
 														child.props.onClick?.(e);
 														handleChange(
 															child.props.value,

@@ -65,7 +65,7 @@ export const StyledInput = styled.input`
 	letter-spacing: normal;
 `;
 
-export const StyledDropdownOption = styled.option`
+export const StyledDropdownOption = styled.div<{ selected?: boolean }>`
 	padding: 6px 1.875rem;
 	cursor: pointer;
 	font: inherit;

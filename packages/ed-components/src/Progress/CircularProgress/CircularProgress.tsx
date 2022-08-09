@@ -33,21 +33,21 @@ const ProgressSvg = styled.svg`
 	fill: transparent;
 	circle {
 		fill: none;
-		r: var(--radius);
-		cx: var(--cords);
-		cy: var(--cords);
+		r: calc(var(--radius) * 1px);
+		cx: calc(var(--cords) * 1px);
+		cy: calc(var(--cords) * 1px);
 		stroke-width: calc(var(--stroke-width) * 1px);
 	}
 `;
 const ProgressCircle = styled.circle`
-	stroke-dasharray: var(--arc-length);
-	stroke-dashoffset: var(--arc-offset);
+	stroke-dasharray: calc(var(--arc-length) * 1px);
+	stroke-dashoffset: calc(var(--arc-offset) * 1px);
 	stroke: var(--stroke-color);
 	stroke-linecap: round;
 	transition: all ease-in-out 200ms;
 `;
 const FullCircle = styled.circle`
-	stroke-dashoffset: var(--arc-length);
+	stroke-dashoffset: calc(var(--arc-length) * 1px);
 `;
 const StyledWrapper = styled.div<CircularProgressProps>`
 	position: relative;

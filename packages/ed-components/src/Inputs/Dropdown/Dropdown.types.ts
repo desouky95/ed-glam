@@ -2,7 +2,10 @@ import { HTMLProps } from 'react';
 import { LayoutProps, SpaceProps } from 'styled-system';
 import { InputBaseError } from '../BaseInputUtils/BaseInputs.types';
 
-export type DropdownOptionProps = {} & HTMLProps<HTMLOptionElement>;
+export type DropdownOptionProps = { selected?: boolean; value: any } & Omit<
+	HTMLProps<HTMLDivElement>,
+	'value'
+>;
 
 export type DropdownProps = {
 	onChange?: (value: any) => void;
