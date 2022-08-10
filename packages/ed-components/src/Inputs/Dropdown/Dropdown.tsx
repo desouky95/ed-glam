@@ -77,9 +77,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 			setHasValue(true);
 			setOpened(false);
 			myRef.current.value = value;
-			var event = document.createEvent('UIEvents');
-			event.initEvent('change', true, true);
-			myRef.current?.dispatchEvent(event);
+			onChange?.(value);
 		};
 
 		const [wrapperRef, { height }] = useElementSize();
@@ -91,7 +89,9 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 			<div ref={outsideRef} style={{ position: 'relative' }}>
 				<select
 					value={value}
-					onChange={(e) => onChange?.(e)}
+					onChange={(e) => {
+						onChange?.(e);
+					}}
 					style={{ visibility: 'hidden', display: 'none' }}
 					ref={(node) => {
 						myRef.current = node;
