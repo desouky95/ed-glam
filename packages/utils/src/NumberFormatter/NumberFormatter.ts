@@ -2,7 +2,7 @@ const NumberFormatter = (
 	number: number | string,
 	options?: Intl.NumberFormatOptions
 ) => {
-	if (!Number(number)) throw new Error('Invalid number');
+	if (typeof Number(number) !== 'number') throw new Error('Invalid number');
 
 	const lang = document.documentElement.lang;
 
