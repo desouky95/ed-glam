@@ -4,6 +4,7 @@ import {
 	Breakpoint,
 	Color,
 	Colors,
+	DocumentDir,
 	FontAliases,
 	FontFamily,
 	Fonts,
@@ -158,7 +159,7 @@ interface ITheme {
 			borderColor: string;
 		};
 	};
-	direction: 'rtl' | 'ltr';
+	direction: DocumentDir;
 }
 
 export const Theme: ITheme = {
@@ -447,7 +448,7 @@ export const Theme: ITheme = {
 			padding: '1.125rem 2rem',
 		},
 	},
-	direction: 'ltr',
+	direction: (document.documentElement.dir as DocumentDir) ?? 'ltr',
 	circularProgressColors: {
 		primary: {
 			stroke: Colors.primary,
