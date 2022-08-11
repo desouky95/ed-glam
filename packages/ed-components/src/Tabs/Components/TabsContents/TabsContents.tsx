@@ -57,13 +57,18 @@ const TabContentsSwiperWrapper = styled.div<LayoutProps>`
 	${layout};
 `;
 
-const TabContentsSwiper = styled.div<{ activeIndex?: number; height?: string }>`
+const TabContentsSwiper = styled.div.attrs((props) => ({
+	dir: document.documentElement.dir,
+}))<{
+	activeIndex?: number;
+	height?: string;
+}>`
 	display: flex;
 	min-width: 100%;
 	flex: 1;
 
 	transform: ${(props) => {
-		const directionVal = props.theme.direction === 'rtl' ? 100 : -100;
+		const directionVal = props.dir === 'rtl' ? 100 : -100;
 
 		return props.activeIndex
 			? `translateX(${props.activeIndex * directionVal}%)`
