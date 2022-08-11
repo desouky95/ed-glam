@@ -1,4 +1,5 @@
 import { RechargeMethod } from '@eduact/utils';
+import { HTMLAttributes, HTMLProps } from 'react';
 
 export type ButtonGridValue = {
 	value?: any;
@@ -7,11 +8,13 @@ export type ButtonGridValue = {
 	};
 };
 
-export type ButtonGridProps = {
-	value: ButtonGridValue;
-	onClick?: (value: ButtonGridValue) => void;
+export type ButtonGridUIProps = {
 	isSelected?: boolean;
 	withBorder?: boolean;
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'value' | 'onClick'>;
+export type ButtonGridProps = ButtonGridUIProps & {
+	value: ButtonGridValue;
+	onClick?: (value: ButtonGridValue) => void;
 };
 
 export interface ButtonsGridComposition {
@@ -22,4 +25,4 @@ export type ButtonsGridProps = {
 	onChange?: (value: ButtonGridValue | undefined) => void;
 	value: ButtonGridValue;
 	withBorder?: boolean;
-};
+} & Omit<HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'>;

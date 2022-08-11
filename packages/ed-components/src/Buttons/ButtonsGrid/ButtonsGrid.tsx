@@ -15,12 +15,14 @@ const ButtonGridItem: React.FC<ButtonGridProps> = ({
 	isSelected = false,
 	onClick,
 	withBorder,
+	...props
 }) => {
 	return (
 		<ButtonGridItemStyled
 			withBorder={withBorder}
 			onClick={() => onClick && onClick(value)}
 			isSelected={isSelected}
+			{...props}
 		>
 			{children}
 		</ButtonGridItemStyled>
@@ -32,12 +34,14 @@ const ButtonsGrid: React.FC<ButtonsGridProps> & ButtonsGridComposition = ({
 	onChange,
 	value,
 	withBorder,
+	...props
 }) => {
 	return (
 		<GridLayout
 			width="100%"
 			gridTemplateColumns={'repeat(2,1fr)'}
 			gridTemplateRows={'1fr'}
+			{...props}
 		>
 			{React.Children.map(children, (child, index) => {
 				if (React.isValidElement(child)) {
@@ -85,6 +89,7 @@ const ButtonsGrid: React.FC<ButtonsGridProps> & ButtonsGridComposition = ({
 							},
 							isSelected: isSelected,
 							withBorder,
+							...child.props,
 						}
 					);
 				}

@@ -1,8 +1,7 @@
+import { HTMLProps } from 'react';
 import styled from 'styled-components';
-export const ButtonGridItemStyled = styled.button<{
-	isSelected: boolean;
-	withBorder?: boolean;
-}>`
+import { ButtonGridUIProps } from './ButtonsGrid.types';
+export const ButtonGridItemStyled = styled.button<ButtonGridUIProps>`
 	padding: 0.2rem;
 	display: flex;
 	justify-content: center;
