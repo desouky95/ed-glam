@@ -59,12 +59,7 @@ const Tabs = <T extends {}>({
 		<TabsWrapper>
 			{!noHeader && (
 				<>
-					<FlexLayout
-						overflowX={'auto'}
-						overflowY={'hidden'}
-						height={'fit-content'}
-						gridGap={tabsGap}
-					>
+					<FlexLayout height={'fit-content'} gridGap={tabsGap}>
 						{list &&
 							list.map((item, index) => {
 								return (
