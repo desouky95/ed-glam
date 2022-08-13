@@ -157,9 +157,4 @@ const TabContentWrapper = styled.div<{
 	${({ index, oldIndex }) => index < oldIndex && SlideRightAnimation};
 `;
 
-const TabsWrapper = styled.div`
-	::-webkit-scrollbar {
-		height: 2px;
-		opacity: 0.5;
-	}
-`;
+const TabsWrapper = styled.div``;
