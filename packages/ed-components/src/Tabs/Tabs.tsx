@@ -56,7 +56,7 @@ const Tabs = <T extends {}>({
 	}
 
 	return (
-		<div>
+		<TabsWrapper>
 			{!noHeader && (
 				<>
 					<FlexLayout
@@ -109,7 +109,7 @@ const Tabs = <T extends {}>({
 					</TabContentsSwiper>
 				</TabContentsSwiperWrapper>
 			)}
-		</div>
+		</TabsWrapper>
 	);
 };
 
@@ -155,4 +155,11 @@ const TabContentWrapper = styled.div<{
 	display: ${({ index, current }) => (index === current ? 'block' : 'none')};
 	${({ index, oldIndex }) => index > oldIndex && SlideLeftAnimation};
 	${({ index, oldIndex }) => index < oldIndex && SlideRightAnimation};
+`;
+
+const TabsWrapper = styled.div`
+	::-webkit-scrollbar {
+		height: 2px;
+		opacity: 0.5;
+	}
 `;
