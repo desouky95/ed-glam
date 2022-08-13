@@ -60,8 +60,8 @@ const Tabs = <T extends {}>({
 			{!noHeader && (
 				<>
 					<FlexLayout
-						// overflowX={'auto'}
-						// overflowY={'hidden'}
+						overflowX={'auto'}
+						overflowY={'hidden'}
 						height={'fit-content'}
 						gridGap={tabsGap}
 					>
