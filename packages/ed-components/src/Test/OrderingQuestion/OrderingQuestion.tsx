@@ -32,7 +32,9 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	onChange,
 }) => {
 	const [values, setValues] = useImmer<Array<Option>>(
-		question.options.map((option, index) => ({ option, id: index + 1 }))
+		!question.answer
+			? question.options.map((option, index) => ({ option, id: index + 1 }))
+			: question.answer.map((option, index) => ({ option, id: index + 1 }))
 	);
 	const handleOnDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event;

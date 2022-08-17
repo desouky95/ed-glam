@@ -13,6 +13,7 @@ type Props = {
 	index: number;
 	onNext?: (order: number, index: number) => void;
 	onPrev?: (order: number, index: number) => void;
+	onChange: (answer: any) => void;
 };
 
 const TestQuestion: React.VoidFunctionComponent<Props> = ({
@@ -21,6 +22,7 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	onNext,
 	onPrev,
 	index,
+	onChange,
 }) => {
 	return (
 		<QuestionContainer>
@@ -38,15 +40,12 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 					{isGapQuestion(question) && (
 						<GapQuestion
 							label={`Q${question.order}.`}
-							onChange={(value) => console.log(value)}
+							onChange={onChange}
 							question={question}
 						/>
 					)}
 					{isOrderingQuestion(question) && (
-						<OrderingQuestion
-							question={question}
-							onChange={(val) => console.log(val)}
-						/>
+						<OrderingQuestion question={question} onChange={onChange} />
 					)}
 				</div>
 			</QuestionWrapper>

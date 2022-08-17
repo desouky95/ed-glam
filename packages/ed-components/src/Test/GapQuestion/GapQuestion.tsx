@@ -22,17 +22,19 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	onChange,
 }) => {
 	const gapRef = useRef<HTMLDivElement>(null);
-	const [value, setValue] = useImmer<Array<KeyPairAnswer>>([]);
+	const [value, setValue] = useImmer<Array<KeyPairAnswer>>(
+		question.answer ? question.answer : []
+	);
 	const onGapChange = (
 		e: ChangeEvent<HTMLSelectElement>,
 		option: OptionsPair
 	) => {
 		setValue((draft) => {
-			const gap = draft.findIndex((_) => _.answer === option.key);
+			const gap = draft.findIndex((_) => _.answer === option.gap);
 			if (gap > -1) {
 				draft[gap].target = e.target.value;
 			} else {
-				draft.push({ target: option.key, answer: e.target.value });
+				draft.push({ target: option.gap, answer: e.target.value });
 			}
 			onChange(current(draft));
 		});
@@ -49,9 +51,11 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		}
 	}, []);
 	const getGapDropdown = (options: OptionsPair) => {
-		const dropdown = `<select class="gap-select">
-        <option value="" disabled selected></option>
-        ${options.value.map(
+		const answer =
+			question.answer && question.answer.find((_) => _.target === options.gap);
+		const dropdown = `<select value="${answer?.answer}" class="gap-select">
+			${!answer ? '<option value="" disabled selected></option>' : ''}
+        ${options.choices.map(
 					(select, index) => `<option  value='${select}'>${select}</option>`
 				)}
                 </select>`;
@@ -64,7 +68,7 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		let newContent = parsed_content.toLocaleLowerCase();
 		for (let index = 0; index < options.length; index++) {
 			const option = options[index];
-			const toBeReplacedKey = `$$${option.key}`.toLocaleLowerCase();
+			const toBeReplacedKey = `$$${option.gap}`.toLocaleLowerCase();
 			newContent = newContent.replace(toBeReplacedKey, getGapDropdown(option));
 		}
 
