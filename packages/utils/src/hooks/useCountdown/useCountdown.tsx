@@ -8,6 +8,7 @@ type CountdownTime = {
 
 type CountdownBaseArgs = {
 	isIncrement?: boolean;
+	initOnStart?: boolean;
 	interval?: number;
 	step?: number;
 	onEnd?: () => void;
@@ -19,7 +20,15 @@ type CountdownNumberArgs = {
 type CountdownArgs = CountdownNumberArgs;
 
 function useCountdown(options: CountdownArgs) {
-	const { start, end, interval, isIncrement, onEnd, step } = options;
+	const {
+		start,
+		end,
+		interval,
+		isIncrement,
+		onEnd,
+		step,
+		initOnStart = false,
+	} = options;
 
 	const [countdownEndDate, setCountdownEndDate] = useState<
 		number | undefined
@@ -95,6 +104,9 @@ function useCountdown(options: CountdownArgs) {
 		}
 	}, [end, countdownDate]);
 	const startCountdown = () => {
+		if (initOnStart) {
+			initCountdown();
+		}
 		setIsRunning(true);
 	};
 	const stopCountdown = () => {
