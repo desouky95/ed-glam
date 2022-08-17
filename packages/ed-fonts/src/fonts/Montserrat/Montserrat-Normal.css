@@ -1,13 +1,13 @@
 @font-face {
-	font-family: 'Montserrat';
-	src: url('Montserrat-Normal.eot'); /* IE9 */
-	src: url('Montserrat-Normal.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('Montserrat-Normal.woff2') format('woff2'),
-		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
-			url('Montserrat-Normal.woff') format('woff'),
-		/* chrome, firefox */ url('Montserrat-Normal.ttf') format('truetype'),
-		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-			url('Montserrat-Normal.svg#Montserrat') format('svg'); /* iOS 4.1- */
-	font-style: normal;
-	font-weight: normal;
+    font-family: "Montserrat";
+    src: url("Montserrat-Normal.eot"); /* IE9 */
+    src: url("Montserrat-Normal.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Montserrat-Normal.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("Montserrat-Normal.woff") format("woff"), /* chrome, firefox */
+    url("Montserrat-Normal.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Montserrat-Normal.svg#Montserrat") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
 }
+
+

@@ -13,3 +13,4 @@ export * from './Stepper';
 export * from './Skeletons';
 export * from './Tables';
 export * from './Tabs';
+export * from './Test';

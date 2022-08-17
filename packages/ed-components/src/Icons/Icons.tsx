@@ -1,4 +1,4 @@
-import { Color } from '@eduact/student-theme';
+import { Color, ResponsiveVal } from '@eduact/student-theme';
 import { cloneElement, HTMLProps, ReactElement } from 'react';
 import styled from 'styled-components';
 import React from 'react';
@@ -7,30 +7,37 @@ import { typography, TypographyProps, variant } from 'styled-system';
 export type IconProps = {
 	color?: Color;
 	opticalSize?: number;
-} & HTMLProps<HTMLOrSVGElement> &
+	scale?: ResponsiveVal<number>;
+	size?: string | number;
+} & Omit<HTMLProps<HTMLOrSVGElement>, 'size'> &
 	TypographyProps;
 
 const StyledIconSpan = styled.span<IconProps>`
 	${variant({ prop: 'color', scale: 'textButtonColors' })};
 	${typography};
+	display: grid;
+	place-content: center;
 	fill: currentColor;
 	cursor: pointer;
+	svg {
+		fill: currentColor;
+	}
 	--size: ${(props) => props.opticalSize};
 `;
+
 export const Icon: React.FC<IconProps> = ({
 	children,
 	color = 'spanishGray',
-	size = 16,
+	size = '1em',
+	scale = 1,
 	...props
 }) => {
 	return (
-		<StyledIconSpan color={color}>
+		<StyledIconSpan scale={scale} color={color}>
 			{cloneElement(children as ReactElement, {
 				...props,
 				width: size,
 				height: size,
-				// viewBox: `0 0 48 48`,
-				// viewBox: `0 0 ${size * 1.2} ${size *1.2}`,
 			})}
 		</StyledIconSpan>
 	);
@@ -106,6 +113,58 @@ const Close = (props: any) => (
 	</svg>
 );
 
-const Icons = { EyeIcon, EyeoffIcon, ChevronMore, Bolt, Warning, Check, Close };
+const ChevronLeft = (props: any) => {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 96 96"
+			{...props}
+		>
+			<path
+				{...props}
+				d="M68.61 10.077A7.045 7.045 0 0 0 63.618 8a7.046 7.046 0 0 0-4.992 2.077l-32.56 32.74A7.125 7.125 0 0 0 24 47.837c0 1.882.743 3.687 2.065 5.019l32.561 32.74a7.077 7.077 0 0 0 2.294 1.73 7.042 7.042 0 0 0 8.008-1.409 7.146 7.146 0 0 0-.319-10.359L41.087 47.81 68.61 20.134a7.19 7.19 0 0 0 2.048-5.029 7.19 7.19 0 0 0-2.048-5.028Z"
+			/>
+		</svg>
+	);
+};
+
+const ChevronRight = (props: any) => (
+	<svg
+		viewBox="0 0 96 96"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path d="M27.3903 10.0766C28.7149 8.74686 30.5102 8 32.382 8C34.2537 8 36.049 8.74686 37.3737 10.0766L69.9348 42.8173C71.2572 44.1493 72 45.9545 72 47.8366C72 49.7187 71.2572 51.5238 69.9348 52.8558L37.3737 85.5965C36.7344 86.3242 35.9536 86.9126 35.0796 87.3254C34.2056 87.7381 33.2567 87.9666 32.2915 87.9966C31.3264 88.0266 30.3653 87.8576 29.4675 87.4999C28.5698 87.1423 27.7544 86.6036 27.0716 85.917C26.3888 85.2304 25.853 84.4105 25.4973 83.5078C25.1416 82.6051 24.9735 81.6388 25.0034 80.6682C25.0332 79.6977 25.2604 78.7437 25.6709 77.8648C26.0814 76.9859 26.6666 76.2009 27.3903 75.5581L54.9137 47.8095L27.3903 20.1343C26.0778 18.7932 25.3422 16.987 25.3422 15.1055C25.3422 13.2239 26.0778 11.4177 27.3903 10.0766V10.0766Z" />
+	</svg>
+);
+
+const SwapVertically = (props: any) => (
+	<svg
+		viewBox="0 0 96 96"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path
+			d="M51.9444 26.5117H65.1111L47.5556 9L30 26.5117H43.1667V70.4883H30L47.5556 88L65.1111 70.4883H51.9444V26.5117Z"
+			{...props}
+		/>
+	</svg>
+);
+
+const Icons = {
+	EyeIcon,
+	EyeoffIcon,
+	ChevronMore,
+	Bolt,
+	Warning,
+	Check,
+	Close,
+	ChevronLeft,
+	ChevronRight,
+	SwapVertically,
+};
 
 export { Icons };

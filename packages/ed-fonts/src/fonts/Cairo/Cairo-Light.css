@@ -1,13 +1,13 @@
 @font-face {
-	font-family: 'Cairo Light';
-	src: url('Cairo-Light.eot'); /* IE9 */
-	src: url('Cairo-Light.eot?#iefix') format('embedded-opentype'),
-		/* IE6-IE8 */ url('Cairo-Light.woff2') format('woff2'),
-		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */ url('Cairo-Light.woff')
-			format('woff'),
-		/* chrome, firefox */ url('Cairo-Light.ttf') format('truetype'),
-		/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-			url('Cairo-Light.svg#Cairo Light') format('svg'); /* iOS 4.1- */
-	font-style: normal;
-	font-weight: normal;
+    font-family: "Cairo Light";
+    src: url("Cairo-Light.eot"); /* IE9 */
+    src: url("Cairo-Light.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("Cairo-Light.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("Cairo-Light.woff") format("woff"), /* chrome, firefox */
+    url("Cairo-Light.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("Cairo-Light.svg#Cairo Light") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
 }
+
+

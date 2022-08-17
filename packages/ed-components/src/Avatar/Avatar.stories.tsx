@@ -12,8 +12,11 @@ export default {
 			},
 		},
 		avatarSize: {
-			control: { type: 'radio' },
-			defaultValue: 'small',
+			defaultValue: {
+				lg: 'large',
+				md: 'medium',
+				sm: 'small',
+			},
 		},
 	},
 } as ComponentMeta<typeof Avatar>;

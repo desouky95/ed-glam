@@ -1,0 +1,126 @@
+import { FlexLayout, Typography } from '@eduact/ed-system';
+import { Icon, Icons } from '@src/Icons';
+import Spacer from '@src/Spacer';
+import React from 'react';
+import styled from 'styled-components';
+import GapQuestion from '../GapQuestion/GapQuestion';
+import { OrderingQuestion } from '../OrderingQuestion';
+import { isGapQuestion, isOrderingQuestion, Question } from '../Question.types';
+
+type Props = {
+	question: Question;
+	withNavigation?: boolean;
+	index: number;
+	onNext?: (order: number, index: number) => void;
+	onPrev?: (order: number, index: number) => void;
+};
+
+const TestQuestion: React.VoidFunctionComponent<Props> = ({
+	question,
+	withNavigation = false,
+	onNext,
+	onPrev,
+	index,
+}) => {
+	return (
+		<QuestionContainer>
+			<QuestionWrapper>
+				<QuestionHeader>
+					<QuestionOrder>Q{question.order}.</QuestionOrder>
+					<QuestionPoints>
+						<Points>Points </Points>
+						<Spacer mx={'0.5rem'} />
+						<span>{question.weight}</span>
+					</QuestionPoints>
+				</QuestionHeader>
+
+				<div>
+					{isGapQuestion(question) && (
+						<GapQuestion
+							label={`Q${question.order}.`}
+							onChange={(value) => console.log(value)}
+							question={question}
+						/>
+					)}
+					{isOrderingQuestion(question) && (
+						<OrderingQuestion
+							question={question}
+							onChange={(val) => console.log(val)}
+						/>
+					)}
+				</div>
+			</QuestionWrapper>
+			{withNavigation && (
+				<FlexLayout alignItems={'center'} justifyContent={'space-between'}>
+					<NavigationButton
+						onClick={() => onPrev?.(question.order, index)}
+						alignItems={'center'}
+					>
+						<Icon color="primary">
+							<Icons.ChevronLeft />
+						</Icon>
+						<span>Previous</span>
+					</NavigationButton>
+					<NavigationButton
+						onClick={() => onNext?.(question.order, index)}
+						alignItems={'center'}
+					>
+						<span>Next</span>
+						<Icon color="primary">
+							<Icons.ChevronRight />
+						</Icon>
+					</NavigationButton>
+				</FlexLayout>
+			)}
+		</QuestionContainer>
+	);
+};
+
+export default TestQuestion;
+
+const QuestionContainer = styled.div`
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+	padding: 1rem;
+	border-radius: 8px;
+`;
+const QuestionWrapper = styled.div`
+	${({ theme }) => `${theme.mediaQueries.large}{
+	padding : 0 8rem;
+}`}
+`;
+const QuestionHeader = styled.div`
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 2px solid #d3d3d3;
+	padding-bottom: 8px;
+	align-items: center;
+`;
+const QuestionOrder = styled.span`
+	font-size: 10px;
+	font-weight: bold;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		font-size : 20px;
+	}`}
+`;
+
+const QuestionPoints = styled.span`
+	font-size: 8px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		font-size : 16px;
+	}`}
+`;
+
+const NavigationButton = styled(FlexLayout)`
+	color: ${(props) => props.theme.colors.primary};
+	cursor: pointer;
+	transition: opacity ease-in-out 300ms;
+	&:hover {
+		opacity: 0.8;
+	}
+`;
+const Points = styled(Typography)`
+	color: ${(props) => props.theme.colors.silver};
+`;
