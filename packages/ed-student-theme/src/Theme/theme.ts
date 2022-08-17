@@ -496,6 +496,13 @@ export const Theme: ITheme = {
 			fontSize: '0.75rem',
 			'--stroke-width': '4',
 		},
+		xlarge: {
+			'--size': '100',
+			width: '100px',
+			height: '100px',
+			fontSize: '1rem',
+			'--stroke-width': '4',
+		},
 	},
 };
 export const getTheme = (mode?: Mode) => {

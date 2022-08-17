@@ -12,15 +12,21 @@ export type CircularProgressProps = {
 const CircularProgress: React.FC<CircularProgressProps> = ({
 	size = 'small',
 	color = 'primary',
+	overallProgress = 100,
 	...props
 }) => {
 	return (
-		<StyledWrapper color={color} size={size} {...props}>
+		<StyledWrapper
+			color={color}
+			overallProgress={overallProgress}
+			size={size}
+			{...props}
+		>
 			<ProgressSvg>
 				<FullCircle />
 				<ProgressCircle />
 			</ProgressSvg>
-			<PercentLabel>{props.progress}%</PercentLabel>
+			<PercentLabel>{props.label ?? `${props.progress}%`}</PercentLabel>
 		</StyledWrapper>
 	);
 };
@@ -49,6 +55,16 @@ const ProgressCircle = styled.circle`
 const FullCircle = styled.circle`
 	stroke-dashoffset: calc(var(--arc-length) * 1px);
 `;
+export const PercentLabel = styled.label`
+	position: absolute;
+	font-family: 'AvantGarde';
+	/* width: fit-content; */
+	display: flex;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: inherit;
+`;
 const StyledWrapper = styled.div<CircularProgressProps>`
 	position: relative;
 	${({ theme }) => `${theme.mediaQueries.large}{
@@ -59,26 +75,23 @@ const StyledWrapper = styled.div<CircularProgressProps>`
 
     }`}
 	${variant({ prop: 'size', scale: 'circularProgressSizes' })};
-	/* --stroke-width: 4; */
+	transition : stoke ease-in-out 200ms;
 	--cords: calc(var(--size) / 2);
 	--radius: calc(var(--cords) - var(--stroke-width));
 	--arc-length: calc(2 * 3.14 * var(--radius));
-	--arc-offset: calc(
-		var(--arc-length) * ((100 - ${(props) => props.progress}) / 100)
-	);
+	--arc-offset: ${(props) => {
+		return `calc(
+			var(--arc-length) * ((${props.overallProgress} - ${props.progress}) / ${props.overallProgress})
+			);`;
+	}} 
 	--stroke-color: ${(props) => props.theme.colors[props.color ?? 'primary']};
 	${FullCircle} {
-		stroke: ${(props) =>
-			rgba(props.theme.colors[props.color ?? 'primary'], 0.2)};
+		stroke: ${(props) => rgba(props.theme.colors[props.color ?? 'primary'], 0.2)};
 	}
-`;
-export const PercentLabel = styled.label`
-	position: absolute;
-	font-family: 'AvantGarde';
-	width: fit-content;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	font-size: inherit;
+	${PercentLabel}{
+		width : ${(props) => props.label && '100%'};
+		display : ${(props) => props.label && 'flex'};
+		justify-content : ${(props) => props.label && 'center'}
+	}
 `;
 export default CircularProgress;
