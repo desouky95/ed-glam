@@ -4,7 +4,12 @@ import styled from 'styled-components';
 import { useImmer } from 'use-immer';
 import { current } from 'immer';
 import { rgba } from 'polished';
-import { IGapQuestion, OptionsPair, QuestionAnswer } from '../Question.types';
+import {
+	IGapQuestion,
+	KeyPairAnswer,
+	OptionsPair,
+	QuestionAnswer,
+} from '../Question.types';
 
 type Props = {
 	question: IGapQuestion;
@@ -17,17 +22,17 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	onChange,
 }) => {
 	const gapRef = useRef<HTMLDivElement>(null);
-	const [value, setValue] = useImmer<Array<QuestionAnswer>>([]);
+	const [value, setValue] = useImmer<Array<KeyPairAnswer>>([]);
 	const onGapChange = (
 		e: ChangeEvent<HTMLSelectElement>,
 		option: OptionsPair
 	) => {
 		setValue((draft) => {
-			const gap = draft.findIndex((_) => _.key === option.key);
+			const gap = draft.findIndex((_) => _.answer === option.key);
 			if (gap > -1) {
-				draft[gap].value = e.target.value;
+				draft[gap].target = e.target.value;
 			} else {
-				draft.push({ key: option.key, value: e.target.value });
+				draft.push({ target: option.key, answer: e.target.value });
 			}
 			onChange(current(draft));
 		});

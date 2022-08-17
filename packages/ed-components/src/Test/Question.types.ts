@@ -1,7 +1,15 @@
-type QuestionType = 'gap' | 'mcq' | 'ordering';
+export type QuestionType = 'gap' | 'mcq' | 'ordering';
 export type OptionsPair = { key: string | number; value: string[] };
-type QuestionOptions = Array<string | OptionsPair>;
-export type QuestionAnswer = { key: string | number; value: string };
+export type QuestionOptions = Array<string | OptionsPair>;
+export type KeyPairAnswer = {
+	target: number | string;
+	answer: string;
+};
+export type OrderingAnswer = Array<string>;
+export type ObjectPairAnswer = {
+	[key: string]: string;
+};
+export type QuestionAnswer = KeyPairAnswer | OrderingAnswer | ObjectPairAnswer;
 export type Question = {
 	parsed_content: string | null;
 	content: string | null;
@@ -12,6 +20,7 @@ export type Question = {
 	feedback: string | null;
 	order: number;
 	options: QuestionOptions;
+	answer: QuestionAnswer | null;
 };
 
 export type IGapQuestion = Omit<Question, 'options' | 'type'> & {
