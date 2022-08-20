@@ -1,9 +1,8 @@
 const rollup = require('rollup');
-// const css = require("rollup-plugin-css-only");
 const { babel } = require('@rollup/plugin-babel');
 const { resolve } = require('path');
-
 const gulp = require('gulp');
+// 
 const rollupBuilder = async () => {
 	const config = rollup.defineConfig({
 		input: './src/index.js',

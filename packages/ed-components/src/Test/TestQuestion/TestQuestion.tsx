@@ -4,8 +4,14 @@ import Spacer from '@src/Spacer';
 import React from 'react';
 import styled from 'styled-components';
 import GapQuestion from '../GapQuestion/GapQuestion';
+import { McqQuestion } from '../McqQuestion';
 import { OrderingQuestion } from '../OrderingQuestion';
-import { isGapQuestion, isOrderingQuestion, Question } from '../Question.types';
+import {
+	isGapQuestion,
+	isMcqQuestion,
+	isOrderingQuestion,
+	Question,
+} from '../Question.types';
 
 type Props = {
 	question: Question;
@@ -46,6 +52,9 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 					)}
 					{isOrderingQuestion(question) && (
 						<OrderingQuestion question={question} onChange={onChange} />
+					)}
+					{isMcqQuestion(question) && (
+						<McqQuestion question={question} onChange={onChange} />
 					)}
 				</div>
 			</QuestionWrapper>

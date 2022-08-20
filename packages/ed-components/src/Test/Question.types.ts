@@ -7,7 +7,7 @@ export type KeyPairAnswer = {
 };
 export type OrderingAnswer = Array<string>;
 export type ObjectPairAnswer = {
-	[key: string]: string;
+	answer: string;
 };
 export type QuestionAnswer =
 	| Array<KeyPairAnswer>
@@ -38,6 +38,12 @@ export type IOrderingQuestion = Omit<Question, 'options' | 'type'> & {
 	content: string;
 	answer: Array<string>;
 };
+export type IMcqQuestion = Omit<Question, 'options' | 'type'> & {
+	type: 'mcq';
+	options: Array<string>;
+	content: string;
+	answer: ObjectPairAnswer;
+};
 export const isGapQuestion = (value: Question): value is IGapQuestion => {
 	return value !== undefined && value.type === 'gap';
 };
@@ -45,4 +51,8 @@ export const isOrderingQuestion = (
 	value: Question
 ): value is IOrderingQuestion => {
 	return value !== undefined && value.type === 'ordering';
+};
+
+export const isMcqQuestion = (value: Question): value is IMcqQuestion => {
+	return value !== undefined && value.type === 'mcq';
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { IOrderingQuestion } from '../Question.types';
 
 import styled from 'styled-components';
@@ -7,9 +7,22 @@ import { useImmer } from 'use-immer';
 import { Icon, Icons } from '@src/Icons';
 import Spacer from '@src/Spacer';
 import { FlexLayout } from '@eduact/ed-system';
-import { closestCenter, DndContext, DragEndEvent } from '@dnd-kit/core';
+import {
+	closestCenter,
+	DndContext,
+	DragEndEvent,
+	DragOverlay,
+	KeyboardSensor,
+	PointerSensor,
+	useDraggable,
+	useSensor,
+	useSensors,
+	pointerWithin,
+	MouseSensor,
+} from '@dnd-kit/core';
 import {
 	SortableContext,
+	sortableKeyboardCoordinates,
 	useSortable,
 	verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
@@ -25,7 +38,7 @@ type OrderingProps = {
 };
 type Option = {
 	option: string;
-	id: number;
+	id: string;
 };
 const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
@@ -33,19 +46,28 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 }) => {
 	const [values, setValues] = useImmer<Array<Option>>(
 		!question.answer
-			? question.options.map((option, index) => ({ option, id: index + 1 }))
-			: question.answer.map((option, index) => ({ option, id: index + 1 }))
+			? question.options.map((option, index) => ({
+					option,
+					id: `${index + 1}`,
+			  }))
+			: question.answer.map((option, index) => ({ option, id: `${index + 1}` }))
 	);
+	const sensors = useSensors(
+		useSensor(MouseSensor),
+		useSensor(PointerSensor),
+		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+	);
+
 	const handleOnDragEnd = (event: DragEndEvent) => {
-		const { active, over } = event;
-		if (!over?.id) return;
-		if (active.id !== over.id) {
-			const oldIndex = values.findIndex((_) => _.id === active.id);
-			const newIndex = values.findIndex((_) => _.id === over.id);
-			const items = reorder(values, oldIndex, newIndex);
-			onChange(items.map((item) => item.option));
-			setValues(items);
-		}
+		// const { active, over } = event;
+		// if (!over?.id) return;
+		// if (active.id !== over.id) {
+		// 	const oldIndex = values.findIndex((_) => _.id === active.id);
+		// 	const newIndex = values.findIndex((_) => _.id === over.id);
+		// 	const items = reorder(values, oldIndex, newIndex);
+		// 	onChange(items.map((item) => item.option));
+		// 	setValues(items);
+		// }
 	};
 	const reorder = (list: Option[], startIndex: number, endIndex: number) => {
 		const result = Array.from(list);
@@ -60,13 +82,9 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 			<div dangerouslySetInnerHTML={{ __html: question.content }} />
 			<FlexLayout mb={{ sm: '1rem', lg: '2rem' }} flexDirection="column">
 				<DndContext
-					collisionDetection={closestCenter}
+					sensors={sensors}
+					collisionDetection={pointerWithin}
 					onDragEnd={handleOnDragEnd}
-					modifiers={[
-						restrictToVerticalAxis,
-						restrictToWindowEdges,
-						restrictToParentElement,
-					]}
 				>
 					<SortableContext
 						strategy={verticalListSortingStrategy}
@@ -74,7 +92,7 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 					>
 						{values.map((option, index) => (
 							<DraggableOption
-								key={`${option.id}-${option.option}-${index}`}
+								key={`${option.id}-${index}`}
 								content={option.option}
 								id={option.id}
 							/>
@@ -91,6 +109,7 @@ export default OrderingQuestion;
 type DraggedProps = { isDragged?: boolean };
 const StyledDraggableOption = styled.div<DraggedProps>`
 	border-radius: 5px;
+	touch-action: none;
 	padding: 5px 8px;
 	background-color: #f6f6f6;
 	background-color: ${(props) => {
@@ -109,46 +128,60 @@ const StyledDraggableOption = styled.div<DraggedProps>`
 `;
 
 type Props = {
-	id: number;
+	id: string;
 	content: string;
 };
 const DraggableOption: React.VoidFunctionComponent<Props> = ({
 	content,
 	id,
 }) => {
+	const _id = useMemo(() => {
+		return id;
+	}, []);
 	const {
 		isDragging,
 		setNodeRef,
+		setActivatorNodeRef,
 		attributes,
 		listeners,
 		transition,
 		transform,
 	} = useSortable({
-		id,
-		transition: {
-			duration: 150, // milliseconds
-			easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-		},
+		id: _id,
 	});
 
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		zIndex: isDragging ? '4' : '',
-		transition,
 	};
 	return (
-		<StyledDraggableOption
-			ref={setNodeRef}
-			isDragged={isDragging}
-			style={style}
-			{...attributes}
-			{...listeners}
-		>
-			<Icon color="purpleNavy">
-				<Icons.SwapVertically />
-			</Icon>
-			<Spacer mx="0.25rem" />
-			<span>{content}</span>
-		</StyledDraggableOption>
+		<>
+			<StyledDraggableOption
+				ref={(e) => {
+					setNodeRef(e);
+				}}
+				isDragged={false}
+				style={style}
+				{...attributes}
+				{...listeners}
+			>
+				<Icon {...attributes} {...listeners} color="purpleNavy">
+					<Icons.SwapVertically />
+				</Icon>
+				<Spacer mx="0.25rem" />
+				<span>{content}</span>
+			</StyledDraggableOption>
+			{isDragging ? (
+				<DragOverlay adjustScale={true}>
+					<StyledDraggableOption isDragged={isDragging}>
+						<Icon color="purpleNavy">
+							<Icons.SwapVertically />
+						</Icon>
+						<Spacer mx="0.25rem" />
+						<span>{content}</span>
+					</StyledDraggableOption>
+				</DragOverlay>
+			) : null}
+		</>
 	);
 };

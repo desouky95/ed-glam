@@ -27,6 +27,7 @@
 		"url": "https://github.com/desouky95/ed-glam/issues"
 	},
 	"devDependencies": {
+		"@eduact/ed-fonts": "*",
 		"@babel/core": "^7.18.5",
 		"@hookform/devtools": "^4.1.1",
 		"@hookform/resolvers": "^2.9.6",

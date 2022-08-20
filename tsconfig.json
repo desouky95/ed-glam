@@ -26,6 +26,8 @@
 			"@eduact/student-theme/*": ["./packages/ed-student-theme/src/*"],
 			"@eduact/utils": ["./packages/utils/src"],
 			"@eduact/utils/*": ["./packages/utils/src/*"],
+			"@eduact/fonts": ["./packages/ed-fonts/src"],
+			"@eduact/fonts/*": ["./packages/ed-fonts/src/*"],
 			"scripts/*": ["./scripts/*"]
 		},
 		"types": ["node", "react", "jest", "mocha"]

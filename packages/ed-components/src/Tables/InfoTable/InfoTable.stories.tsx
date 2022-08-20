@@ -18,7 +18,7 @@ import {
 	InfoTableHeaderSubTitle,
 	InfoTableHeaderTitle,
 } from './InfoTable.styled';
-import { RaisedButton } from '@eduact/ed-components';
+import { RaisedButton } from '@src/Buttons/RaisedButton';
 export default {
 	title: 'Tables/InfoTable',
 	component: InfoTable,

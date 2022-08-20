@@ -48,6 +48,18 @@ export const Test = () => {
 			options: ['test 1', 'test 3', 'test 2'],
 			answer: ['test 3', 'test 2', 'rerer'],
 		},
+		{
+			id: 10,
+			test_id: 3,
+			weight: 5,
+			content: 'what is the best solution ?',
+			parsed_content: null,
+			type: 'mcq',
+			feedback: 'no',
+			order: 10,
+			options: ['first option', 'second option', 'third option'],
+			answer: null,
+		},
 	]);
 	return (
 		<div>
