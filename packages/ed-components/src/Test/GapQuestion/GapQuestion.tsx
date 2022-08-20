@@ -98,6 +98,7 @@ const StyledContainer = styled.div`
 		padding-right: 20px;
 		outline: 1px solid ${(props) => rgba(props.theme.colors.purple, 0.5)};
 		position: relative;
+		margin-bottom: 0.5rem;
 		option {
 			padding: 3px 12px;
 			border: 0;

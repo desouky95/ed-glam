@@ -59,15 +59,15 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	);
 
 	const handleOnDragEnd = (event: DragEndEvent) => {
-		// const { active, over } = event;
-		// if (!over?.id) return;
-		// if (active.id !== over.id) {
-		// 	const oldIndex = values.findIndex((_) => _.id === active.id);
-		// 	const newIndex = values.findIndex((_) => _.id === over.id);
-		// 	const items = reorder(values, oldIndex, newIndex);
-		// 	onChange(items.map((item) => item.option));
-		// 	setValues(items);
-		// }
+		const { active, over } = event;
+		if (!over?.id) return;
+		if (active.id !== over.id) {
+			const oldIndex = values.findIndex((_) => _.id === active.id);
+			const newIndex = values.findIndex((_) => _.id === over.id);
+			const items = reorder(values, oldIndex, newIndex);
+			onChange(items.map((item) => item.option));
+			setValues(items);
+		}
 	};
 	const reorder = (list: Option[], startIndex: number, endIndex: number) => {
 		const result = Array.from(list);
@@ -83,7 +83,9 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 			<FlexLayout mb={{ sm: '1rem', lg: '2rem' }} flexDirection="column">
 				<DndContext
 					sensors={sensors}
-					collisionDetection={pointerWithin}
+					collisionDetection={closestCenter}
+					autoScroll
+					modifiers={[restrictToParentElement]}
 					onDragEnd={handleOnDragEnd}
 				>
 					<SortableContext
@@ -141,7 +143,6 @@ const DraggableOption: React.VoidFunctionComponent<Props> = ({
 	const {
 		isDragging,
 		setNodeRef,
-		setActivatorNodeRef,
 		attributes,
 		listeners,
 		transition,
@@ -153,6 +154,7 @@ const DraggableOption: React.VoidFunctionComponent<Props> = ({
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		zIndex: isDragging ? '4' : '',
+		transition,
 	};
 	return (
 		<>
@@ -160,28 +162,17 @@ const DraggableOption: React.VoidFunctionComponent<Props> = ({
 				ref={(e) => {
 					setNodeRef(e);
 				}}
-				isDragged={false}
+				isDragged={isDragging}
 				style={style}
 				{...attributes}
 				{...listeners}
 			>
-				<Icon {...attributes} {...listeners} color="purpleNavy">
+				<Icon color="purpleNavy">
 					<Icons.SwapVertically />
 				</Icon>
 				<Spacer mx="0.25rem" />
 				<span>{content}</span>
 			</StyledDraggableOption>
-			{isDragging ? (
-				<DragOverlay adjustScale={true}>
-					<StyledDraggableOption isDragged={isDragging}>
-						<Icon color="purpleNavy">
-							<Icons.SwapVertically />
-						</Icon>
-						<Spacer mx="0.25rem" />
-						<span>{content}</span>
-					</StyledDraggableOption>
-				</DragOverlay>
-			) : null}
 		</>
 	);
 };
