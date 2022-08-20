@@ -26,9 +26,8 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({ question }) => {
 				<FlexLayout flexDirection={'column'}>
 					{question.options.map((mcqItem, index) => {
 						return (
-							<FlexLayout mb={{ sm: '0.75rem' }}>
+							<FlexLayout key={`${mcqItem}-${index}`} mb={{ sm: '0.75rem' }}>
 								<StyledRadioButton
-									key={`${mcqItem}-${index}`}
 									onChange={(e) => console.log(e.target.value)}
 									type={'radio'}
 									id={mcqItem}

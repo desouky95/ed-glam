@@ -57,7 +57,11 @@ const Modal: React.FC<ModalProps> = ({
 							<div ref={modalRef}>{children}</div>
 						</Backdrop>
 					)}
-					{!withStyling && <div ref={modalRef}>{children}</div>}
+					{!withStyling && (
+						<div style={{ height: '100%', width: '100%' }} ref={modalRef}>
+							{children}
+						</div>
+					)}
 				</>
 			)}
 		</Portal>
