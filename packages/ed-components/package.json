@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/ed-components",
-	"version": "0.1.81",
+	"version": "0.1.82",
 	"description": "> TODO: description",
 	"author": "Ismail Moustafa <tubesniper@gmail.com>",
 	"homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -27,8 +27,8 @@
 		"url": "https://github.com/desouky95/ed-glam/issues"
 	},
 	"devDependencies": {
-		"@eduact/ed-fonts": "*",
 		"@babel/core": "^7.18.5",
+		"@eduact/ed-fonts": "^0.0.17",
 		"@hookform/devtools": "^4.1.1",
 		"@hookform/resolvers": "^2.9.6",
 		"@react-spring/types": "^9.4.5",
@@ -65,7 +65,7 @@
 		"@dnd-kit/modifiers": "^6.0.0",
 		"@dnd-kit/sortable": "^7.0.1",
 		"@eduact/ed-system": "^1.1.14",
-		"@eduact/student-theme": "^1.0.46",
+		"@eduact/student-theme": "^1.0.47",
 		"@eduact/utils": "^0.4.43",
 		"@popperjs/core": "^2.11.5",
 		"@react-spring/web": "^9.4.5",
@@ -73,6 +73,8 @@
 		"lodash": "^4.17.21",
 		"lodash.uniqueid": "^4.0.1",
 		"polished": "^4.2.2",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
 		"react-icons": "^4.4.0",
 		"react-popper": "^2.3.0",
 		"react-router-dom": "^6.3.0",
@@ -81,8 +83,6 @@
 		"styled-components": "^5.3.5",
 		"styled-system": "^5.1.5",
 		"swiper": "^8.3.1",
-		"use-immer": "^0.7.0",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"use-immer": "^0.7.0"
 	}
 }
