@@ -80,6 +80,7 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	return (
 		<div>
 			<div dangerouslySetInnerHTML={{ __html: question.content }} />
+			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout mb={{ sm: '1rem', lg: '2rem' }} flexDirection="column">
 				<DndContext
 					sensors={sensors}
@@ -124,7 +125,7 @@ const StyledDraggableOption = styled.div<DraggedProps>`
 	align-items: center;
 	width: fit-content;
 	${({ theme }) => `${theme.mediaQueries.large}{
-        
+		margin-bottom: 1.5rem;
         padding: 0.5rem 1rem;
     }`}
 `;

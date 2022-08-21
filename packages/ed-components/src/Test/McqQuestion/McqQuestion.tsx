@@ -19,20 +19,23 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<div dangerouslySetInnerHTML={{ __html: question.content }}></div>
-			<Spacer mb={{ sm: '0.813rem' }} />
+			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout px={{ sm: '0.813rem' }} flexDirection="column">
-				<Typography
-					color={rgba('#000', 0.6).toString()}
-					fontSize={{ sm: '0.5rem' }}
+				<AnswersLabel
+					fontSize={{ sm: '0.5rem', lg: '1rem' }}
 					fontFamily="Roboto"
 				>
 					Answers
-				</Typography>
-				<Spacer mb={{ sm: '6px' }} />
+				</AnswersLabel>
+				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
 					{question.options.map((mcqItem, index) => {
 						return (
-							<FlexLayout key={`${mcqItem}-${index}`} mb={{ sm: '0.75rem' }}>
+							<FlexLayout
+								alignItems={'center'}
+								key={`${mcqItem}-${index}`}
+								mb={{ sm: '0.75rem' }}
+							>
 								<StyledRadioButton
 									onChange={handleOnChange}
 									type={'radio'}
@@ -41,7 +44,7 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 									name="answer"
 								/>
 								<Spacer mx={{ sm: '4px' }} />
-								<Typography fontSize={{ sm: '0.75rem' }}>
+								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
 									<label htmlFor={mcqItem}>{mcqItem}</label>
 								</Typography>
 							</FlexLayout>
@@ -58,4 +61,12 @@ export default McqQuestion;
 const StyledRadioButton = styled.input`
 	width: 0.563rem;
 	height: 0.563rem;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		width :1.25rem;
+		height :1.25rem;
+	}`}
+`;
+
+const AnswersLabel = styled(Typography)`
+	color: ${(props) => props.theme.colors.silver};
 `;
