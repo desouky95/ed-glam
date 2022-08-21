@@ -1,7 +1,8 @@
 import { useDelayedUnmount, useOutsideAlert } from '@eduact/utils';
 import { FlexLayout, Portal, PortalProps } from '@eduact/ed-system';
 import React, { useEffect, useRef } from 'react';
-import { Backdrop } from './Modal.styled';
+import { Backdrop, UnStyledBackdrop } from './Modal.styled';
+import { LayoutProps } from 'styled-system';
 
 export type ModalProps = {
 	open: boolean;
@@ -12,7 +13,8 @@ export type ModalProps = {
 	center?: boolean;
 	persistent?: boolean;
 	scrollableBackground?: boolean;
-} & PortalProps;
+} & PortalProps &
+	LayoutProps;
 
 const Modal: React.FC<ModalProps> = ({
 	children,
@@ -58,9 +60,9 @@ const Modal: React.FC<ModalProps> = ({
 						</Backdrop>
 					)}
 					{!withStyling && (
-						<div style={{ height: '100%', width: '100%' }} ref={modalRef}>
+						<UnStyledBackdrop {...props} ref={modalRef}>
 							{children}
-						</div>
+						</UnStyledBackdrop>
 					)}
 				</>
 			)}

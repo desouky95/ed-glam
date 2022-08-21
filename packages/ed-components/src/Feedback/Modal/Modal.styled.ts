@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { position, PositionProps } from 'styled-system';
+import { layout, LayoutProps, position, PositionProps } from 'styled-system';
 
 type Props = { open: boolean; withBackdrop: boolean; center: boolean };
 export const Backdrop = styled.div<Props & PositionProps>`
@@ -19,4 +19,8 @@ export const Backdrop = styled.div<Props & PositionProps>`
 	${({ open }) => `opacity : ${open ? '1' : '0'};`};
 	transition: opacity ease-in-out 500ms;
 	${position}
+`;
+
+export const UnStyledBackdrop = styled.div<LayoutProps>`
+	${layout}
 `;

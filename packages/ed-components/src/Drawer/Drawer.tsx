@@ -25,6 +25,7 @@ const Drawer: React.FC<DrawerProps> = ({
 			open={open}
 			withStyling={withStyling}
 			onClose={onClose}
+			{...props}
 		>
 			{(open || delayed) && (
 				<DrawerWrapper
