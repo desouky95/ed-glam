@@ -13,6 +13,9 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 	question,
 	onChange,
 }) => {
+	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		onChange({ answer: e.target.value });
+	};
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<div dangerouslySetInnerHTML={{ __html: question.content }}></div>
@@ -31,7 +34,7 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 						return (
 							<FlexLayout key={`${mcqItem}-${index}`} mb={{ sm: '0.75rem' }}>
 								<StyledRadioButton
-									onChange={onChange}
+									onChange={handleOnChange}
 									type={'radio'}
 									id={mcqItem}
 									value={mcqItem}
