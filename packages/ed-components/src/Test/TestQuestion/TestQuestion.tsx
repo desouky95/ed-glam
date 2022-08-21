@@ -24,6 +24,8 @@ type Props = {
 	showNext?: boolean;
 	prevLabel?: string;
 	nextLabel?: string;
+	onFocus?: React.FocusEventHandler<HTMLDivElement>;
+	onBlur?: React.FocusEventHandler<HTMLDivElement>;
 };
 
 const TestQuestion: React.VoidFunctionComponent<Props> = ({
@@ -37,9 +39,11 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	showPrev = true,
 	nextLabel = 'Next',
 	prevLabel = 'Previous',
+	onBlur,
+	onFocus,
 }) => {
 	return (
-		<QuestionContainer>
+		<QuestionContainer tabIndex={question.id} onFocus={onFocus} onBlur={onBlur}>
 			<QuestionWrapper>
 				<QuestionHeader>
 					<QuestionOrder>Q{question.order}.</QuestionOrder>
