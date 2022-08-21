@@ -35,6 +35,8 @@ import {
 type OrderingProps = {
 	question: IOrderingQuestion;
 	onChange: (answer: any) => void;
+	onBlur?: React.FocusEventHandler<HTMLDivElement>;
+	onFocus?: React.FocusEventHandler<HTMLDivElement>;
 };
 type Option = {
 	option: string;
@@ -43,6 +45,8 @@ type Option = {
 const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
 	onChange,
+	onBlur,
+	onFocus,
 }) => {
 	const [values, setValues] = useImmer<Array<Option>>(
 		!question.answer
@@ -94,11 +98,17 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 						items={values}
 					>
 						{values.map((option, index) => (
-							<DraggableOption
-								key={`${option.id}-${index}`}
-								content={option.option}
-								id={option.id}
-							/>
+							<div
+								tabIndex={Number(option.id)}
+								onFocus={onFocus}
+								onBlur={onBlur}
+							>
+								<DraggableOption
+									key={`${option.id}-${index}`}
+									content={option.option}
+									id={option.id}
+								/>
+							</div>
 						))}
 					</SortableContext>
 				</DndContext>

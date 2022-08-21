@@ -63,7 +63,12 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 						/>
 					)}
 					{isOrderingQuestion(question) && (
-						<OrderingQuestion question={question} onChange={onChange} />
+						<OrderingQuestion
+							onFocus={onFocus}
+							onBlur={onBlur}
+							question={question}
+							onChange={onChange}
+						/>
 					)}
 					{isMcqQuestion(question) && (
 						<McqQuestion question={question} onChange={onChange} />
