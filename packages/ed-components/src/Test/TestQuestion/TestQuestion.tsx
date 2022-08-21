@@ -20,6 +20,10 @@ type Props = {
 	onNext?: (order: number, index: number) => void;
 	onPrev?: (order: number, index: number) => void;
 	onChange: (answer: any) => void;
+	showPrev?: boolean;
+	showNext?: boolean;
+	prevLabel?: string;
+	nextLabel?: string;
 };
 
 const TestQuestion: React.VoidFunctionComponent<Props> = ({
@@ -29,6 +33,10 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	onPrev,
 	index,
 	onChange,
+	showNext = true,
+	showPrev = true,
+	nextLabel = 'Next',
+	prevLabel = 'Previous',
 }) => {
 	return (
 		<QuestionContainer>
@@ -60,24 +68,32 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 			</QuestionWrapper>
 			{withNavigation && (
 				<FlexLayout alignItems={'center'} justifyContent={'space-between'}>
-					<NavigationButton
-						onClick={() => onPrev?.(question.order, index)}
-						alignItems={'center'}
-					>
-						<Icon color="primary">
-							<Icons.ChevronLeft />
-						</Icon>
-						<span>Previous</span>
-					</NavigationButton>
-					<NavigationButton
-						onClick={() => onNext?.(question.order, index)}
-						alignItems={'center'}
-					>
-						<span>Next</span>
-						<Icon color="primary">
-							<Icons.ChevronRight />
-						</Icon>
-					</NavigationButton>
+					{showPrev ? (
+						<NavigationButton
+							onClick={() => onPrev?.(question.order, index)}
+							alignItems={'center'}
+						>
+							<Icon color="primary">
+								<Icons.ChevronLeft />
+							</Icon>
+							<span>{prevLabel}</span>
+						</NavigationButton>
+					) : (
+						<span></span>
+					)}
+					{showNext ? (
+						<NavigationButton
+							onClick={() => onNext?.(question.order, index)}
+							alignItems={'center'}
+						>
+							<span>{nextLabel}</span>
+							<Icon color="primary">
+								<Icons.ChevronRight />
+							</Icon>
+						</NavigationButton>
+					) : (
+						<span></span>
+					)}
 				</FlexLayout>
 			)}
 		</QuestionContainer>

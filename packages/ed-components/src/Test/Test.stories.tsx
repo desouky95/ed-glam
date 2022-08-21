@@ -37,16 +37,16 @@ export const Test = () => {
 			test_id: 3,
 		},
 		{
-			id: 5,
 			test_id: 3,
-			weight: 4,
-			content: '<p>wewessd</p>',
-			parsed_content: null,
-			type: 'ordering',
+			content: null,
+			answer: null,
 			feedback: null,
-			order: 3,
-			options: ['test 1', 'test 3', 'test 2'],
-			answer: ['test 3', 'test 2', 'rerer'],
+			id: 18,
+			options: [{ gap: 1, choices: ['awesome', 'awful'] }],
+			order: 2,
+			parsed_content: '<p>Eduact is $$1 </p>',
+			type: 'gap',
+			weight: 2,
 		},
 		{
 			id: 10,
@@ -70,6 +70,7 @@ export const Test = () => {
 						index={index}
 						withNavigation
 						question={question}
+						showPrev={index > 0}
 					/>
 				);
 			})}
