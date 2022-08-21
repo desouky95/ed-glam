@@ -24,11 +24,11 @@ export const Test = () => {
 			order: 2,
 			options: [
 				{
-					gap: 2,
+					gap: 1,
 					choices: ['we', 'we', 'wewe'],
 				},
 				{
-					gap: 1,
+					gap: 2,
 					choices: ['we', 'wewe', 'w'],
 				},
 			],

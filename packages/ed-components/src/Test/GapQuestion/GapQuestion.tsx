@@ -30,9 +30,9 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		option: OptionsPair
 	) => {
 		setValue((draft) => {
-			const gap = draft.findIndex((_) => _.answer === option.gap);
+			const gap = draft.findIndex((_) => _.target === option.gap);
 			if (gap > -1) {
-				draft[gap].target = e.target.value;
+				draft[gap] = { target: option.gap, answer: e.target.value };
 			} else {
 				draft.push({ target: option.gap, answer: e.target.value });
 			}
