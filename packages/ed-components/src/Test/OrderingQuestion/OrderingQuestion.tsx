@@ -98,17 +98,11 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 						items={values}
 					>
 						{values.map((option, index) => (
-							<div
-								tabIndex={Number(option.id)}
-								onFocus={onFocus}
-								onBlur={onBlur}
-							>
-								<DraggableOption
-									key={`${option.id}-${index}`}
-									content={option.option}
-									id={option.id}
-								/>
-							</div>
+							<DraggableOption
+								key={`${option.id}-${index}`}
+								content={option.option}
+								id={option.id}
+							/>
 						))}
 					</SortableContext>
 				</DndContext>
