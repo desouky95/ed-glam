@@ -8,9 +8,9 @@ import {
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import React, { useRef } from 'react';
 import styled, { CSSProperties } from 'styled-components';
-import { DropRegions } from './DropRegions';
+import { DropRegions } from './Components/DropRegions';
 import { rubberbandModifier } from './modifiers';
-import Sheet from './Sheet';
+import Sheet from './Components/Sheet';
 import { Property } from 'csstype';
 import { Color, ResponsiveVal } from '@eduact/student-theme';
 import { MaxHeightProps, MaxWidthProps, variant } from 'styled-system';
@@ -29,7 +29,7 @@ type BottomSheetUIProps = {
 	relative?: boolean;
 } & MaxHeightProps &
 	MaxWidthProps;
-type BottomSheetProps = {
+export type BottomSheetProps = {
 	onChange: (expanded: boolean) => void;
 	children: React.ReactNode;
 	expanded: boolean;

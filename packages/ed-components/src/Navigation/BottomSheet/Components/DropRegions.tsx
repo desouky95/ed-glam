@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import { Region } from './constants';
+import { Region } from '../constants';
 import styled from 'styled-components';
 
 export function DropRegions() {
