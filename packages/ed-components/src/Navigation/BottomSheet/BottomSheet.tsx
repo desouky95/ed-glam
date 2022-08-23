@@ -135,7 +135,6 @@ const StyledDrawer = styled.div<BottomSheetUIProps>`
 	inset: 0;
 	pointer-events: none;
 	overflow: hidden;
-	background-color: rgba(0, 0, 0, 0.05);
 	${({ theme, headerHeight, relative }) => `${theme.mediaQueries.medium}{
 		--header-height: ${getDynamicVariant(headerHeight, 'md')};
 	}`}
