@@ -7,6 +7,8 @@ import useSwipe from './useSwipe';
 export * from './cursor';
 export * from './mixBlendMode';
 export * from './useThemeScreenSize';
+export * from './Breakpoint';
+export * from './getDynamicVariant';
 export { useThemeScreenSize, useScreenSize, useElementSize, useSwipe };
 //
 export const PageWrapper = styled.div`
