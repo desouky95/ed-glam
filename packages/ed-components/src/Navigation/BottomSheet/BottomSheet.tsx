@@ -16,6 +16,7 @@ import { Color, ResponsiveVal } from '@eduact/student-theme';
 import { MaxHeightProps, MaxWidthProps, variant } from 'styled-system';
 import { getDynamicVariant } from '@eduact/ed-system';
 import { useOutsideAlert } from '@eduact/utils';
+
 const modifiers = [restrictToVerticalAxis, rubberbandModifier];
 enum Region {
 	Collapse = 'collapse',

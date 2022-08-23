@@ -2,11 +2,27 @@ import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import BottomSheet from './BottomSheet';
 import { FlexLayout, Stack } from '@eduact/ed-system';
-export default { title: 'Navigation/BottomSheet' } as ComponentMeta<
-	typeof BottomSheet
->;
+export default {
+	title: 'Navigation/BottomSheet',
+	component: BottomSheet,
+	argTypes: {
+		expanded: {
+			defaultValue: false,
+		},
+		variant: {
+			defaultValue: {
+				sm: 'light',
+				md: 'light',
+				lg: 'primary',
+			},
+		},
+		header: {
+			defaultValue: 'Bottom Sheet',
+		},
+	},
+} as ComponentMeta<typeof BottomSheet>;
 
-export const BottomSheetStory: ComponentStory<typeof BottomSheet> = () => {
+export const BottomSheetStory: ComponentStory<typeof BottomSheet> = (args) => {
 	const [expanded, setExpanded] = useState(false);
 
 	return (
@@ -28,18 +44,9 @@ export const BottomSheetStory: ComponentStory<typeof BottomSheet> = () => {
 					{expanded ? 'Close' : 'Open'}
 				</button>
 				<BottomSheet
-					relative
-					variant={{ sm: 'yellow', md: 'purple', lg: 'purpleNavy' }}
-					headerVariant={{
-						sm: 'princetonOrange',
-						md: 'lavender',
-						lg: 'primary',
-					}}
-					maxHeight={'60vh'}
-					maxWidth={{ sm: '100%', md: '500px' }}
-					headerHeight={{ sm: '100px', md: '75px' }}
+					{...args}
 					expanded={expanded}
-					header="Bottom Sheet"
+					maxHeight={'100vh'}
 					onChange={setExpanded}
 					onBackdropClick={() => setExpanded(false)}
 				>
