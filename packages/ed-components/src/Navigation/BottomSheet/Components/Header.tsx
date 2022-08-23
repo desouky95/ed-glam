@@ -44,16 +44,6 @@ const StyledHeader = styled.div<{ dragging: boolean } & HeaderUIProps>`
 	touch-action: none;
 	cursor: var(--cursor);
 
-	&:before {
-		content: '';
-		position: absolute;
-		width: 50px;
-		height: 3px;
-		top: 10px;
-		border-radius: 10px;
-		background-color: var(--color);
-		transition: background-color 0.2s ease;
-	}
 	${variant({ prop: 'variant', scale: 'backgrounds' })}
 
 	${({ theme }) => `${theme.mediaQueries.medium}{
