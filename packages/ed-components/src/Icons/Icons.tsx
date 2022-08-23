@@ -162,6 +162,24 @@ const Warning = (props: any) => (
 		/>
 	</svg>
 );
+const DoubleArrowUp = (props: any) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 96 96"
+		{...props}
+	>
+		<path
+			{...props}
+			d="m72.978 48.508 7.717-7.708L47.847 8 15 40.8l7.717 7.708 25.13-25.037 25.13 25.037Z"
+		/>
+		<path
+			{...props}
+			fill-opacity=".5"
+			d="m72.987 88 7.717-7.707-32.847-32.8-32.848 32.8L22.726 88l25.13-25.036L72.988 88Z"
+		/>
+	</svg>
+);
 
 const Icons = {
 	EyeIcon,
@@ -174,6 +192,7 @@ const Icons = {
 	ChevronLeft,
 	ChevronRight,
 	SwapVertically,
+	DoubleArrowUp,
 };
 
 export { Icons };

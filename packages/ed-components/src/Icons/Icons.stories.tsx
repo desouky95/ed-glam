@@ -15,11 +15,12 @@ export const IconsDefault: ComponentStory<any> = () => {
 			<Icon color="orange">
 				<Icons.ChevronRight />
 			</Icon>
-			<Avatar>
-				<Icon color="orange">
-					<Icons.Warning />
-				</Icon>
-			</Avatar>
+			<Icon color="orange">
+				<Icons.Warning />
+			</Icon>
+			<Icon color="primary">
+				<Icons.DoubleArrowUp />
+			</Icon>
 		</div>
 	);
 };
