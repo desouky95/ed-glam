@@ -33,17 +33,26 @@ const StyledHeader = styled.div<{ dragging: boolean } & HeaderUIProps>`
 	box-sizing: border-box;
 	align-items: center;
 	justify-content: center;
-	/* background-color: inherit; */
 	border-bottom: 1px solid #eee;
 	border-top-left-radius: var(--radius);
 	border-top-right-radius: var(--radius);
 	height: var(--header-height);
 	font-size: 20px;
 	color: #333;
-	padding: 1rem;
 	touch-action: none;
 	cursor: var(--cursor);
+	overflow: hidden;
 
+	/* &:before {
+		content: '';
+		position: absolute;
+		width: 50px;
+		height: 3px;
+		top: 10px;
+		border-radius: 10px;
+		background-color: var(--color);
+		transition: background-color 0.2s ease;
+	} */
 	${variant({ prop: 'variant', scale: 'backgrounds' })}
 
 	${({ theme }) => `${theme.mediaQueries.medium}{

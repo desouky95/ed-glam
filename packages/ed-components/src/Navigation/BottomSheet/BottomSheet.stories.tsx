@@ -46,7 +46,10 @@ export const BottomSheetStory: ComponentStory<typeof BottomSheet> = (args) => {
 				<BottomSheet
 					{...args}
 					expanded={expanded}
+					relative
+					header={<FlexLayout>Bottom Sheet</FlexLayout>}
 					maxHeight={'100vh'}
+					headerHeight={'36px'}
 					onChange={setExpanded}
 					onBackdropClick={() => setExpanded(false)}
 				>
