@@ -41,7 +41,6 @@ const StyledHeader = styled.div<{ dragging: boolean } & HeaderUIProps>`
 	color: #333;
 	touch-action: none;
 	cursor: var(--cursor);
-	overflow: hidden;
 
 	/* &:before {
 		content: '';

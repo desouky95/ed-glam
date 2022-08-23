@@ -20,7 +20,8 @@ type SheetUIProps = {
 type SheetProps = {
 	header: React.ReactNode;
 	children: React.ReactNode;
-} & SheetUIProps;
+} & SheetUIProps &
+	Pick<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
 
 function Sheet({
 	header,
@@ -30,6 +31,7 @@ function Sheet({
 	maxWidth = '500px',
 	variant,
 	headerVariant,
+	onClick,
 }: SheetProps) {
 	const { setNodeRef, attributes, listeners, isDragging, transform } =
 		useDraggable({
@@ -50,6 +52,7 @@ function Sheet({
 			variant={variant}
 		>
 			<Header
+				onClick={onClick}
 				dragging={isDragging}
 				ref={setNodeRef}
 				{...listeners}

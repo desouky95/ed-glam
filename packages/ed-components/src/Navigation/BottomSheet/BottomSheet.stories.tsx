@@ -46,11 +46,11 @@ export const BottomSheetStory: ComponentStory<typeof BottomSheet> = (args) => {
 				<BottomSheet
 					{...args}
 					expanded={expanded}
-					relative
 					header={<FlexLayout>Bottom Sheet</FlexLayout>}
 					maxHeight={'100vh'}
 					headerHeight={'36px'}
 					onChange={setExpanded}
+					onClick={(e) => alert('Clicked')}
 					onBackdropClick={() => setExpanded(false)}
 				>
 					<p style={{ lineHeight: 2 }}>
@@ -59,18 +59,6 @@ export const BottomSheetStory: ComponentStory<typeof BottomSheet> = (args) => {
 						hendrerit.
 					</p>
 
-					<p style={{ lineHeight: 2 }}>
-						Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-						per inceptos himenaeos. Nam nisi tortor, egestas volutpat tortor
-						auctor, efficitur molestie urna. Vestibulum blandit erat massa, eu
-						ornare diam porttitor at.
-					</p>
-					<p style={{ lineHeight: 2 }}>
-						Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-						per inceptos himenaeos. Nam nisi tortor, egestas volutpat tortor
-						auctor, efficitur molestie urna. Vestibulum blandit erat massa, eu
-						ornare diam porttitor at.
-					</p>
 					<p style={{ lineHeight: 2 }}>
 						Class aptent taciti sociosqu ad litora torquent per conubia nostra,
 						per inceptos himenaeos. Nam nisi tortor, egestas volutpat tortor

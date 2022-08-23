@@ -36,7 +36,8 @@ export type BottomSheetProps = {
 	expanded: boolean;
 	header: React.ReactNode;
 	onBackdropClick?: (clickedOutside: boolean) => void;
-} & BottomSheetUIProps;
+} & BottomSheetUIProps &
+	Pick<React.HTMLAttributes<HTMLDivElement>, 'onClick'>;
 const BottomSheet = ({
 	onChange,
 	children,
