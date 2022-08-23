@@ -107,7 +107,5 @@ const StyledSheet = styled.div<{ dragging: boolean } & SheetUIProps>`
 const StyledContent = styled.div<SheetUIProps>`
 	display: block;
 	overflow-y: auto;
-	padding: 20px;
 	background-color: inherit;
-	/* ${variant({ prop: 'variant', scale: 'backgrounds' })} */
 `;
