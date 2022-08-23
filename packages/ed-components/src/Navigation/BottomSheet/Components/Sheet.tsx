@@ -89,7 +89,7 @@ const StyledSheet = styled.div<{ dragging: boolean } & SheetUIProps>`
 		width: 100%;
 		height: 100%;
 		transform: translateY(100%);
-		background-color: #fefefe;
+		background-color: inherit;
 	}
 	transition: ${(props) => props.dragging && 'none'};
 	transform: ${(props) =>
