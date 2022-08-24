@@ -183,7 +183,7 @@ const DoubleArrowUp = (props: any) => (
 
 const Icons = {
 	EyeIcon,
-	// EyeoffIcon,
+	EyeoffIcon,
 	ChevronMore,
 	Bolt,
 	Warning,

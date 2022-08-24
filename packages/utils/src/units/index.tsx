@@ -16,6 +16,7 @@ export type UnitProgressStatus =
 type ContentInfo<P> = {
 	type: P;
 	mdIcon: string;
+	normaIcon?: string;
 };
 
 type ContentInfoConfig = {
