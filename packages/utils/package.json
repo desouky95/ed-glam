@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/utils",
-	"version": "0.4.43",
+	"version": "0.4.44",
 	"description": "",
 	"main": "./src/index.ts",
 	"scripts": {
