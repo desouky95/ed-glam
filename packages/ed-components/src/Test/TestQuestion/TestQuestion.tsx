@@ -1,4 +1,4 @@
-import { FlexLayout, Typography } from '@eduact/ed-system';
+import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import { Icon, Icons } from '@src/Icons';
 import Spacer from '@src/Spacer';
 import React from 'react';
@@ -53,6 +53,7 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 						<span>{question.weight}</span>
 					</QuestionPoints>
 				</QuestionHeader>
+				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 
 				<div>
 					{isGapQuestion(question) && (
@@ -112,6 +113,11 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 export default TestQuestion;
 
 const QuestionContainer = styled.div`
+	${DefaultBrowserCss};
+	img {
+		display: block;
+		height: auto;
+	}
 	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
 	background: #fff;
 	padding: 1rem;
@@ -128,6 +134,9 @@ const QuestionHeader = styled.div`
 	border-bottom: 2px solid #d3d3d3;
 	padding-bottom: 8px;
 	align-items: center;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		padding-bottom : 2rem;
+	}`}
 `;
 const QuestionOrder = styled.span`
 	font-size: 10px;

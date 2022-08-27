@@ -38,7 +38,8 @@ export const Test = () => {
 		},
 		{
 			answer: null,
-			content: '<p>Order Clubs based on UEFA Overall Points in 2021/22</p>',
+			content:
+				'<h2><strong>order the following</strong><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/Screenshot2022-08-25at181661468605860.png" alt="" width="2880" height="1800"></h2><p>the order is:</p>',
 			feedback: null,
 			id: 44,
 			options: ['Frankfurt', 'Liverpool', 'Bayern', 'Real Madrid', 'Man City'],
@@ -66,7 +67,7 @@ export const Test = () => {
 			{questions.map((question, index) => {
 				return (
 					<TestQuestion
-						onChange={(val) => console.log(val)}
+						onChange={(val) => {}}
 						index={index}
 						withNavigation
 						question={question}

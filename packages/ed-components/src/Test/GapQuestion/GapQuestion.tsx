@@ -10,6 +10,7 @@ import {
 	OptionsPair,
 	QuestionAnswer,
 } from '../Question.types';
+import { QuestionContentWrapper } from '../Question.styled';
 
 type Props = {
 	question: IGapQuestion;
@@ -75,12 +76,12 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		return newContent;
 	};
 	return (
-		<>
+		<QuestionContentWrapper>
 			<StyledContainer
 				ref={gapRef}
 				dangerouslySetInnerHTML={{ __html: generateQuestion() }}
 			/>
-		</>
+		</QuestionContentWrapper>
 	);
 };
 

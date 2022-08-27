@@ -15,7 +15,7 @@ export const IconsDefault: ComponentStory<any> = () => {
 			<Icon color="orange">
 				<Icons.ChevronRight />
 			</Icon>
-			<Icon color="orange">
+			<Icon size={'24px'} color="maxBluePurple">
 				<Icons.Warning />
 			</Icon>
 			<Icon color="primary">
