@@ -1,5 +1,6 @@
 import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
+import { useImmer } from 'use-immer';
 import { GapQuestion } from './GapQuestion';
 import { OrderingQuestion } from './OrderingQuestion';
 import { Question } from './Question.types';
@@ -13,7 +14,7 @@ export default {
 } as ComponentMeta<any>;
 
 export const Test = () => {
-	const [questions, setQuestions] = useState<Array<Question>>([
+	const [questions, setQuestions] = useImmer<Array<Question>>([
 		{
 			parsed_content:
 				'<p>&nbsp;</p>\n<p><span style="color: rgb(224, 62, 45);"><strong><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/d624e31348984971660571625196.jpg" alt="" width="188" height="239"></strong></span></p>\n<p>&nbsp;</p>\n<p><span style="color: rgb(224, 62, 45);"><strong>wewe $$1 &nbsp; dsdsd $$2 </strong></span></p>\n<p>&nbsp;</p>',
@@ -59,15 +60,22 @@ export const Test = () => {
 			feedback: 'no',
 			order: 10,
 			options: ['first option', 'second option', 'third option'],
-			answer: null,
+			answer: {
+				answer: 'first option',
+			},
 		},
 	]);
+	console.log(questions);
 	return (
 		<div>
 			{questions.map((question, index) => {
 				return (
 					<TestQuestion
-						onChange={(val) => {}}
+						onChange={(val) =>
+							setQuestions((draft) => {
+								draft[index].answer = val;
+							})
+						}
 						index={index}
 						withNavigation
 						question={question}

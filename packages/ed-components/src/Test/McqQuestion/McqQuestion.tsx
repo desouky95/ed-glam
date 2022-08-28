@@ -43,6 +43,7 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 									onChange={handleOnChange}
 									type={'radio'}
 									id={mcqItem}
+									checked={question.answer.answer === mcqItem}
 									value={mcqItem}
 									name="answer"
 								/>
