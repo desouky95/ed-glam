@@ -21,6 +21,9 @@ export const IconsDefault: ComponentStory<any> = () => {
 			<Icon color="primary">
 				<Icons.DoubleArrowUp />
 			</Icon>
+			<Icon color="primary">
+				<Icons.RightArrow />
+			</Icon>
 		</div>
 	);
 };
