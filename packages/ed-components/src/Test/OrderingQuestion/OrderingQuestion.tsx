@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { IOrderingQuestion } from '../Question.types';
 
 import styled from 'styled-components';
@@ -7,6 +7,7 @@ import { useImmer } from 'use-immer';
 import { Icon, Icons } from '@src/Icons';
 import Spacer from '@src/Spacer';
 import { FlexLayout } from '@eduact/ed-system';
+import { easings } from 'react-spring';
 import {
 	closestCenter,
 	DndContext,
@@ -19,6 +20,8 @@ import {
 	useSensors,
 	pointerWithin,
 	MouseSensor,
+	DragStartEvent,
+	UniqueIdentifier,
 } from '@dnd-kit/core';
 import {
 	SortableContext,
@@ -32,6 +35,7 @@ import {
 	restrictToVerticalAxis,
 	restrictToWindowEdges,
 } from '@dnd-kit/modifiers';
+import { QuestionContentWrapper } from '../Question.styled';
 type OrderingProps = {
 	question: IOrderingQuestion;
 	onChange: (answer: any) => void;
@@ -48,6 +52,8 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 	onBlur,
 	onFocus,
 }) => {
+	const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+	const [active, setActive] = useState<Option | null | undefined>(null);
 	const [values, setValues] = useImmer<Array<Option>>(
 		!question.answer
 			? question.options.map((option, index) => ({
@@ -62,6 +68,13 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 		useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
 	);
 
+	const handleDragStart = (event: DragStartEvent) => {
+		const { active } = event;
+
+		const _active = values.find((_) => _.id === active.id);
+		setActive(_active);
+		setActiveId(active.id);
+	};
 	const handleOnDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event;
 		if (!over?.id) return;
@@ -72,6 +85,8 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 			onChange(items.map((item) => item.option));
 			setValues(items);
 		}
+		setActiveId(null);
+		setActive(null);
 	};
 	const reorder = (list: Option[], startIndex: number, endIndex: number) => {
 		const result = Array.from(list);
@@ -83,14 +98,17 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 
 	return (
 		<div>
-			<div dangerouslySetInnerHTML={{ __html: question.content }} />
+			<QuestionContentWrapper
+				dangerouslySetInnerHTML={{ __html: question.content }}
+			/>
 			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout mb={{ sm: '1rem', lg: '2rem' }} flexDirection="column">
 				<DndContext
 					sensors={sensors}
+					onDragStart={handleDragStart}
 					collisionDetection={closestCenter}
 					autoScroll
-					modifiers={[restrictToParentElement]}
+					modifiers={[restrictToParentElement, restrictToVerticalAxis]}
 					onDragEnd={handleOnDragEnd}
 				>
 					<SortableContext
@@ -105,6 +123,14 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 							/>
 						))}
 					</SortableContext>
+					<DragOverlay
+						dropAnimation={{
+							duration: 300,
+							easing: 'cubic-bezier(0.65,0.05,0.36,1)',
+						}}
+					>
+						{active ? <DragOverlayItem content={active.option} /> : null}
+					</DragOverlay>
 				</DndContext>
 			</FlexLayout>
 		</div>
@@ -114,24 +140,26 @@ const OrderingQuestion: React.VoidFunctionComponent<OrderingProps> = ({
 export default OrderingQuestion;
 
 type DraggedProps = { isDragged?: boolean };
-const StyledDraggableOption = styled.div<DraggedProps>`
+const StyledOption = styled.div`
 	border-radius: 5px;
 	touch-action: none;
 	padding: 5px 8px;
-	background-color: #f6f6f6;
-	background-color: ${(props) => {
-		return props.isDragged && '#e1e0ff';
-	}};
-	cursor: pointer;
-	transform: ${(props) => props.isDragged && 'scale(1.2)'};
-	margin-bottom: 8px;
 	display: flex;
 	align-items: center;
+	margin-bottom: 8px;
 	width: fit-content;
+	cursor: pointer;
 	${({ theme }) => `${theme.mediaQueries.large}{
 		margin-bottom: 1.5rem;
         padding: 0.5rem 1rem;
     }`}
+`;
+const StyledDraggableOption = styled(StyledOption)<DraggedProps>`
+	background-color: #f6f6f6;
+	background-color: ${(props) => {
+		return props.isDragged && '#e1e0ff';
+	}};
+	opacity: ${({ isDragged }) => isDragged && '0.2'};
 `;
 
 type Props = {
@@ -157,7 +185,7 @@ const DraggableOption: React.VoidFunctionComponent<Props> = ({
 	});
 
 	const style = {
-		transform: CSS.Transform.toString(transform),
+		transform: `translate(${transform?.x}px,${transform?.y}px)`,
 		zIndex: isDragging ? '4' : '',
 		transition,
 	};
@@ -181,3 +209,23 @@ const DraggableOption: React.VoidFunctionComponent<Props> = ({
 		</>
 	);
 };
+
+type DragOverlayItemProps = Omit<Props, 'id'>;
+const DragOverlayItem: React.VoidFunctionComponent<DragOverlayItemProps> = ({
+	content,
+}) => {
+	return (
+		<StyledDragOverlay>
+			<Icon color="purpleNavy">
+				<Icons.SwapVertically />
+			</Icon>
+			<Spacer mx="0.25rem" />
+			<span>{content}</span>
+		</StyledDragOverlay>
+	);
+};
+
+const StyledDragOverlay = styled(StyledOption)`
+	background-color: #e1e0ff;
+	white-space: nowrap;
+`;

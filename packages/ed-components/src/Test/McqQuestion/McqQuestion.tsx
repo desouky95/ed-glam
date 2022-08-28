@@ -3,6 +3,7 @@ import Spacer from '@src/Spacer';
 import { rgba } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
+import { QuestionContentWrapper } from '../Question.styled';
 import { IMcqQuestion } from '../Question.types';
 
 type McqProps = {
@@ -18,7 +19,9 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 	};
 	return (
 		<Spacer p={{ sm: '1rem' }}>
-			<div dangerouslySetInnerHTML={{ __html: question.content }}></div>
+			<QuestionContentWrapper
+				dangerouslySetInnerHTML={{ __html: question.content }}
+			/>
 			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout px={{ sm: '0.813rem' }} flexDirection="column">
 				<AnswersLabel
