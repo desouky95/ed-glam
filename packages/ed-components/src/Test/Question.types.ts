@@ -26,7 +26,7 @@ export type Question = {
 	answer: QuestionAnswer | null;
 };
 
-export type IGapQuestion = Omit<Question, 'options' | 'type'> & {
+export type IGapQuestion = Omit<Question, 'options' | 'type' | 'answer'> & {
 	type: 'gap';
 	options: Array<OptionsPair>;
 	parsed_content: string;

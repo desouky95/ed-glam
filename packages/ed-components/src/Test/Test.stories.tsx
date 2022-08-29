@@ -34,7 +34,7 @@ export const Test = () => {
 					choices: ['we', 'wewe', 'w'],
 				},
 			],
-			answer: null,
+			answer: [{ answer: 'we', target: 1 }],
 			content: null,
 			test_id: 3,
 		},
