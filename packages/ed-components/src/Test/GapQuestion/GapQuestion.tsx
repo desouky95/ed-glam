@@ -42,13 +42,15 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	};
 	useEffect(() => {
 		if (gapRef.current) {
-			gapRef.current?.querySelectorAll('select').forEach((select, index) => {
-				select.addEventListener(
-					'change',
-					(e) => onGapChange(e as any, question.options[index]),
-					false
-				);
-			});
+			gapRef.current
+				?.querySelectorAll('.gap-select')
+				.forEach((select, index) => {
+					select.addEventListener(
+						'change',
+						(e) => onGapChange(e as any, question.options[index]),
+						false
+					);
+				});
 		}
 	}, []);
 	const getGapDropdown = (options: OptionsPair) => {
