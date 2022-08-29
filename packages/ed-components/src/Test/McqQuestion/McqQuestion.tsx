@@ -47,7 +47,7 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 										question.answer && question.answer.answer === mcqItem
 									}
 									value={mcqItem}
-									name="answer"
+									name={`answer-${question.id}`}
 								/>
 								<Spacer mx={{ sm: '4px' }} />
 								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
