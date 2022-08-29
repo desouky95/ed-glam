@@ -34,7 +34,8 @@ export const Test = () => {
 					choices: ['we', 'wewe', 'w'],
 				},
 			],
-			answer: [{ answer: 'we', target: 1 }],
+			// answer: [{ answer: 'we', target: 1 }],
+			answer: null,
 			content: null,
 			test_id: 3,
 		},
@@ -71,7 +72,12 @@ export const Test = () => {
 			{questions.map((question, index) => {
 				return (
 					<TestQuestion
-						onChange={(val) => console.log(val)}
+						onChange={(val) => {
+							console.log(val);
+							setQuestions((draft) => {
+								draft[index].answer = val;
+							});
+						}}
 						index={index}
 						withNavigation
 						question={question}

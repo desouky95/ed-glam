@@ -42,10 +42,8 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	) => {
 		let _tempValues = Object.assign([], controlledValue) as KeyPairAnswer[];
 		const gap = _tempValues.findIndex((_) => _.target === option.gap);
-		console.log({ gap, _tempValues });
 		if (gap > -1) {
 			_tempValues[gap] = { target: option.gap, answer: e.target.value };
-			// console.log()
 		} else {
 			_tempValues.push({ target: option.gap, answer: e.target.value });
 		}
@@ -53,17 +51,15 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	};
 	useEffect(() => {
 		if (gapRef.current) {
-			gapRef.current
-				?.querySelectorAll('.gap-select')
-				.forEach((select, index) => {
-					select.addEventListener(
-						'change',
-						(e) => onGapChange(e as any, controlledQuestion.options[index]),
-						false
-					);
-				});
+			const selectElements = gapRef.current.querySelectorAll('select');
+			console.log(selectElements);
+			selectElements.forEach((select, index) => {
+				select.addEventListener('change', (e) =>
+					onGapChange(e as any, controlledQuestion.options[index])
+				);
+			});
 		}
-	}, []);
+	}, [gapRef.current]);
 	const getGapDropdown = (options: OptionsPair) => {
 		const answer =
 			controlledQuestion.answer &&
