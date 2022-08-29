@@ -54,10 +54,15 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	const getGapDropdown = (options: OptionsPair) => {
 		const answer =
 			question.answer && question.answer.find((_) => _.target === options.gap);
-		const dropdown = `<select value="${answer?.answer}" class="gap-select">
+		const dropdown = `<select id="${options.gap}-${question.id}" value="${
+			answer?.answer
+		}" class="gap-select">
 			${!answer ? '<option value="" disabled selected></option>' : ''}
         ${options.choices.map(
-					(select, index) => `<option  value='${select}'>${select}</option>`
+					(select, index) =>
+						`<option ${
+							answer?.answer === select ? 'selected' : ''
+						}  value='${select}'>${select}</option>`
 				)}
                 </select>`;
 

@@ -1,5 +1,6 @@
+import { useCountdown } from '@eduact/utils';
 import { ComponentMeta } from '@storybook/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 import { GapQuestion } from './GapQuestion';
 import { OrderingQuestion } from './OrderingQuestion';
@@ -33,7 +34,7 @@ export const Test = () => {
 					choices: ['we', 'wewe', 'w'],
 				},
 			],
-			answer: [{ answer: 'we', target: 1 }],
+			answer: null,
 			content: null,
 			test_id: 3,
 		},
@@ -65,17 +66,12 @@ export const Test = () => {
 			},
 		},
 	]);
-	console.log(questions);
 	return (
 		<div>
 			{questions.map((question, index) => {
 				return (
 					<TestQuestion
-						onChange={(val) =>
-							setQuestions((draft) => {
-								draft[index].answer = val;
-							})
-						}
+						onChange={(val) => console.log(val)}
 						index={index}
 						withNavigation
 						question={question}

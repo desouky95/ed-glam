@@ -46,7 +46,7 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 		<QuestionContainer tabIndex={question.id} onFocus={onFocus} onBlur={onBlur}>
 			<QuestionWrapper>
 				<QuestionHeader>
-					<QuestionOrder>Q{index}.</QuestionOrder>
+					<QuestionOrder>Q{index + 1}.</QuestionOrder>
 					<QuestionPoints>
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
