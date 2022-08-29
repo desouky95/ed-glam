@@ -46,7 +46,6 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		if (gap > -1) {
 			_tempValues[gap] = { target: option.gap, answer: e.target.value };
 			// console.log()
-			onChange(_tempValues);
 		} else {
 			_tempValues.push({ target: option.gap, answer: e.target.value });
 		}
