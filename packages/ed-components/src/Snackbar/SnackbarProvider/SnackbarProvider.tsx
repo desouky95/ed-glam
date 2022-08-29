@@ -27,11 +27,11 @@ const SnackbarProvider: FC = ({ children }) => {
 
 	return (
 		<SnackbarContext.Provider value={{ openSnackbar }}>
-			<Portal>
-				{((open && config) || hasTransition) && (
-					<Snackbar text={config?.text ?? ''} {...config} />
-				)}
-			</Portal>
+			{((open && config) || hasTransition) && (
+				<Portal>
+					<Snackbar {...config} text={config?.text ?? ''} />
+				</Portal>
+			)}
 			{children}
 		</SnackbarContext.Provider>
 	);

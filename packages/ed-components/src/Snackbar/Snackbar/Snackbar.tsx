@@ -16,13 +16,18 @@ type SnackbarBaseProps = {
 };
 const Snackbar: React.FC<SnackbarProps> = ({
 	variant = 'primary',
+	horizontal = 'right',
 	...props
 }) => {
+	const getTransitionDirection = () => {
+		if (horizontal === 'right') return 'translateX(-100%)';
+		if (horizontal === 'left') return 'translateX(100%)';
+	};
 	return (
-		<Spring from={{ opacity: '0' }} to={{ opacity: '1' }}>
+		<Spring from={{}} to={{}}>
 			{(styles) => (
 				<animated.div style={styles}>
-					<StyledSnackbar variant={variant} {...props}>
+					<StyledSnackbar variant={variant} horizontal={horizontal} {...props}>
 						{props.icon && (
 							<>
 								<SnackbarIconWrapper>{props.icon}</SnackbarIconWrapper>
