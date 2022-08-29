@@ -36,6 +36,7 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 	const controlledQuestion = useMemo(() => {
 		return question;
 	}, [question]);
+
 	const onGapChange = (
 		e: ChangeEvent<HTMLSelectElement>,
 		option: OptionsPair
@@ -49,79 +50,53 @@ const GapQuestion: React.VoidFunctionComponent<Props> = ({
 		}
 		onChange(_tempValues);
 	};
-	useEffect(() => {
-		if (gapRef.current) {
-			const selectElements = gapRef.current.querySelectorAll('select');
-			console.log(selectElements);
-			for (let index = 0; index < selectElements.length; index++) {
-				const element = selectElements.item(index);
-				console.log(element);
-				element.addEventListener('change', function (e: any) {
-					const option = controlledQuestion.options[index];
-					let _tempValues = Object.assign(
-						[],
-						controlledValue
-					) as KeyPairAnswer[];
-					const gap = _tempValues.findIndex((_) => _.target === option.gap);
-					if (gap > -1) {
-						_tempValues[gap] = { target: option.gap, answer: e.target.value };
-					} else {
-						_tempValues.push({ target: option.gap, answer: e.target.value });
-					}
-					onChange(_tempValues);
-				});
-			}
-			// selectElements.forEach((select, index) => {
-			// 	console.log(select);
-			// 	select.addEventListener('change', (e) =>
-			// 		onGapChange(e as any, controlledQuestion.options[index])
-			// 	);
-			// });
-		}
-	}, [gapRef.current]);
-	const getGapDropdown = (options: OptionsPair) => {
+
+	const splittedContent =
+		controlledQuestion.parsed_content.split(/\$\$[0-9]*/g);
+
+	const getDropdown = (index: number) => {
+		const options = controlledQuestion.options[index];
 		const answer =
 			controlledQuestion.answer &&
 			controlledQuestion.answer.find((_) => _.target === options.gap);
-		const dropdown = `<select id="${options.gap}-${question.id}" value="${
-			answer?.answer
-		}" class="gap-select">
-			${!answer ? '<option value="" disabled selected></option>' : ''}
-        ${options.choices.map(
-					(select, index) =>
-						`<option ${
-							answer?.answer === select ? 'selected' : ''
-						}  value='${select}'>${select}</option>`
-				)}
-                </select>`;
-
-		return dropdown;
-	};
-
-	const generateQuestion = () => {
-		const { parsed_content, options } = controlledQuestion;
-		let newContent = parsed_content.toLocaleLowerCase();
-		for (let index = 0; index < options.length; index++) {
-			const option = options[index];
-			const toBeReplacedKey = `$$${option.gap}`.toLocaleLowerCase();
-			newContent = newContent.replace(toBeReplacedKey, getGapDropdown(option));
-		}
-
-		return newContent;
+		return (
+			<select
+				className="gap-select"
+				onChange={(e) => onGapChange(e, options)}
+				value={answer?.answer}
+				title={options.gap.toString()}
+			>
+				{!answer && <option selected></option>}
+				{options.choices.map((value) => (
+					<option value={value}>{value}</option>
+				))}
+			</select>
+		);
 	};
 	return (
 		<QuestionContentWrapper>
-			<StyledContainer
-				ref={gapRef}
-				dangerouslySetInnerHTML={{ __html: generateQuestion() }}
-			/>
+			<StyledContainer>
+				{splittedContent.map((_, index) => {
+					return (
+						<>
+							<StyledContainer
+								ref={gapRef}
+								dangerouslySetInnerHTML={{ __html: _ }}
+							/>
+							{index < splittedContent.length - 1 && (
+								<StyledContainer>{getDropdown(index)}</StyledContainer>
+							)}
+						</>
+					);
+				})}
+			</StyledContainer>
 		</QuestionContentWrapper>
 	);
 };
 
 export default GapQuestion;
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.span`
 	.gap-select {
 		border: 1.5px solid ${(props) => props.theme.colors.purple};
 		font-weight: bold;
