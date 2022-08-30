@@ -21,7 +21,7 @@ export const Test = () => {
 			type: 'gap',
 			weight: 3,
 			feedback:
-				'<p><p>Question form of Lorem epsiem to make a better<br>&nbsp;surrounding to create something for feedback<br>that has a limit and make a straight for the lorem&nbsp;<br>epsiem form of Lorem epsiem to make a better<br>surrounding to create something for feedback</p></p>',
+				'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
 			order: 2,
 			options: [
 				{
