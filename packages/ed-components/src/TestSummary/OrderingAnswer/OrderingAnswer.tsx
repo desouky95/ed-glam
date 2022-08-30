@@ -47,7 +47,7 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 			</FlexLayout>
 			{showCorrectAnswer && (
 				<>
-					<CorrectText>Correct answer</CorrectText>
+					<Text>Correct answer</Text>
 					<FlexLayout
 						mb={{ sm: '1rem', lg: '2rem' }}
 						flexDirection="column"
@@ -80,13 +80,23 @@ const Answer = styled.span<{ background: string }>`
 	font-size: 1.125rem;
 }`}
 `;
-const CorrectText = styled.p`
+export const Text = styled.p`
 	font-size: 0.625rem;
 	font-weight: 500;
 	color: #707070;
+	display: flex;
+	align-items: center;
+	gap: 0.719rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 0.875rem;
+	gap: 1rem;	
 }`}
+	&::after {
+		content: '';
+		height: 0;
+		flex-grow: 1;
+		border: solid 1px #d3d3d3;
+	}
 `;
 
 export default OrderingAnswer;

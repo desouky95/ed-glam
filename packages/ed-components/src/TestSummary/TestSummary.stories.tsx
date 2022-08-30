@@ -20,7 +20,8 @@ export const Test = () => {
 			id: 4,
 			type: 'gap',
 			weight: 3,
-			feedback: '<p>2323</p>',
+			feedback:
+				'<p><p>Question form of Lorem epsiem to make a better<br>&nbsp;surrounding to create something for feedback<br>that has a limit and make a straight for the lorem&nbsp;<br>epsiem form of Lorem epsiem to make a better<br>surrounding to create something for feedback</p></p>',
 			order: 2,
 			options: [
 				{
