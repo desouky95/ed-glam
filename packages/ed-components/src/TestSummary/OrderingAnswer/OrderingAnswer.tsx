@@ -20,10 +20,8 @@ type Options = {
 const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
 }) => {
-	const [options, setOptions] = useState<Array<Options | any>>(
-		question.options
-	);
-	const [answers, setAnswers] = useState<Array<Answers | any>>(question.answer);
+	const [options] = useState<Array<Options | any>>(question.options);
+	const [answers] = useState<Array<Answers | any>>(question.answer);
 
 	const showCorrectAnswer = true;
 	return (

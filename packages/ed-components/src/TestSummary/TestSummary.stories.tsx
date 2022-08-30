@@ -13,10 +13,10 @@ export default {
 } as ComponentMeta<any>;
 
 export const Test = () => {
-	const [questions, setQuestions] = useState<Array<Question>>([
+	const [questions] = useState<Array<Question>>([
 		{
 			parsed_content:
-				'<p>&nbsp;</p>\n<p><span style="color: rgb(224, 62, 45);"><strong><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/d624e31348984971660571625196.jpg" alt="" width="188" height="239"></strong></span></p>\n<p>&nbsp;</p>\n<p><span style="color: rgb(224, 62, 45);"><strong>wewe $$1 &nbsp; dsdsd $$2 </strong></span></p>\n<p>&nbsp;</p>',
+				'<p>Lorem epsiem to make $$1 Lorem epsiem to make something for the creation</p>',
 			id: 4,
 			type: 'gap',
 			weight: 3,
@@ -25,14 +25,26 @@ export const Test = () => {
 			options: [
 				{
 					gap: 1,
-					choices: ['we', 'we', 'wewe'],
-				},
-				{
-					gap: 2,
-					choices: ['we', 'wewe', 'w'],
+					choices: '[flea|mosquito]',
+					test_question_id: 139,
+					correct: 'mosquito',
 				},
 			],
-			answer: [{ answer: 'we', target: 1 }],
+			answer: [
+				{
+					correct: true,
+					content: {
+						options: [
+							{
+								answer: 'mosquito',
+								target: 1,
+								correct: true,
+							},
+						],
+					},
+					score: 2,
+				},
+			],
 			content: null,
 			test_id: 3,
 		},

@@ -4,10 +4,12 @@ import {
 	Question,
 	isMcqAnswer,
 	isOrderingAnswer,
+	isGapAnswer,
 } from '@src/Test/Question.types';
 import React from 'react';
 import styled from 'styled-components';
-import { McqAnswer } from '../McqAnswer';
+import GapAnswer from '../GapAnswer/GapAnswer';
+import McqAnswer from '../McqAnswer/McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
 
 type Props = {
@@ -33,6 +35,7 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question }) => {
 				<div>
 					{isMcqAnswer(question) && <McqAnswer question={question} />}
 					{isOrderingAnswer(question) && <OrderingAnswer question={question} />}
+					{isGapAnswer(question) && <GapAnswer question={question} />}
 				</div>
 			</QuestionWrapper>
 		</QuestionContainer>
@@ -51,6 +54,10 @@ const QuestionContainer = styled.div`
 	background: #fff;
 	padding: 1rem;
 	border-radius: 8px;
+	margin-bottom: 0.313rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	margin-bottom: 1rem;
+}`}
 `;
 const QuestionWrapper = styled.div`
 	${({ theme }) => `${theme.mediaQueries.large}{

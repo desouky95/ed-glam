@@ -1,20 +1,37 @@
 export type QuestionType = 'gap' | 'mcq' | 'ordering';
 export type OptionsPair = { gap: string | number; choices: string[] };
 export type KeyPairAnswer = {
-	target: number | string;
+	target: number | string | Array<string>;
 	answer: string;
 };
+type OrderOption = {
+	answer: string | Array<string>;
+	correct: boolean;
+	target?: number;
+};
+type GapOption = {
+	answer: string | Array<string>;
+	correct: boolean;
+	target: number;
+};
+
+export type GapAnswers = {
+	content: {
+		options: Array<GapOption>;
+	};
+} & Answers;
+
+export type OrderAnswers = {
+	content: {
+		options: OrderOption;
+	};
+} & Answers;
+
 export type Answers = {
 	id?: number;
 	test_attempt_id?: number;
 	test_question_id?: number;
-	correct: boolean;
-	content: {
-		options: {
-			answer: Array<string>;
-			correct: boolean;
-		};
-	};
+	correct?: boolean;
 	score: number;
 	created_at?: Date;
 	updated_at?: Date;
@@ -26,10 +43,12 @@ export type Options = {
 	test_question_id?: number;
 	order?: number;
 	gap?: number;
-	choices?: Array<string>;
+	choices?: string;
+	correct?: string;
 };
 export type QuestionOptions = Array<Options | string | OptionsPair>;
-export type AnswerOptions = Array<Answers>;
+export type GapAnswerOptions = Array<GapAnswers>;
+export type OrderAnswerOptions = Array<OrderAnswers>;
 export type OrderingAnswer = Array<string>;
 export type ObjectPairAnswer = {
 	answer: string;
@@ -37,7 +56,9 @@ export type ObjectPairAnswer = {
 export type QuestionAnswer =
 	| Array<KeyPairAnswer>
 	| OrderingAnswer
-	| ObjectPairAnswer;
+	| ObjectPairAnswer
+	| GapAnswerOptions
+	| OrderAnswerOptions;
 export type Question = {
 	parsed_content: string | null;
 	content: string | null;
@@ -48,20 +69,20 @@ export type Question = {
 	feedback: string | null;
 	order: number;
 	options: QuestionOptions;
-	answer: QuestionAnswer | AnswerOptions | null;
+	answer: QuestionAnswer | OrderAnswerOptions | GapAnswerOptions | null;
 };
 
 export type IGapAnswer = Omit<Question, 'options' | 'type'> & {
 	type: 'gap';
 	options: Array<Options>;
 	parsed_content: string;
-	answer: Array<KeyPairAnswer>;
+	answer: GapAnswerOptions;
 };
 export type IOrderingAnswer = Omit<Question, 'options' | 'type'> & {
 	type: 'ordering';
 	options: QuestionOptions;
 	content: string;
-	answer: AnswerOptions;
+	answer: OrderAnswerOptions;
 };
 export type IMcqAnswer = Omit<Question, 'options' | 'type'> & {
 	type: 'mcq';

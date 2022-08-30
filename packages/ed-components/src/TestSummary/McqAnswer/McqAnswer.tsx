@@ -40,7 +40,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({ question }) => {
 									value={mcqItem.choice}
 									name="answer"
 									id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-									checked
+									checked={mcqItem.is_correct}
 								/>
 								<Spacer mx={{ sm: '4px' }} />
 								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
@@ -69,9 +69,12 @@ const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	}
 `;
 const Label = styled.label`
-	font-size: 1.125rem;
+	font-size: 0.75rem;
 	color: rgba(0, 0, 0, 0.87);
 	font-weight: normal;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+    font-size: 1.125rem;
+	}`};
 `;
 const StyledRadioButton = styled.input`
 	width: 0.535rem;
