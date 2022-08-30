@@ -3,10 +3,10 @@ import Spacer from '@src/Spacer';
 import React from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { IMcqQuestion } from '../TestSummary.types';
+import { IMcqAnswer } from '@src/Test/Question.types';
 
 type McqProps = {
-	question: IMcqQuestion;
+	question: IMcqAnswer;
 };
 
 const McqAnswer: React.VoidFunctionComponent<McqProps> = ({ question }) => {
@@ -37,14 +37,14 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({ question }) => {
 							>
 								<StyledRadioButton
 									type={'radio'}
-									id={mcqItem.choice}
 									value={mcqItem.choice}
 									name="answer"
-									checked={mcqItem.is_correct}
+									id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
+									checked
 								/>
 								<Spacer mx={{ sm: '4px' }} />
 								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-									<label htmlFor={mcqItem.choice}>{mcqItem.choice}</label>
+									<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
 								</Typography>
 							</FlexLayoutStyle>
 						);
@@ -61,17 +61,32 @@ const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	background: ${({ background }) => background};
 	border-radius: 2px;
 	height: 26px;
+	input[type='radio']:checked#correct {
+		accent-color: #00d66b;
+	}
+	input[type='radio']:checked#wrong {
+		accent-color: #ff0000;
+	}
 `;
-
+const Label = styled.label`
+	font-size: 1.125rem;
+	color: rgba(0, 0, 0, 0.87);
+	font-weight: normal;
+`;
 const StyledRadioButton = styled.input`
-	width: 0.563rem;
-	height: 0.563rem;
-	${({ theme }) => `${theme.mediaQueries.large}{
-		width :1.25rem;
-		height :1.25rem;
-	}`}
+	width: 0.535rem;
+	height: 0.535rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		width :0.75rem;
+		height :0.75rem;
+	}`};
 `;
 
 const AnswersLabel = styled(Typography)`
 	color: ${(props) => props.theme.colors.silver};
+	font-size: 1rem;
+	font-weight: normal;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		margin-bottom: 0.75rem;
+	}`};
 `;

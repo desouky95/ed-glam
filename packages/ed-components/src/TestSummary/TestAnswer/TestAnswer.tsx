@@ -1,14 +1,14 @@
 import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
+import {
+	Question,
+	isMcqAnswer,
+	isOrderingAnswer,
+} from '@src/Test/Question.types';
 import React from 'react';
 import styled from 'styled-components';
 import { McqAnswer } from '../McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
-import {
-	isMcqQuestion,
-	isOrderingQuestion,
-	Question,
-} from '../TestSummary.types';
 
 type Props = {
 	question: Question;
@@ -22,17 +22,17 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question }) => {
 				<QuestionHeader>
 					<QuestionOrder>Q{question.order}.</QuestionOrder>
 					<QuestionPoints>
+						<Type>{question.type}</Type>
+						<Spacer mx={'0.5rem'} />
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
-						<span>{question.weight}</span>
+						<Degree>{question.weight}</Degree>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
-					{isMcqQuestion(question) && <McqAnswer question={question} />}
-					{isOrderingQuestion(question) && (
-						<OrderingAnswer question={question} />
-					)}
+					{isMcqAnswer(question) && <McqAnswer question={question} />}
+					{isOrderingAnswer(question) && <OrderingAnswer question={question} />}
 				</div>
 			</QuestionWrapper>
 		</QuestionContainer>
@@ -68,31 +68,45 @@ const QuestionHeader = styled.div`
 	}`}
 `;
 const QuestionOrder = styled.span`
-	font-size: 10px;
+	font-size: 0.625rem;
 	font-weight: bold;
-	${({ theme }) => `${theme.mediaQueries.large}{
-		font-size : 20px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		font-size : 1.25rem;
 	}`}
 `;
-
 const QuestionPoints = styled.span`
 	font-size: 8px;
 	font-weight: bold;
 	display: flex;
 	align-items: center;
+	/* gap: 0.85rem; */
 	${({ theme }) => `${theme.mediaQueries.large}{
 		font-size : 16px;
+    // gap: 4rem;
 	}`}
 `;
-
-const NavigationButton = styled(FlexLayout)`
-	color: ${(props) => props.theme.colors.primary};
-	cursor: pointer;
-	transition: opacity ease-in-out 300ms;
-	&:hover {
-		opacity: 0.8;
-	}
+const Type = styled(Typography)`
+	font-size: 0.5rem;
+	font-weight: 600;
+	color: #251b33;
+	margin-top: -3px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	font-size: 1rem;
+}`}
 `;
 const Points = styled(Typography)`
+	font-size: 0.5rem;
+	font-weight: 500;
 	color: ${(props) => props.theme.colors.silver};
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	font-size: 1rem;
+}`}
+`;
+const Degree = styled.span`
+	font-size: 0.5rem;
+	font-weight: 600;
+	color: #251b33;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	font-size: 1rem;
+}`}
 `;

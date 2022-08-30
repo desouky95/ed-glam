@@ -1,12 +1,12 @@
 import { FlexLayout } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
+import { Answers, IOrderingAnswer } from '@src/Test/Question.types';
 import React, { useState } from 'react';
-import { useImmer } from 'use-immer';
-import { IOrderingQuestion, QuestionOptions } from '../TestSummary.types';
+import styled from 'styled-components';
 
 type OrderingProps = {
-	question: IOrderingQuestion;
+	question: IOrderingAnswer;
 };
 type Option = {
 	answer: Array<string>;
@@ -14,45 +14,81 @@ type Option = {
 };
 type Options = {
 	option: Option;
-	// option: string;
 	id: string;
 };
 
 const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
 }) => {
-	const [values, setValues] = useState<Array<Options | any>>(question.options);
-	// const [values, setValues] = useImmer<Array<QuestionOptions>>(
-	//   !question.answer
-	//     ? question.options.map((option, index) => ({
-	//         option,
-	//         id: `${index + 1}`,
-	//       }))
-	//     : question.answer.map((option, index) => ({ option, id: `${index + 1}` }))
-	// );
-	const opts = values?.map((_) => _.answer);
-	console.log({ values, opts });
+	const [options, setOptions] = useState<Array<Options | any>>(
+		question.options
+	);
+	const [answers, setAnswers] = useState<Array<Answers | any>>(question.answer);
 
+	const showCorrectAnswer = true;
 	return (
 		<div>
 			<QuestionContentWrapper
 				dangerouslySetInnerHTML={{ __html: question.content }}
 			/>
 			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
-			<FlexLayout mb={{ sm: '1rem', lg: '2rem' }} flexDirection="column">
-				{values?.map((_, index) => {
-					return (
-						_.is_correct &&
-						_.answer?.map((ans: string) => (
-							<FlexLayout gridGap="0.5rem">
-								<span>{ans}</span>
-							</FlexLayout>
-						))
-					);
+			<FlexLayout
+				mb={{ sm: '1rem', lg: '2rem' }}
+				flexDirection="column"
+				gridGap="1.5rem"
+				flexWrap="wrap"
+			>
+				{answers?.map((answer) => {
+					const ans = answer?.content.options.answer;
+					return ans?.map((_: string, index: number) => (
+						<Answer key={`${_}-${index}`} background="#ffd5cc">
+							{_}
+						</Answer>
+					));
 				})}
 			</FlexLayout>
+			{showCorrectAnswer && (
+				<>
+					<CorrectText>Correct answer</CorrectText>
+					<FlexLayout
+						mb={{ sm: '1rem', lg: '2rem' }}
+						flexDirection="column"
+						gridGap="1.5rem"
+						flexWrap="wrap"
+					>
+						{options?.map((opt, index) => {
+							return (
+								<Answer key={`${opt.option}-${index}`} background="#e5fbf0">
+									{opt.option}
+								</Answer>
+							);
+						})}
+					</FlexLayout>
+				</>
+			)}
 		</div>
 	);
 };
+
+const Answer = styled.span<{ background: string }>`
+	font-size: 0.625rem;
+	font-weight: 600;
+	background: ${({ background }) => background};
+	min-height: 1.063rem;
+	border-radius: 10px;
+	padding: 0.594rem 3rem 0.5rem 1rem;
+	width: fit-content;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	font-size: 1.125rem;
+}`}
+`;
+const CorrectText = styled.p`
+	font-size: 0.625rem;
+	font-weight: 500;
+	color: #707070;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	font-size: 0.875rem;
+}`}
+`;
 
 export default OrderingAnswer;
