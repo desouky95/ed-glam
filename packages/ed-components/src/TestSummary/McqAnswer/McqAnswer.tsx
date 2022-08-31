@@ -84,7 +84,6 @@ const StyledRadioButton = styled.input`
 		height :0.75rem;
 	}`};
 `;
-
 const AnswersLabel = styled(Typography)`
 	color: ${(props) => props.theme.colors.silver};
 	font-size: 1rem;

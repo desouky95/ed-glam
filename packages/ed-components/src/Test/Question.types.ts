@@ -69,7 +69,7 @@ export type Question = {
 	feedback: string | null;
 	order: number;
 	options: QuestionOptions;
-	answer: QuestionAnswer | OrderAnswerOptions | GapAnswerOptions | null;
+	answer: QuestionAnswer | null;
 };
 
 export type IGapAnswer = Omit<Question, 'options' | 'type'> & {
