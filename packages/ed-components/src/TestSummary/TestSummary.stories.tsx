@@ -2,8 +2,13 @@ import { GapQuestion } from '@src/Test/GapQuestion';
 import { OrderingQuestion } from '@src/Test/OrderingQuestion';
 import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
-import { Question } from '@src/Test/Question.types';
+import { Base, Question } from '@src/Test/Question.types';
 import { TestAnswer } from './TestAnswer';
+import styled from 'styled-components';
+
+type TestProps = {
+	test: Base;
+};
 
 export default {
 	subcomponents: {
@@ -13,6 +18,15 @@ export default {
 } as ComponentMeta<any>;
 
 export const Test = () => {
+	const [testInfo] = useState<Base>({
+		status: 'failed',
+		score: 2,
+		test: {
+			test_summary: true,
+			show_correct_if_passed: false,
+			show_correct_if_failed: true,
+		},
+	});
 	const [questions] = useState<Array<Question>>([
 		{
 			parsed_content:
@@ -33,13 +47,13 @@ export const Test = () => {
 			],
 			answer: [
 				{
-					correct: true,
+					correct: false,
 					content: {
 						options: [
 							{
-								answer: 'mosquito',
+								answer: 'flea',
 								target: 1,
-								correct: true,
+								correct: false,
 							},
 						],
 					},
@@ -106,14 +120,43 @@ export const Test = () => {
 					is_correct: true,
 				},
 			],
-			answer: null,
+			answer: [
+				{
+					correct: false,
+					content: {
+						options: {
+							answer: 'test',
+							correct: false,
+						},
+					},
+					score: 0,
+				},
+			],
 		},
 	]);
 	return (
 		<div>
-			{questions.map((question, index) => {
-				return <TestAnswer index={index} question={question} />;
-			})}
+			{testInfo?.test.test_summary && (
+				<>
+					<SummaryHeader>Test Summary</SummaryHeader>
+					{questions.map((question, index) => {
+						return (
+							<TestAnswer test={testInfo} index={index} question={question} />
+						);
+					})}
+				</>
+			)}
 		</div>
 	);
 };
+
+const SummaryHeader = styled.div`
+	border-radius: 8px;
+	background-color: #fff;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+	height: 4.5rem;
+	display: flex;
+	align-items: center;
+	margin: 1rem 0;
+	padding-left: 1.125rem;
+`;

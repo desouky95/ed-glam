@@ -1,16 +1,49 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { IGapAnswer, Options } from '@src/Test/Question.types';
-import React, { useRef } from 'react';
+import { Base, IGapAnswer, Options } from '@src/Test/Question.types';
+import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 
 type GapProps = {
 	question: IGapAnswer;
+	test: Base;
 };
 
-const GapAnswer: React.VoidFunctionComponent<GapProps> = ({ question }) => {
+const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
+	question,
+	test,
+}) => {
+	const showStudentAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
+		);
+	}, []);
+	const showCorrectAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
+		);
+	}, []);
+
+	const isStudentFailed = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
+		);
+	}, []);
+
+	const isStudentFailedRightAnswer = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
+		);
+	}, []);
+
+	console.log({
+		showStudentAnswer,
+		showCorrectAnswer,
+		isStudentFailed,
+		isStudentFailedRightAnswer,
+	});
+
 	const gapRef = useRef<HTMLDivElement>(null);
-	const showCorrect = true;
 	const getGapAnswer = (options: Options) => {
 		const answer = question?.answer.map((ans) => ans.content.options);
 		let isAns;
@@ -18,9 +51,14 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({ question }) => {
 			isAns = ans.find((_) => _.target === options.gap);
 		}
 
-		return `<span class="wrong" >${
-			showCorrect && isAns?.answer
-		}</span> / <span class="correct">${options?.correct}</span>`;
+		return `${
+			(showStudentAnswer || isStudentFailed) &&
+			`<span class="wrong" >${isAns?.answer}</span>`
+		}  ${
+			showCorrectAnswer || isStudentFailedRightAnswer
+				? ` /<span class="correct">${options?.correct}</span>`
+				: null
+		}`;
 	};
 
 	const generateAnswer = () => {
@@ -30,7 +68,6 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({ question }) => {
 			const toBeReplacedKey = `$$${option.gap}`.toLocaleLowerCase();
 			newContent = newContent.replace(toBeReplacedKey, getGapAnswer(option));
 		}
-
 		return newContent;
 	};
 
@@ -40,10 +77,14 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({ question }) => {
 				ref={gapRef}
 				dangerouslySetInnerHTML={{ __html: generateAnswer() }}
 			/>
-			<Text>Feedback</Text>
-			<FeedbacktWrapper
-				dangerouslySetInnerHTML={{ __html: question.feedback as string }}
-			/>
+			{question.feedback !== null && (
+				<>
+					<Text>Feedback</Text>
+					<FeedbacktWrapper
+						dangerouslySetInnerHTML={{ __html: question.feedback as string }}
+					/>
+				</>
+			)}
 		</QuestionContentWrapper>
 	);
 };

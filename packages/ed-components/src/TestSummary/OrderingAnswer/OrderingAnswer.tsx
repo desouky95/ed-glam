@@ -1,12 +1,13 @@
 import { FlexLayout } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Answers, IOrderingAnswer } from '@src/Test/Question.types';
-import React, { useState } from 'react';
+import { Answers, Base, IOrderingAnswer } from '@src/Test/Question.types';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 type OrderingProps = {
 	question: IOrderingAnswer;
+	test: Base;
 };
 type Option = {
 	answer: Array<string>;
@@ -19,11 +20,34 @@ type Options = {
 
 const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
+	test,
 }) => {
 	const [options] = useState<Array<Options | any>>(question.options);
 	const [answers] = useState<Array<Answers | any>>(question.answer);
 
-	const showCorrectAnswer = true;
+	const showStudentAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
+		);
+	}, []);
+	const showCorrectAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
+		);
+	}, []);
+
+	const isStudentFailed = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
+		);
+	}, []);
+
+	const isStudentFailedRightAnswer = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
+		);
+	}, []);
+
 	return (
 		<div>
 			<QuestionContentWrapper
@@ -36,16 +60,17 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 				gridGap="1.5rem"
 				flexWrap="wrap"
 			>
-				{answers?.map((answer) => {
-					const ans = answer?.content.options.answer;
-					return ans?.map((_: string, index: number) => (
-						<Answer key={`${_}-${index}`} background="#ffd5cc">
-							{_}
-						</Answer>
-					));
-				})}
+				{(showStudentAnswer || isStudentFailed) &&
+					answers?.map((answer) => {
+						const ans = answer?.content.options.answer;
+						return ans?.map((_: string, index: number) => (
+							<Answer key={`${_}-${index}`} background="#ffd5cc">
+								{_}
+							</Answer>
+						));
+					})}
 			</FlexLayout>
-			{showCorrectAnswer && (
+			{(showCorrectAnswer || isStudentFailedRightAnswer) && (
 				<>
 					<Text>Correct answer</Text>
 					<FlexLayout

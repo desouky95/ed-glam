@@ -1,8 +1,23 @@
+export type Base = {
+	status: string;
+	score?: number;
+	test: {
+		test_summary: boolean;
+		show_correct_if_passed: boolean;
+		show_correct_if_failed: boolean;
+	};
+};
+
 export type QuestionType = 'gap' | 'mcq' | 'ordering';
 export type OptionsPair = { gap: string | number; choices: string[] };
 export type KeyPairAnswer = {
 	target: number | string | Array<string>;
 	answer: string;
+};
+type McqOption = {
+	answer: string;
+	correct: boolean;
+	target?: number;
 };
 type OrderOption = {
 	answer: string | Array<string>;
@@ -14,19 +29,21 @@ type GapOption = {
 	correct: boolean;
 	target: number;
 };
-
+export type McqAmswers = {
+	content: {
+		options: McqOption;
+	};
+} & Answers;
 export type GapAnswers = {
 	content: {
 		options: Array<GapOption>;
 	};
 } & Answers;
-
 export type OrderAnswers = {
 	content: {
 		options: OrderOption;
 	};
 } & Answers;
-
 export type Answers = {
 	id?: number;
 	test_attempt_id?: number;
@@ -49,6 +66,7 @@ export type Options = {
 export type QuestionOptions = Array<Options | string | OptionsPair>;
 export type GapAnswerOptions = Array<GapAnswers>;
 export type OrderAnswerOptions = Array<OrderAnswers>;
+export type McqAnswerOptions = Array<McqAmswers>;
 export type OrderingAnswer = Array<string>;
 export type ObjectPairAnswer = {
 	answer: string;
@@ -88,7 +106,7 @@ export type IMcqAnswer = Omit<Question, 'options' | 'type'> & {
 	type: 'mcq';
 	options: Array<Options>;
 	content: string;
-	answer: ObjectPairAnswer;
+	answer: McqAnswerOptions;
 };
 export type IGapQuestion = Omit<Question, 'options' | 'type'> & {
 	type: 'gap';

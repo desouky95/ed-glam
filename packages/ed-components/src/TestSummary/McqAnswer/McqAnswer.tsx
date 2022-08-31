@@ -1,15 +1,42 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { IMcqAnswer } from '@src/Test/Question.types';
+import { Base, IMcqAnswer } from '@src/Test/Question.types';
 
 type McqProps = {
 	question: IMcqAnswer;
+	test: Base;
 };
 
-const McqAnswer: React.VoidFunctionComponent<McqProps> = ({ question }) => {
+const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
+	question,
+	test,
+}) => {
+	const showStudentAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
+		);
+	}, []);
+	const showCorrectAnswer = useMemo(() => {
+		return (
+			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
+		);
+	}, []);
+
+	const isStudentFailed = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
+		);
+	}, []);
+
+	const isStudentFailedRightAnswer = useMemo(() => {
+		return (
+			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
+		);
+	}, []);
+
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<QuestionContentWrapper
@@ -25,30 +52,59 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({ question }) => {
 				</AnswersLabel>
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
-					{question.options.map((mcqItem, index) => {
-						return (
-							<FlexLayoutStyle
-								alignItems={'center'}
-								key={`${mcqItem}-${index}`}
-								mb={{ sm: '0.75rem' }}
-								background={
-									mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
-								}
-							>
-								<StyledRadioButton
-									type={'radio'}
-									value={mcqItem.choice}
-									name="answer"
-									id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-									checked={mcqItem.is_correct}
-								/>
-								<Spacer mx={{ sm: '4px' }} />
-								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-									<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
-								</Typography>
-							</FlexLayoutStyle>
-						);
-					})}
+					{(showStudentAnswer || isStudentFailed) &&
+						question?.answer.map((ans, index) => {
+							const {
+								content: {
+									options: { answer, correct },
+								},
+							} = ans;
+							return (
+								<FlexLayoutStyle
+									alignItems={'center'}
+									key={`${answer}-${index}`}
+									mb={{ sm: '0.75rem' }}
+									background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
+								>
+									<StyledRadioButton
+										type={'radio'}
+										value={answer}
+										name="answer"
+										id={`${correct ? 'correct' : 'wrong'}`}
+										checked={showStudentAnswer || isStudentFailed}
+									/>
+									<Spacer mx={{ sm: '4px' }} />
+									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+										<Label htmlFor={answer}>{answer}</Label>
+									</Typography>
+								</FlexLayoutStyle>
+							);
+						})}
+					{(showCorrectAnswer || isStudentFailedRightAnswer) &&
+						question.options.map((mcqItem, index) => {
+							return (
+								<FlexLayoutStyle
+									alignItems={'center'}
+									key={`${mcqItem}-${index}`}
+									mb={{ sm: '0.75rem' }}
+									background={
+										mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
+									}
+								>
+									<StyledRadioButton
+										type={'radio'}
+										value={mcqItem.choice}
+										name="answer"
+										id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
+										checked={showCorrectAnswer || isStudentFailedRightAnswer}
+									/>
+									<Spacer mx={{ sm: '4px' }} />
+									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+										<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
+									</Typography>
+								</FlexLayoutStyle>
+							);
+						})}
 				</FlexLayout>
 			</FlexLayout>
 		</Spacer>

@@ -5,6 +5,7 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 	isGapAnswer,
+	Base,
 } from '@src/Test/Question.types';
 import React from 'react';
 import styled from 'styled-components';
@@ -15,9 +16,10 @@ import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
 type Props = {
 	question: Question;
 	index: number;
+	test: Base;
 };
 
-const TestAnswer: React.VoidFunctionComponent<Props> = ({ question }) => {
+const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
@@ -28,14 +30,22 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question }) => {
 						<Spacer mx={'0.5rem'} />
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
-						<Degree>{question.weight}</Degree>
+						<Degree>
+							{test?.score}/{question.weight}
+						</Degree>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
-					{isMcqAnswer(question) && <McqAnswer question={question} />}
-					{isOrderingAnswer(question) && <OrderingAnswer question={question} />}
-					{isGapAnswer(question) && <GapAnswer question={question} />}
+					{isMcqAnswer(question) && (
+						<McqAnswer question={question} test={test} />
+					)}
+					{isOrderingAnswer(question) && (
+						<OrderingAnswer question={question} test={test} />
+					)}
+					{isGapAnswer(question) && (
+						<GapAnswer question={question} test={test} />
+					)}
 				</div>
 			</QuestionWrapper>
 		</QuestionContainer>
