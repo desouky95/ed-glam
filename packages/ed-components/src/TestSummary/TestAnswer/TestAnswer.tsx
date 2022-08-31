@@ -12,8 +12,8 @@ import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
-import Failed from '@src/TestSummary/Assets/failed.svg';
-import Passed from '@src/TestSummary/Assets/passed.svg';
+import Failed from '../Assets/failed.svg';
+import Passed from '../Assets/passed.svg';
 
 type Props = {
 	question: Question;

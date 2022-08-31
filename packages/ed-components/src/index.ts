@@ -14,4 +14,5 @@ export * from './Skeletons';
 export * from './Tables';
 export * from './Tabs';
 export * from './Test';
+export * from './TestSummary';
 export * from './Navigation';
