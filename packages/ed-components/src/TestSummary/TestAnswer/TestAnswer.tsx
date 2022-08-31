@@ -12,6 +12,8 @@ import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
+import Failed from '@src/TestSummary/Assets/failed.svg';
+import Passed from '@src/TestSummary/Assets/passed.svg';
 
 type Props = {
 	question: Question;
@@ -24,7 +26,14 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
 				<QuestionHeader>
-					<QuestionOrder>Q{question.order}.</QuestionOrder>
+					<QuestionOrder>
+						{test?.status === 'passed' ? (
+							<Img src={Passed} alt="failed" />
+						) : (
+							<Img src={Failed} alt="failed" />
+						)}
+						Q{question.order}.
+					</QuestionOrder>
 					<QuestionPoints>
 						<Type>{question.type}</Type>
 						<Spacer mx={'0.5rem'} />
@@ -87,8 +96,20 @@ const QuestionHeader = styled.div`
 const QuestionOrder = styled.span`
 	font-size: 0.625rem;
 	font-weight: bold;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 		font-size : 1.25rem;
+		gap: 1rem;
+	}`}
+`;
+const Img = styled.img`
+	width: 0.625rem;
+	height: 0.625rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	width: 1.563rem;
+	height: 1.25rem;
 	}`}
 `;
 const QuestionPoints = styled.span`

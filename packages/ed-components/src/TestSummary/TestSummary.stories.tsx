@@ -19,7 +19,7 @@ export default {
 
 export const Test = () => {
 	const [testInfo] = useState<Base>({
-		status: 'failed',
+		status: 'passed',
 		score: 2,
 		test: {
 			test_summary: true,
