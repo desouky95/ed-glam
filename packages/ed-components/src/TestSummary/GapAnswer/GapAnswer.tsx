@@ -52,12 +52,15 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 		}
 
 		return `${
-			(showStudentAnswer || isStudentFailed) &&
-			`<span class="wrong" >${isAns?.answer}</span>`
-		}  ${
-			showCorrectAnswer || isStudentFailedRightAnswer
-				? ` /<span class="correct">${options?.correct}</span>`
+			showStudentAnswer || isStudentFailed
+				? `<span class="wrong" >${isAns?.answer}</span>`
 				: null
+		}  ${
+			showCorrectAnswer || isStudentFailedRightAnswer ? (
+				` /<span class="correct">${options?.correct}</span>`
+			) : (
+				<span />
+			)
 		}`;
 	};
 
