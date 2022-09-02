@@ -1,47 +1,41 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Base, IGapAnswer, Options } from '@src/Test/Question.types';
+import { Test, IGapAnswer, Options } from '@src/Test/Question.types';
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 
 type GapProps = {
 	question: IGapAnswer;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
 };
 
 const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	question,
 	test,
+	status,
 }) => {
 	const showStudentAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
-		);
+		return status === 'passed' && test?.show_correct_if_passed === false;
 	}, []);
 	const showCorrectAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
-		);
+		return status === 'passed' && test?.show_correct_if_passed === true;
 	}, []);
 
 	const isStudentFailed = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
-		);
+		return status === 'failed' && test?.show_correct_if_failed === false;
 	}, []);
 
 	const isStudentFailedRightAnswer = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
-		);
+		return status === 'failed' && test?.show_correct_if_failed === true;
 	}, []);
 
-	console.log({
-		showStudentAnswer,
-		showCorrectAnswer,
-		isStudentFailed,
-		isStudentFailedRightAnswer,
-	});
+	const showDash = useMemo(() => {
+		return (
+			test?.show_correct_if_passed === true ||
+			test?.show_correct_if_failed === true
+		);
+	}, []);
 
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
@@ -50,17 +44,12 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 		for (const ans of answer) {
 			isAns = ans.find((_) => _.target === options.gap);
 		}
-
-		return `${
-			showStudentAnswer || isStudentFailed
-				? `<span class="wrong" >${isAns?.answer}</span>`
-				: null
-		}  ${
-			showCorrectAnswer || isStudentFailedRightAnswer ? (
-				` /<span class="correct">${options?.correct}</span>`
-			) : (
-				<span />
-			)
+		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
+			isAns?.answer
+		}</span>  ${
+			!isAns?.correct &&
+			(showCorrectAnswer || isStudentFailedRightAnswer) &&
+			`${showDash && `/`} <span class="correct">${options?.correct}</span>`
 		}`;
 	};
 

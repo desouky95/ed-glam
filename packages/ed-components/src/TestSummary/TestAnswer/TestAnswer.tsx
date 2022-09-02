@@ -5,7 +5,7 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 	isGapAnswer,
-	Base,
+	Test,
 } from '@src/Test/Question.types';
 import React from 'react';
 import styled from 'styled-components';
@@ -18,21 +18,26 @@ import Passed from '../Assets/passed.svg';
 type Props = {
 	question: Question;
 	index: number;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
 };
 
-const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
+const TestAnswer: React.VoidFunctionComponent<Props> = ({
+	question,
+	test,
+	status,
+}) => {
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
 				<QuestionHeader>
 					<QuestionOrder>
-						{test?.status === 'passed' ? (
+						{status === 'passed' ? (
 							<Img src={Passed} alt="failed" />
 						) : (
 							<Img src={Failed} alt="failed" />
 						)}
-						Q{question.order}.
+						Q.
 					</QuestionOrder>
 					<QuestionPoints>
 						<Type>{question.type}</Type>
@@ -47,13 +52,13 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
 					{isMcqAnswer(question) && (
-						<McqAnswer question={question} test={test} />
+						<McqAnswer question={question} test={test} status={status} />
 					)}
 					{isOrderingAnswer(question) && (
-						<OrderingAnswer question={question} test={test} />
+						<OrderingAnswer question={question} test={test} status={status} />
 					)}
 					{isGapAnswer(question) && (
-						<GapAnswer question={question} test={test} />
+						<GapAnswer question={question} test={test} status={status} />
 					)}
 				</div>
 			</QuestionWrapper>

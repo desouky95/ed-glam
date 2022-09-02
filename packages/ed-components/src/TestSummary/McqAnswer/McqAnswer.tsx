@@ -3,38 +3,39 @@ import Spacer from '@src/Spacer';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Base, IMcqAnswer } from '@src/Test/Question.types';
+import { Test, IMcqAnswer, Attempt } from '@src/Test/Question.types';
 
 type McqProps = {
 	question: IMcqAnswer;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
 };
 
 const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	question,
 	test,
+	status,
 }) => {
+	const isCorrect = useMemo(() => {
+		const correct = question?.answer
+			.map((_) => _)
+			.find((_) => _.correct === false);
+		if (correct !== undefined) return correct.correct;
+	}, []);
+
 	const showStudentAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
-		);
+		return status === 'passed' && test?.show_correct_if_passed === false;
 	}, []);
 	const showCorrectAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
-		);
+		return status === 'passed' && test?.show_correct_if_passed === true;
 	}, []);
 
 	const isStudentFailed = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
-		);
+		return status === 'failed' && test?.show_correct_if_failed === false;
 	}, []);
 
 	const isStudentFailedRightAnswer = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
-		);
+		return status === 'failed' && test?.show_correct_if_failed === true;
 	}, []);
 
 	return (
@@ -80,7 +81,9 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 								</FlexLayoutStyle>
 							);
 						})}
-					{(showCorrectAnswer || isStudentFailedRightAnswer) &&
+					{isCorrect !== undefined &&
+						!isCorrect &&
+						(showCorrectAnswer || isStudentFailedRightAnswer) &&
 						question.options.map((mcqItem, index) => {
 							return (
 								<FlexLayoutStyle

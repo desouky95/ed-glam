@@ -1,12 +1,12 @@
-export type Base = {
-	status: string;
-	score?: number;
-	test: {
-		test_summary: boolean;
-		show_correct_if_passed: boolean;
-		show_correct_if_failed: boolean;
-	};
-};
+// export type Base = {
+//   status: string;
+//   score?: number;
+//   test: {
+//     test_summary: boolean;
+//     show_correct_if_passed: boolean;
+//     show_correct_if_failed: boolean;
+//   };
+// };
 
 export type QuestionType = 'gap' | 'mcq' | 'ordering';
 export type OptionsPair = { gap: string | number; choices: string[] };
@@ -76,7 +76,8 @@ export type QuestionAnswer =
 	| OrderingAnswer
 	| ObjectPairAnswer
 	| GapAnswerOptions
-	| OrderAnswerOptions;
+	| OrderAnswerOptions
+	| McqAnswerOptions;
 export type Question = {
 	parsed_content: string | null;
 	content: string | null;
@@ -88,6 +89,66 @@ export type Question = {
 	order: number;
 	options: QuestionOptions;
 	answer: QuestionAnswer | null;
+};
+
+export declare type Test = {
+	id?: number;
+	unit_id?: number;
+	uuid?: string;
+	title?: string;
+	duration?: number;
+	overall_score?: number;
+	model_mode?: string;
+	start_text?: string;
+	end_text?: string;
+	status?: string;
+	score?: number;
+	allow_movement?: boolean;
+	show_score_percentage?: boolean;
+	show_score_value?: boolean;
+	show_grade?: boolean;
+	active?: boolean;
+	show_status?: boolean;
+	show_correct_if_failed?: boolean;
+	show_correct_if_passed?: boolean;
+	test_summary: boolean;
+	allow_repetition_when?: string;
+	message_if_passed?: string;
+	message_if_failed?: string;
+	allowed_trials?: number;
+	questions_count?: string;
+	active_end_date?: Date;
+	unit?: {
+		id?: number;
+		course_id?: number;
+		name?: string;
+		order?: number;
+		type_id?: number;
+		active?: boolean;
+	};
+	created_at?: Date;
+	updated_at?: Date;
+};
+
+export type Attempt = {
+	attempt: {
+		end_date?: string;
+		id?: number;
+		student_id?: number;
+		test_id?: number;
+		active?: false;
+		endDate?: Date;
+		score?: number;
+		status?: string;
+		studentId?: number;
+		testId?: number;
+		testModelId?: number;
+		test?: Test;
+		questionsOrder?: Array<number>;
+		questions?: Array<Question>;
+		created_at?: Date;
+		updated_at?: Date;
+	};
 };
 
 export type IGapAnswer = Omit<Question, 'options' | 'type'> & {
