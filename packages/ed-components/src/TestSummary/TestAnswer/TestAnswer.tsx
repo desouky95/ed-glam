@@ -7,7 +7,7 @@ import {
 	isGapAnswer,
 	Test,
 } from '@src/Test/Question.types';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
@@ -27,13 +27,16 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	test,
 	status,
 }) => {
+	const [score, setScore] = useState<number>(0);
+	const [questionStatus, setQuestionStatus] = useState<boolean>(false);
+
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
 				<QuestionHeader>
 					<QuestionOrder>
-						{status === 'passed' ? (
-							<Img src={Passed} alt="failed" />
+						{questionStatus === true ? (
+							<Img src={Passed} alt="passed" />
 						) : (
 							<Img src={Failed} alt="failed" />
 						)}
@@ -45,20 +48,38 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
 						<Degree>
-							{test?.score}/{question.weight}
+							{score}/{question.weight}
 						</Degree>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
 					{isMcqAnswer(question) && (
-						<McqAnswer question={question} test={test} status={status} />
+						<McqAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 					{isOrderingAnswer(question) && (
-						<OrderingAnswer question={question} test={test} status={status} />
+						<OrderingAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 					{isGapAnswer(question) && (
-						<GapAnswer question={question} test={test} status={status} />
+						<GapAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 				</div>
 			</QuestionWrapper>

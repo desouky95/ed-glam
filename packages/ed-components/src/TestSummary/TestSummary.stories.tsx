@@ -42,17 +42,17 @@ export const Test = () => {
 					],
 					answer: [
 						{
-							correct: false,
+							correct: true,
 							content: {
 								options: [
 									{
-										answer: 'flea',
+										answer: 'mosquito',
 										target: 1,
-										correct: false,
+										correct: true,
 									},
 								],
 							},
-							score: 2,
+							score: 6,
 						},
 					],
 					content: null,

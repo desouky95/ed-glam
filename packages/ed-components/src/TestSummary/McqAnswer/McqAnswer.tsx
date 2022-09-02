@@ -9,16 +9,20 @@ type McqProps = {
 	question: IMcqAnswer;
 	test: Test | undefined;
 	status: string | undefined;
+	setScore: any;
+	setQuestionStatus: any;
 };
 
 const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	question,
 	test,
 	status,
+	setScore,
+	setQuestionStatus,
 }) => {
 	const isCorrect = useMemo(() => {
 		const correct = question?.answer
-			.map((_) => _)
+			?.map((_) => _)
 			.find((_) => _.correct === false);
 		if (correct !== undefined) return correct.correct;
 	}, []);
@@ -53,59 +57,63 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 				</AnswersLabel>
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
-					{(showStudentAnswer || isStudentFailed) &&
-						question?.answer.map((ans, index) => {
-							const {
-								content: {
-									options: { answer, correct },
-								},
-							} = ans;
-							return (
-								<FlexLayoutStyle
-									alignItems={'center'}
-									key={`${answer}-${index}`}
-									mb={{ sm: '0.75rem' }}
-									background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
-								>
-									<StyledRadioButton
-										type={'radio'}
-										value={answer}
-										name="answer"
-										id={`${correct ? 'correct' : 'wrong'}`}
-										checked={showStudentAnswer || isStudentFailed}
-									/>
-									<Spacer mx={{ sm: '4px' }} />
-									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-										<Label htmlFor={answer}>{answer}</Label>
-									</Typography>
-								</FlexLayoutStyle>
-							);
-						})}
+					{question?.answer.map((ans, index) => {
+						const {
+							score,
+							content: {
+								options: { answer, correct },
+							},
+						} = ans;
+						setScore(score);
+						setQuestionStatus(correct);
+						return (
+							<FlexLayoutStyle
+								alignItems={'center'}
+								key={`${answer}-${index}`}
+								mb={{ sm: '0.75rem' }}
+								background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
+							>
+								<StyledRadioButton
+									type={'radio'}
+									value={answer}
+									name="answer"
+									id={`${correct ? 'correct' : 'wrong'}`}
+									checked={correct}
+								/>
+								<Spacer mx={{ sm: '4px' }} />
+								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+									<Label htmlFor={answer}>{answer}</Label>
+								</Typography>
+							</FlexLayoutStyle>
+						);
+					})}
 					{isCorrect !== undefined &&
 						!isCorrect &&
 						(showCorrectAnswer || isStudentFailedRightAnswer) &&
 						question.options.map((mcqItem, index) => {
 							return (
-								<FlexLayoutStyle
-									alignItems={'center'}
-									key={`${mcqItem}-${index}`}
-									mb={{ sm: '0.75rem' }}
-									background={
-										mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
-									}
-								>
-									<StyledRadioButton
-										type={'radio'}
-										value={mcqItem.choice}
-										name="answer"
-										id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-										checked={showCorrectAnswer || isStudentFailedRightAnswer}
-									/>
-									<Spacer mx={{ sm: '4px' }} />
-									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-										<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
-									</Typography>
-								</FlexLayoutStyle>
+								mcqItem?.is_correct && (
+									<FlexLayoutStyle
+										alignItems={'center'}
+										key={`${mcqItem}-${index}`}
+										mb={{ sm: '0.75rem' }}
+										background={
+											mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
+										}
+									>
+										<StyledRadioButton
+											type={'radio'}
+											value={mcqItem.choice}
+											name="answer"
+											id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
+											checked={showCorrectAnswer || isStudentFailedRightAnswer}
+										/>
+										<Spacer mx={{ sm: '4px' }} />
+										<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+											<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
+										</Typography>
+									</FlexLayoutStyle>
+								)
 							);
 						})}
 				</FlexLayout>
