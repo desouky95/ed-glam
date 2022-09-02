@@ -36,8 +36,9 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	const showDash = useMemo(() => {
 		return (
-			test?.show_correct_if_passed === true ||
-			test?.show_correct_if_failed === true
+			(showCorrectAnswer || isStudentFailedRightAnswer) &&
+			(test?.show_correct_if_passed === true ||
+				test?.show_correct_if_failed === true)
 		);
 	}, []);
 
@@ -54,9 +55,11 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer
 		}</span>  ${
-			!isAns?.correct &&
-			(showCorrectAnswer || isStudentFailedRightAnswer) &&
-			`${showDash && `/`} <span class="correct">${options?.correct}</span>`
+			!isAns?.correct && (showCorrectAnswer || isStudentFailedRightAnswer)
+				? `${!isAns?.correct && showDash && `/`} <span class="correct">${
+						options?.correct
+				  }</span>`
+				: ''
 		}`;
 	};
 

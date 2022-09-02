@@ -16,7 +16,7 @@ export default {
 export const Test = () => {
 	const [attemptInfo] = useState<Attempt>({
 		attempt: {
-			status: 'failed',
+			status: 'passed',
 			test: {
 				test_summary: true,
 				show_correct_if_passed: false,
@@ -42,13 +42,13 @@ export const Test = () => {
 					],
 					answer: [
 						{
-							correct: true,
+							correct: false,
 							content: {
 								options: [
 									{
-										answer: 'mosquito',
+										answer: 'flea',
 										target: 1,
-										correct: true,
+										correct: false,
 									},
 								],
 							},
