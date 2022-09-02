@@ -76,9 +76,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 								<StyledRadioButton
 									type={'radio'}
 									value={answer}
-									name="answer"
 									id={`${correct ? 'correct' : 'wrong'}`}
-									checked={correct}
+									checked={true}
 								/>
 								<Spacer mx={{ sm: '4px' }} />
 								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
@@ -104,9 +103,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 										<StyledRadioButton
 											type={'radio'}
 											value={mcqItem.choice}
-											name="answer"
 											id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-											checked={showCorrectAnswer || isStudentFailedRightAnswer}
+											checked={true}
 										/>
 										<Spacer mx={{ sm: '4px' }} />
 										<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
@@ -127,11 +125,11 @@ export default McqAnswer;
 const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	background: ${({ background }) => background};
 	border-radius: 2px;
-	height: 26px;
-	input[type='radio']:checked#correct {
+	height: 1.625rem;
+	input[type='radio']#correct {
 		accent-color: #00d66b;
 	}
-	input[type='radio']:checked#wrong {
+	input[type='radio']#wrong {
 		accent-color: #ff0000;
 	}
 `;
