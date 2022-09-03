@@ -3,38 +3,43 @@ import Spacer from '@src/Spacer';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Base, IMcqAnswer } from '@src/Test/Question.types';
+import { Test, IMcqAnswer, Attempt } from '@src/Test/Question.types';
 
 type McqProps = {
 	question: IMcqAnswer;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
+	setScore: any;
+	setQuestionStatus: any;
 };
 
 const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	question,
 	test,
+	status,
+	setScore,
+	setQuestionStatus,
 }) => {
+	const isCorrect = useMemo(() => {
+		const correct = question?.answer
+			?.map((_) => _)
+			.find((_) => _.correct === false);
+		if (correct !== undefined) return correct.correct;
+	}, []);
+
 	const showStudentAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
-		);
+		return status === 'passed' && test?.show_correct_if_passed === false;
 	}, []);
 	const showCorrectAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
-		);
+		return status === 'passed' && test?.show_correct_if_passed === true;
 	}, []);
 
 	const isStudentFailed = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
-		);
+		return status === 'failed' && test?.show_correct_if_failed === false;
 	}, []);
 
 	const isStudentFailedRightAnswer = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
-		);
+		return status === 'failed' && test?.show_correct_if_failed === true;
 	}, []);
 
 	return (
@@ -52,57 +57,61 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 				</AnswersLabel>
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
-					{(showStudentAnswer || isStudentFailed) &&
-						question?.answer.map((ans, index) => {
-							const {
-								content: {
-									options: { answer, correct },
-								},
-							} = ans;
-							return (
-								<FlexLayoutStyle
-									alignItems={'center'}
-									key={`${answer}-${index}`}
-									mb={{ sm: '0.75rem' }}
-									background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
-								>
-									<StyledRadioButton
-										type={'radio'}
-										value={answer}
-										name="answer"
-										id={`${correct ? 'correct' : 'wrong'}`}
-										checked={showStudentAnswer || isStudentFailed}
-									/>
-									<Spacer mx={{ sm: '4px' }} />
-									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-										<Label htmlFor={answer}>{answer}</Label>
-									</Typography>
-								</FlexLayoutStyle>
-							);
-						})}
-					{(showCorrectAnswer || isStudentFailedRightAnswer) &&
+					{question?.answer.map((ans, index) => {
+						const {
+							score,
+							content: {
+								options: { answer, correct },
+							},
+						} = ans;
+						setScore(score);
+						setQuestionStatus(correct);
+						return (
+							<FlexLayoutStyle
+								alignItems={'center'}
+								key={`${answer}-${index}`}
+								mb={{ sm: '0.75rem' }}
+								background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
+							>
+								<StyledRadioButton
+									type={'radio'}
+									value={answer}
+									id={`${correct ? 'correct' : 'wrong'}`}
+									checked={true}
+								/>
+								<Spacer mx={{ sm: '4px' }} />
+								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+									<Label htmlFor={answer}>{answer}</Label>
+								</Typography>
+							</FlexLayoutStyle>
+						);
+					})}
+					{isCorrect !== undefined &&
+						!isCorrect &&
+						(showCorrectAnswer || isStudentFailedRightAnswer) &&
 						question.options.map((mcqItem, index) => {
 							return (
-								<FlexLayoutStyle
-									alignItems={'center'}
-									key={`${mcqItem}-${index}`}
-									mb={{ sm: '0.75rem' }}
-									background={
-										mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
-									}
-								>
-									<StyledRadioButton
-										type={'radio'}
-										value={mcqItem.choice}
-										name="answer"
-										id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-										checked={showCorrectAnswer || isStudentFailedRightAnswer}
-									/>
-									<Spacer mx={{ sm: '4px' }} />
-									<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-										<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
-									</Typography>
-								</FlexLayoutStyle>
+								mcqItem?.is_correct && (
+									<FlexLayoutStyle
+										alignItems={'center'}
+										key={`${mcqItem}-${index}`}
+										mb={{ sm: '0.75rem' }}
+										background={
+											mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
+										}
+									>
+										<StyledRadioButton
+											type={'radio'}
+											value={mcqItem.choice}
+											id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
+											checked={true}
+										/>
+										<Spacer mx={{ sm: '4px' }} />
+										<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+											<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
+										</Typography>
+									</FlexLayoutStyle>
+								)
 							);
 						})}
 				</FlexLayout>
@@ -116,11 +125,11 @@ export default McqAnswer;
 const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	background: ${({ background }) => background};
 	border-radius: 2px;
-	height: 26px;
-	input[type='radio']:checked#correct {
+	height: 1.625rem;
+	input[type='radio']#correct {
 		accent-color: #00d66b;
 	}
-	input[type='radio']:checked#wrong {
+	input[type='radio']#wrong {
 		accent-color: #ff0000;
 	}
 `;

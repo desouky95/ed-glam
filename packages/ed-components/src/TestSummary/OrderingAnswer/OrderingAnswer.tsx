@@ -1,13 +1,16 @@
 import { FlexLayout } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Answers, Base, IOrderingAnswer } from '@src/Test/Question.types';
+import { Answers, Test, IOrderingAnswer } from '@src/Test/Question.types';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 type OrderingProps = {
 	question: IOrderingAnswer;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
+	setScore: any;
+	setQuestionStatus: any;
 };
 type Option = {
 	answer: Array<string>;
@@ -21,31 +24,31 @@ type Options = {
 const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
 	test,
+	status,
+	setScore,
+	setQuestionStatus,
 }) => {
 	const [options] = useState<Array<Options | any>>(question.options);
 	const [answers] = useState<Array<Answers | any>>(question.answer);
 
+	const isCorrect = useMemo(() => {
+		const correct = answers?.map((_) => _).find((_) => _.correct === false);
+		if (correct !== undefined) return correct.correct;
+	}, []);
+
 	const showStudentAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === false
-		);
+		return status === 'passed' && test?.show_correct_if_passed === false;
 	}, []);
 	const showCorrectAnswer = useMemo(() => {
-		return (
-			test?.status === 'passed' && test?.test?.show_correct_if_passed === true
-		);
+		return status === 'passed' && test?.show_correct_if_passed === true;
 	}, []);
 
 	const isStudentFailed = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === false
-		);
+		return status === 'failed' && test?.show_correct_if_failed === false;
 	}, []);
 
 	const isStudentFailedRightAnswer = useMemo(() => {
-		return (
-			test?.status === 'failed' && test?.test?.show_correct_if_failed === true
-		);
+		return status === 'failed' && test?.show_correct_if_failed === true;
 	}, []);
 
 	return (
@@ -60,35 +63,41 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 				gridGap="1.5rem"
 				flexWrap="wrap"
 			>
-				{(showStudentAnswer || isStudentFailed) &&
-					answers?.map((answer) => {
-						const ans = answer?.content.options.answer;
-						return ans?.map((_: string, index: number) => (
-							<Answer key={`${_}-${index}`} background="#ffd5cc">
-								{_}
-							</Answer>
-						));
-					})}
+				{answers?.map((answer) => {
+					const ans = answer?.content.options.answer;
+					setScore(answer.score);
+					setQuestionStatus(answer.correct);
+					return ans?.map((_: string, index: number) => (
+						<Answer
+							key={`${_}-${index}`}
+							background={`${answer.correct === true ? '#e5fbf0' : '#ffd5cc'}`}
+						>
+							{_}
+						</Answer>
+					));
+				})}
 			</FlexLayout>
-			{(showCorrectAnswer || isStudentFailedRightAnswer) && (
-				<>
-					<Text>Correct answer</Text>
-					<FlexLayout
-						mb={{ sm: '1rem', lg: '2rem' }}
-						flexDirection="column"
-						gridGap="1.5rem"
-						flexWrap="wrap"
-					>
-						{options?.map((opt, index) => {
-							return (
-								<Answer key={`${opt.option}-${index}`} background="#e5fbf0">
-									{opt.option}
-								</Answer>
-							);
-						})}
-					</FlexLayout>
-				</>
-			)}
+			{isCorrect !== undefined &&
+				!isCorrect &&
+				(showCorrectAnswer || isStudentFailedRightAnswer) && (
+					<>
+						<Text>Correct answer</Text>
+						<FlexLayout
+							mb={{ sm: '1rem', lg: '2rem' }}
+							flexDirection="column"
+							gridGap="1.5rem"
+							flexWrap="wrap"
+						>
+							{options?.map((opt, index) => {
+								return (
+									<Answer key={`${opt.option}-${index}`} background="#e5fbf0">
+										{opt.option}
+									</Answer>
+								);
+							})}
+						</FlexLayout>
+					</>
+				)}
 		</div>
 	);
 };

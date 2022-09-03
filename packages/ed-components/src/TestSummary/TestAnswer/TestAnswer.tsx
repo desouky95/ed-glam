@@ -5,9 +5,9 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 	isGapAnswer,
-	Base,
+	Test,
 } from '@src/Test/Question.types';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
@@ -18,21 +18,29 @@ import Passed from '../Assets/passed.svg';
 type Props = {
 	question: Question;
 	index: number;
-	test: Base;
+	test: Test | undefined;
+	status: string | undefined;
 };
 
-const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
+const TestAnswer: React.VoidFunctionComponent<Props> = ({
+	question,
+	test,
+	status,
+}) => {
+	const [score, setScore] = useState<number>(0);
+	const [questionStatus, setQuestionStatus] = useState<boolean>(false);
+
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
 				<QuestionHeader>
 					<QuestionOrder>
-						{test?.status === 'passed' ? (
-							<Img src={Passed} alt="failed" />
+						{questionStatus === true ? (
+							<Img src={Passed} alt="passed" />
 						) : (
 							<Img src={Failed} alt="failed" />
 						)}
-						Q{question.order}.
+						Q.
 					</QuestionOrder>
 					<QuestionPoints>
 						<Type>{question.type}</Type>
@@ -40,20 +48,38 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({ question, test }) => {
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
 						<Degree>
-							{test?.score}/{question.weight}
+							{score}/{question.weight}
 						</Degree>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
 					{isMcqAnswer(question) && (
-						<McqAnswer question={question} test={test} />
+						<McqAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 					{isOrderingAnswer(question) && (
-						<OrderingAnswer question={question} test={test} />
+						<OrderingAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 					{isGapAnswer(question) && (
-						<GapAnswer question={question} test={test} />
+						<GapAnswer
+							question={question}
+							test={test}
+							status={status}
+							setScore={setScore}
+							setQuestionStatus={setQuestionStatus}
+						/>
 					)}
 				</div>
 			</QuestionWrapper>
