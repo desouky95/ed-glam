@@ -25,7 +25,6 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	status,
 }) => {
 	const [options] = useState<Array<Options | any>>(question.options);
-	const [answers] = useState<Answers | any>(question.answer);
 
 	const isCorrect = useMemo(() => {
 		return question.correct;
@@ -111,15 +110,19 @@ export const Text = styled.p`
 	display: flex;
 	align-items: center;
 	gap: 0.719rem;
+	margin-bottom: 0.938rem;
+	margin-top: 0.938rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 0.875rem;
-	gap: 1rem;	
+	gap: 1rem;
+	margin-top: 2.75rem;
+	margin-bottom: 3.188rem;
 }`}
 	&::after {
 		content: '';
 		height: 0;
 		flex-grow: 1;
-		border: solid 1px #d3d3d3;
+		border: solid 0.5px #d3d3d3;
 	}
 `;
 

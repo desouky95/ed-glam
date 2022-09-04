@@ -110,8 +110,9 @@ export default McqAnswer;
 
 const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	background: ${({ background }) => background};
-	border-radius: 2px;
-	height: 1.625rem;
+	height: 2.313rem;
+	padding: 6px 6px 7px;
+	border-radius: 7px;
 	input[type='radio']#correct {
 		accent-color: #00d66b;
 	}
@@ -131,16 +132,14 @@ const StyledRadioButton = styled.input`
 	width: 0.535rem;
 	width: 0.535rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
-		width :0.75rem;
-		height :0.75rem;
-		width: 20px;
-		height: 20px;
+		width :1.5rem;
+		height :1.5rem;
 	}`};
 `;
 const AnswersLabel = styled(Typography)`
 	color: ${(props) => props.theme.colors.silver};
 	font-size: 1rem;
-	font-weight: normal;
+	font-weight: 300;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 		margin-bottom: 0.75rem;
 	}`};
