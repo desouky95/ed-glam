@@ -85,7 +85,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 const FeebackText = styled(Text)`
 	margin: 0.563rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
-		margin: 0 2.063rem;
+		margin: 2.063rem;
 }`}
 `;
 

@@ -47,7 +47,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			else return '#ffd5cc';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'rgba(0, 214, 107, 0.1)';
-			else return '#ffd5cc';
+			else return '';
 		return '#FFF';
 	};
 	const bulletColor = (item: Options): Color => {
@@ -56,7 +56,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			else return 'lightRed';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'green';
-			else return 'lightRed';
+			else return 'light';
 		return 'silver';
 	};
 	const bulletState = (item: Options) => {
