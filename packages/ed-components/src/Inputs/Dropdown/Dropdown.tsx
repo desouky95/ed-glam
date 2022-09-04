@@ -88,6 +88,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 		return (
 			<div ref={outsideRef} style={{ position: 'relative' }}>
 				<select
+					title="select"
 					value={value}
 					onChange={(e) => {
 						onChange?.(e);
@@ -117,6 +118,7 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 					}}
 					$hasValue={hasValue}
 					error={props.error}
+					disabled={props.disabled}
 					{...props.sx}
 				>
 					<span>

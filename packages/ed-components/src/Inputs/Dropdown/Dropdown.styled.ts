@@ -8,8 +8,9 @@ import { InputBaseError } from '../BaseInputUtils/BaseInputs.types';
 
 type WrapperProps = SpaceProps &
 	LayoutProps &
-	InputBaseError & { $hasValue: boolean };
+	InputBaseError & { $hasValue: boolean; disabled?: boolean };
 export const DropdownWrapper = styled.div<WrapperProps>`
+	pointer-events: ${(props) => props.disabled && 'none'};
 	display: flex;
 	position: relative;
 	cursor: pointer;
