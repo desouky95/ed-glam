@@ -1,3 +1,4 @@
+import { SlideLeftAnimation, SlideRightAnimation } from '@src/Tabs/Tabs.styled';
 import { useTabsContext } from '@src/Tabs/TabsProvider';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
@@ -23,7 +24,7 @@ const TabsContents: React.FC<TabsContentsProps> = ({ children, ...props }) => {
 	if (!context) {
 		throw new Error("Tabs isn't wrapped by TabsProvider");
 	}
-	const { activeTabIndex, activeTab } = context;
+	const { activeTabIndex, activeTab, oldIndex } = context;
 
 	const activeIndex = useMemo(() => {
 		const _children = React.Children.toArray(children) as Array<
@@ -39,7 +40,15 @@ const TabsContents: React.FC<TabsContentsProps> = ({ children, ...props }) => {
 				<TabContentsSwiperWrapper {...props}>
 					<TabContentsSwiper activeIndex={activeIndex}>
 						{React.Children.map(children, (child, index) => {
-							return <TabContentWrapper>{child}</TabContentWrapper>;
+							return (
+								<TabContentWrapper
+									current={activeTabIndex}
+									oldIndex={oldIndex ?? 0}
+									index={index}
+								>
+									{child}
+								</TabContentWrapper>
+							);
 						})}
 					</TabContentsSwiper>
 				</TabContentsSwiperWrapper>
@@ -66,22 +75,18 @@ const TabContentsSwiper = styled.div.attrs((props) => ({
 	display: flex;
 	min-width: 100%;
 	flex: 1;
-
-	transform: ${(props) => {
-		const directionVal = props.dir === 'rtl' ? 100 : -100;
-
-		return props.activeIndex
-			? `translateX(${props.activeIndex * directionVal}%)`
-			: '';
-	}};
-	transition: all ease-in-out 300ms;
-	/* border: 1px solid #000; */
 `;
 
-const TabContentWrapper = styled.div`
+const TabContentWrapper = styled.div<{
+	index: number;
+	current?: number;
+	oldIndex: number;
+}>`
 	flex: 1;
 	flex-grow: 1;
 	overflow: hidden;
-	/* border: 1px solid red; */
 	min-width: 100%;
+	display: ${({ index, current }) => (index === current ? 'block' : 'none')};
+	${({ index, oldIndex }) => index > oldIndex && SlideLeftAnimation};
+	${({ index, oldIndex }) => index < oldIndex && SlideRightAnimation};
 `;
