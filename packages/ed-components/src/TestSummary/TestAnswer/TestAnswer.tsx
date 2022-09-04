@@ -158,6 +158,7 @@ const Type = styled(Typography)`
 	font-weight: 600;
 	color: #251b33;
 	margin-top: -3px;
+	text-transform: capitalize;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 1rem;
 }`}
