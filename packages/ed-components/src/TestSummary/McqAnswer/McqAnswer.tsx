@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import { IMcqAnswer, Test } from '../TestSummary.types';
+import { Color } from '@eduact/student-theme';
 
 type McqProps = {
 	question: IMcqAnswer;
@@ -56,13 +57,10 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 						mb={{ sm: '0.75rem' }}
 						background={isCorrect ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
 					>
-						<StyledRadioButton
-							type={'radio'}
-							value={question.answer.content.options.answer}
-							id={`${
-								question.answer.content.options.correct ? 'correct' : 'wrong'
-							}`}
-							checked={true}
+						<AnswerBullet
+							state={
+								question.answer.content.options.correct ? 'green' : 'lightRed'
+							}
 						/>
 						<Spacer mx={{ sm: '4px' }} />
 						<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
@@ -86,12 +84,10 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 											mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
 										}
 									>
-										<StyledRadioButton
-											type={'radio'}
-											value={mcqItem.choice}
-											id={`${mcqItem.is_correct ? 'correct' : 'wrong'}`}
-											checked={true}
+										<AnswerBullet
+											state={mcqItem.is_correct ? 'green' : 'lightRed'}
 										/>
+
 										<Spacer mx={{ sm: '4px' }} />
 										<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
 											<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
@@ -111,7 +107,7 @@ export default McqAnswer;
 const FlexLayoutStyle = styled(FlexLayout)<{ background: string }>`
 	background: ${({ background }) => background};
 	height: 2.313rem;
-	padding: 6px 6px 7px;
+	padding: 0.5rem;
 	border-radius: 7px;
 	input[type='radio']#correct {
 		accent-color: #00d66b;
@@ -130,10 +126,24 @@ const Label = styled.label`
 `;
 const StyledRadioButton = styled.input`
 	width: 0.535rem;
-	width: 0.535rem;
+	height: 0.535rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 		width :1.5rem;
 		height :1.5rem;
+	}`};
+`;
+const AnswerBullet = styled.div<{ state: Color }>`
+	border-radius: 50%;
+	position: relative;
+	background: ${(props) => props.theme.colors[props.state]};
+	box-shadow: inset 0 0 0 1px #fff;
+	outline: 1px solid ${(props) => props.theme.colors[props.state]};
+	width: 0.535rem;
+	height: 0.535rem;
+	${({ theme, state }) => `${theme.mediaQueries.medium}{
+		width :1.25rem;
+		height :1.25rem;
+		box-shadow: inset 0 0 0 3px #fff;
 	}`};
 `;
 const AnswersLabel = styled(Typography)`

@@ -17,6 +17,8 @@ export const Colors = {
 	orange: '#F55F44',
 	red: '#dc3545',
 	purpleNavy: '#575A89',
+	green: '#00d66b',
+	lightRed: '#ff3100',
 };
 
 export type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl';

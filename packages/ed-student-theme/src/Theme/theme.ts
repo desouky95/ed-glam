@@ -354,6 +354,12 @@ export const Theme: ITheme = {
 		orange: {
 			backgroundColor: Colors.orange,
 		},
+		green: {
+			backgroundColor: Colors.green,
+		},
+		lightRed: {
+			backgroundColor: Colors.lightRed,
+		},
 	},
 	breakpoints: aliasBreakpoints,
 	breakpointsInPx: breakpointsInPx,
