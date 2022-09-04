@@ -3,6 +3,7 @@ import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
 import { IOrderingAnswer, Test } from '../TestSummary.types';
 
 type OrderingProps = {
@@ -92,6 +93,14 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 						</FlexLayout>
 					</>
 				)}
+			{question.feedback !== null && (
+				<>
+					<Text>Feedback</Text>
+					<FeedbacktWrapper
+						dangerouslySetInnerHTML={{ __html: question.feedback as string }}
+					/>
+				</>
+			)}
 		</div>
 	);
 };

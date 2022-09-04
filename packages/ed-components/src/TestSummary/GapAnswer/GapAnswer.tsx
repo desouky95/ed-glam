@@ -82,7 +82,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	);
 };
 
-const FeedbacktWrapper = styled.div`
+export const FeedbacktWrapper = styled.div`
 	max-width: 100%;
 	width: 100%;
 	overflow-x: auto;

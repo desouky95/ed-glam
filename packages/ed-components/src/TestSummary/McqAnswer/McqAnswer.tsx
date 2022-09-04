@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import { IMcqAnswer, Test } from '../TestSummary.types';
 import { Color } from '@eduact/student-theme';
+import { Text } from '../OrderingAnswer/OrderingAnswer';
+import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
 
 type McqProps = {
 	question: IMcqAnswer;
@@ -98,6 +100,14 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 						})}
 				</FlexLayout>
 			</FlexLayout>
+			{question.feedback !== null && (
+				<>
+					<Text>Feedback</Text>
+					<FeedbacktWrapper
+						dangerouslySetInnerHTML={{ __html: question.feedback as string }}
+					/>
+				</>
+			)}
 		</Spacer>
 	);
 };
