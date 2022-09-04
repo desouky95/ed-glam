@@ -27,7 +27,7 @@ export const Test = () => {
 					parsed_content:
 						'<p>Lorem epsiem to make $$1 Lorem epsiem to make something for the creation</p>',
 					id: 4,
-					type: 'Fill in the gap',
+					type: 'gap',
 					weight: 3,
 					feedback:
 						'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
@@ -89,7 +89,7 @@ export const Test = () => {
 					order: 2,
 					parsed_content: null,
 					test_id: 19,
-					type: 'Ordering',
+					type: 'ordering',
 					weight: 6,
 				},
 				{
@@ -98,7 +98,7 @@ export const Test = () => {
 					weight: 5,
 					content: 'what is the best solution ?',
 					parsed_content: null,
-					type: 'MCQ',
+					type: 'mcq',
 					feedback: 'no',
 					order: 10,
 					correct: false,

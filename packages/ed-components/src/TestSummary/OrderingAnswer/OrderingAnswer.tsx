@@ -57,14 +57,19 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 				gridGap="1.5rem"
 				flexWrap="wrap"
 			>
-				<Answer
-					key={`${question.id}`}
-					background={`${
-						question.answer.content.options.correct ? '#e5fbf0' : '#ffd5cc'
-					}`}
-				>
-					{question.answer.content.options.answer}
-				</Answer>
+				{question.answer.content.options.answer.map((_) => {
+					return (
+						<Answer
+							key={`${question.id}`}
+							background={`${
+								question.answer.content.options.correct ? '#e5fbf0' : '#ffd5cc'
+							}`}
+						>
+							{' '}
+							{_}{' '}
+						</Answer>
+					);
+				})}
 			</FlexLayout>
 			{isCorrect !== undefined &&
 				!isCorrect &&
@@ -90,6 +95,10 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 		</div>
 	);
 };
+
+const AnswerText = styled.p`
+	margin-bottom: 1erm;
+`;
 
 const Answer = styled.span<{ background: string }>`
 	font-size: 0.625rem;

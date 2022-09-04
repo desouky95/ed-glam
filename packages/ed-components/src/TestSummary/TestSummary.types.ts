@@ -15,7 +15,7 @@ type McqOption = {
 	target?: number;
 };
 type OrderOption = {
-	answer: string | Array<string>;
+	answer: Array<string>;
 	correct: boolean;
 	target?: number;
 };
