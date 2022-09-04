@@ -1,9 +1,9 @@
 import { FlexLayout } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Answers, Test, IOrderingAnswer } from '@src/Test/Question.types';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { Answers, IOrderingAnswer, Test } from '../TestSummary.types';
 
 type OrderingProps = {
 	question: IOrderingAnswer;

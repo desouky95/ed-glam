@@ -1,8 +1,8 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Test, IGapAnswer, Options } from '@src/Test/Question.types';
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
+import { IGapAnswer, Options, Test } from '../TestSummary.types';
 
 type GapProps = {
 	question: IGapAnswer;
@@ -40,13 +40,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
-		// const answer = question?.answer.map((ans) => ans.content.options);
 		const answer = question?.answer.content.options;
-		// const score = question?.answer.map((ans) => ans).find((_) => _.score);
-		// let isAns;
-		// for (const ans of answer) {
-		// 	isAns = ans.
-		// }
 		const isAns = answer.find((_) => _.target === options.gap);
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer

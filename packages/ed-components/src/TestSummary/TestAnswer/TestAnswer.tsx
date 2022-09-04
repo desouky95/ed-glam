@@ -1,19 +1,19 @@
-import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
+import { Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
-import {
-	Question,
-	isMcqAnswer,
-	isOrderingAnswer,
-	isGapAnswer,
-	Test,
-} from '@src/Test/Question.types';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
 import Failed from '../Assets/failed.svg';
 import Passed from '../Assets/passed.svg';
+import {
+	isGapAnswer,
+	isMcqAnswer,
+	isOrderingAnswer,
+	Question,
+	Test,
+} from '../TestSummary.types';
 
 type Props = {
 	question: Question;

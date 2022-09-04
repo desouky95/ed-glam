@@ -3,7 +3,7 @@ import Spacer from '@src/Spacer';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Test, IMcqAnswer, Attempt } from '@src/Test/Question.types';
+import { IMcqAnswer, Test } from '../TestSummary.types';
 
 type McqProps = {
 	question: IMcqAnswer;
@@ -18,10 +18,6 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 }) => {
 	const isCorrect = useMemo(() => {
 		return question.correct;
-		// const correct = question?.answer
-		// 	?.map((_) => _)
-		// 	.find((_) => _.correct === false);
-		// if (correct !== undefined) return correct.correct;
 	}, [question]);
 
 	const showStudentAnswer = useMemo(() => {
