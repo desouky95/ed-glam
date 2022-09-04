@@ -72,7 +72,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 			/>
 			{question.feedback !== null && (
 				<>
-					<Text>Feedback</Text>
+					<FeebackText>Feedback</FeebackText>
 					<FeedbacktWrapper
 						dangerouslySetInnerHTML={{ __html: question.feedback as string }}
 					/>
@@ -81,6 +81,13 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 		</QuestionContentWrapper>
 	);
 };
+
+const FeebackText = styled(Text)`
+	margin: 0.563rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		margin: 0 2.063rem;
+}`}
+`;
 
 export const FeedbacktWrapper = styled.div`
 	max-width: 100%;
