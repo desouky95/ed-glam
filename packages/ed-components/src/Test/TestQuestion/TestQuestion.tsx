@@ -1,4 +1,5 @@
 import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
+import { NumberFormatter } from '@eduact/utils';
 import { Icon, Icons } from '@src/Icons';
 import Spacer from '@src/Spacer';
 import React from 'react';
@@ -24,6 +25,8 @@ type Props = {
 	showNext?: boolean;
 	prevLabel?: string;
 	nextLabel?: string;
+	scoreLabel?: string;
+	questionLabel?: string;
 	onFocus?: React.FocusEventHandler<HTMLDivElement>;
 	onBlur?: React.FocusEventHandler<HTMLDivElement>;
 };
@@ -41,16 +44,18 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	prevLabel = 'Previous',
 	onBlur,
 	onFocus,
+	questionLabel,
+	scoreLabel,
 }) => {
 	return (
 		<QuestionContainer tabIndex={question.id} onFocus={onFocus} onBlur={onBlur}>
 			<QuestionWrapper>
 				<QuestionHeader>
-					<QuestionOrder>Q{index + 1}.</QuestionOrder>
+					<QuestionOrder>{questionLabel ?? `Q${index + 1}.`} </QuestionOrder>
 					<QuestionPoints>
-						<Points>Points </Points>
+						<Points>{scoreLabel ?? 'Points'} </Points>
 						<Spacer mx={'0.5rem'} />
-						<span>{question.weight}</span>
+						<span>{NumberFormatter(question.weight)}</span>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
@@ -156,10 +161,17 @@ const QuestionPoints = styled.span`
 	}`}
 `;
 
-const NavigationButton = styled(FlexLayout)`
+const NavigationButton = styled(FlexLayout).attrs((p) => ({
+	dir: document.documentElement.dir,
+}))`
 	color: ${(props) => props.theme.colors.primary};
 	cursor: pointer;
 	transition: opacity ease-in-out 300ms;
+	&[dir='rtl'] {
+		svg {
+			transform: rotate(180deg);
+		}
+	}
 	&:hover {
 		opacity: 0.8;
 	}
