@@ -2,9 +2,9 @@ import { GapQuestion } from '@src/Test/GapQuestion';
 import { OrderingQuestion } from '@src/Test/OrderingQuestion';
 import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
-import { Test as TestInfo, Question, Attempt } from '@src/Test/Question.types';
 import { TestAnswer } from './TestAnswer';
 import styled from 'styled-components';
+import { Attempt } from './TestSummary.types';
 
 export default {
 	subcomponents: {
@@ -27,7 +27,7 @@ export const Test = () => {
 					parsed_content:
 						'<p>Lorem epsiem to make $$1 Lorem epsiem to make something for the creation</p>',
 					id: 4,
-					type: 'gap',
+					type: 'Fill in the gap',
 					weight: 3,
 					feedback:
 						'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
@@ -89,7 +89,7 @@ export const Test = () => {
 					order: 2,
 					parsed_content: null,
 					test_id: 19,
-					type: 'ordering',
+					type: 'Ordering',
 					weight: 6,
 				},
 				{
@@ -98,7 +98,7 @@ export const Test = () => {
 					weight: 5,
 					content: 'what is the best solution ?',
 					parsed_content: null,
-					type: 'mcq',
+					type: 'MCQ',
 					feedback: 'no',
 					order: 10,
 					correct: false,

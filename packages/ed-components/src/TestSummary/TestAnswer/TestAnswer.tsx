@@ -1,19 +1,19 @@
-import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
+import { Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
-import {
-	Question,
-	isMcqAnswer,
-	isOrderingAnswer,
-	isGapAnswer,
-	Test,
-} from '@src/Test/Question.types';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
 import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
 import Failed from '../Assets/failed.svg';
 import Passed from '../Assets/passed.svg';
+import {
+	isGapAnswer,
+	isMcqAnswer,
+	isOrderingAnswer,
+	Question,
+	Test,
+} from '../TestSummary.types';
 
 type Props = {
 	question: Question;
@@ -30,44 +30,60 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 }) => {
 	return (
 		<QuestionContainer tabIndex={question.id}>
-			<QuestionWrapper>
-				<QuestionHeader>
-					<QuestionOrder>
-						{question.correct === true ? (
-							<Img src={Passed} alt="passed" />
-						) : (
-							<Img src={Failed} alt="failed" />
+			<HeaderWrapper>
+				<ImageWrapper>
+					{question.correct === true ? (
+						<Img src={Passed} alt="passed" />
+					) : (
+						<Img src={Failed} alt="failed" />
+					)}
+				</ImageWrapper>
+				<QuestionWrapper>
+					<QuestionHeader>
+						<QuestionOrder>Q{index + 1}.</QuestionOrder>
+						<QuestionPoints>
+							<Type>{question.type}</Type>
+							<SpacerStyle mx={'3.625rem'} />
+							<Points>Points </Points>
+							<Spacer mx={'0.5rem'} />
+							<Degree>
+								{question.score}/{question.weight}
+							</Degree>
+						</QuestionPoints>
+					</QuestionHeader>
+
+					<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
+					<div>
+						{isMcqAnswer(question) && (
+							<McqAnswer question={question} test={test} status={status} />
 						)}
-						Q{index + 1}.
-					</QuestionOrder>
-					<QuestionPoints>
-						<Type>{question.type}</Type>
-						<Spacer mx={'0.5rem'} />
-						<Points>Points </Points>
-						<Spacer mx={'0.5rem'} />
-						<Degree>
-							{question.score}/{question.weight}
-						</Degree>
-					</QuestionPoints>
-				</QuestionHeader>
-				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
-				<div>
-					{isMcqAnswer(question) && (
-						<McqAnswer question={question} test={test} status={status} />
-					)}
-					{isOrderingAnswer(question) && (
-						<OrderingAnswer question={question} test={test} status={status} />
-					)}
-					{isGapAnswer(question) && (
-						<GapAnswer question={question} test={test} status={status} />
-					)}
-				</div>
-			</QuestionWrapper>
+						{isOrderingAnswer(question) && (
+							<OrderingAnswer question={question} test={test} status={status} />
+						)}
+						{isGapAnswer(question) && (
+							<GapAnswer question={question} test={test} status={status} />
+						)}
+					</div>
+				</QuestionWrapper>
+			</HeaderWrapper>
 		</QuestionContainer>
 	);
 };
 
 export default TestAnswer;
+const ImageWrapper = styled.div`
+	position: relative;
+	top: 2px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	top: 6px;
+	}`}
+`;
+const SpacerStyle = styled(Spacer)`
+	margin: 0.8rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	margin: 3.625rem;
+}`}
+`;
 
 const QuestionContainer = styled.div`
 	${DefaultBrowserCss};
@@ -85,18 +101,23 @@ const QuestionContainer = styled.div`
 }`}
 `;
 const QuestionWrapper = styled.div`
-	${({ theme }) => `${theme.mediaQueries.large}{
-	padding : 0 8rem;
-}`}
+	width: 100%;
 `;
 const QuestionHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 2px solid #d3d3d3;
-	padding-bottom: 8px;
 	align-items: center;
-	${({ theme }) => `${theme.mediaQueries.large}{
-		padding-bottom : 2rem;
+	width: 100%;
+`;
+const HeaderWrapper = styled.div`
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.375rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		gap: 1.5rem;
+		padding : 0 8rem;
 	}`}
 `;
 const QuestionOrder = styled.span`
@@ -116,6 +137,7 @@ const Img = styled.img`
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	width: 1.563rem;
 	height: 1.25rem;
+	margin-top: -20px
 	}`}
 `;
 const QuestionPoints = styled.span`
@@ -123,10 +145,8 @@ const QuestionPoints = styled.span`
 	font-weight: bold;
 	display: flex;
 	align-items: center;
-	/* gap: 0.85rem; */
 	${({ theme }) => `${theme.mediaQueries.large}{
 		font-size : 16px;
-    // gap: 4rem;
 	}`}
 `;
 const Type = styled(Typography)`
