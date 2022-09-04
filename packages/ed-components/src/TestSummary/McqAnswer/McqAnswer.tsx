@@ -7,6 +7,8 @@ import { IMcqAnswer, Test } from '../TestSummary.types';
 import { Color } from '@eduact/student-theme';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
+import { Options } from '@src/Test/Question.types';
+import { cornersOfRectangle } from '@dnd-kit/core/dist/utilities/algorithms/helpers';
 
 type McqProps = {
 	question: IMcqAnswer;
@@ -38,6 +40,31 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 		return status === 'failed' && test?.show_correct_if_failed === true;
 	}, []);
 
+	const getMcqColor = (item: Options) => {
+		if (question.answer.content.options.answer === item.choice)
+			if (question.answer.content.options.correct)
+				return 'rgba(0, 214, 107, 0.1)';
+			else return '#ffd5cc';
+		if (showCorrectAnswer || isStudentFailedRightAnswer)
+			if (item?.is_correct) return 'rgba(0, 214, 107, 0.1)';
+			else return '#ffd5cc';
+		return '#FFF';
+	};
+	const bulletColor = (item: Options): Color => {
+		if (question.answer.content.options.answer === item.choice)
+			if (question.answer.content.options.correct) return 'green';
+			else return 'lightRed';
+		if (showCorrectAnswer || isStudentFailedRightAnswer)
+			if (item?.is_correct) return 'green';
+			else return 'lightRed';
+		return 'silver';
+	};
+	const bulletState = (item: Options) => {
+		if (question.answer.content.options.answer === item.choice) return true;
+		if (showCorrectAnswer || isStudentFailedRightAnswer) return true;
+		return false;
+	};
+
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<QuestionContentWrapper
@@ -53,51 +80,26 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 				</AnswersLabel>
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
-					<FlexLayoutStyle
-						alignItems={'center'}
-						key={`${question.id}`}
-						mb={{ sm: '0.75rem' }}
-						background={isCorrect ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
-					>
-						<AnswerBullet
-							state={
-								question.answer.content.options.correct ? 'green' : 'lightRed'
-							}
-						/>
-						<Spacer mx={{ sm: '4px' }} />
-						<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-							<Label htmlFor={question.answer.content.options.answer}>
-								{question.answer.content.options.answer}
-							</Label>
-						</Typography>
-					</FlexLayoutStyle>
+					{question.options.map((mcqItem, index) => {
+						return (
+							<FlexLayoutStyle
+								alignItems={'center'}
+								key={`${mcqItem}-${index}`}
+								mb={{ sm: '0.75rem' }}
+								background={getMcqColor(mcqItem)}
+							>
+								<AnswerBullet
+									filled={bulletState(mcqItem)}
+									state={bulletColor(mcqItem)}
+								/>
 
-					{isCorrect !== undefined &&
-						!isCorrect &&
-						(showCorrectAnswer || isStudentFailedRightAnswer) &&
-						question.options.map((mcqItem, index) => {
-							return (
-								mcqItem?.is_correct && (
-									<FlexLayoutStyle
-										alignItems={'center'}
-										key={`${mcqItem}-${index}`}
-										mb={{ sm: '0.75rem' }}
-										background={
-											mcqItem.is_correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'
-										}
-									>
-										<AnswerBullet
-											state={mcqItem.is_correct ? 'green' : 'lightRed'}
-										/>
-
-										<Spacer mx={{ sm: '4px' }} />
-										<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-											<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
-										</Typography>
-									</FlexLayoutStyle>
-								)
-							);
-						})}
+								<Spacer mx={{ sm: '4px' }} />
+								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+									<Label htmlFor={mcqItem.choice}>{mcqItem.choice}</Label>
+								</Typography>
+							</FlexLayoutStyle>
+						);
+					})}
 				</FlexLayout>
 			</FlexLayout>
 			{question.feedback !== null && (
@@ -142,10 +144,11 @@ const StyledRadioButton = styled.input`
 		height :1.5rem;
 	}`};
 `;
-const AnswerBullet = styled.div<{ state: Color }>`
+const AnswerBullet = styled.div<{ state: Color; filled: boolean }>`
 	border-radius: 50%;
 	position: relative;
-	background: ${(props) => props.theme.colors[props.state]};
+	background: ${(props) =>
+		props.filled ? props.theme.colors[props.state] : ''};
 	box-shadow: inset 0 0 0 1px #fff;
 	outline: 1px solid ${(props) => props.theme.colors[props.state]};
 	width: 0.535rem;
