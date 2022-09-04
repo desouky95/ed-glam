@@ -26,6 +26,7 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	question,
 	test,
 	status,
+	index,
 }) => {
 	return (
 		<QuestionContainer tabIndex={question.id}>
@@ -37,7 +38,7 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 						) : (
 							<Img src={Failed} alt="failed" />
 						)}
-						Q.
+						Q{index + 1}.
 					</QuestionOrder>
 					<QuestionPoints>
 						<Type>{question.type}</Type>

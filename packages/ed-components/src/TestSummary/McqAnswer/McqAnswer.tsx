@@ -17,11 +17,12 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	status,
 }) => {
 	const isCorrect = useMemo(() => {
-		const correct = question?.answer
-			?.map((_) => _)
-			.find((_) => _.correct === false);
-		if (correct !== undefined) return correct.correct;
-	}, []);
+		return question.correct;
+		// const correct = question?.answer
+		// 	?.map((_) => _)
+		// 	.find((_) => _.correct === false);
+		// if (correct !== undefined) return correct.correct;
+	}, [question]);
 
 	const showStudentAnswer = useMemo(() => {
 		return status === 'passed' && test?.show_correct_if_passed === false;
@@ -53,34 +54,28 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 				</AnswersLabel>
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
 				<FlexLayout flexDirection={'column'}>
-					{question?.answer.map((ans, index) => {
-						const {
-							score,
-							content: {
-								options: { answer, correct },
-							},
-						} = ans;
+					<FlexLayoutStyle
+						alignItems={'center'}
+						key={`${question.id}`}
+						mb={{ sm: '0.75rem' }}
+						background={isCorrect ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
+					>
+						<StyledRadioButton
+							type={'radio'}
+							value={question.answer.content.options.answer}
+							id={`${
+								question.answer.content.options.correct ? 'correct' : 'wrong'
+							}`}
+							checked={true}
+						/>
+						<Spacer mx={{ sm: '4px' }} />
+						<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+							<Label htmlFor={question.answer.content.options.answer}>
+								{question.answer.content.options.answer}
+							</Label>
+						</Typography>
+					</FlexLayoutStyle>
 
-						return (
-							<FlexLayoutStyle
-								alignItems={'center'}
-								key={`${answer}-${index}`}
-								mb={{ sm: '0.75rem' }}
-								background={correct ? 'rgba(0, 214, 107, 0.1)' : '#ffd5cc'}
-							>
-								<StyledRadioButton
-									type={'radio'}
-									value={answer}
-									id={`${correct ? 'correct' : 'wrong'}`}
-									checked={true}
-								/>
-								<Spacer mx={{ sm: '4px' }} />
-								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-									<Label htmlFor={answer}>{answer}</Label>
-								</Typography>
-							</FlexLayoutStyle>
-						);
-					})}
 					{isCorrect !== undefined &&
 						!isCorrect &&
 						(showCorrectAnswer || isStudentFailedRightAnswer) &&
@@ -138,10 +133,12 @@ const Label = styled.label`
 `;
 const StyledRadioButton = styled.input`
 	width: 0.535rem;
-	height: 0.535rem;
+	width: 0.535rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 		width :0.75rem;
 		height :0.75rem;
+		width: 20px;
+		height: 20px;
 	}`};
 `;
 const AnswersLabel = styled(Typography)`

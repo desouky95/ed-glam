@@ -19,7 +19,7 @@ export const Test = () => {
 			status: 'passed',
 			test: {
 				test_summary: true,
-				show_correct_if_passed: false,
+				show_correct_if_passed: true,
 				show_correct_if_failed: true,
 			},
 			questions: [
@@ -32,6 +32,8 @@ export const Test = () => {
 					feedback:
 						'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
 					order: 2,
+					score: 6,
+					correct: false,
 					options: [
 						{
 							gap: 1,
@@ -40,21 +42,17 @@ export const Test = () => {
 							correct: 'mosquito',
 						},
 					],
-					answer: [
-						{
-							correct: false,
-							content: {
-								options: [
-									{
-										answer: 'flea',
-										target: 1,
-										correct: false,
-									},
-								],
-							},
-							score: 6,
+					answer: {
+						content: {
+							options: [
+								{
+									answer: 'flea',
+									target: 1,
+									correct: false,
+								},
+							],
 						},
-					],
+					},
 					content: null,
 					test_id: 3,
 				},
@@ -63,6 +61,8 @@ export const Test = () => {
 						'<h2><strong>order the following</strong><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/Screenshot2022-08-25at181661468605860.png" alt="" width="2880" height="1800"></h2><p>the order is:</p>',
 					feedback: null,
 					id: 44,
+					score: 0,
+					correct: false,
 					options: [
 						{
 							option: 'Lorem epsiem to make',
@@ -75,21 +75,17 @@ export const Test = () => {
 							order: 2,
 						},
 					],
-					answer: [
-						{
-							correct: false,
-							content: {
-								options: {
-									answer: [
-										'Lorem epsiem to make something create',
-										'Lorem epsiem to make something',
-									],
-									correct: false,
-								},
+					answer: {
+						content: {
+							options: {
+								answer: [
+									'Lorem epsiem to make something create',
+									'Lorem epsiem to make something',
+								],
+								correct: false,
 							},
-							score: 0,
 						},
-					],
+					},
 					order: 2,
 					parsed_content: null,
 					test_id: 19,
@@ -105,6 +101,8 @@ export const Test = () => {
 					type: 'mcq',
 					feedback: 'no',
 					order: 10,
+					correct: false,
+					score: 0,
 					options: [
 						{
 							choice: 'test',
@@ -115,18 +113,14 @@ export const Test = () => {
 							is_correct: true,
 						},
 					],
-					answer: [
-						{
-							correct: false,
-							content: {
-								options: {
-									answer: 'test',
-									correct: false,
-								},
+					answer: {
+						content: {
+							options: {
+								answer: 'test',
+								correct: false,
 							},
-							score: 0,
 						},
-					],
+					},
 				},
 			],
 		},

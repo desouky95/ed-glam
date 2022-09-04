@@ -1,13 +1,3 @@
-// export type Base = {
-//   status: string;
-//   score?: number;
-//   test: {
-//     test_summary: boolean;
-//     show_correct_if_passed: boolean;
-//     show_correct_if_failed: boolean;
-//   };
-// };
-
 export type QuestionType = 'gap' | 'mcq' | 'ordering';
 export type OptionsPair = { gap: string | number; choices: string[] };
 export type KeyPairAnswer = {
@@ -48,8 +38,6 @@ export type Answers = {
 	id?: number;
 	test_attempt_id?: number;
 	test_question_id?: number;
-	correct?: boolean;
-	score: number;
 	created_at?: Date;
 	updated_at?: Date;
 };
@@ -64,9 +52,9 @@ export type Options = {
 	correct?: string;
 };
 export type QuestionOptions = Array<Options | string | OptionsPair>;
-export type GapAnswerOptions = Array<GapAnswers>;
-export type OrderAnswerOptions = Array<OrderAnswers>;
-export type McqAnswerOptions = Array<McqAmswers>;
+export type GapAnswerOptions = GapAnswers;
+export type OrderAnswerOptions = OrderAnswers;
+export type McqAnswerOptions = McqAmswers;
 export type OrderingAnswer = Array<string>;
 export type ObjectPairAnswer = {
 	answer: string;

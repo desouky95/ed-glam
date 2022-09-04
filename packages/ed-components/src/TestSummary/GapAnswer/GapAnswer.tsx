@@ -40,12 +40,14 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
-		const answer = question?.answer.map((ans) => ans.content.options);
-		const score = question?.answer.map((ans) => ans).find((_) => _.score);
-		let isAns;
-		for (const ans of answer) {
-			isAns = ans.find((_) => _.target === options.gap);
-		}
+		// const answer = question?.answer.map((ans) => ans.content.options);
+		const answer = question?.answer.content.options;
+		// const score = question?.answer.map((ans) => ans).find((_) => _.score);
+		// let isAns;
+		// for (const ans of answer) {
+		// 	isAns = ans.
+		// }
+		const isAns = answer.find((_) => _.target === options.gap);
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer
 		}</span>  ${

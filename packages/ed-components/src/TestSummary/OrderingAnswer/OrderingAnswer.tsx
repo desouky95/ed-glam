@@ -25,12 +25,11 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	status,
 }) => {
 	const [options] = useState<Array<Options | any>>(question.options);
-	const [answers] = useState<Array<Answers | any>>(question.answer);
+	const [answers] = useState<Answers | any>(question.answer);
 
 	const isCorrect = useMemo(() => {
-		const correct = answers?.map((_) => _).find((_) => _.correct === false);
-		if (correct !== undefined) return correct.correct;
-	}, []);
+		return question.correct;
+	}, [question]);
 
 	const showStudentAnswer = useMemo(() => {
 		return status === 'passed' && test?.show_correct_if_passed === false;
@@ -59,17 +58,14 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 				gridGap="1.5rem"
 				flexWrap="wrap"
 			>
-				{answers?.map((answer) => {
-					const ans = answer?.content.options.answer;
-					return ans?.map((_: string, index: number) => (
-						<Answer
-							key={`${_}-${index}`}
-							background={`${answer.correct === true ? '#e5fbf0' : '#ffd5cc'}`}
-						>
-							{_}
-						</Answer>
-					));
-				})}
+				<Answer
+					key={`${question.id}`}
+					background={`${
+						question.answer.content.options.correct ? '#e5fbf0' : '#ffd5cc'
+					}`}
+				>
+					{question.answer.content.options.answer}
+				</Answer>
 			</FlexLayout>
 			{isCorrect !== undefined &&
 				!isCorrect &&
