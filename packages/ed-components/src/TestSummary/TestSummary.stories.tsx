@@ -16,11 +16,11 @@ export default {
 export const Test = () => {
 	const [attemptInfo] = useState<Attempt>({
 		attempt: {
-			status: 'passed',
+			status: 'failed',
 			test: {
 				test_summary: true,
-				show_correct_if_passed: true,
-				show_correct_if_failed: false,
+				show_correct_if_passed: false,
+				show_correct_if_failed: true,
 			},
 			questions: [
 				{
@@ -111,6 +111,22 @@ export const Test = () => {
 							is_correct: false,
 						},
 						{
+							choice: 'maybe',
+							is_correct: false,
+						},
+						{
+							choice: 'maybe2',
+							is_correct: false,
+						},
+						{
+							choice: 'mayb3',
+							is_correct: false,
+						},
+						{
+							choice: 'mayb4',
+							is_correct: false,
+						},
+						{
 							choice: 'test2',
 							is_correct: true,
 						},
@@ -140,6 +156,9 @@ export const Test = () => {
 								index={index}
 								question={question}
 								status={attemptInfo?.attempt.status}
+								type={undefined}
+								questionNum={undefined}
+								points={undefined}
 							/>
 						);
 					})}
