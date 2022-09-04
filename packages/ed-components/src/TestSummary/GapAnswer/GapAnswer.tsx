@@ -1,8 +1,9 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
+import { Options } from '@src/Test/Question.types';
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
-import { IGapAnswer, Options, Test } from '../TestSummary.types';
+import { IGapAnswer, Test } from '../TestSummary.types';
 
 type GapProps = {
 	question: IGapAnswer;

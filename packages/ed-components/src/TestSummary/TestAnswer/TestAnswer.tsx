@@ -8,15 +8,17 @@ import OrderingAnswer from '../OrderingAnswer/OrderingAnswer';
 import Failed from '../Assets/failed.svg';
 import Passed from '../Assets/passed.svg';
 import {
+	SummaryQuestion,
+	Test,
 	isGapAnswer,
 	isMcqAnswer,
 	isOrderingAnswer,
-	Question,
-	Test,
 } from '../TestSummary.types';
+import { TestSummaryConfig } from '../TestSummary.config';
+import { QuestionType } from '@src/Test/Question.types';
 
 type Props = {
-	question: Question;
+	question: SummaryQuestion;
 	index: number;
 	test: Test | undefined;
 	status: string | undefined;
@@ -42,7 +44,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 					<QuestionHeader>
 						<QuestionOrder>Q{index + 1}.</QuestionOrder>
 						<QuestionPoints>
-							<Type>{question.type}</Type>
+							<Type>
+								{TestSummaryConfig.types[question.type as QuestionType]}
+							</Type>
 							<SpacerStyle mx={'3.625rem'} />
 							<Points>Points </Points>
 							<Spacer mx={'0.5rem'} />

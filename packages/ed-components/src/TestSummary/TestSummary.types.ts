@@ -1,9 +1,14 @@
-export type QuestionType = 'Fill in the gap' | 'MCQ' | 'Ordering';
-export type OptionsPair = { gap: string | number; choices: string[] };
-export type KeyPairAnswer = {
-	target: number | string | Array<string>;
-	answer: string;
-};
+import {
+	KeyPairAnswer,
+	Options,
+	OptionsPair,
+	QuestionType,
+	Answers,
+	OrderingAnswer,
+} from '..';
+
+export type QuestionTypeConfig = { [key in QuestionType]: string };
+
 type McqOption = {
 	answer: string;
 	correct: boolean;
@@ -19,7 +24,7 @@ type GapOption = {
 	correct: boolean;
 	target: number;
 };
-export type McqAmswers = {
+export type McqAnswers = {
 	content: {
 		options: McqOption;
 	};
@@ -34,39 +39,19 @@ export type OrderAnswers = {
 		options: OrderOption;
 	};
 } & Answers;
-export type Answers = {
-	id?: number;
-	test_attempt_id?: number;
-	test_question_id?: number;
-	created_at?: Date;
-	updated_at?: Date;
-};
-export type Options = {
-	choice?: string;
-	is_correct?: boolean;
-	option?: string;
-	test_question_id?: number;
-	order?: number;
-	gap?: number;
-	choices?: string;
-	correct?: string;
-};
-export type QuestionOptions = Array<Options | string | OptionsPair>;
+
+type QuestionOptions = Array<Options | string | OptionsPair>;
 export type GapAnswerOptions = GapAnswers;
 export type OrderAnswerOptions = OrderAnswers;
-export type McqAnswerOptions = McqAmswers;
-export type OrderingAnswer = Array<string>;
-export type ObjectPairAnswer = {
-	answer: string;
-};
-export type QuestionAnswer =
+export type McqAnswerOptions = McqAnswers;
+
+type QuestionAnswer =
 	| Array<KeyPairAnswer>
 	| OrderingAnswer
-	| ObjectPairAnswer
 	| GapAnswerOptions
 	| OrderAnswerOptions
 	| McqAnswerOptions;
-export type Question = {
+export type SummaryQuestion = {
 	parsed_content: string | null;
 	content: string | null;
 	id: number;
@@ -134,35 +119,38 @@ export type Attempt = {
 		testModelId?: number;
 		test?: Test;
 		questionsOrder?: Array<number>;
-		questions?: Array<Question>;
+		questions?: Array<SummaryQuestion>;
 		created_at?: Date;
 		updated_at?: Date;
 	};
 };
-export type IGapAnswer = Omit<Question, 'options' | 'type'> & {
-	type: 'Fill in the gap';
+export type IGapAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
+	type: 'gap';
 	options: Array<Options>;
 	parsed_content: string;
 	answer: GapAnswerOptions;
 };
-export type IOrderingAnswer = Omit<Question, 'options' | 'type'> & {
-	type: 'Ordering';
+export type IOrderingAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
+	type: 'ordering';
 	options: QuestionOptions;
 	content: string;
 	answer: OrderAnswerOptions;
 };
-export type IMcqAnswer = Omit<Question, 'options' | 'type'> & {
-	type: 'MCQ';
+export type IMcqAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
+	type: 'mcq';
 	options: Array<Options>;
 	content: string;
 	answer: McqAnswerOptions;
 };
-export const isGapAnswer = (value: Question): value is IGapAnswer => {
-	return value !== undefined && value.type === 'Fill in the gap';
+
+export const isGapAnswer = (value: SummaryQuestion): value is IGapAnswer => {
+	return value !== undefined && value.type === 'gap';
 };
-export const isOrderingAnswer = (value: Question): value is IOrderingAnswer => {
-	return value !== undefined && value.type === 'Ordering';
+export const isOrderingAnswer = (
+	value: SummaryQuestion
+): value is IOrderingAnswer => {
+	return value !== undefined && value.type === 'ordering';
 };
-export const isMcqAnswer = (value: Question): value is IMcqAnswer => {
-	return value !== undefined && value.type === 'MCQ';
+export const isMcqAnswer = (value: SummaryQuestion): value is IMcqAnswer => {
+	return value !== undefined && value.type === 'mcq';
 };

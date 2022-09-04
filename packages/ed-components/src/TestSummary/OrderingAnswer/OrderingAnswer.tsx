@@ -3,7 +3,7 @@ import Spacer from '@src/Spacer';
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
-import { Answers, IOrderingAnswer, Test } from '../TestSummary.types';
+import { IOrderingAnswer, Test } from '../TestSummary.types';
 
 type OrderingProps = {
 	question: IOrderingAnswer;
