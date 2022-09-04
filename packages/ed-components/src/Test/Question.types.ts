@@ -89,6 +89,8 @@ export type Question = {
 	order: number;
 	options: QuestionOptions;
 	answer: QuestionAnswer | null;
+	score: number;
+	correct: boolean;
 };
 
 export declare type Test = {

@@ -8,16 +8,12 @@ type GapProps = {
 	question: IGapAnswer;
 	test: Test | undefined;
 	status: string | undefined;
-	setScore: any;
-	setQuestionStatus: any;
 };
 
 const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	question,
 	test,
 	status,
-	setScore,
-	setQuestionStatus,
 }) => {
 	const showStudentAnswer = useMemo(() => {
 		return status === 'passed' && test?.show_correct_if_passed === false;
@@ -46,12 +42,10 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	const getGapAnswer = (options: Options) => {
 		const answer = question?.answer.map((ans) => ans.content.options);
 		const score = question?.answer.map((ans) => ans).find((_) => _.score);
-		setScore(score?.score);
 		let isAns;
 		for (const ans of answer) {
 			isAns = ans.find((_) => _.target === options.gap);
 		}
-		setQuestionStatus(isAns?.correct);
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer
 		}</span>  ${

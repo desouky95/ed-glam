@@ -9,8 +9,6 @@ type OrderingProps = {
 	question: IOrderingAnswer;
 	test: Test | undefined;
 	status: string | undefined;
-	setScore: any;
-	setQuestionStatus: any;
 };
 type Option = {
 	answer: Array<string>;
@@ -25,8 +23,6 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 	question,
 	test,
 	status,
-	setScore,
-	setQuestionStatus,
 }) => {
 	const [options] = useState<Array<Options | any>>(question.options);
 	const [answers] = useState<Array<Answers | any>>(question.answer);
@@ -65,8 +61,6 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 			>
 				{answers?.map((answer) => {
 					const ans = answer?.content.options.answer;
-					setScore(answer.score);
-					setQuestionStatus(answer.correct);
 					return ans?.map((_: string, index: number) => (
 						<Answer
 							key={`${_}-${index}`}

@@ -27,15 +27,12 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	test,
 	status,
 }) => {
-	const [score, setScore] = useState<number>(0);
-	const [questionStatus, setQuestionStatus] = useState<boolean>(false);
-
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<QuestionWrapper>
 				<QuestionHeader>
 					<QuestionOrder>
-						{questionStatus === true ? (
+						{question.correct === true ? (
 							<Img src={Passed} alt="passed" />
 						) : (
 							<Img src={Failed} alt="failed" />
@@ -48,38 +45,20 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 						<Points>Points </Points>
 						<Spacer mx={'0.5rem'} />
 						<Degree>
-							{score}/{question.weight}
+							{question.score}/{question.weight}
 						</Degree>
 					</QuestionPoints>
 				</QuestionHeader>
 				<Spacer mb={{ sm: '1rem', lg: '2rem' }} />
 				<div>
 					{isMcqAnswer(question) && (
-						<McqAnswer
-							question={question}
-							test={test}
-							status={status}
-							setScore={setScore}
-							setQuestionStatus={setQuestionStatus}
-						/>
+						<McqAnswer question={question} test={test} status={status} />
 					)}
 					{isOrderingAnswer(question) && (
-						<OrderingAnswer
-							question={question}
-							test={test}
-							status={status}
-							setScore={setScore}
-							setQuestionStatus={setQuestionStatus}
-						/>
+						<OrderingAnswer question={question} test={test} status={status} />
 					)}
 					{isGapAnswer(question) && (
-						<GapAnswer
-							question={question}
-							test={test}
-							status={status}
-							setScore={setScore}
-							setQuestionStatus={setQuestionStatus}
-						/>
+						<GapAnswer question={question} test={test} status={status} />
 					)}
 				</div>
 			</QuestionWrapper>

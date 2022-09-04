@@ -9,16 +9,12 @@ type McqProps = {
 	question: IMcqAnswer;
 	test: Test | undefined;
 	status: string | undefined;
-	setScore: any;
-	setQuestionStatus: any;
 };
 
 const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	question,
 	test,
 	status,
-	setScore,
-	setQuestionStatus,
 }) => {
 	const isCorrect = useMemo(() => {
 		const correct = question?.answer
@@ -64,8 +60,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 								options: { answer, correct },
 							},
 						} = ans;
-						setScore(score);
-						setQuestionStatus(correct);
+
 						return (
 							<FlexLayoutStyle
 								alignItems={'center'}
