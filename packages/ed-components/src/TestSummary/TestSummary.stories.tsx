@@ -156,6 +156,9 @@ export const Test = () => {
 								index={index}
 								question={question}
 								status={attemptInfo?.attempt.status}
+								type={undefined}
+								questionNum={undefined}
+								points={undefined}
 							/>
 						);
 					})}

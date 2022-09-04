@@ -22,6 +22,9 @@ type Props = {
 	index: number;
 	test: Test | undefined;
 	status: string | undefined;
+	type: string | undefined;
+	questionNum: string | undefined;
+	points: string | undefined;
 };
 
 const TestAnswer: React.VoidFunctionComponent<Props> = ({
@@ -29,6 +32,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	test,
 	status,
 	index,
+	type,
+	questionNum,
+	points,
 }) => {
 	return (
 		<QuestionContainer tabIndex={question.id}>
@@ -42,13 +48,17 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 				</ImageWrapper>
 				<QuestionWrapper>
 					<QuestionHeader>
-						<QuestionOrder>Q{index + 1}.</QuestionOrder>
+						<QuestionOrder>
+							{questionNum}
+							{index + 1}.
+						</QuestionOrder>
 						<QuestionPoints>
 							<Type>
-								{TestSummaryConfig.types[question.type as QuestionType]}
+								{type as QuestionType}
+								{/* {TestSummaryConfig.types[question.type as QuestionType]} */}
 							</Type>
 							<SpacerStyle mx={'3.625rem'} />
-							<Points>Points </Points>
+							<Points>{points} </Points>
 							<Spacer mx={'0.5rem'} />
 							<Degree>
 								{question.score}/{question.weight}
