@@ -3,7 +3,12 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React, { FC } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { InfoTable, InfoTableCell, CellExpandContainer } from '..';
+import {
+	InfoTable,
+	InfoTableCell,
+	CellExpandContainer,
+	RaisedButton,
+} from '..';
 import {
 	TabsContent,
 	TabsContents,
@@ -245,4 +250,60 @@ const TabsWrapper = styled(TabsHeaders)`
 	@media (max-width: 486px) {
 		width: 100%;
 	}
+`;
+
+export const StoryWithoutList2: ComponentStory<typeof Tabs> = () => {
+	const [walletIndex, setWalletIndex] = useState(0);
+	return (
+		<>
+			<RaisedButton onClick={() => setWalletIndex(walletIndex + 1)}>
+				{walletIndex}
+			</RaisedButton>
+			<TabsProvider
+				onChange={(value) => {
+					console.log({ value });
+					setWalletIndex?.(Number(value));
+				}}
+				index={walletIndex}
+				active={walletIndex?.toString() ?? ''}
+			>
+				<CustomStyledTabs>
+					{{
+						tabs: (
+							<TabsHeaders>
+								<TabsHeader index={0} label="Main" value="0" />
+								<TabsHeader index={1} label="Methods" value="1" />
+								<TabsHeader index={2} label="Values" value="2" />
+								<TabsHeader index={3} label="vodafone" value="3" />
+								<TabsHeader index={4} label="rechargecode" value="4" />
+							</TabsHeaders>
+						),
+						contents: (
+							<TabsContents>
+								<TabsContent value="0">
+									<div>Tab 0</div>
+								</TabsContent>
+								<TabsContent value="1">
+									<div>Tab 1</div>
+								</TabsContent>
+								<TabsContent value="2">
+									<div>Tab 2</div>
+								</TabsContent>
+								<TabsContent value="3">
+									<div>Tab 3</div>
+								</TabsContent>
+								<TabsContent value="4">
+									{walletIndex && walletIndex === 4 && <div>Tab 4</div>}
+								</TabsContent>
+							</TabsContents>
+						),
+					}}
+				</CustomStyledTabs>
+			</TabsProvider>
+		</>
+	);
+};
+
+const CustomStyledTabs = styled(Tabs)`
+	padding: 0 1rem;
 `;

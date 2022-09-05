@@ -1,4 +1,10 @@
-import React, { createContext, Context, useContext, useState } from 'react';
+import React, {
+	createContext,
+	Context,
+	useContext,
+	useState,
+	useEffect,
+} from 'react';
 
 type TabsContextProp = {
 	activeTab: string;
@@ -33,6 +39,9 @@ export const TabsProvider: React.FC<TabsProviderProps> = ({
 
 	const [oldIndex, setOldIndex] = useState<number | undefined>(index ?? 0);
 
+	useEffect(() => {
+		setActiveTabIndex(index);
+	}, [index]);
 	return (
 		<TabsContext.Provider
 			value={{
