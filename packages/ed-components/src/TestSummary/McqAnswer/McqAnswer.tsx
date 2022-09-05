@@ -61,7 +61,9 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	};
 	const bulletState = (item: Options) => {
 		if (question.answer.content.options.answer === item.choice) return true;
-		if (showCorrectAnswer || isStudentFailedRightAnswer) return true;
+		if (showCorrectAnswer || isStudentFailedRightAnswer)
+			if (item?.is_correct) return true;
+			else return false;
 		return false;
 	};
 
@@ -150,7 +152,8 @@ const AnswerBullet = styled.div<{ state: Color; filled: boolean }>`
 	background: ${(props) =>
 		props.filled ? props.theme.colors[props.state] : ''};
 	box-shadow: inset 0 0 0 1px #fff;
-	outline: 1px solid ${(props) => props.theme.colors[props.state]};
+	outline: 1px solid
+		${(props) => (props.filled ? props.theme.colors[props.state] : 'gray')};
 	width: 0.535rem;
 	height: 0.535rem;
 	${({ theme, state }) => `${theme.mediaQueries.medium}{
