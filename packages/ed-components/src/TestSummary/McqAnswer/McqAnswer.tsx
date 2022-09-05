@@ -56,7 +56,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			else return 'lightRed';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'green';
-			else return 'light';
+			else return 'silver';
 		return 'silver';
 	};
 	const bulletState = (item: Options) => {
