@@ -58,12 +58,12 @@ const OrderingAnswer: React.VoidFunctionComponent<OrderingProps> = ({
 				gridGap="1.5rem"
 				flexWrap="wrap"
 			>
-				{question.answer.content.options.answer.map((_) => {
+				{question.answer.content?.options.answer.map((_) => {
 					return (
 						<Answer
 							key={`${question.id}`}
 							background={`${
-								question.answer.content.options.correct ? '#e5fbf0' : '#ffd5cc'
+								question.answer.content?.options.correct ? '#e5fbf0' : '#ffd5cc'
 							}`}
 						>
 							{' '}

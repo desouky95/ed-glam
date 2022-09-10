@@ -16,129 +16,104 @@ export default {
 export const Test = () => {
 	const [attemptInfo] = useState<Attempt>({
 		attempt: {
+			id: 476,
+			student_id: 2,
+			test_id: 67,
 			status: 'failed',
+			score: 0,
+			grade: null,
+			test_model_id: null,
+			end_date: '2022-09-10T21:40:44.108+00:00',
+			active: false,
+			notification_sent: false,
+			testModel: null,
 			test: {
-				test_summary: true,
+				id: 67,
+				unit_id: 134,
+				uuid: '760136b174104c228e31c00136c696c8',
+				title: 'test 67',
+				duration: 1,
+				overall_score: 2,
+				passing_value: 2,
+				passing_unit: 'point',
+				allowed_trials: 1,
+				allow_repetition_when: 'always',
+				model_mode: 'single',
+				shuffle_questions: true,
+				shuffle_answers: true,
 				show_correct_if_passed: false,
-				show_correct_if_failed: true,
+				show_correct_if_failed: false,
+				start_text: 'uyiuhj',
+				end_text: null,
+				message_if_passed: null,
+				message_if_failed: null,
+				allow_movement: true,
+				view_mode: 'single',
+				show_score_percentage: true,
+				show_score_value: true,
+				show_grade: true,
+				active: true,
+				active_start_date: null,
+				active_end_date: null,
+				test_summary: true,
+				created_at: '2022-08-29T14:19:12.447+00:00',
+				updated_at: '2022-09-10T21:44:39.181+00:00',
+				locked: true,
+				show_status: true,
+				student_notification_options: [],
+				parent_notification_options: [],
+				include_previous_attempts: false,
 			},
 			questions: [
 				{
-					parsed_content:
-						'<p>Lorem epsiem to make $$1 Lorem epsiem to make something for the creation</p>',
-					id: 4,
-					type: 'gap',
-					weight: 3,
-					feedback:
-						'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
-					order: 2,
-					score: 6,
-					correct: false,
-					options: [
-						{
-							gap: 1,
-							choices: '[flea|mosquito]',
-							test_question_id: 139,
-							correct: 'mosquito',
-						},
-					],
-					answer: {
-						content: {
-							options: [
-								{
-									answer: 'flea',
-									target: 1,
-									correct: false,
-								},
-							],
-						},
-					},
-					content: null,
-					test_id: 3,
-				},
-				{
-					content:
-						'<h2><strong>order the following</strong><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/Screenshot2022-08-25at181661468605860.png" alt="" width="2880" height="1800"></h2><p>the order is:</p>',
-					feedback:
-						'<p>Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</p>',
-					id: 44,
-					score: 0,
-					correct: false,
-					options: [
-						{
-							option: 'Lorem epsiem to make',
-							test_question_id: 116,
-							order: 1,
-						},
-						{
-							option: 'Lorem epsiem to make letter',
-							test_question_id: 116,
-							order: 2,
-						},
-					],
-					answer: {
-						content: {
-							options: {
-								answer: [
-									'Lorem epsiem to make something create',
-									'Lorem epsiem to make something',
-								],
-								correct: false,
-							},
-						},
-					},
-					order: 2,
-					parsed_content: null,
-					test_id: 19,
-					type: 'ordering',
-					weight: 6,
-				},
-				{
-					id: 10,
-					test_id: 3,
-					weight: 5,
-					content: 'what is the best solution ?',
+					id: 120,
+					test_id: 67,
+					weight: 1,
+					content: '<p>this is question 1</p>',
 					parsed_content: null,
 					type: 'mcq',
-					feedback:
-						'<div class="sc-eGAhfa iLuVo" tabindex="139">\n<div class="sc-yeoIj ebOZNw">\n<div class="sc-hAsxaJ hicBm">\n<div class="sc-bUbCnL gXlKKD">\n<div class="sc-gITdmR hQUsaM">\n<p>&nbsp;</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n<div class="sc-eGAhfa iLuVo" tabindex="170">\n<div class="sc-yeoIj ebOZNw"><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/11662311227069.png" alt="" width="223" height="226"><img src="https://s3.eu-west-1.amazonaws.com/files.eduact.me/tinymc/21662311234563.jpg" alt="" width="300" height="168"></div>\n<div class="sc-yeoIj ebOZNw">&nbsp;</div>\n<div class="sc-yeoIj ebOZNw">Question form of Lorem epsiem to make a better surrounding to create something for feedback that has a limit and make a straight for the lorem epsiem form of Lorem epsiem to make a better surrounding to create something for feedback</div>\n</div>',
-					order: 10,
-					correct: false,
-					score: 0,
+					feedback: null,
+					order: 1,
 					options: [
 						{
-							choice: 'test',
-							is_correct: false,
-						},
-						{
-							choice: 'maybe',
-							is_correct: false,
-						},
-						{
-							choice: 'maybe2',
-							is_correct: false,
-						},
-						{
-							choice: 'mayb3',
-							is_correct: false,
-						},
-						{
-							choice: 'mayb4',
-							is_correct: false,
-						},
-						{
-							choice: 'test2',
 							is_correct: true,
+							test_question_id: 120,
+							choice: '1',
+						},
+						{
+							is_correct: false,
+							test_question_id: 120,
+							choice: '2',
 						},
 					],
-					answer: {
-						content: {
-							options: {
-								answer: 'test',
-								correct: false,
-							},
+					answer: {},
+					correct: false,
+					score: 0,
+				},
+				{
+					id: 121,
+					test_id: 67,
+					weight: 1,
+					content: '<p>test 2</p>',
+					parsed_content: null,
+					type: 'mcq',
+					feedback: null,
+					order: 2,
+					options: [
+						{
+							is_correct: false,
+							test_question_id: 121,
+							choice: '1',
 						},
-					},
+						{
+							is_correct: true,
+							test_question_id: 121,
+							choice: 'c',
+						},
+					],
+					answer: {},
+					correct: false,
+					score: 0,
 				},
 			],
 		},
