@@ -60,11 +60,12 @@ function useCountdown(options: CountdownArgs) {
 				).getTime()
 			);
 		}
-	}, []);
+	}, [start, end]);
 
 	useEffect(() => {
 		initCountdown();
-	}, []);
+	}, [start, end]);
+
 	const handleCountChange = () => {
 		handleDateCountdown();
 	};
