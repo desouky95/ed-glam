@@ -134,6 +134,11 @@ const QuestionHeader = styled.div`
 	border-bottom: 2px solid #d3d3d3;
 	align-items: center;
 	width: 100%;
+	box-sizing: border-box;
+	padding-bottom: 0.313rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		padding-bottom: 0.938rem;
+	}`}
 `;
 const HeaderWrapper = styled.div`
 	display: flex;
@@ -180,12 +185,12 @@ const Type = styled(Typography)`
 	color: #251b33;
 	margin-top: -3px;
 	text-transform: capitalize;
-	margin: 0 0.5rem;
+	margin: 0 0.3rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 1rem;
 }`}
 	${({ theme }) => `${theme.mediaQueries.medium}{
-	margin: 0 2.25rem;
+	margin: 0 1.25rem;
 }`}
 	${({ theme }) => `${theme.mediaQueries.large}{
 	margin: 0 6.25rem;
@@ -194,9 +199,11 @@ const Type = styled(Typography)`
 const Points = styled(Typography)`
 	font-size: 0.5rem;
 	font-weight: 500;
+	margin: 0 0.388rem;
 	color: ${(props) => props.theme.colors.silver};
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 1rem;
+	margin: 0 1rem;
 }`}
 `;
 const Degree = styled.span`
@@ -230,5 +237,6 @@ const Tag = styled.div`
 }`}
 	${({ theme }) => `${theme.mediaQueries.large}{
 	margin: 0 5.25rem;
+	margin-bottom: -6px;
 }`}
 `;

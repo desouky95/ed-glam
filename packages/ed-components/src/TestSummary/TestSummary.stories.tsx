@@ -141,10 +141,10 @@ export const Test = () => {
 								index={index}
 								question={question}
 								status={attemptInfo?.attempt.status}
-								type={undefined}
-								questionNum={undefined}
-								points={undefined}
-								notAnswered={undefined}
+								type={'fill in the gap'}
+								questionNum={'Q'}
+								points={'points'}
+								notAnswered={'not answered'}
 							/>
 						);
 					})}
