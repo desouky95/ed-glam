@@ -8,7 +8,6 @@ import { Color } from '@eduact/student-theme';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
 import { Options } from '@src/Test/Question.types';
-import { cornersOfRectangle } from '@dnd-kit/core/dist/utilities/algorithms/helpers';
 
 type McqProps = {
 	question: IMcqAnswer;
