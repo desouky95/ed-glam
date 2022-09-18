@@ -19,7 +19,7 @@ export const Test = () => {
 			id: 476,
 			student_id: 2,
 			test_id: 67,
-			status: 'failed',
+			status: 'passed',
 			score: 0,
 			grade: null,
 			test_model_id: null,
@@ -41,7 +41,7 @@ export const Test = () => {
 				model_mode: 'single',
 				shuffle_questions: true,
 				shuffle_answers: true,
-				show_correct_if_passed: false,
+				show_correct_if_passed: true,
 				show_correct_if_failed: false,
 				start_text: 'uyiuhj',
 				end_text: null,
@@ -56,8 +56,6 @@ export const Test = () => {
 				active_start_date: null,
 				active_end_date: null,
 				test_summary: true,
-				created_at: '2022-08-29T14:19:12.447+00:00',
-				updated_at: '2022-09-10T21:44:39.181+00:00',
 				locked: true,
 				show_status: true,
 				student_notification_options: [],
@@ -85,9 +83,21 @@ export const Test = () => {
 							test_question_id: 120,
 							choice: '2',
 						},
+						{
+							is_correct: false,
+							test_question_id: 120,
+							choice: '3',
+						},
 					],
-					answer: {},
-					correct: false,
+					answer: {
+						content: {
+							options: {
+								answer: '2',
+								correct: false,
+							},
+						},
+					},
+					correct: true,
 					score: 0,
 				},
 				{
@@ -131,9 +141,10 @@ export const Test = () => {
 								index={index}
 								question={question}
 								status={attemptInfo?.attempt.status}
-								type={undefined}
-								questionNum={undefined}
-								points={undefined}
+								type={'fill in the gap'}
+								questionNum={'Q'}
+								points={'points'}
+								notAnswered={'not answered'}
 							/>
 						);
 					})}

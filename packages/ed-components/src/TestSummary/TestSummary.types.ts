@@ -24,26 +24,26 @@ type GapOption = {
 	correct: boolean;
 	target: number;
 };
-export type McqAnswers = {
+type McqAnswers = {
 	content?: {
 		options: McqOption;
 	};
 } & Answers;
-export type GapAnswers = {
+type GapAnswers = {
 	content?: {
 		options: Array<GapOption>;
 	};
 } & Answers;
-export type OrderAnswers = {
+type OrderAnswers = {
 	content?: {
 		options: OrderOption;
 	};
 } & Answers;
 
 type QuestionOptions = Array<Options | string | OptionsPair>;
-export type GapAnswerOptions = GapAnswers;
-export type OrderAnswerOptions = OrderAnswers;
-export type McqAnswerOptions = McqAnswers;
+type GapAnswerOptions = GapAnswers;
+type OrderAnswerOptions = OrderAnswers;
+type McqAnswerOptions = McqAnswers;
 
 type QuestionAnswer =
 	| Array<KeyPairAnswer>
@@ -61,21 +61,31 @@ export type SummaryQuestion = {
 	feedback: string | null;
 	order: number;
 	options: QuestionOptions;
-	answer: QuestionAnswer | null;
+	answer: QuestionAnswer;
 	score: number;
 	correct: boolean;
 };
 
-export declare type Test = {
+export type Test = {
 	id?: number;
 	unit_id?: number;
 	uuid?: string;
 	title?: string;
 	duration?: number;
+	passing_value: number;
 	overall_score?: number;
+	passing_unit: string;
+	shuffle_questions: boolean;
+	shuffle_answers: boolean;
+	include_previous_attempts: boolean;
+	student_notification_options: Array<any>;
+	parent_notification_options: Array<any>;
+	active_start_date: Date | null;
+	locked: boolean;
+	view_mode: string;
 	model_mode?: string;
 	start_text?: string;
-	end_text?: string;
+	end_text?: string | null;
 	status?: string;
 	score?: number;
 	allow_movement?: boolean;
@@ -88,11 +98,11 @@ export declare type Test = {
 	show_correct_if_passed?: boolean;
 	test_summary: boolean;
 	allow_repetition_when?: string;
-	message_if_passed?: string;
-	message_if_failed?: string;
+	message_if_passed?: string | null;
+	message_if_failed?: string | null;
 	allowed_trials?: number;
 	questions_count?: string;
-	active_end_date?: Date;
+	active_end_date?: Date | null;
 	unit?: {
 		id?: number;
 		course_id?: number;
@@ -107,13 +117,17 @@ export declare type Test = {
 export type Attempt = {
 	attempt: {
 		end_date?: string;
+		grade: string | null;
 		id?: number;
+		test_model_id?: number | null;
 		student_id?: number;
 		test_id?: number;
-		active?: false;
+		active?: boolean;
+		notification_sent?: boolean;
 		endDate?: Date;
 		score?: number;
 		status?: string;
+		testModel?: string | null;
 		studentId?: number;
 		testId?: number;
 		testModelId?: number;

@@ -14,8 +14,8 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 } from '../TestSummary.types';
-import { TestSummaryConfig } from '../TestSummary.config';
 import { QuestionType } from '@src/Test/Question.types';
+import { Icon, Icons } from '@src/Icons';
 
 type Props = {
 	question: SummaryQuestion;
@@ -25,6 +25,7 @@ type Props = {
 	type: string | undefined;
 	questionNum: string | undefined;
 	points: string | undefined;
+	notAnswered: string | undefined;
 };
 
 const TestAnswer: React.VoidFunctionComponent<Props> = ({
@@ -35,12 +36,19 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	type,
 	questionNum,
 	points,
+	notAnswered,
 }) => {
+	const isNotAnswered = Object.keys(question?.answer).length === 0;
+
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<HeaderWrapper>
 				<ImageWrapper>
-					{question.correct === true ? (
+					{isNotAnswered ? (
+						<IconStyle color="orange">
+							<Icons.Warning />
+						</IconStyle>
+					) : question.correct === true ? (
 						<Img src={Passed} alt="passed" />
 					) : (
 						<Img src={Failed} alt="failed" />
@@ -53,13 +61,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 							{index + 1}.
 						</QuestionOrder>
 						<QuestionPoints>
-							<Type>
-								{type as QuestionType}
-								{/* {TestSummaryConfig.types[question.type as QuestionType]} */}
-							</Type>
-							<SpacerStyle mx={'3.625rem'} />
+							{isNotAnswered && <Tag>{notAnswered}</Tag>}
+							<Type>{type as QuestionType}</Type>
 							<Points>{points} </Points>
-							<Spacer mx={'0.5rem'} />
 							<Degree>
 								{question.score}/{question.weight}
 							</Degree>
@@ -85,18 +89,25 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 };
 
 export default TestAnswer;
+
+const IconStyle = styled(Icon)`
+	border: 2px solid #ff8532;
+	width: 0.938rem;
+	height: 0.938rem;
+	border-radius: 50%;
+	margin-top: 5px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		width: 1.5rem;
+		height: 1.5rem;
+}`}
+`;
+
 const ImageWrapper = styled.div`
 	position: relative;
 	top: 2px;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	top: 6px;
 	}`}
-`;
-const SpacerStyle = styled(Spacer)`
-	margin: 0.8rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	margin: 3.625rem;
-}`}
 `;
 
 const QuestionContainer = styled.div`
@@ -169,8 +180,15 @@ const Type = styled(Typography)`
 	color: #251b33;
 	margin-top: -3px;
 	text-transform: capitalize;
+	margin: 0 0.5rem;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 1rem;
+}`}
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	margin: 0 2.25rem;
+}`}
+	${({ theme }) => `${theme.mediaQueries.large}{
+	margin: 0 6.25rem;
 }`}
 `;
 const Points = styled(Typography)`
@@ -187,5 +205,30 @@ const Degree = styled.span`
 	color: #251b33;
 	${({ theme }) => `${theme.mediaQueries.medium}{
 	font-size: 1rem;
+}`}
+`;
+const Tag = styled.div`
+	border-radius: 5px;
+	background: #ff8532;
+	color: #fff;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.9;
+	padding: 0.188rem 0.294rem 0.25rem 0.331rem;
+	font-size: 0.5rem;
+	height: 1.063rem;
+	margin: 0 0.5rem;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	margin: 0 2.25rem;
+}`}
+	${({ theme }) => `${theme.mediaQueries.medium}{
+	padding: 0.313rem 0.294rem 0.313rem 0.331rem;
+	font-size: 0.75rem;
+	height: 1.563rem;
+}`}
+	${({ theme }) => `${theme.mediaQueries.large}{
+	margin: 0 5.25rem;
 }`}
 `;

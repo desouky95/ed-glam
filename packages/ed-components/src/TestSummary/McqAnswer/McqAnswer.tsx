@@ -66,7 +66,6 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			else return false;
 		return false;
 	};
-
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<QuestionContentWrapper
