@@ -64,7 +64,7 @@ function useCountdown(options: CountdownArgs) {
 
 	useEffect(() => {
 		initCountdown();
-	}, [start, end]);
+	}, []);
 
 	const handleCountChange = () => {
 		handleDateCountdown();

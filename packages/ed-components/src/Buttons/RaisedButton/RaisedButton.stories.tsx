@@ -45,9 +45,9 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 		setStatus('Finished');
 	};
 	const startDate = new Date();
-	const end_date = '2022-09-18T13:10:12.233+00:00';
+	const end_date = '2022-09-18T14:10:12.233+00:00';
 	const [tabVisible, setTabVisible] = useState(true);
-	const start = useCallback(() => {
+	const start = useMemo(() => {
 		const nowDate = Date.now();
 		const endDate = new Date(end_date);
 		const diff = Math.abs(endDate.getTime() - nowDate);
@@ -58,27 +58,29 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 		minutes = minutes % 60;
 		hours = hours % 24;
 		return { hours, seconds, minutes };
-	}, [end_date]);
-	const [time, setTime] = useState(start());
+	}, [end_date, tabVisible]);
+	// const [time, setTime] = useState(start());
+	const { countdown, startCountdown, resetCountdown, stopCountdown } =
+		useCountdown({
+			start,
+			end: { hours: 0, minutes: 0, seconds: 0 },
+			onEnd: handleOnEnd,
+		});
 	useEffect(() => {
 		document.addEventListener('visibilitychange', function (e) {
 			if (document.visibilityState === 'visible') {
 				console.log('TAB FOCUS');
-				setTime({
-					hours: 1,
-					minutes: 1,
-					seconds: 20,
-				});
+				setTabVisible(true);
+				// setTime(start());
 			} else {
+				setTabVisible(false);
 			}
 		});
 	}, []);
-	const { countdown, startCountdown, resetCountdown, stopCountdown } =
-		useCountdown({
-			start: time,
-			end: { hours: 0, minutes: 0, seconds: 0 },
-			onEnd: handleOnEnd,
-		});
+
+	useEffect(() => {
+		resetCountdown();
+	}, [start]);
 
 	return (
 		<>
