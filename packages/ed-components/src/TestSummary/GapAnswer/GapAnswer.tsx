@@ -1,6 +1,7 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import { Options } from '@src/Test/Question.types';
 import React, { useMemo, useRef } from 'react';
+import { IoMdReturnLeft } from 'react-icons/io';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { IGapAnswer, Test } from '../TestSummary.types';
@@ -41,8 +42,9 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
-		const answer = question?.answer.content.options;
-		const isAns = answer.find((_) => _.target === options.gap);
+		const answer = question?.answer.content?.options;
+
+		const isAns = answer?.find((_) => _.target === options.gap);
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer
 		}</span>  ${
@@ -55,7 +57,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	};
 
 	const generateAnswer = () => {
-		const { parsed_content, options } = question;
+		const { parsed_content, options, answer } = question;
 		let newContent = parsed_content.toLocaleLowerCase();
 		for (const option of options) {
 			const toBeReplacedKey = `$$${option.gap}`.toLocaleLowerCase();
@@ -66,10 +68,12 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	return (
 		<QuestionContentWrapper>
-			<StyledContainer
-				ref={gapRef}
-				dangerouslySetInnerHTML={{ __html: generateAnswer() }}
-			/>
+			{question.answer.content && (
+				<StyledContainer
+					ref={gapRef}
+					dangerouslySetInnerHTML={{ __html: generateAnswer() }}
+				/>
+			)}
 			{question.feedback !== null && (
 				<>
 					<FeebackText>Feedback</FeebackText>

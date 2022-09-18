@@ -25,17 +25,17 @@ type GapOption = {
 	target: number;
 };
 export type McqAnswers = {
-	content: {
+	content?: {
 		options: McqOption;
 	};
 } & Answers;
 export type GapAnswers = {
-	content: {
+	content?: {
 		options: Array<GapOption>;
 	};
 } & Answers;
 export type OrderAnswers = {
-	content: {
+	content?: {
 		options: OrderOption;
 	};
 } & Answers;

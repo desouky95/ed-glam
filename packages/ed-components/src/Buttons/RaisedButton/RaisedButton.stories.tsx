@@ -6,7 +6,7 @@ import { RaisedButton } from '.';
 import { RaisedButtonStyled } from './RaisedButton.styled';
 import Spacer from '../../Spacer';
 import { useCountdown } from '@eduact/utils';
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 export default {
@@ -45,14 +45,43 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
 		setStatus('Finished');
 	};
 	const startDate = new Date();
+	const end_date = '2022-09-18T14:10:12.233+00:00';
+	const [tabVisible, setTabVisible] = useState(true);
+	const start = useMemo(() => {
+		const nowDate = Date.now();
+		const endDate = new Date(end_date);
+		const diff = Math.abs(endDate.getTime() - nowDate);
+		let seconds = Math.floor(diff / 1000);
+		let minutes = Math.floor(seconds / 60);
+		let hours = Math.floor(minutes / 60);
+		seconds = seconds % 60;
+		minutes = minutes % 60;
+		hours = hours % 24;
+		return { hours, seconds, minutes };
+	}, [end_date, tabVisible]);
+	// const [time, setTime] = useState(start());
 	const { countdown, startCountdown, resetCountdown, stopCountdown } =
 		useCountdown({
-			start: { hours: 0, minutes: 5, seconds: 0 },
+			start,
 			end: { hours: 0, minutes: 0, seconds: 0 },
 			onEnd: handleOnEnd,
 		});
+	useEffect(() => {
+		document.addEventListener('visibilitychange', function (e) {
+			if (document.visibilityState === 'visible') {
+				console.log('TAB FOCUS');
+				setTabVisible(true);
+				// setTime(start());
+			} else {
+				setTabVisible(false);
+			}
+		});
+	}, []);
 
-	console.log(countdown);
+	useEffect(() => {
+		resetCountdown();
+	}, [start]);
+
 	return (
 		<>
 			<RaisedButton onClick={() => startCountdown()} {...args}>
