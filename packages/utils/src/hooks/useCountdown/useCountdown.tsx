@@ -98,7 +98,7 @@ function useCountdown(options: CountdownArgs) {
 			end &&
 			countdownEndDate &&
 			countdownDate &&
-			countdownDate === countdownEndDate
+			countdownDate <= countdownEndDate
 		) {
 			setIsRunning(false);
 			onEnd?.();
