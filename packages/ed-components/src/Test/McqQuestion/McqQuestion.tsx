@@ -36,13 +36,13 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 						return (
 							<FlexLayout
 								alignItems={'center'}
-								key={`${mcqItem}-${index}`}
+								key={`${mcqItem}-${question.id}`}
 								mb={{ sm: '0.75rem' }}
 							>
 								<StyledRadioButton
 									onChange={handleOnChange}
 									type={'radio'}
-									id={mcqItem}
+									id={`${mcqItem}-${question.id}`}
 									checked={
 										question.answer && question.answer.answer === mcqItem
 									}
@@ -51,7 +51,7 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 								/>
 								<Spacer mx={{ sm: '4px' }} />
 								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
-									<label htmlFor={mcqItem}>{mcqItem}</label>
+									<span>{mcqItem}</span>
 								</Typography>
 							</FlexLayout>
 						);
