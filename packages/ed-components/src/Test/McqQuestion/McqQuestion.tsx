@@ -17,6 +17,9 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		onChange({ answer: e.target.value });
 	};
+	const handleOnSpanClick = (value: string) => {
+		onChange({ answer: value });
+	};
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<QuestionContentWrapper
@@ -36,13 +39,13 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 						return (
 							<FlexLayout
 								alignItems={'center'}
-								key={`${mcqItem}-${question.id}`}
+								key={`${mcqItem}-${index}`}
 								mb={{ sm: '0.75rem' }}
 							>
 								<StyledRadioButton
 									onChange={handleOnChange}
 									type={'radio'}
-									id={`${mcqItem}-${question.id}`}
+									id={mcqItem}
 									checked={
 										question.answer && question.answer.answer === mcqItem
 									}
@@ -50,7 +53,11 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 									name={`answer-${question.id}`}
 								/>
 								<Spacer mx={{ sm: '4px' }} />
-								<Typography fontSize={{ sm: '0.75rem', lg: '1.125rem' }}>
+								<Typography
+									cursor={'pointer'}
+									onClick={() => handleOnSpanClick(mcqItem)}
+									fontSize={{ sm: '0.75rem', lg: '1.125rem' }}
+								>
 									<span>{mcqItem}</span>
 								</Typography>
 							</FlexLayout>
@@ -65,8 +72,8 @@ const McqQuestion: React.VoidFunctionComponent<McqProps> = ({
 export default McqQuestion;
 
 const StyledRadioButton = styled.input`
-	width: 0.563rem;
-	height: 0.563rem;
+	width: 1rem;
+	height: 1rem;
 	${({ theme }) => `${theme.mediaQueries.large}{
 		width :1.25rem;
 		height :1.25rem;

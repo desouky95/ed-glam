@@ -38,6 +38,9 @@ export const Test = () => {
 			answer: null,
 			content: null,
 			test_id: 3,
+
+			correct: false,
+			score: 0,
 		},
 		{
 			answer: null,
@@ -51,6 +54,9 @@ export const Test = () => {
 			test_id: 19,
 			type: 'ordering',
 			weight: 6,
+
+			correct: false,
+			score: 0,
 		},
 		{
 			id: 10,
@@ -62,11 +68,26 @@ export const Test = () => {
 			feedback: 'no',
 			order: 10,
 			options: ['first option', 'second option', 'third option'],
-			answer: {
-				answer: 'first option',
-			},
+			answer: null,
+			correct: false,
+			score: 0,
+		},
+		{
+			id: 11,
+			test_id: 3,
+			weight: 5,
+			content: 'what is the best solution ?',
+			parsed_content: null,
+			type: 'mcq',
+			feedback: 'no',
+			order: 10,
+			options: ['first option', 'second option', 'third option'],
+			answer: null,
+			correct: false,
+			score: 0,
 		},
 	]);
+	console.log(questions);
 	return (
 		<div>
 			{questions.map((question, index) => {
