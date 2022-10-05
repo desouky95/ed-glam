@@ -16,7 +16,6 @@ import {
 } from '../TestSummary.types';
 import { QuestionType } from '@src/Test/Question.types';
 import { Icon, Icons } from '@src/Icons';
-import { Theme } from '@eduact/student-theme';
 
 type Props = {
 	question: SummaryQuestion;
@@ -40,9 +39,6 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	notAnswered,
 }) => {
 	const isNotAnswered = Object.keys(question?.answer).length === 0;
-
-	console.log(Theme.mediaQueries.medium);
-	console.log(Theme.mediaQueries.large);
 
 	return (
 		<QuestionContainer tabIndex={question.id}>
