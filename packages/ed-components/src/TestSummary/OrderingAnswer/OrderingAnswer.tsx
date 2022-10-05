@@ -117,9 +117,9 @@ const Answer = styled.span<{ background: string }>`
 	border-radius: 10px;
 	padding: 0.594rem 3rem 0.5rem 1rem;
 	width: fit-content;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	font-size: 1.125rem;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1.125rem;
+	}
 `;
 export const Text = styled.p`
 	font-size: 0.625rem;
@@ -130,12 +130,12 @@ export const Text = styled.p`
 	gap: 0.719rem;
 	margin-bottom: 0.938rem;
 	margin-top: 0.938rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	font-size: 0.875rem;
-	gap: 1rem;
-	margin-top: 2.75rem;
-	margin-bottom: 3.188rem;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 0.875rem;
+		gap: 1rem;
+		margin-top: 2.75rem;
+		margin-bottom: 3.188rem;
+	}
 	&::after {
 		content: '';
 		height: 0;

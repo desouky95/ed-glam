@@ -132,17 +132,17 @@ const Label = styled.label`
 	font-size: 0.75rem;
 	color: rgba(0, 0, 0, 0.87);
 	font-weight: normal;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-    font-size: 1.125rem;
-	}`};
+	@media screen and (min-width: 769px) {
+		font-size: 1.125rem;
+	}
 `;
 const StyledRadioButton = styled.input`
 	width: 0.535rem;
 	height: 0.535rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-		width :1.5rem;
-		height :1.5rem;
-	}`};
+	@media screen and (min-width: 769px) {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
 `;
 const AnswerBullet = styled.div<{ state: Color; filled: boolean }>`
 	border-radius: 50%;
@@ -154,17 +154,17 @@ const AnswerBullet = styled.div<{ state: Color; filled: boolean }>`
 		${(props) => (props.filled ? props.theme.colors[props.state] : 'gray')};
 	width: 0.535rem;
 	height: 0.535rem;
-	${({ theme, state }) => `${theme.mediaQueries.medium}{
-		width :1.25rem;
-		height :1.25rem;
+	@media screen and (min-width: 769px) {
+		width: 1.25rem;
+		height: 1.25rem;
 		box-shadow: inset 0 0 0 3px #fff;
-	}`};
+	}
 `;
 const AnswersLabel = styled(Typography)`
 	color: ${(props) => props.theme.colors.silver};
 	font-size: 1rem;
 	font-weight: 300;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	@media screen and (min-width: 769px) {
 		margin-bottom: 0.75rem;
-	}`};
+	}
 `;

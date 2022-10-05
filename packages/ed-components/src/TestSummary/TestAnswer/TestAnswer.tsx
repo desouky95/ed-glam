@@ -16,6 +16,7 @@ import {
 } from '../TestSummary.types';
 import { QuestionType } from '@src/Test/Question.types';
 import { Icon, Icons } from '@src/Icons';
+import { Theme } from '@eduact/student-theme';
 
 type Props = {
 	question: SummaryQuestion;
@@ -39,6 +40,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	notAnswered,
 }) => {
 	const isNotAnswered = Object.keys(question?.answer).length === 0;
+
+	console.log(Theme.mediaQueries.medium);
+	console.log(Theme.mediaQueries.large);
 
 	return (
 		<QuestionContainer tabIndex={question.id}>
@@ -96,18 +100,18 @@ const IconStyle = styled(Icon)`
 	height: 0.938rem;
 	border-radius: 50%;
 	margin-top: 5px;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	@media screen and (min-width: 769px) {
 		width: 1.5rem;
 		height: 1.5rem;
-}`}
+	}
 `;
 
 const ImageWrapper = styled.div`
 	position: relative;
 	top: 2px;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	top: 6px;
-	}`}
+	@media screen and (min-width: 769px) {
+		top: 6px;
+	}
 `;
 
 const QuestionContainer = styled.div`
@@ -121,9 +125,9 @@ const QuestionContainer = styled.div`
 	padding: 1rem;
 	border-radius: 8px;
 	margin-bottom: 0.313rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	margin-bottom: 1rem;
-}`}
+	@media screen and (min-width: 769px) {
+		margin-bottom: 1rem;
+	}
 `;
 const QuestionWrapper = styled.div`
 	width: 100%;
@@ -136,19 +140,19 @@ const QuestionHeader = styled.div`
 	width: 100%;
 	box-sizing: border-box;
 	padding-bottom: 0.313rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	@media screen and (min-width: 769px) {
 		padding-bottom: 0.938rem;
-	}`}
+	}
 `;
 const HeaderWrapper = styled.div`
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
 	gap: 0.375rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	@media screen and (min-width: 769px) {
 		gap: 1.5rem;
-		padding : 0 8rem;
-	}`}
+		padding: 0 8rem;
+	}
 `;
 const QuestionOrder = styled.span`
 	font-size: 0.625rem;
@@ -156,28 +160,28 @@ const QuestionOrder = styled.span`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-		font-size : 1.25rem;
+	@media screen and (min-width: 769px) {
+		font-size: 1.25rem;
 		gap: 1rem;
-	}`}
+	}
 `;
 const Img = styled.img`
 	width: 0.625rem;
 	height: 0.625rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	width: 1.563rem;
-	height: 1.25rem;
-	margin-top: -20px
-	}`}
+	@media screen and (min-width: 769px) {
+		width: 1.563rem;
+		height: 1.25rem;
+		margin-top: -20px;
+	}
 `;
 const QuestionPoints = styled.span`
-	font-size: 8px;
+	font-size: 0.5rem;
 	font-weight: bold;
 	display: flex;
 	align-items: center;
-	${({ theme }) => `${theme.mediaQueries.large}{
-		font-size : 16px;
-	}`}
+	@media screen and (min-width: 1201px) {
+		font-size: 1rem;
+	}
 `;
 const Type = styled(Typography)`
 	font-size: 0.5rem;
@@ -186,33 +190,31 @@ const Type = styled(Typography)`
 	margin-top: -3px;
 	text-transform: capitalize;
 	margin: 0 0.3rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	font-size: 1rem;
-}`}
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	margin: 0 1.25rem;
-}`}
-	${({ theme }) => `${theme.mediaQueries.large}{
-	margin: 0 6.25rem;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1rem;
+		margin: 0 1.25rem;
+	}
+	@media screen and (min-width: 1201px) {
+		margin: 0 6.25rem;
+	}
 `;
 const Points = styled(Typography)`
 	font-size: 0.5rem;
 	font-weight: 500;
 	margin: 0 0.388rem;
 	color: ${(props) => props.theme.colors.silver};
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	font-size: 1rem;
-	margin: 0 1rem;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1rem;
+		margin: 0 1rem;
+	}
 `;
 const Degree = styled.span`
 	font-size: 0.5rem;
 	font-weight: 600;
 	color: #251b33;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	font-size: 1rem;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1rem;
+	}
 `;
 const Tag = styled.div`
 	border-radius: 5px;
@@ -227,16 +229,14 @@ const Tag = styled.div`
 	font-size: 0.5rem;
 	height: 1.063rem;
 	margin: 0 0.5rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	margin: 0 2.25rem;
-}`}
-	${({ theme }) => `${theme.mediaQueries.medium}{
-	padding: 0.313rem 0.294rem 0.313rem 0.331rem;
-	font-size: 0.75rem;
-	height: 1.563rem;
-}`}
-	${({ theme }) => `${theme.mediaQueries.large}{
-	margin: 0 5.25rem;
-	margin-bottom: -6px;
-}`}
+	@media screen and (min-width: 769px) {
+		margin: 0 2.25rem;
+		padding: 0.313rem 0.294rem 0.313rem 0.331rem;
+		font-size: 0.75rem;
+		height: 1.563rem;
+	}
+	@media screen and (min-width: 1201px) {
+		margin: 0 5.25rem;
+		margin-bottom: -6px;
+	}
 `;

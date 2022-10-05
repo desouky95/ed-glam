@@ -1,7 +1,6 @@
 import { QuestionContentWrapper } from '@src/Test/Question.styled';
 import { Options } from '@src/Test/Question.types';
 import React, { useMemo, useRef } from 'react';
-import { IoMdReturnLeft } from 'react-icons/io';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { IGapAnswer, Test } from '../TestSummary.types';
@@ -88,9 +87,9 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 const FeebackText = styled(Text)`
 	margin: 0.563rem;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	@media screen and (min-width: 769px) {
 		margin: 2.063rem;
-}`}
+	}
 `;
 
 export const FeedbacktWrapper = styled.div`
@@ -102,12 +101,11 @@ export const FeedbacktWrapper = styled.div`
 	color: #2f2e41;
 	line-height: 1.3;
 	letter-spacing: 0.08px;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-    font-size: 1.125rem;
-	line-height: 1.33;
-  	letter-spacing: 0.14px;
-
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1.125rem;
+		line-height: 1.33;
+		letter-spacing: 0.14px;
+	}
 `;
 
 const StyledContainer = styled.div`
@@ -116,30 +114,30 @@ const StyledContainer = styled.div`
 	color: #2f2e41;
 	line-height: 1.9;
 	letter-spacing: 0.09px;
-	${({ theme }) => `${theme.mediaQueries.medium}{
-    font-size: 1.125rem;
-    line-height: 1.7;
-    letter-spacing: 0.14px;
-}`}
+	@media screen and (min-width: 769px) {
+		font-size: 1.125rem;
+		line-height: 1.7;
+		letter-spacing: 0.14px;
+	}
 	.wrong {
 		height: 1.438rem;
 		background: #ffd5cc;
 		border-radius: 5px;
 		padding: 0.25rem 0.844rem 0.256rem 0.875rem;
-		${({ theme }) => `${theme.mediaQueries.medium}{
-    height: 1.938rem;
-    padding: 0.313rem 0.5rem 0.25rem;
-}`}
+		@media screen and (min-width: 769px) {
+			height: 1.938rem;
+			padding: 0.313rem 0.5rem 0.25rem;
+		}
 	}
 	.correct {
 		height: 1.438rem;
 		background: #e5fbf0;
 		border-radius: 5px;
 		padding: 0.25rem 0.844rem 0.256rem 0.875rem;
-		${({ theme }) => `${theme.mediaQueries.medium}{
-    height: 1.938rem;
-    padding: 0.313rem 0.5rem 0.25rem;
-}`}
+		@media screen and (min-width: 769px) {
+			height: 1.938rem;
+			padding: 0.313rem 0.5rem 0.25rem;
+		}
 	}
 `;
 
