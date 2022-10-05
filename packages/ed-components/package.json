@@ -85,5 +85,6 @@
 		"styled-system": "^5.1.5",
 		"swiper": "^8.3.1",
 		"use-immer": "^0.7.0"
-	}
+	},
+	"gitHead": "acb33bb57db33b54c585621ec31b44e0fd756024"
 }
