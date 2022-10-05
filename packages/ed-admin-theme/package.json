@@ -1,6 +1,6 @@
 {
 	"name": "@ed-glam/admin-theme",
-	"version": "0.4.28",
+	"version": "0.4.29",
 	"description": "",
 	"scripts": {
 		"build": "npm run build:babel && npm run build:types",
