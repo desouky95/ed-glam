@@ -91,78 +91,76 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 						</Avatar>
 						<StyledBodyContentInnerContainer>
 							<div>
-								{userInfo?.first_name && (
-									<>
-										<StyledNameText>{`${userInfo?.first_name} ${userInfo?.last_name}`}</StyledNameText>
-										<Spacer mb={2} />
-									</>
-								)}
-								{userInfo?.username && (
-									<StyledUserNameText>
-										{usernameTitle ?? 'username'}:{' '}
+								<>
+									<StyledNameText>{`${userInfo?.first_name} ${userInfo?.last_name}`}</StyledNameText>
+									<Spacer mb={2} />
+								</>
+								<StyledUserNameText>
+									{usernameTitle ?? 'username'}:{' '}
+									{userInfo?.username && (
 										<Typography fontWeight={500}>
 											{userInfo?.username}
 										</Typography>
-									</StyledUserNameText>
-								)}
+									)}
+								</StyledUserNameText>
 								<Spacer mb={'1.375rem'} />
 							</div>
 
 							<div>
-								{userInfo?.phone && (
-									<StyledUserContact>
-										<MdOutlinePhone size={'1rem'} />
+								<StyledUserContact>
+									<MdOutlinePhone size={'1rem'} />
+									{userInfo?.phone && (
 										<a href={`tel:${userInfo?.phone}`}>
 											<StyledPhoneText>{userInfo?.phone}</StyledPhoneText>
 										</a>
-									</StyledUserContact>
-								)}
-								{userInfo?.email && (
-									<StyledUserContact>
-										<MdOutlineMail size={'1rem'} />
+									)}
+								</StyledUserContact>
+								<StyledUserContact>
+									<MdOutlineMail size={'1rem'} />
+									{userInfo?.email && (
 										<a href={`mailto: ${userInfo?.email}`}>
 											<StyledEmail>{userInfo?.email}</StyledEmail>
 										</a>
-									</StyledUserContact>
-								)}
+									)}
+								</StyledUserContact>
 							</div>
 						</StyledBodyContentInnerContainer>
 					</StyledBodyContentContainer>
 					{/* card footer  */}
 					<StyledFooterContainer>
 						<StyledFooterInnerContainer>
-							{educationalInfo?.diploma && (
-								<>
-									<div>{diplomaTitle ?? 'Diploma'} :</div>
+							<>
+								<div>{diplomaTitle ?? 'Diploma'} :</div>
+								{educationalInfo?.diploma && (
 									<StyledDataFooterText>
 										{educationalInfo?.diploma}
 									</StyledDataFooterText>
-								</>
-							)}
-							{educationalInfo?.year && (
-								<>
-									<div> {yearTitle ?? 'Year'}:</div>
+								)}
+							</>
+							<>
+								<div> {yearTitle ?? 'Year'}:</div>
+								{educationalInfo?.year && (
 									<StyledDataFooterText>
 										{educationalInfo?.year}
 									</StyledDataFooterText>
-								</>
-							)}
-							{educationalInfo?.year && (
-								<>
-									<div>{languageTitle ?? 'Language'}:</div>
+								)}
+							</>
+							<>
+								<div>{languageTitle ?? 'Language'}:</div>
+								{educationalInfo?.year && (
 									<StyledDataFooterText>
 										{educationalInfo?.language}
 									</StyledDataFooterText>
-								</>
-							)}
-							{educationalInfo?.section && (
-								<>
-									<div>{sectionTitle ?? 'Branch'}:</div>
+								)}
+							</>
+							<>
+								<div>{sectionTitle ?? 'Branch'}:</div>
+								{educationalInfo?.section && (
 									<StyledDataFooterText>
 										{educationalInfo?.section}
 									</StyledDataFooterText>
-								</>
-							)}
+								)}
+							</>
 						</StyledFooterInnerContainer>
 
 						{/*  qr code  */}
