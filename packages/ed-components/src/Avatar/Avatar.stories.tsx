@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Avatar from './Avatar';
-
+import { useEffect, useRef } from 'react';
+import { RaisedButton } from '..';
 export default {
 	title: 'Utilities/Avatar',
 	component: Avatar,
