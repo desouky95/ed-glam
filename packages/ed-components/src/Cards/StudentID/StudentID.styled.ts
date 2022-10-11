@@ -125,7 +125,6 @@ export const StyledFooterContainer = styled.div`
 export const StyledFooterInnerContainer = styled.div`
 	display: grid;
 	font-size: 10px;
-	grid-template-columns: 60px 130px;
 	grid-row-gap: 5px;
 	/* grid-template-rows: repeat(3, 1fr); */
 `;
@@ -142,4 +141,9 @@ export const StyledBackgroundImage = styled.img`
 	bottom: 48px;
 	z-index: 1;
 	width: 460px;
+`;
+
+export const StyledFooterInfo = styled.div`
+	display: grid;
+	grid-template-columns: 60px 130px;
 `;

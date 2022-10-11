@@ -14,11 +14,7 @@ export default {
 			email: 'mariam.w@gmail.com',
 			phone: '01156596754',
 		},
-		educationalInfo: {
-			diploma: 'National',
-			language: 'Arabic',
-			year: 'Third Year',
-		},
+		educationalInfo: {},
 	},
 	argTypes: {},
 } as ComponentMeta<typeof StudentID>;

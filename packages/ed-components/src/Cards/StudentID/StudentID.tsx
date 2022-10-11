@@ -11,6 +11,7 @@ import {
 	StyledEmail,
 	StyledEmailIcon,
 	StyledFooterContainer,
+	StyledFooterInfo,
 	StyledFooterInnerContainer,
 	StyledNameText,
 	StyledOuterContainer,
@@ -83,10 +84,10 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 								width={'100%'}
 								height={'100%'}
 							>
-								<>
+								<Typography>
 									{userInfo?.first_name?.[0]}
 									{userInfo?.last_name?.[0]}
-								</>
+								</Typography>
 							</FlexLayout>
 						</Avatar>
 						<StyledBodyContentInnerContainer>
@@ -129,38 +130,38 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 					{/* card footer  */}
 					<StyledFooterContainer>
 						<StyledFooterInnerContainer>
-							<>
+							<StyledFooterInfo>
 								<div>{diplomaTitle ?? 'Diploma'} :</div>
 								{educationalInfo?.diploma && (
 									<StyledDataFooterText>
 										{educationalInfo?.diploma}
 									</StyledDataFooterText>
 								)}
-							</>
-							<>
+							</StyledFooterInfo>
+							<StyledFooterInfo>
 								<div> {yearTitle ?? 'Year'}:</div>
 								{educationalInfo?.year && (
 									<StyledDataFooterText>
 										{educationalInfo?.year}
 									</StyledDataFooterText>
 								)}
-							</>
-							<>
+							</StyledFooterInfo>
+							<StyledFooterInfo>
 								<div>{languageTitle ?? 'Language'}:</div>
 								{educationalInfo?.year && (
 									<StyledDataFooterText>
 										{educationalInfo?.language}
 									</StyledDataFooterText>
 								)}
-							</>
-							<>
+							</StyledFooterInfo>
+							<StyledFooterInfo>
 								<div>{sectionTitle ?? 'Branch'}:</div>
 								{educationalInfo?.section && (
 									<StyledDataFooterText>
 										{educationalInfo?.section}
 									</StyledDataFooterText>
 								)}
-							</>
+							</StyledFooterInfo>
 						</StyledFooterInnerContainer>
 
 						{/*  qr code  */}
