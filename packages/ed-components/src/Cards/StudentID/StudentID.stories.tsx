@@ -1,5 +1,7 @@
-import { Typography } from '@eduact/ed-system';
+import { FlexLayout, Typography } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useState } from 'react';
+import styled from 'styled-components';
 import StudentID from './StudentID';
 
 export default {
@@ -16,6 +18,7 @@ export default {
 		},
 		educationalInfo: {},
 		scale: 1,
+		canFlip: false,
 	},
 	argTypes: {
 		scale: {
@@ -27,5 +30,40 @@ export default {
 } as ComponentMeta<typeof StudentID>;
 
 export const StudentIDCard: ComponentStory<typeof StudentID> = (args) => {
+	const [isFlipped, setIsFlipped] = useState(false);
 	return <StudentID {...args} />;
 };
+
+const Scene = styled.div<{ isFlipped: boolean }>`
+	.scene {
+		width: 400px;
+		/* height: 260px; */
+		perspective: 600px;
+	}
+	.card {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		transition: transform 1s;
+		transform-style: preserve-3d;
+		display: flex;
+		transform: ${(props) => props.isFlipped && 'rotateY(180deg)'};
+	}
+
+	.card__face {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		backface-visibility: hidden;
+	}
+	.card__face--front {
+		background: red;
+	}
+
+	.card__face--back {
+		background: blue;
+		transform: rotateY(180deg);
+	}
+	.card.is-flipped {
+	}
+`;
