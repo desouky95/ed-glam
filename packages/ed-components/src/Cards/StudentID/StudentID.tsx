@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+	StyledAvatar,
 	StyledBackgroundImage,
 	StyledBodyContentContainer,
 	StyledBodyContentInnerContainer,
@@ -88,7 +89,11 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 				{/*  card body content  */}
 				<StyledBodyInnerContainer>
 					<StyledBodyContentContainer>
-						<Avatar shape="square" background="light" avatarSize={'xlarge'}>
+						<StyledAvatar
+							shape="square"
+							background="light"
+							avatarSize={'xlarge'}
+						>
 							<FlexLayout
 								alignItems={'center'}
 								justifyContent={'center'}
@@ -100,7 +105,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 									{userInfo?.last_name?.[0]}
 								</Typography>
 							</FlexLayout>
-						</Avatar>
+						</StyledAvatar>
 						<StyledBodyContentInnerContainer>
 							<div>
 								<>

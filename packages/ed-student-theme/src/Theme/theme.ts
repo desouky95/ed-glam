@@ -112,10 +112,10 @@ interface ITheme {
 	};
 	avatarSizes: {
 		[key in MediaQuery]?: {
-			width: number | string;
-			height: number | string;
-			minWidth: number | string;
-			minHeight: number | string;
+			width: number;
+			height: number;
+			minWidth: number;
+			minHeight: number;
 		};
 	};
 	avatarShapes: {
@@ -420,10 +420,10 @@ export const Theme: ITheme = {
 			minHeight: 77,
 		},
 		xlarge: {
-			width: '6.25em',
-			height: '6.25em',
-			minHeight: '6.25em',
-			minWidth: '6.25em',
+			width: 100,
+			height: 100,
+			minHeight: 100,
+			minWidth: 100,
 		},
 	},
 	avatarShapes: {

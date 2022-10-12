@@ -3,6 +3,7 @@ import { MdOutlinePhone, MdOutlineMail } from 'react-icons/md';
 import bgImage from './Assets/card_bg.jpg';
 import { rgba } from 'polished';
 import { layout, LayoutProps } from 'styled-system';
+import { Avatar } from '@src/Avatar';
 export const StyledOuterContainer = styled.div<
 	{
 		scale: number;
@@ -66,6 +67,12 @@ export const StyledBodyContentContainer = styled.div`
 	display: flex;
 	gap: 1.5em;
 	margin-bottom: 1em;
+`;
+export const StyledAvatar = styled(Avatar)`
+	width: 6.25em;
+	min-width: 6.25em;
+	height: 6.25em;
+	min-height: 6.25em;
 `;
 export const StyledBodyContentInnerContainer = styled.div`
 	display: flex;
