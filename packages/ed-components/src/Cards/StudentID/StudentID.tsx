@@ -70,9 +70,10 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	scale = 1,
 	withShadow = true,
 	onQRCodeClick,
+	...props
 }) => {
 	return (
-		<StyledOuterContainer withShadow={withShadow} scale={scale}>
+		<StyledOuterContainer withShadow={withShadow} scale={scale} {...props}>
 			{/*  student card header  */}
 			<StyledCardHeaderContainer>
 				<StyledStudentIDText>

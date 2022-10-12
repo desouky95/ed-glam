@@ -50,8 +50,7 @@ type StudentQRCodeProps = {
 		language?: string;
 		section?: string;
 	};
-} & StudentCardProps &
-	LayoutProps;
+} & StudentCardProps;
 const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 	withShadow = true,
 	scale = 1,
