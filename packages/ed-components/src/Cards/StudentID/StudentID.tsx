@@ -26,12 +26,18 @@ import EduactCardIcon from './Assets/eduact-card-icon.svg';
 import EduactCardBg from './Assets/card_bg.jpg';
 import QRCode from 'react-qr-code';
 import { Avatar } from '@src/Avatar';
-import { FlexLayout, Typography } from '@eduact/ed-system';
+import {
+	FlexLayout,
+	Typography,
+	useScreenSize,
+	useThemeScreenSize,
+} from '@eduact/ed-system';
 import Spacer from '@src/Spacer';
 import { MdOutlineMail, MdOutlinePhone } from 'react-icons/md';
 
 export type StudentIDProps = {
 	title?: string;
+	scale?: number;
 	usernameTitle?: string;
 	diplomaTitle?: string;
 	yearTitle?: string;
@@ -60,9 +66,10 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	sectionTitle,
 	usernameTitle,
 	yearTitle,
+	scale = 1,
 }) => {
 	return (
-		<StyledOuterContainer>
+		<StyledOuterContainer scale={scale}>
 			{/*  student card header  */}
 			<StyledCardHeaderContainer>
 				<StyledStudentIDText>
@@ -84,7 +91,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 								width={'100%'}
 								height={'100%'}
 							>
-								<Typography>
+								<Typography fontSize={'1em'}>
 									{userInfo?.first_name?.[0]}
 									{userInfo?.last_name?.[0]}
 								</Typography>
@@ -109,7 +116,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 
 							<div>
 								<StyledUserContact>
-									<MdOutlinePhone size={'1rem'} />
+									<MdOutlinePhone size={'1em'} />
 									{userInfo?.phone && (
 										<a href={`tel:${userInfo?.phone}`}>
 											<StyledPhoneText>{userInfo?.phone}</StyledPhoneText>
@@ -117,7 +124,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 									)}
 								</StyledUserContact>
 								<StyledUserContact>
-									<MdOutlineMail size={'1rem'} />
+									<MdOutlineMail size={'1em'} />
 									{userInfo?.email && (
 										<a href={`mailto: ${userInfo?.email}`}>
 											<StyledEmail>{userInfo?.email}</StyledEmail>
@@ -168,7 +175,9 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 						{userInfo && userInfo.username && (
 							<StyledQRContainer>
 								<QRCode
-									size={72}
+									size={72 * scale}
+									additive={'sum'}
+									accentHeight={'30px'}
 									bgColor={'transparent'}
 									value={userInfo?.username}
 								/>

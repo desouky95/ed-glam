@@ -15,8 +15,15 @@ export default {
 			phone: '01156596754',
 		},
 		educationalInfo: {},
+		scale: 1,
 	},
-	argTypes: {},
+	argTypes: {
+		scale: {
+			control: {
+				type: 'number',
+			},
+		},
+	},
 } as ComponentMeta<typeof StudentID>;
 
 export const StudentIDCard: ComponentStory<typeof StudentID> = (args) => {

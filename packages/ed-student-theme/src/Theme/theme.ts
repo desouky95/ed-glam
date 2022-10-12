@@ -112,8 +112,8 @@ interface ITheme {
 	};
 	avatarSizes: {
 		[key in MediaQuery]?: {
-			width: number;
-			height: number;
+			width: number | string;
+			height: number | string;
 			minWidth: number;
 			minHeight: number;
 		};
@@ -420,8 +420,8 @@ export const Theme: ITheme = {
 			minHeight: 77,
 		},
 		xlarge: {
-			width: 100,
-			height: 100,
+			width: '6.25em',
+			height: '6.25em',
 			minHeight: 100,
 			minWidth: 100,
 		},
