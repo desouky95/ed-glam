@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import { MdOutlinePhone, MdOutlineMail } from 'react-icons/md';
 import bgImage from './Assets/card_bg.jpg';
 import { rgba } from 'polished';
-export const StyledOuterContainer = styled.div<{
-	scale: number;
-	withShadow: boolean;
-}>`
+import { layout, LayoutProps } from 'styled-system';
+export const StyledOuterContainer = styled.div<
+	{
+		scale: number;
+		withShadow: boolean;
+	} & LayoutProps
+>`
 	font-size: ${(props) => `${props.scale}rem`};
 	/* width: fit-content; */
 	border-radius: 10px;
@@ -22,6 +25,7 @@ export const StyledOuterContainer = styled.div<{
        //width: 25.125rem;
     //    height: 239px;
     }`}
+	${layout}
 `;
 export const StyledEDCardIcon = styled.img`
 	width: 20px;

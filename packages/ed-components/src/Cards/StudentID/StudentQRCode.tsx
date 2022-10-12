@@ -28,6 +28,7 @@ import {
 } from './StudentID.styled';
 import { StudentCardProps } from './StudentID.types';
 import EduactCardIcon from './Assets/eduact-card-icon.svg';
+import { LayoutProps } from 'styled-system';
 
 type StudentQRCodeProps = {
 	title?: string;
@@ -49,15 +50,17 @@ type StudentQRCodeProps = {
 		language?: string;
 		section?: string;
 	};
-} & StudentCardProps;
+} & StudentCardProps &
+	LayoutProps;
 const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 	withShadow = true,
 	scale = 1,
 	userInfo,
 	title,
+	...props
 }) => {
 	return (
-		<StyledOuterContainer withShadow={withShadow} scale={scale}>
+		<StyledOuterContainer withShadow={withShadow} scale={scale} {...props}>
 			{/*  student card header  */}
 			<StyledCardHeaderContainer>
 				<StyledStudentIDText>
