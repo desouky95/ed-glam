@@ -8,19 +8,19 @@ export const StyledOuterContainer = styled.div<{
 }>`
 	font-size: ${(props) => `${props.scale}rem`};
 	width: fit-content;
-	min-width: 16.625rem;
-	/* width: 600px; */
-	/* min-height: 250px; */
 	border-radius: 10px;
-	/* margin-top: 20px; */
+	display: flex;
+	flex-direction: column;
 	overflow: hidden;
 	position: relative;
+	min-width: ${(props) => props.scale * 405}px;
+	min-height: ${(props) => props.scale * 254}px;
 	box-shadow: ${({ withShadow }) =>
 		withShadow &&
 		'rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0 8px 16px -8px'};
 	${({ theme }) => `${theme.mediaQueries.large}{
-        min-width: 25.125rem;
-    //    min-height: 239px;
+       //width: 25.125rem;
+    //    height: 239px;
     }`}
 `;
 export const StyledEDCardIcon = styled.img`
@@ -52,7 +52,7 @@ export const StyledStudentIDText = styled.div`
 `;
 export const StyledBodyOuterContainer = styled.div`
 	position: relative;
-	min-height: inherit;
+	flex: 1;
 	background: url(${bgImage}), ${rgba('#5AC0FC', 0.1)};
 `;
 export const StyledBodyInnerContainer = styled.div`
@@ -141,38 +141,4 @@ export const StyledFooterInfo = styled.div`
 	display: grid;
 	/* grid-template-columns: 60px 130px; */
 	grid-template-columns: repeat(2, 1fr);
-`;
-
-export const CardScene = styled.div<{ isFlipped: boolean }>`
-	.scene {
-		width: 400px;
-		/* height: 260px; */
-		perspective: 600px;
-	}
-	.card {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		transition: transform 1s;
-		transform-style: preserve-3d;
-		display: flex;
-		transform: ${(props) => props.isFlipped && 'rotateY(180deg)'};
-	}
-
-	.card__face {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		backface-visibility: hidden;
-	}
-	.card__face--front {
-		background: red;
-	}
-
-	.card__face--back {
-		background: blue;
-		transform: rotateY(180deg);
-	}
-	.card.is-flipped {
-	}
 `;

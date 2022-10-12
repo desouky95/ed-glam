@@ -3,6 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import StudentID from './StudentID';
+import StudentQRCode from './StudentQRCode';
 
 export default {
 	title: 'Cards/StudentID',
@@ -18,7 +19,6 @@ export default {
 		},
 		educationalInfo: {},
 		scale: 1,
-		canFlip: false,
 	},
 	argTypes: {
 		scale: {
@@ -31,7 +31,23 @@ export default {
 
 export const StudentIDCard: ComponentStory<typeof StudentID> = (args) => {
 	const [isFlipped, setIsFlipped] = useState(false);
-	return <StudentID {...args} />;
+	return (
+		<Scene isFlipped={isFlipped}>
+			<div className="scene">
+				<div className="card">
+					<div className="card__face" onClick={() => setIsFlipped(!isFlipped)}>
+						<StudentID {...args} />
+					</div>
+					<div
+						className="card__face card__face--back"
+						onClick={() => setIsFlipped(!isFlipped)}
+					>
+						<StudentQRCode {...args} />
+					</div>
+				</div>
+			</div>
+		</Scene>
+	);
 };
 
 const Scene = styled.div<{ isFlipped: boolean }>`
