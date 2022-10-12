@@ -7,7 +7,7 @@ export const StyledOuterContainer = styled.div<{
 	withShadow: boolean;
 }>`
 	font-size: ${(props) => `${props.scale}rem`};
-	width: fit-content;
+	/* width: fit-content; */
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
