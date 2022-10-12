@@ -114,8 +114,8 @@ interface ITheme {
 		[key in MediaQuery]?: {
 			width: number | string;
 			height: number | string;
-			minWidth: number;
-			minHeight: number;
+			minWidth: number | string;
+			minHeight: number | string;
 		};
 	};
 	avatarShapes: {
@@ -422,8 +422,8 @@ export const Theme: ITheme = {
 		xlarge: {
 			width: '6.25em',
 			height: '6.25em',
-			minHeight: 100,
-			minWidth: 100,
+			minHeight: '6.25em',
+			minWidth: '6.25em',
 		},
 	},
 	avatarShapes: {
