@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { MdOutlinePhone, MdOutlineMail } from 'react-icons/md';
 import bgImage from './Assets/card_bg.jpg';
 import { rgba } from 'polished';
-export const StyledOuterContainer = styled.div<{ scale: number }>`
+export const StyledOuterContainer = styled.div<{
+	scale: number;
+	withShadow: boolean;
+}>`
 	font-size: ${(props) => `${props.scale}rem`};
 	width: fit-content;
 	/* width: 16.625rem; */
@@ -12,8 +15,9 @@ export const StyledOuterContainer = styled.div<{ scale: number }>`
 	/* margin-top: 20px; */
 	overflow: hidden;
 	position: relative;
-	box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px,
-		rgba(0, 0, 0, 0.3) 0 8px 16px -8px;
+	box-shadow: ${({ withShadow }) =>
+		withShadow &&
+		'rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0 8px 16px -8px'};
 	${({ theme }) => `${theme.mediaQueries.large}{
        //width: 25.125rem;
     //    height: 239px;

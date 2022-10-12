@@ -56,6 +56,7 @@ export type StudentIDProps = {
 		language?: string;
 		section?: string;
 	};
+	withShadow?: boolean;
 };
 const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	educationalInfo,
@@ -67,9 +68,10 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	usernameTitle,
 	yearTitle,
 	scale = 1,
+	withShadow = true,
 }) => {
 	return (
-		<StyledOuterContainer scale={scale}>
+		<StyledOuterContainer withShadow={withShadow} scale={scale}>
 			{/*  student card header  */}
 			<StyledCardHeaderContainer>
 				<StyledStudentIDText>
