@@ -72,7 +72,7 @@ const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 				{/*  card body content  */}
 				<StyledBodyInnerContainer>
 					{/* card footer  */}
-					<StyledFooterContainer>
+					<FlexLayout justifyContent={'center'}>
 						{/*  qr code  */}
 						{userInfo && userInfo.username && (
 							<StyledQRContainer>
@@ -85,7 +85,7 @@ const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 								/>
 							</StyledQRContainer>
 						)}
-					</StyledFooterContainer>
+					</FlexLayout>
 				</StyledBodyInnerContainer>
 
 				{/*  student card background image  */}
