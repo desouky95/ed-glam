@@ -2,28 +2,47 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { EyeoffIcon, EyeIcon, Icon, Icons } from './Icons';
 import { AiFillAccountBook, AiFillAlert } from 'react-icons/ai';
 import { Avatar } from '..';
+import { FlexLayout } from '@eduact/ed-system';
 export default {
 	title: 'Icons',
-} as ComponentMeta<any>;
+	component: Icon,
+	argTypes: {
+		size: {
+			type: 'string',
+		},
+	},
+} as ComponentMeta<typeof Icon>;
 
-export const IconsDefault: ComponentStory<any> = () => {
+export const IconsDefault: ComponentStory<typeof Icon> = (args) => {
 	return (
-		<div>
-			<Icon color="orange">
+		<FlexLayout flexWrap={'wrap'} gridGap="1rem">
+			<Icon {...args}>
 				<Icons.ChevronLeft />
 			</Icon>
-			<Icon color="orange">
+			<Icon color="orange" {...args}>
 				<Icons.ChevronRight />
 			</Icon>
-			<Icon size={'24px'} color="maxBluePurple">
+			<Icon {...args}>
 				<Icons.Warning />
 			</Icon>
-			<Icon color="primary">
+			<Icon {...args}>
 				<Icons.DoubleArrowUp />
 			</Icon>
-			<Icon color="primary">
+			<Icon {...args}>
 				<Icons.RightArrow />
 			</Icon>
-		</div>
+			<Icon {...args}>
+				<Icons.Activity />
+			</Icon>
+			<Icon {...args}>
+				<Icons.User />
+			</Icon>
+			<Icon {...args}>
+				<Icons.Dashboard />
+			</Icon>
+			<Icon {...args}>
+				<Icons.Settings />
+			</Icon>
+		</FlexLayout>
 	);
 };

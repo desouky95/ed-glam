@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 export default {
 	title: 'Buttons/Raised Button',
-	component: RaisedButtonStyled,
+	component: RaisedButton,
 	parameters: {
 		controls: {
 			exclude: ['as', 'theme', 'forwardedAs', 'ref'],
