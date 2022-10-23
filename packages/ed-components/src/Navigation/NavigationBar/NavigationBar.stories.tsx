@@ -1,6 +1,7 @@
 import { Icon, Icons } from '@src/Icons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useState } from 'react';
+import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 
 export default {
@@ -13,7 +14,7 @@ export const NavigationBarDefault: ComponentStory<
 > = () => {
 	const [active, setActive] = useState('overview');
 	return (
-		<NavigationBar
+		<FixedNavigationBar
 			onChange={(value) => setActive(value.toString())}
 			value={active}
 		>
@@ -63,6 +64,12 @@ export const NavigationBarDefault: ComponentStory<
 					</Icon>
 				}
 			/>
-		</NavigationBar>
+		</FixedNavigationBar>
 	);
 };
+
+const FixedNavigationBar = styled(NavigationBar)`
+	position: fixed !important;
+	bottom: 0;
+	z-index: 999;
+`;

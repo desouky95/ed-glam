@@ -17,6 +17,8 @@ export const NavigationBarContainer = styled.div<{ color: Color }>`
 	padding: 0.781rem 0;
 	display: flex;
 	justify-content: space-around;
+	width: 100%;
+	height: fit-content;
 	${variant({ prop: 'color', scale: 'backgrounds' })};
 	box-shadow: -4px -2px 4px 0 rgba(0, 0, 0, 0.16);
 `;

@@ -2,7 +2,7 @@ import { Color } from '@eduact/student-theme';
 import { Placement } from '@popperjs/core';
 import { Icon } from '@src/Icons';
 import { Popper } from '@src/Utils/Popper/Popper';
-import React, { useState } from 'react';
+import React, { HTMLProps, useState } from 'react';
 import styled from 'styled-components';
 import { variant } from 'styled-system';
 import {
@@ -37,7 +37,7 @@ type NavigationBarProps = {
 	children: Array<React.ReactElement<NavigationBarItemProps>>;
 	onChange?: (value: string | number) => void;
 	popperPlacement?: Placement;
-};
+} & Omit<HTMLProps<HTMLDivElement>, 'ref' | 'as'>;
 const NavigationBar: React.FC<NavigationBarProps> &
 	NavigationBarComposition = ({
 	color = 'light',
@@ -45,10 +45,11 @@ const NavigationBar: React.FC<NavigationBarProps> &
 	onChange,
 	value,
 	popperPlacement = 'top',
+	...props
 }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	return (
-		<NavigationBarContainer color={color}>
+		<NavigationBarContainer color={color} {...props}>
 			{React.Children.map<
 				React.ReactElement<NavigationBarItemProps>,
 				React.ReactElement<NavigationBarItemProps>
