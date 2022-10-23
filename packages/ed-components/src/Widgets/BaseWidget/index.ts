@@ -1,3 +1,3 @@
 import BaseWidget from './BaseWidget';
-
-export { BaseWidget };
+import { useWidget } from './WidgetProvider';
+export { BaseWidget, useWidget };

@@ -4,14 +4,11 @@ import React, { useEffect } from 'react';
 import { useMemo } from 'react';
 import styled from 'styled-components';
 import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
+import { useWidget, WidgetProvider } from './WidgetProvider';
 
 export type WidgetUIProps = { bg: Color; withShadow: boolean } & SpaceProps &
 	LayoutProps;
-export type WidgetProps<T> = {
-	onClick?: (data?: any) => void;
-	// title?: string;
-	action: () => JSX.Element;
-};
+export type WidgetProps<T> = {};
 export type BaseWidgetDataProps<T> = {
 	title?: string;
 	onClick: () => void;
@@ -19,29 +16,29 @@ export type BaseWidgetDataProps<T> = {
 };
 export type BaseWidgetsProps<T> = Partial<WidgetUIProps> &
 	BaseWidgetDataProps<T>;
-const BaseWidget = <T,>({
+const BaseWidget = <T,>(props: BaseWidgetsProps<T>) => {
+	return (
+		<WidgetProvider>
+			<WidgetUIContainer {...props} />
+		</WidgetProvider>
+	);
+};
+
+const WidgetUIContainer = <T,>({
 	bg = 'light',
 	withShadow = false,
 	widget,
-	title,
 	onClick,
 	...props
 }: BaseWidgetsProps<T>) => {
-	// console.log(widget.prototype.title);
-
-	const actions = useMemo(() => {
-		// return widget?.action();
-	}, [widget]);
-	useEffect(() => {
-		console.log(widget?.prototype);
-	}, []);
+	const { title, action } = useWidget();
 	return (
 		<BaseWidgetContainer bg={bg} withShadow={withShadow} {...props}>
 			<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
 				{title && <BaseWidgetTitle>{title}</BaseWidgetTitle>}
-				{actions}
+				{action}
 			</FlexLayout>
-			{/* {widget && widget({})} */}
+			{widget && widget({})}
 		</BaseWidgetContainer>
 	);
 };

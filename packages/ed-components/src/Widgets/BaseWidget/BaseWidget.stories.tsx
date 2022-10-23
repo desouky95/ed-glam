@@ -32,7 +32,7 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 			<Mosaic.Row>
 				<Mosaic.Col flex={1}>
 					<Mosaic.Row flex={1}>
-						<BaseWidget height={'22.95rem'} {...args} />
+						<BaseWidget height={'22.95rem'} {...args} widget={DayNightWidget} />
 					</Mosaic.Row>
 				</Mosaic.Col>
 				<Mosaic.Col flex={1}>
