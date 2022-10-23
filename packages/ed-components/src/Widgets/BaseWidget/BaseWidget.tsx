@@ -1,6 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { Color } from '@eduact/student-theme';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useMemo } from 'react';
 import styled from 'styled-components';
 import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
@@ -15,7 +15,7 @@ export type WidgetProps<T> = {
 export type BaseWidgetDataProps<T> = {
 	title?: string;
 	onClick: () => void;
-	widget: React.VoidFunctionComponent & WidgetProps<T>;
+	widget: React.VoidFunctionComponent<WidgetProps<T>>;
 };
 export type BaseWidgetsProps<T> = Partial<WidgetUIProps> &
 	BaseWidgetDataProps<T>;
@@ -27,18 +27,21 @@ const BaseWidget = <T,>({
 	onClick,
 	...props
 }: BaseWidgetsProps<T>) => {
-	console.log(widget.prototype.title);
+	// console.log(widget.prototype.title);
 
 	const actions = useMemo(() => {
-		return widget.action();
-	}, [widget.action]);
+		// return widget?.action();
+	}, [widget]);
+	useEffect(() => {
+		console.log(widget?.prototype);
+	}, []);
 	return (
 		<BaseWidgetContainer bg={bg} withShadow={withShadow} {...props}>
 			<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
 				{title && <BaseWidgetTitle>{title}</BaseWidgetTitle>}
 				{actions}
 			</FlexLayout>
-			{widget({})}
+			{/* {widget && widget({})} */}
 		</BaseWidgetContainer>
 	);
 };

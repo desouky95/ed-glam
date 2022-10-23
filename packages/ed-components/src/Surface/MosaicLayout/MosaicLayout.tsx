@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {
 	flexbox,
 	FlexboxProps,
+	flexDirection,
+	FlexDirectionProps,
 	gridGap,
 	GridGapProps,
 	layout,
@@ -10,37 +12,46 @@ import {
 } from 'styled-system';
 import React, { ReactNode } from 'react';
 // Row
-const StyledMosaicRow = styled.div<FlexboxProps>`
+const StyledMosaicRow = styled.div<FlexboxProps & GridGapProps>`
 	display: flex;
 	flex: 1;
 	grid-gap: 1.563rem;
 	${flexbox};
+	${gridGap};
 	flex-direction: column;
+	width: 100%;
+	min-width: 100%;
 	${({ theme }) => `${theme.mediaQueries.medium}{
         flex-direction : row;
     }`}
 `;
-const MosaicRow: React.FC<FlexboxProps> = ({ children, ...props }) => (
-	<StyledMosaicRow {...props}>{children}</StyledMosaicRow>
-);
+const MosaicRow: React.FC<FlexboxProps & GridGapProps> = ({
+	children,
+	...props
+}) => <StyledMosaicRow {...props}>{children}</StyledMosaicRow>;
 
 // Column
-const StyledMosaicCol = styled.div<FlexboxProps>`
+const StyledMosaicCol = styled.div<FlexboxProps & GridGapProps>`
 	display: flex;
 	flex-direction: column;
 
 	grid-gap: 1.563rem;
 	${flexbox};
+	${gridGap};
 	${({ theme }) => `${theme.mediaQueries.small}{
 		flex: 1;
     }`}
 `;
-const MosaicCol: React.FC<FlexboxProps> = ({ children, ...props }) => (
-	<StyledMosaicCol {...props}>{children}</StyledMosaicCol>
-);
+const MosaicCol: React.FC<FlexboxProps & GridGapProps> = ({
+	children,
+	...props
+}) => <StyledMosaicCol {...props}>{children}</StyledMosaicCol>;
 
-const MosaicLayout = styled.div<GridGapProps & LayoutProps>`
+const MosaicLayout = styled.div<
+	GridGapProps & LayoutProps & FlexDirectionProps
+>`
 	display: flex;
+	flex-wrap: wrap;
 	grid-gap: 1.563rem;
 	width: 100%;
 	height: 100%;
@@ -55,6 +66,7 @@ const MosaicLayout = styled.div<GridGapProps & LayoutProps>`
 		${gridGap};
 	}
 	${layout};
+	/* ${flexDirection}; */
 `;
 
 interface MosaicComposition {
@@ -62,7 +74,8 @@ interface MosaicComposition {
 	Col: React.FC<React.ComponentProps<typeof MosaicCol>>;
 }
 type MosaicProps = GridGapProps &
-	LayoutProps & {
+	LayoutProps &
+	FlexDirectionProps & {
 		children: Array<React.ReactElement<React.ComponentProps<typeof MosaicCol>>>;
 	};
 export const Mosaic: React.FC<MosaicProps> & MosaicComposition = ({

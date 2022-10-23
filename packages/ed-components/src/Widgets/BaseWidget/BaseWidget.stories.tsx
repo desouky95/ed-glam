@@ -29,27 +29,25 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 }) => {
 	return (
 		<Mosaic height={'100%'}>
-			<Mosaic.Col flex={2}>
-				<Mosaic.Row flex={1}>
-					<Mosaic.Col flex={1}>
-						<BaseWidget {...args} widget={DayNightWidget} />
-					</Mosaic.Col>
-					<Mosaic.Col flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Col>
-				</Mosaic.Row>
-				<Mosaic.Row flex={1}>
-					<Mosaic.Col flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Col>
-					<Mosaic.Col flex={2}>{/* <BaseWidget {...args} /> */}</Mosaic.Col>
-				</Mosaic.Row>
-				<Mosaic.Row flex={1}>
-					<Mosaic.Col flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Col>
-				</Mosaic.Row>
-			</Mosaic.Col>
-			<Mosaic.Col flex={1}>
-				<Mosaic.Row flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Row>
-				<Mosaic.Row flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Row>
-				<Mosaic.Row flex={1}>{/* <BaseWidget {...args} /> */}</Mosaic.Row>
-				<Mosaic.Row flex={4}>{/* <BaseWidget {...args} /> */}</Mosaic.Row>
-			</Mosaic.Col>
+			<Mosaic.Row>
+				<Mosaic.Col flex={1}>
+					<Mosaic.Row flex={1}>
+						<BaseWidget height={'22.95rem'} {...args} />
+					</Mosaic.Row>
+				</Mosaic.Col>
+				<Mosaic.Col flex={1}>
+					<Mosaic.Row flex={1}>
+						<BaseWidget {...args} />
+					</Mosaic.Row>
+				</Mosaic.Col>
+			</Mosaic.Row>
+			<Mosaic.Row>
+				<Mosaic.Col flex={1}>
+					<Mosaic.Row flex={1}>
+						<BaseWidget {...args} />
+					</Mosaic.Row>
+				</Mosaic.Col>
+			</Mosaic.Row>
 		</Mosaic>
 	);
 };

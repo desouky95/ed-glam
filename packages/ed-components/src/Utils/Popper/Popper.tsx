@@ -8,7 +8,8 @@ import React, {
 	useState,
 } from 'react';
 import { usePopper, Popper as PopperJS } from 'react-popper';
-import { createPopper } from '@popperjs/core';
+import { createPopper, Placement } from '@popperjs/core';
+import styled from 'styled-components';
 export function setRef<T>(
 	ref:
 		| React.MutableRefObject<T | null>
@@ -42,15 +43,13 @@ export function useForkRef<InstanceA, InstanceB>(
 type PopperProps = {
 	children: React.ReactElement;
 	title?: string;
+	placement?: Placement;
 };
 export const Popper = forwardRef<HTMLElement, PopperProps>(function Popper(
-	props,
+	{ placement = 'auto', ...props },
 	ref
 ) {
-	const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
-		null
-	);
-	const rreferenceElement = useRef<HTMLElement | null>(null);
+	const referenceElement = useRef<HTMLElement | null>(null);
 	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
 		null
 	);
@@ -58,37 +57,62 @@ export const Popper = forwardRef<HTMLElement, PopperProps>(function Popper(
 	const [open, setOpen] = useState(false);
 
 	const childProps = {
-		ref: rreferenceElement,
+		ref: referenceElement,
 	};
 
-	const getChildElement = () => React.cloneElement(props.children, childProps);
+	const getChildElement = () =>
+		React.cloneElement(props.children, {
+			...childProps,
+			...props.children.props,
+		});
+
+	const { styles, attributes, state, update, forceUpdate } = usePopper(
+		referenceElement.current,
+		popperElement,
+		{
+			placement: 'top',
+			modifiers: [
+				{
+					name: 'applyStyles',
+					enabled: true,
+				},
+				{
+					name: 'offset',
+					options: {
+						offset: [0, 5],
+					},
+				},
+			],
+		}
+	);
 
 	useEffect(() => {
-		if (rreferenceElement.current) {
-			rreferenceElement.current.onmousemove = () => setOpen(true);
-			rreferenceElement.current.onmouseleave = () => setOpen(false);
+		update?.();
+		if (referenceElement.current) {
+			referenceElement.current.onmousemove = () => {
+				setOpen(true);
+			};
+			referenceElement.current.onmouseleave = () => {
+				setOpen(false);
+			};
+			update?.();
 		}
 	}, []);
 
-	const { styles, attributes, state } = usePopper(
-		rreferenceElement.current,
-		popperElement,
-		{
-			placement: 'top-start',
-		}
-	);
 	return (
-		<>
+		<PopperWrapper {...props}>
 			{getChildElement()}
 			{open && (
 				<div
 					ref={(e) => setPopperElement(e)}
-					style={styles.popper}
+					style={{ ...styles.popper }}
 					{...attributes.popper}
 				>
-					Popper element
+					{props.title}
 				</div>
 			)}
-		</>
+		</PopperWrapper>
 	);
 });
+
+const PopperWrapper = styled.div``;

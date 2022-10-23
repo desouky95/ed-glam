@@ -1,7 +1,7 @@
 import React from 'react';
 import { Widget, WidgetProps } from '../BaseWidget/BaseWidget';
 
-const DayNightWidget: React.VoidFunctionComponent & WidgetProps<any> = (
+const DayNightWidget: React.VoidFunctionComponent<WidgetProps<any>> = (
 	props
 ) => {
 	return (
@@ -16,14 +16,3 @@ const DayNightWidget: React.VoidFunctionComponent & WidgetProps<any> = (
 };
 
 export default DayNightWidget;
-DayNightWidget.action = () => {
-	return (
-		<div
-			onClick={() => {
-				alert('Action');
-			}}
-		>
-			Action
-		</div>
-	);
-};
