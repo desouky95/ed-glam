@@ -17,7 +17,8 @@ export type TextInputProps = {
 	startAdornment?: JSX.Element;
 	endAdornment?: JSX.Element;
 } & React.HTMLProps<HTMLInputElement> &
-	InputBaseError;
+	InputBaseError &
+	InputBaseUIProps;
 const TextInput = React.forwardRef<
 	HTMLInputElement,
 	React.PropsWithChildren<TextInputProps>
