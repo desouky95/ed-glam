@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import {
+	color,
+	ColorProps,
 	space,
 	SpaceProps,
 	textStyle,
@@ -27,7 +29,8 @@ export const Typography = styled.span<
 		SpaceProps &
 		TextDecorationProps &
 		WordSpacingProps &
-		CursorProps
+		CursorProps &
+		ColorProps
 >`
 	${typography};
 	${textStyle};
@@ -35,6 +38,7 @@ export const Typography = styled.span<
 	${textDecoration};
 	${wordSpacing};
 	${cursor};
+	${color};
 `;
 
 export const SingleLineCssTrim = css`
