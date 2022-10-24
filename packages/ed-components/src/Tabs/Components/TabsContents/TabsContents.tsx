@@ -34,7 +34,6 @@ const TabsContents: React.FC<TabsContentsProps> = ({ children, ...props }) => {
 		return selected ?? activeTabIndex;
 	}, [activeTabIndex, activeTab, children]);
 
-	console.log({ activeTabIndex, oldIndex });
 	return (
 		<>
 			{children && (

@@ -1,6 +1,12 @@
 import { FlexLayout } from '@eduact/ed-system';
 import React from 'react';
-
+import {
+	FlexboxProps,
+	GridProps,
+	LayoutProps,
+	SpaceProps,
+} from 'styled-system';
+type TabsContentUIProps = SpaceProps & FlexboxProps & GridProps & LayoutProps;
 type TabsContentInferProps = {
 	value: string;
 	children:
@@ -18,9 +24,13 @@ type TabsContentDefaultProps = {
 
 export type TabsContentProps = TabsContentDefaultProps | TabsContentInferProps;
 
-const TabsContent: React.FC<TabsContentProps> = ({ value, children }) => {
+const TabsContent: React.FC<TabsContentProps & TabsContentUIProps> = ({
+	value,
+	children,
+	...props
+}) => {
 	return (
-		<FlexLayout width="100%" flex={'1'} minWidth="100%">
+		<FlexLayout width="100%" flex={'1'} minWidth="100%" {...props}>
 			{children}
 		</FlexLayout>
 	);
