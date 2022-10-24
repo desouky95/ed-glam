@@ -42,6 +42,7 @@ const TabsContents: React.FC<TabsContentsProps> = ({ children, ...props }) => {
 						{React.Children.map(children, (child, index) => {
 							return (
 								<TabContentWrapper
+									className="tabs-contents-inner-wrapper"
 									current={activeTabIndex}
 									oldIndex={oldIndex ?? 0}
 									index={index}
