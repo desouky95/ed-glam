@@ -56,6 +56,11 @@ export const Stack = styled.div<PositionProps>`
 	${position}
 `;
 
+export const Box = styled.div<LayoutProps & SpaceProps>`
+	${space};
+	${layout}
+`;
+
 export const Container = styled.div<MaxWidthProps>`
 	max-width: 100%;
 	@media (min-width: 832px) {
