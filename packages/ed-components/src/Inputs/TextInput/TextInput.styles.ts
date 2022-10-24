@@ -27,9 +27,11 @@ export const StyledInput = styled.input<InputBaseError>`
 	font: inherit;
 	--color: ${(props) => props.theme.colors.silver};
 	outline: var(--color);
-	/* color: #000; */
-
+	font-size: 10px;
 	&::placeholder {
 		color: var(--color);
 	}
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		font-size : 16px;
+	}`}
 `;
