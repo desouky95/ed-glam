@@ -19,7 +19,7 @@ import {
 	DropdownWrapper,
 	StyledDropdownOption,
 } from './Dropdown.styled';
-import { ChevronMore, Icon } from '../../Icons/Icons';
+import { Icon, Icons } from '../../Icons/Icons';
 import { Spring, easings } from 'react-spring';
 import { useElementSize, useOutsideAlert } from '@eduact/utils';
 import {
@@ -125,8 +125,8 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 						{selectedLabel !== undefined ? selectedLabel : placeholder}
 					</span>
 					<FlexLayout alignItems={'center'}>
-						<DropdownIcon $opened={opened} size={20}>
-							<ChevronMore />
+						<DropdownIcon $opened={opened} size={20} scale={20}>
+							<Icons.ChevronMore />
 						</DropdownIcon>
 						{required && <RequiredMark>*</RequiredMark>}
 					</FlexLayout>

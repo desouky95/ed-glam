@@ -1,6 +1,6 @@
 import Spacer from '../../Spacer';
 import React, { useState } from 'react';
-import { Icon, EyeIcon, EyeoffIcon } from '../../Icons/Icons';
+import { Icon, Icons } from '../../Icons/Icons';
 import {
 	InputBaseWrapper,
 	InputWrapper,
@@ -68,7 +68,7 @@ const TextInput = React.forwardRef<
 									setType(type === 'password' ? 'text' : 'password')
 								}
 							>
-								{type === 'password' ? <EyeIcon /> : <EyeoffIcon />}
+								{type === 'password' ? <Icons.EyeIcon /> : <Icons.EyeoffIcon />}
 							</Icon>
 						</Spacer>
 					)}

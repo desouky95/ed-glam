@@ -38,7 +38,8 @@ export const DropdownWrapper = styled.div<WrapperProps>`
 `;
 
 export const DropdownIcon = styled(Icon)<{ $opened: boolean }>`
-	transform: ${(props) => (props.$opened ? 'rotate(180deg)' : '')};
+	transform-origin: center;
+	transform: ${(props) => (props.$opened ? 'rotate(90deg)' : '')};
 	transition: all ease-in-out 100ms;
 `;
 export const DropdownOptions = styled.div<{ $opened: boolean }>`
