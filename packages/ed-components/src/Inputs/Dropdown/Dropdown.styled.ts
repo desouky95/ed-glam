@@ -28,6 +28,11 @@ export const DropdownWrapper = styled.div<WrapperProps>`
 	}
 	border-bottom-color: ${(props) =>
 		props.error ? props.theme.colors.princetonOrange : ''};
+	font-size: 10px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+			font-size : 16px;
+
+		}`}
 	${layout};
 	${space};
 `;
@@ -75,4 +80,8 @@ export const StyledDropdownOption = styled.div<{ selected?: boolean }>`
 	&:hover {
 		background: #eeeeee;
 	}
+	font-size: 10px;
+	${({ theme }) => `${theme.mediaQueries.medium}{
+		font-size : 16px;
+	}`}
 `;
