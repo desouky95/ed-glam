@@ -14,6 +14,8 @@ import { InputBaseError, isDatetime } from '../BaseInputUtils/BaseInputs.types';
 
 export type TextInputProps = {
 	withToggle?: boolean;
+	startAdornment?: JSX.Element;
+	endAdornment?: JSX.Element;
 } & React.HTMLProps<HTMLInputElement> &
 	InputBaseError;
 const TextInput = React.forwardRef<
@@ -25,6 +27,8 @@ const TextInput = React.forwardRef<
 			ref: _ref,
 			as,
 			withToggle = true,
+			startAdornment,
+			endAdornment,
 			...props
 		}: React.PropsWithChildren<TextInputProps>,
 		ref: React.ForwardedRef<HTMLInputElement>
@@ -50,6 +54,7 @@ const TextInput = React.forwardRef<
 						props.onBlur && props.onBlur(e);
 					}}
 				>
+					{startAdornment}
 					<StyledInput ref={ref as any} {...props} type={type} />
 					{props.type === 'password' && withToggle && (
 						<Spacer mx={'6px'}>
@@ -62,6 +67,7 @@ const TextInput = React.forwardRef<
 							</Icon>
 						</Spacer>
 					)}
+					{endAdornment}
 					{props.required && <RequiredMark>*</RequiredMark>}
 				</InputWrapper>
 				<InputBaseHelperText error={props.error}>

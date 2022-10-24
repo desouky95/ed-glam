@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import TextInput from './TextInput';
 import { MdPassword } from 'react-icons/md';
 import { useArgs } from '@storybook/client-api';
-import { GridLayout } from '@eduact/ed-system';
+import { GridLayout, Typography } from '@eduact/ed-system';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { DateFormatter } from '@eduact/utils';
+import { Icon, Icons } from '@src/Icons';
 export default {
 	title: 'Inputs/TextInput',
 	component: TextInput,
@@ -31,8 +32,13 @@ export const TextInputDefault: ComponentStory<typeof TextInput> = (args) => {
 	const [_args, updateArgs] = useArgs();
 	//   const [value, setValue] = useState("Init Value");
 	return (
-		<GridLayout width={'20vw'} gridTemplateColumns={'repeat(2,1fr)'}>
+		<GridLayout width={'100%'} gridTemplateColumns={'repeat(2,1fr)'}>
 			<TextInput
+				startAdornment={
+					<Icon>
+						<Icons.Activity />
+					</Icon>
+				}
 				required
 				onChange={(e) => updateArgs({ ...args, value: e.currentTarget.value })}
 				placeholder="City"
@@ -40,6 +46,7 @@ export const TextInputDefault: ComponentStory<typeof TextInput> = (args) => {
 			/>
 			<TextInput
 				required
+				endAdornment={<Typography>Change Password</Typography>}
 				onChange={(e) => updateArgs({ ...args, value: e.currentTarget.value })}
 				placeholder="City"
 				{...args}

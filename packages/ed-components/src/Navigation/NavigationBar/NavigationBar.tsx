@@ -57,7 +57,6 @@ const NavigationBar: React.FC<NavigationBarProps> &
 				return React.cloneElement(child, {
 					...child.props,
 					onClick: (e: any) => {
-						console.log('TEST CLICK');
 						child.props.onClick?.(e);
 						onChange?.(child.props.value as string | number);
 					},
