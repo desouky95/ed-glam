@@ -15,7 +15,11 @@ const Card: React.FC<CardProps> = ({
 	withShadow = true,
 	...props
 }) => {
-	return <StyledCard {...props}>{children}</StyledCard>;
+	return (
+		<StyledCard withShadow={withShadow} {...props}>
+			{children}
+		</StyledCard>
+	);
 };
 
 export default memo(Card);

@@ -19,7 +19,6 @@ export const ModalStory: ComponentStory<typeof Modal> = (args) => {
 				withBackdrop
 				withStyling
 				center
-				persistent
 			>
 				<FlexLayout
 					style={{ background: 'yellowgreen' }}
