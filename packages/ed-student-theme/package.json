@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/student-theme",
-	"version": "1.0.56",
+	"version": "1.0.57",
 	"description": "",
 	"main": "./src/index.ts",
 	"scripts": {
@@ -13,7 +13,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@eduact/ed-system": "^1.1.19"
+		"@eduact/ed-system": "^1.1.20"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.182",
