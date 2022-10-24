@@ -10,7 +10,11 @@ import {
 	InputBaseHelperText,
 	RequiredMark,
 } from '../BaseInputUtils/BaseInputUtils';
-import { InputBaseError, isDatetime } from '../BaseInputUtils/BaseInputs.types';
+import {
+	InputBaseError,
+	InputBaseUIProps,
+	isDatetime,
+} from '../BaseInputUtils/BaseInputs.types';
 
 export type TextInputProps = {
 	withToggle?: boolean;
