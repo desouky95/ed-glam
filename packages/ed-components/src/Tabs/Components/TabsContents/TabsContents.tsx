@@ -38,7 +38,10 @@ const TabsContents: React.FC<TabsContentsProps> = ({ children, ...props }) => {
 		<>
 			{children && (
 				<TabContentsSwiperWrapper {...props}>
-					<TabContentsSwiper activeIndex={activeIndex}>
+					<TabContentsSwiper
+						className="tabs-contents-swiper"
+						activeIndex={activeIndex}
+					>
 						{React.Children.map(children, (child, index) => {
 							return (
 								<TabContentWrapper
