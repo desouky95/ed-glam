@@ -254,6 +254,7 @@ const TabsWrapper = styled(TabsHeaders)`
 
 export const StoryWithoutList2: ComponentStory<typeof Tabs> = () => {
 	const [walletIndex, setWalletIndex] = useState(0);
+	const [navigate, setNavigate] = useState(false);
 	return (
 		<>
 			<RaisedButton onClick={() => setWalletIndex(walletIndex + 1)}>
@@ -261,8 +262,7 @@ export const StoryWithoutList2: ComponentStory<typeof Tabs> = () => {
 			</RaisedButton>
 			<TabsProvider
 				onChange={(value) => {
-					console.log({ value });
-					setWalletIndex?.(Number(value));
+					if (navigate) setWalletIndex?.(Number(value));
 				}}
 				index={walletIndex}
 				active={walletIndex?.toString() ?? ''}
