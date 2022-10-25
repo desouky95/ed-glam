@@ -4,6 +4,7 @@ import { Property } from 'csstype';
 export type InputBaseError = {
 	error?: boolean;
 	helperText?: string;
+	withHelperText?: boolean;
 };
 export type InputBaseUIProps = {
 	background?: Color | Property.Background;

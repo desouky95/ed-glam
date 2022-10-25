@@ -34,6 +34,7 @@ const TextInput = React.forwardRef<
 			withToggle = true,
 			startAdornment,
 			endAdornment,
+			withHelperText = true,
 			...props
 		}: React.PropsWithChildren<TextInputProps>,
 		ref: React.ForwardedRef<HTMLInputElement>
@@ -75,9 +76,11 @@ const TextInput = React.forwardRef<
 					{endAdornment}
 					{props.required && <RequiredMark>*</RequiredMark>}
 				</InputWrapper>
-				<InputBaseHelperText error={props.error}>
-					{props.helperText}
-				</InputBaseHelperText>
+				{withHelperText && (
+					<InputBaseHelperText error={props.error}>
+						{props.helperText}
+					</InputBaseHelperText>
+				)}
 			</InputBaseWrapper>
 		);
 	}

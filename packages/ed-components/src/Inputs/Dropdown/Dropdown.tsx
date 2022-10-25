@@ -46,7 +46,18 @@ const DropdownOption: React.FC<DropdownOptionProps> = ({
 };
 
 const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
-	({ children, value, placeholder, required, onChange, ...props }, ref) => {
+	(
+		{
+			children,
+			value,
+			placeholder,
+			required,
+			onChange,
+			withHelperText = true,
+			...props
+		},
+		ref
+	) => {
 		const myRef = useRef<HTMLSelectElement | null>(null);
 
 		const [hasValue, setHasValue] = useState(false);
@@ -167,9 +178,11 @@ const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
 						}}
 					</Spring>
 				</DropdownWrapper>
-				<InputBaseHelperText error={props.error}>
-					{props.helperText}
-				</InputBaseHelperText>
+				{withHelperText && (
+					<InputBaseHelperText error={props.error}>
+						{props.helperText}
+					</InputBaseHelperText>
+				)}
 			</div>
 		);
 	}
