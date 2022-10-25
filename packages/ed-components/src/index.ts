@@ -16,3 +16,5 @@ export * from './Tabs';
 export * from './Test';
 export * from './TestSummary';
 export * from './Navigation';
+export * from './Widgets';
+export * from './Surface';
