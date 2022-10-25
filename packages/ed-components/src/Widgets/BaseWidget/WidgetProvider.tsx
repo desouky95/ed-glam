@@ -1,4 +1,4 @@
-import { createContext, Dispatch, useContext, useState } from 'react';
+import React, { createContext, Dispatch, useContext, useState } from 'react';
 
 type WidgetAction = () => JSX.Element;
 type WidgetContextArgs = {
