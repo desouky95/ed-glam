@@ -13,18 +13,22 @@ import {
 	SpaceProps,
 	variant,
 } from 'styled-system';
+import { SkeletonProps } from '../Skeleton.types';
 
 type Props = LayoutProps &
 	SpaceProps &
 	BorderProps &
 	BackgroundProps &
-	ShadowProps;
-const SkeletonTitle: React.FC<Props> = ({ ...props }) => {
-	return (
-		<StyledSkeletonTitleWrapper {...props}>
-			<StyledSkeletonTitle />
-		</StyledSkeletonTitleWrapper>
-	);
+	ShadowProps &
+	SkeletonProps;
+const SkeletonTitle: React.FC<Props> = ({ isLoading, children, ...props }) => {
+	if (isLoading)
+		return (
+			<StyledSkeletonTitleWrapper {...props}>
+				<StyledSkeletonTitle />
+			</StyledSkeletonTitleWrapper>
+		);
+	return <>{children}</>;
 };
 const loading = keyframes`
 	        0% {
@@ -34,7 +38,7 @@ const loading = keyframes`
           transform: skewX(-10deg) translateX(200%);
         }
 `;
-const StyledSkeletonTitleWrapper = styled.div<Props>`
+const StyledSkeletonTitleWrapper = styled.div<Omit<Props, 'isLoading'>>`
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
