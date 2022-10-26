@@ -66,13 +66,7 @@ const useElementScroll = ({
 			}
 		};
 		if (ref.current) {
-			const isScrollable =
-				ref.current?.scrollHeight > ref.current?.clientHeight;
-			if (!isScrollable) {
-				throw new Error('Element in useElementScroll is not scrollable');
-			} else {
-				ref.current.addEventListener('scroll', handleScroll);
-			}
+			ref.current.addEventListener('scroll', handleScroll);
 		} else {
 			window.addEventListener('scroll', handleScroll);
 		}
