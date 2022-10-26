@@ -1,6 +1,8 @@
-import { FlexItem, FlexLayout } from '@eduact/ed-system';
+import { FlexItem, FlexLayout, useElementScroll } from '@eduact/ed-system';
 import { Colors } from '@eduact/student-theme';
+import { Card } from '@src/Cards';
 import { Mosaic } from '@src/Surface/MosaicLayout';
+import { useRef } from '@storybook/addons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import styled from 'styled-components';
 import DayNightWidget from '../DayNightWidget/DayNightWidget';
@@ -27,27 +29,53 @@ export default {
 export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 	...args
 }) => {
+	const elRef = useRef(null);
+	useElementScroll({
+		ref: elRef,
+		// wait: 1000,
+		onChange(scrollPosition) {
+			console.log(scrollPosition);
+		},
+		onScrollToBottom() {
+			console.log('END');
+		},
+	});
 	return (
-		<Mosaic height={'100%'}>
-			<Mosaic.Row>
-				<Mosaic.Col flex={1}>
-					<Mosaic.Row flex={1}>
-						<BaseWidget height={'22.95rem'} {...args} widget={DayNightWidget} />
+		<>
+			{/* <FlexLayout height={'40vh'} width="100%">
+				<Card height={'100%'} width="100%" variant={'purple'}>
+					<div>Card</div>
+				</Card>
+			</FlexLayout> */}
+			<FlexLayout width={'100%'} ref={elRef} maxHeight="50vh" overflow={'auto'}>
+				<Card variant={'green'} width="100%" minHeight={'200vh'}>
+					{/* <Mosaic minHeight={'200vh'} height={'100%'}>
+					<Mosaic.Row>
+						<Mosaic.Col flex={1}>
+							<Mosaic.Row flex={1}>
+								<BaseWidget
+									height={'22.95rem'}
+									{...args}
+									widget={DayNightWidget}
+								/>
+							</Mosaic.Row>
+						</Mosaic.Col>
+						<Mosaic.Col flex={1}>
+							<Mosaic.Row flex={1}>
+								<BaseWidget {...args} />
+							</Mosaic.Row>
+						</Mosaic.Col>
 					</Mosaic.Row>
-				</Mosaic.Col>
-				<Mosaic.Col flex={1}>
-					<Mosaic.Row flex={1}>
-						<BaseWidget {...args} />
+					<Mosaic.Row>
+						<Mosaic.Col flex={1}>
+							<Mosaic.Row flex={1}>
+								<BaseWidget {...args} />
+							</Mosaic.Row>
+						</Mosaic.Col>
 					</Mosaic.Row>
-				</Mosaic.Col>
-			</Mosaic.Row>
-			<Mosaic.Row>
-				<Mosaic.Col flex={1}>
-					<Mosaic.Row flex={1}>
-						<BaseWidget {...args} />
-					</Mosaic.Row>
-				</Mosaic.Col>
-			</Mosaic.Row>
-		</Mosaic>
+				</Mosaic> */}
+				</Card>
+			</FlexLayout>
+		</>
 	);
 };

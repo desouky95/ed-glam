@@ -3,13 +3,20 @@ import useThemeScreenSize from './useThemeScreenSize';
 import useScreenSize from './useScreenSize';
 import useElementSize from './useElementSize';
 import useSwipe from './useSwipe';
+import useElementScroll from './useElementScroll';
 //
 export * from './cursor';
 export * from './mixBlendMode';
 export * from './useThemeScreenSize';
 export * from './Breakpoint';
 export * from './getDynamicVariant';
-export { useThemeScreenSize, useScreenSize, useElementSize, useSwipe };
+export {
+	useThemeScreenSize,
+	useScreenSize,
+	useElementSize,
+	useSwipe,
+	useElementScroll,
+};
 //
 export const PageWrapper = styled.div`
 	padding: 1rem;
