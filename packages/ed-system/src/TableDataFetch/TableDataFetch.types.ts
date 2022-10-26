@@ -16,6 +16,7 @@ export type TableDataFetchRequestArgs = {
 	from?: string | null;
 	to?: string | null;
 	filters: Array<{ [key: string]: string }> | null;
+	query?: string | null;
 };
 
 export type TableDataFetchProps = {

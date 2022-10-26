@@ -20,7 +20,7 @@ const TableDataFetch: React.VoidFunctionComponent<TableDataFetchProps> = ({
 		const to = params.get('to');
 		const perPage = params.get('perPage') ? Number(params.get('perPage')) : 10;
 		const page = params.get('page') ? Number(params.get('page')) : 1;
-
+		const query = params.get('query');
 		const filters: Array<any> = [];
 		params.forEach((value, key) => {
 			if (key.includes('FILTER')) {
@@ -34,6 +34,7 @@ const TableDataFetch: React.VoidFunctionComponent<TableDataFetchProps> = ({
 			filters,
 			perPage,
 			page,
+			query,
 		};
 	}, [params.toString()]);
 
