@@ -6,13 +6,18 @@ import styled from 'styled-components';
 import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
 import { useWidget, WidgetProvider } from './WidgetProvider';
 
-export type WidgetUIProps = { bg: Color; withShadow: boolean } & SpaceProps &
+export type WidgetUIProps = {
+	bg: Color;
+	withShadow: boolean;
+	contained?: boolean;
+} & SpaceProps &
 	LayoutProps;
-export type WidgetProps<T> = {};
+export type WidgetProps<T> = T;
 export type BaseWidgetDataProps<T> = {
 	title?: string;
-	onClick: () => void;
+	onClick?: () => void;
 	widget: React.VoidFunctionComponent<WidgetProps<T>>;
+	widgetProps: React.ComponentProps<React.VoidFunctionComponent<T>>;
 };
 export type BaseWidgetsProps<T> = Partial<WidgetUIProps> &
 	BaseWidgetDataProps<T>;
@@ -29,16 +34,25 @@ const WidgetUIContainer = <T,>({
 	withShadow = false,
 	widget,
 	onClick,
+	contained,
+	widgetProps,
 	...props
 }: BaseWidgetsProps<T>) => {
 	const { title, action } = useWidget();
 	return (
-		<BaseWidgetContainer bg={bg} withShadow={withShadow} {...props}>
-			<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
-				{title && <BaseWidgetTitle>{title}</BaseWidgetTitle>}
-				{action}
-			</FlexLayout>
-			{widget && widget({})}
+		<BaseWidgetContainer
+			contained={contained}
+			bg={bg}
+			withShadow={withShadow}
+			{...props}
+		>
+			{!contained && (
+				<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
+					{title && <BaseWidgetTitle>{title}</BaseWidgetTitle>}
+					{action}
+				</FlexLayout>
+			)}
+			{widget && widget(widgetProps)}
 		</BaseWidgetContainer>
 	);
 };
@@ -54,6 +68,9 @@ const BaseWidgetContainer = styled.div<WidgetUIProps>`
 	box-shadow: ${({ withShadow }) =>
 		withShadow && '0 5px 6px 0 rgba(0, 0, 0, 0.16)'};
 	${variant({ prop: 'bg', scale: 'buttonColors' })};
+	background: ${({ contained }) => contained && 'transparent'};
+	padding: ${({ contained }) => contained && '0'};
+	overflow: ${({ contained }) => contained && 'hidden'};
 	${layout};
 	${space};
 `;

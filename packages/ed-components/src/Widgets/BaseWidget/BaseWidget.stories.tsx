@@ -79,3 +79,19 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 		</>
 	);
 };
+
+export const WelcomeWidget: ComponentStory<typeof BaseWidget> = (args) => {
+	return (
+		<BaseWidget
+			width={'553.4px'}
+			contained
+			{...args}
+			minHeight={'unset'}
+			widget={DayNightWidget}
+			widgetProps={{
+				username: 'Farah',
+				welcomeTitle: 'Hey',
+			}}
+		/>
+	);
+};
