@@ -12,7 +12,7 @@ import {
 } from 'styled-system';
 import React, { ReactNode } from 'react';
 // Row
-const StyledMosaicRow = styled.div<FlexboxProps & GridGapProps>`
+const StyledMosaicRow = styled.div<FlexboxProps & GridGapProps & LayoutProps>`
 	display: flex;
 	flex: 1;
 	grid-gap: 1.563rem;
@@ -25,24 +25,25 @@ const StyledMosaicRow = styled.div<FlexboxProps & GridGapProps>`
         flex-direction : row;
     }`}
 `;
-const MosaicRow: React.FC<FlexboxProps & GridGapProps> = ({
+const MosaicRow: React.FC<FlexboxProps & GridGapProps & LayoutProps> = ({
 	children,
 	...props
 }) => <StyledMosaicRow {...props}>{children}</StyledMosaicRow>;
 
 // Column
-const StyledMosaicCol = styled.div<FlexboxProps & GridGapProps>`
+const StyledMosaicCol = styled.div<FlexboxProps & GridGapProps & LayoutProps>`
 	display: flex;
 	flex-direction: column;
 
 	grid-gap: 1.563rem;
 	${flexbox};
 	${gridGap};
+	${layout}
 	${({ theme }) => `${theme.mediaQueries.small}{
 		flex: 1;
     }`}
 `;
-const MosaicCol: React.FC<FlexboxProps & GridGapProps> = ({
+const MosaicCol: React.FC<FlexboxProps & GridGapProps & LayoutProps> = ({
 	children,
 	...props
 }) => <StyledMosaicCol {...props}>{children}</StyledMosaicCol>;
