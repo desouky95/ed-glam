@@ -18,6 +18,7 @@ const StyledMosaicRow = styled.div<FlexboxProps & GridGapProps & LayoutProps>`
 	grid-gap: 1.563rem;
 	${flexbox};
 	${gridGap};
+	${layout};
 	flex-direction: column;
 	width: 100%;
 	min-width: 100%;
