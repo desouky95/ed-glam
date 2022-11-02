@@ -63,7 +63,9 @@ const WidgetUIContainer = <T,>({
 							{action}
 						</FlexLayout>
 					)}
-					{widget && widget(widgetProps)}
+					<FlexLayout width={'100%'} flex={1}>
+						{widget && widget(widgetProps)}
+					</FlexLayout>
 				</BaseWidgetSpaceContainer>
 			</SkeletonBox>
 		</BaseWidgetContainer>
@@ -81,6 +83,9 @@ const BaseWidgetContainer = styled.div<WidgetUIProps>`
 		withShadow && '0 5px 6px 0 rgba(0, 0, 0, 0.16)'};
 	${variant({ prop: 'bg', scale: 'buttonColors' })};
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
 	${layout};
 	${space};
 `;
