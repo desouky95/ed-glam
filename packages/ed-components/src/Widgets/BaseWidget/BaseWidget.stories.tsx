@@ -47,16 +47,18 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 					<div>Card</div>
 				</Card>
 			</FlexLayout> */}
-			<FlexLayout width={'100%'} ref={elRef} maxHeight="50vh" overflow={'auto'}>
-				<Card variant={'green'} width="100%" minHeight={'200vh'}>
-					{/* <Mosaic minHeight={'200vh'} height={'100%'}>
+			<FlexLayout width={'100%'} ref={elRef} overflow={'auto'}>
+				<Mosaic height={'100%'}>
 					<Mosaic.Row>
 						<Mosaic.Col flex={1}>
 							<Mosaic.Row flex={1}>
 								<BaseWidget
+									withLoading
+									isLoading
 									height={'22.95rem'}
 									{...args}
 									widget={DayNightWidget}
+									widgetProps={{ username: '' }}
 								/>
 							</Mosaic.Row>
 						</Mosaic.Col>
@@ -73,8 +75,7 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 							</Mosaic.Row>
 						</Mosaic.Col>
 					</Mosaic.Row>
-				</Mosaic> */}
-				</Card>
+				</Mosaic>
 			</FlexLayout>
 		</>
 	);
