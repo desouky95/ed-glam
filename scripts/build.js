@@ -30,7 +30,6 @@ async function run(argv) {
 	const env = {
 		NODE_ENV: 'production',
 		BABEL_ENV: bundle,
-		MUI_BUILD_VERBOSE: verbose,
 	};
 	const babelConfigPath = path.resolve(__dirname, '../.babelrc');
 	const srcDir = path.resolve('./src');
@@ -82,7 +81,6 @@ async function run(argv) {
 	}
 
 	const command = ['npx babel', ...babelArgs].join(' ');
-
 	if (verbose) {
 		// eslint-disable-next-line no-console
 		console.log(`running '${command}' with ${JSON.stringify(env)}`);
