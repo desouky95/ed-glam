@@ -87,10 +87,12 @@ const BaseWidgetContainer = styled.div<WidgetUIProps>`
 	border-radius: 15px;
 	width: 100%;
 	height: 100%;
-	min-height: 13.6rem;
 	box-shadow: ${({ withShadow }) =>
 		withShadow && '0 5px 6px 0 rgba(0, 0, 0, 0.16)'};
 	${variant({ prop: 'bg', scale: 'buttonColors' })};
+	${({ theme }) => `${theme.mediaQueries.large}{
+		min-height: 13.6rem;
+	}`}
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
