@@ -22,13 +22,17 @@ const Chip: React.FC<ChipProps> = ({ bg = 'primary', label, ...props }) => {
 export default Chip;
 
 const StyledChip = styled.span<ChipUIProps>`
-	padding: 5px 10px;
+	padding: 1px 4px;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		padding: 5px 10px;
+		font-size : 1rem;
+	}`}
 	border-radius: 10px;
 	border-bottom-right-radius: 0;
 	font-weight: 600;
 	color: ${(props) => props.theme.colors.light};
 	line-height: 1.19;
-	font-size: 1rem;
+	font-size: 0.625rem;
 	text-align: center;
 	cursor: pointer;
 	${space};
