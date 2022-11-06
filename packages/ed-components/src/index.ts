@@ -2,6 +2,7 @@ export * from './Avatar';
 export * from './Buttons';
 export * from './Cards';
 export * from './Carousels';
+export * from './Chip';
 export * from './Drawer';
 export * from './Feedback';
 export * from './Icons';

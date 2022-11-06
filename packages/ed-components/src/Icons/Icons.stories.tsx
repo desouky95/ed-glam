@@ -1,7 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { EyeoffIcon, EyeIcon, Icon, Icons } from './Icons';
-import { AiFillAccountBook, AiFillAlert } from 'react-icons/ai';
-import { Avatar } from '..';
+import { Icon, Icons } from './Icons';
 import { FlexLayout } from '@eduact/ed-system';
 export default {
 	title: 'Icons',
