@@ -93,6 +93,8 @@ const BaseWidgetSpaceContainer = styled.div<Pick<WidgetUIProps, 'contained'>>`
 	padding: 1.25rem;
 	background: ${({ contained }) => contained && 'transparent'};
 	padding: ${({ contained }) => contained && '0'};
+	width: 100%;
+	height: 100%;
 `;
 const BaseWidgetTitle = styled.h4`
 	margin: 0;
