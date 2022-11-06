@@ -58,12 +58,21 @@ const WidgetUIContainer = <T,>({
 			>
 				<BaseWidgetSpaceContainer contained={contained}>
 					{!contained && (
-						<FlexLayout justifyContent={'space-between'} alignItems={'center'}>
+						<FlexLayout
+							width={'100%'}
+							justifyContent={'space-between'}
+							alignItems={'center'}
+						>
 							{title && <BaseWidgetTitle>{title}</BaseWidgetTitle>}
 							{action}
 						</FlexLayout>
 					)}
-					<FlexLayout width={'100%'} flex={1}>
+					<FlexLayout
+						height={'inherit'}
+						minHeight={'inherit'}
+						width={'100%'}
+						flex={1}
+					>
 						{widget && widget(widgetProps)}
 					</FlexLayout>
 				</BaseWidgetSpaceContainer>
