@@ -109,8 +109,11 @@ const BaseWidgetSpaceContainer = styled.div<Pick<WidgetUIProps, 'contained'>>`
 `;
 const BaseWidgetTitle = styled.h4`
 	margin: 0;
-	font-size: 1.125rem;
+	font-size: 0.625rem;
 	font-weight: 600;
+	${({ theme }) => `${theme.mediaQueries.large}{
+		font-size: 1.125rem;
+	}`}
 `;
 
 export interface Widget {
