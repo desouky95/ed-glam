@@ -58,7 +58,7 @@ const WidgetUIContainer = <T,>({
 						</BaseWidgetHeader>
 					)}
 					<Box height={'inherit'} minHeight={'inherit'} width={'100%'}>
-						{widget && widget(widgetProps)}
+						{widget && typeof widget === 'function' && widget(widgetProps)}
 					</Box>
 				</BaseWidgetSpaceContainer>
 			</SkeletonBox>
