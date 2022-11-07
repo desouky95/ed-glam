@@ -53,8 +53,6 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 						<Mosaic.Col flex={1}>
 							<Mosaic.Row flex={1}>
 								<BaseWidget
-									withLoading
-									isLoading
 									height={'22.95rem'}
 									{...args}
 									widget={DayNightWidget}

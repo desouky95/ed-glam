@@ -4,8 +4,8 @@ import { Dropdown, TextInput } from '@src/Inputs';
 import { rgba } from 'polished';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useWidget } from '../BaseWidget';
-import { Widget, WidgetProps } from '../BaseWidget/BaseWidget';
+import { useWidget, WidgetProps } from '../BaseWidget';
+import { Widget } from '../BaseWidget/BaseWidget';
 import { DayNightIcons } from './assets/DayNightWidget.icons';
 
 type DayNighWidgetProps = {
@@ -25,7 +25,7 @@ const DayNightWidget: React.VoidFunctionComponent<
 	useEffect(() => {
 		console.log('TEST');
 		setTitle('Testdfsdfsdf');
-		setAction(DropdownList);
+		// setAction(DropdownList);
 	}, []);
 	const isNight = useNightTime();
 	return (

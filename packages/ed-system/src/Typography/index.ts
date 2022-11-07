@@ -14,6 +14,7 @@ import { cursor, CursorProps } from '../Utilities/cursor';
 import { createGlobalFont } from './createGlobalFont';
 import { generateMaterialIconsFontFaces } from './generateMaterialIconsFontFaces';
 import { textDecoration, TextDecorationProps } from './textDecoration';
+import { textTransform, TextTransformProps } from './textTransform';
 import {
 	Fonts,
 	FontFamily,
@@ -30,7 +31,8 @@ export const Typography = styled.span<
 		TextDecorationProps &
 		WordSpacingProps &
 		CursorProps &
-		ColorProps
+		ColorProps &
+		TextTransformProps
 >`
 	${typography};
 	${textStyle};
@@ -39,6 +41,7 @@ export const Typography = styled.span<
 	${wordSpacing};
 	${cursor};
 	${color};
+	${textTransform};
 `;
 
 export const SingleLineCssTrim = css`
