@@ -1,4 +1,4 @@
-import { FlexLayout } from '@eduact/ed-system';
+import { Box, FlexLayout } from '@eduact/ed-system';
 import { Color } from '@eduact/student-theme';
 import { SkeletonBox } from '@src/Skeletons';
 import React, { useEffect } from 'react';
@@ -67,14 +67,9 @@ const WidgetUIContainer = <T,>({
 							{action}
 						</FlexLayout>
 					)}
-					<FlexLayout
-						height={'inherit'}
-						minHeight={'inherit'}
-						width={'100%'}
-						flex={1}
-					>
+					<Box height={'inherit'} minHeight={'inherit'} width={'100%'}>
 						{widget && widget(widgetProps)}
-					</FlexLayout>
+					</Box>
 				</BaseWidgetSpaceContainer>
 			</SkeletonBox>
 		</BaseWidgetContainer>
@@ -109,7 +104,7 @@ const BaseWidgetSpaceContainer = styled.div<Pick<WidgetUIProps, 'contained'>>`
 `;
 const BaseWidgetTitle = styled.h4`
 	margin: 0;
-	font-size: 0.625rem;
+	font-size: 0.75rem;
 	font-weight: 600;
 	${({ theme }) => `${theme.mediaQueries.large}{
 		font-size: 1.125rem;
