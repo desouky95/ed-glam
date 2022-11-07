@@ -40,8 +40,8 @@ const StyledMosaicCol = styled.div<FlexboxProps & GridGapProps & LayoutProps>`
 	${flexbox};
 	${gridGap};
 	${layout}
-	${({ theme }) => `${theme.mediaQueries.small}{
-		flex: 1;
+	${({ theme, flex }) => `${theme.mediaQueries.small}{
+		flex: ${!flex && '1'};
     }`}
 `;
 const MosaicCol: React.FC<FlexboxProps & GridGapProps & LayoutProps> = ({
