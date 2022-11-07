@@ -6,6 +6,7 @@ import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
 type ChipUIProps = LayoutProps &
 	SpaceProps & {
 		bg?: Color;
+		clipped?: boolean;
 	};
 export type ChipProps = React.HTMLAttributes<HTMLSpanElement> &
 	ChipUIProps & {
@@ -28,7 +29,7 @@ const StyledChip = styled.span<ChipUIProps>`
 		font-size : 1rem;
 	}`}
 	border-radius: 10px;
-	border-bottom-right-radius: 0;
+	border-bottom-right-radius: ${(props) => props.clipped && '0'};
 	font-weight: 600;
 	color: ${(props) => props.theme.colors.light};
 	line-height: 1.19;
