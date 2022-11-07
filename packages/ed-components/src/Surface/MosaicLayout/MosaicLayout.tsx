@@ -58,9 +58,8 @@ const MosaicLayout = styled.div<
 	width: 100%;
 	height: 100%;
 	min-height: 100%;
-	/* background: blueviolet; */
 	flex-direction: column;
-	${({ theme }) => `${theme.mediaQueries.medium}{
+	${({ theme }) => `${theme.mediaQueries.large}{
         flex-direction : row;
     }`}
 	${gridGap};
@@ -68,7 +67,6 @@ const MosaicLayout = styled.div<
 		${gridGap};
 	}
 	${layout};
-	/* ${flexDirection}; */
 `;
 
 interface MosaicComposition {
