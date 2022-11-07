@@ -5,8 +5,11 @@ import { Mosaic } from '@src/Surface/MosaicLayout';
 import { useRef } from '@storybook/addons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import styled from 'styled-components';
-import DayNightWidget from '../DayNightWidget/DayNightWidget';
 import BaseWidget from './BaseWidget';
+import loadable from '@loadable/component';
+import { useEffect } from 'react';
+import { DayNightWidget } from '../DayNightWidget';
+
 export default {
 	title: 'Widgets/Base',
 	component: BaseWidget,
@@ -40,6 +43,7 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 			console.log('END');
 		},
 	});
+
 	return (
 		<>
 			{/* <FlexLayout height={'40vh'} width="100%">

@@ -1,7 +1,7 @@
 import { Box, FlexLayout } from '@eduact/ed-system';
 import { Color } from '@eduact/student-theme';
 import { SkeletonBox } from '@src/Skeletons';
-import React, { useEffect } from 'react';
+import React, { Component, Suspense, useEffect } from 'react';
 import { useMemo } from 'react';
 import styled from 'styled-components';
 import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
@@ -11,7 +11,11 @@ import {
 	BaseWidgetSpaceContainer,
 	BaseWidgetTitle,
 } from './BaseWidget.styled';
-import { BaseWidgetsProps } from './BaseWidget.types';
+import {
+	BaseWidgetsProps,
+	isLoadable,
+	isReactComponent,
+} from './BaseWidget.types';
 import { useWidget, WidgetProvider } from './WidgetProvider';
 
 const BaseWidget = <T,>(props: BaseWidgetsProps<T>) => {
@@ -58,7 +62,7 @@ const WidgetUIContainer = <T,>({
 						</BaseWidgetHeader>
 					)}
 					<Box height={'inherit'} minHeight={'inherit'} width={'100%'}>
-						{widget && typeof widget === 'function' && widget(widgetProps)}
+						{widget && isReactComponent(widget) && widget(widgetProps)}
 					</Box>
 				</BaseWidgetSpaceContainer>
 			</SkeletonBox>
