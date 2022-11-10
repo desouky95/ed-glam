@@ -1,5 +1,4 @@
 import { Color, XPosition, YPosition } from '@eduact/student-theme';
-import Spacer from '@src/Spacer';
 import React from 'react';
 import { animated, Spring } from 'react-spring';
 import styled from 'styled-components';
@@ -31,7 +30,6 @@ const Snackbar: React.FC<SnackbarProps> = ({
 						{props.icon && (
 							<>
 								<SnackbarIconWrapper>{props.icon}</SnackbarIconWrapper>
-								<Spacer mx="0.5rem" />
 							</>
 						)}
 						<span>{props.text}</span>
@@ -49,6 +47,7 @@ const SnackbarIconWrapper = styled.div<SnackbarBaseProps>`
 	height: 40px;
 	border-radius: 50%;
 	background: transparent;
+	margin: 0 0.5rem;
 	border-width: 2px;
 	border-style: solid;
 	border-color: ${(props) =>
