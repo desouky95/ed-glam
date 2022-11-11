@@ -1,21 +1,14 @@
-import { Box, FlexLayout } from '@eduact/ed-system';
-import { Color } from '@eduact/student-theme';
+import { Box } from '@eduact/ed-system';
 import { SkeletonBox } from '@src/Skeletons';
 import React, { Component, Suspense, useEffect } from 'react';
-import { useMemo } from 'react';
-import styled from 'styled-components';
-import { layout, LayoutProps, space, SpaceProps, variant } from 'styled-system';
+
 import {
 	BaseWidgetContainer,
 	BaseWidgetHeader,
 	BaseWidgetSpaceContainer,
 	BaseWidgetTitle,
 } from './BaseWidget.styled';
-import {
-	BaseWidgetsProps,
-	isLoadable,
-	isReactComponent,
-} from './BaseWidget.types';
+import { BaseWidgetsProps, isReactComponent } from './BaseWidget.types';
 import { useWidget, WidgetProvider } from './WidgetProvider';
 
 const BaseWidget = <T,>(props: BaseWidgetsProps<T>) => {
