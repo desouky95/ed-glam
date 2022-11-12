@@ -1,6 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
-import Spacer from '@src/Spacer';
-import { QuestionContentWrapper } from '@src/Test/Question.styled';
+import Spacer from '../../Spacer';
+import { QuestionContentWrapper } from '../../Test/Question.styled';
 import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';

@@ -1,5 +1,5 @@
-import { AvatarStyled } from '../../Avatar/Avatar.styled';
-// import { AvatarStyled } from '@src/Avatar/Avatar.styled';
+import { AvatarStyled } from '../..//Avatar/Avatar.styled';
+// import { AvatarStyled } from '../../Avatar/Avatar.styled';
 import React from 'react';
 import styled from 'styled-components';
 import { SkeletonLoadingAnimation } from '../Skeleton.styled';

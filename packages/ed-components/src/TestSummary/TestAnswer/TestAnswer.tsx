@@ -1,5 +1,5 @@
 import { Typography, DefaultBrowserCss } from '@eduact/ed-system';
-import Spacer from '@src/Spacer';
+import Spacer from '../../Spacer';
 import React from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
@@ -14,8 +14,8 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 } from '../TestSummary.types';
-import { QuestionType } from '@src/Test/Question.types';
-import { Icon, Icons } from '@src/Icons';
+import { QuestionType } from '../../Test/Question.types';
+import { Icon, Icons } from '../../Icons';
 
 type Props = {
 	question: SummaryQuestion;

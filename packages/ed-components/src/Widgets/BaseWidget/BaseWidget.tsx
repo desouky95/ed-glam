@@ -1,5 +1,5 @@
 import { Box } from '@eduact/ed-system';
-import { SkeletonBox } from '@src/Skeletons';
+import { SkeletonBox } from '../../Skeletons';
 import React, { Component, Suspense, useEffect } from 'react';
 
 import {

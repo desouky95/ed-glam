@@ -1,6 +1,6 @@
-import Spacer from '../../Spacer';
+import Spacer from '../..//Spacer';
 import React, { useState } from 'react';
-import { Icon, Icons } from '../../Icons/Icons';
+import { Icon, Icons } from '../..//Icons/Icons';
 import {
 	InputBaseWrapper,
 	InputWrapper,

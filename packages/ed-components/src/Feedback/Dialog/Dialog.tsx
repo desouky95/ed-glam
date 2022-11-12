@@ -1,8 +1,8 @@
 import { FlexLayout, Stack } from '@eduact/ed-system';
 import { Color } from '@eduact/student-theme';
-import { Icons } from '@src/Icons';
-import Spacer from '@src/Spacer';
 import React from 'react';
+import { Icons } from '../../Icons';
+import Spacer from '../../Spacer';
 import styled from 'styled-components';
 import {
 	borderRadius,

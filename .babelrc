@@ -8,5 +8,6 @@
 		],
 		"@babel/preset-flow"
 	],
-	"plugins": ["tsconfig-paths-module-resolver", "@babel/plugin-syntax-jsx"]
+	// "plugins": ["tsconfig-paths-module-resolver", "@babel/plugin-syntax-jsx"]
+	"plugins": ["@babel/plugin-syntax-jsx"]
 }

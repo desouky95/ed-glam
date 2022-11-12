@@ -1,6 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { useNightTime } from '@eduact/utils';
-import { Dropdown, TextInput } from '@src/Inputs';
+import { Dropdown, TextInput } from '../../Inputs';
 import { rgba } from 'polished';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';

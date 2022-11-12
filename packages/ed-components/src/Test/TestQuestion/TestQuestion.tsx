@@ -1,7 +1,7 @@
 import { FlexLayout, Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import { NumberFormatter } from '@eduact/utils';
-import { Icon, Icons } from '@src/Icons';
-import Spacer from '@src/Spacer';
+import { Icon, Icons } from '../../Icons';
+import Spacer from '../../Spacer';
 import React from 'react';
 import styled from 'styled-components';
 import GapQuestion from '../GapQuestion/GapQuestion';

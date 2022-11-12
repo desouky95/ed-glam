@@ -26,16 +26,16 @@ import {
 import EduactCardIcon from './Assets/eduact-card-icon.svg';
 import EduactCardBg from './Assets/card_bg.jpg';
 import QRCode from 'react-qr-code';
-import { Avatar } from '@src/Avatar';
 import {
 	FlexLayout,
 	Typography,
 	useScreenSize,
 	useThemeScreenSize,
 } from '@eduact/ed-system';
-import Spacer from '@src/Spacer';
+
 import { MdOutlineMail, MdOutlinePhone } from 'react-icons/md';
 import { StudentCardProps } from './StudentID.types';
+import Spacer from '../..//Spacer';
 
 export type StudentIDProps = {
 	title?: string;

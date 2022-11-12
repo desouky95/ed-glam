@@ -1,5 +1,5 @@
-import { SlideLeftAnimation, SlideRightAnimation } from '@src/Tabs/Tabs.styled';
-import { useTabsContext } from '@src/Tabs/TabsProvider';
+import { SlideLeftAnimation, SlideRightAnimation } from '../../Tabs.styled';
+import { useTabsContext } from '../../TabsProvider';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import {

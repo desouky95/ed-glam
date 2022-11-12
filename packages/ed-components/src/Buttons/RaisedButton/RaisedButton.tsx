@@ -21,7 +21,7 @@ import {
 	FlexboxProps,
 } from 'styled-system';
 import { RefObject } from 'react';
-import Ripple from '@src/Surface/Ripple/Ripple';
+import { Ripple } from '../..//Surface';
 
 export type RaisedButtonProps = {
 	variant?: Color;

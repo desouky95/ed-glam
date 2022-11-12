@@ -1,13 +1,13 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
-import Spacer from '@src/Spacer';
+import Spacer from '../../Spacer';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { QuestionContentWrapper } from '@src/Test/Question.styled';
+import { QuestionContentWrapper } from '../../Test/Question.styled';
 import { IMcqAnswer, Test } from '../TestSummary.types';
 import { Color } from '@eduact/student-theme';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
-import { Options } from '@src/Test/Question.types';
+import { Options } from '../../Test/Question.types';
 
 type McqProps = {
 	question: IMcqAnswer;

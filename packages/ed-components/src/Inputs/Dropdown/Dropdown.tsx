@@ -19,7 +19,7 @@ import {
 	DropdownWrapper,
 	StyledDropdownOption,
 } from './Dropdown.styled';
-import { Icon, Icons } from '../../Icons/Icons';
+import { Icon, Icons } from '../..//Icons/Icons';
 import { Spring, easings } from 'react-spring';
 import { useElementSize, useOutsideAlert } from '@eduact/utils';
 import {

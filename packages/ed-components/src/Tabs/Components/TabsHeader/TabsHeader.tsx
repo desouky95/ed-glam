@@ -1,4 +1,4 @@
-import { useTabsContext } from '@src/Tabs/TabsProvider';
+import { useTabsContext } from '../../TabsProvider';
 import React from 'react';
 import styled from 'styled-components';
 

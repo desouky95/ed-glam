@@ -2,7 +2,7 @@ import { HTMLProps } from 'react';
 import { animated } from 'react-spring';
 import styled from 'styled-components';
 import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
-import { Icon } from '../../Icons/Icons';
+import { Icon } from '../..//Icons/Icons';
 // import {} from 'styled-system'
 import { InputBaseError } from '../BaseInputUtils/BaseInputs.types';
 

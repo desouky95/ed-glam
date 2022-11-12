@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { useDelayedUnmount, useOutsideAlert } from '@eduact/utils';
-import Modal from '@src/Feedback/Modal/Modal';
 import { DrawerWrapper } from './Drawer.styled';
 import { DrawerProps } from './Drawer.types';
+import { Modal } from '../Feedback';
 
 const Drawer: React.FC<DrawerProps> = ({
 	open,

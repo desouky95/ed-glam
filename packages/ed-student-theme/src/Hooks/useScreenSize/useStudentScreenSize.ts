@@ -4,7 +4,7 @@ import {
 	UseThemeScreenSizeArgs,
 	UseThemeScreenSizeReturn,
 } from '@eduact/ed-system/';
-import { Theme } from '../../Theme';
+import { Theme } from '../..//Theme';
 
 type UseStudentScreenSizeArgs = Pick<UseThemeScreenSizeArgs, 'lgWithXl'>;
 const useStudentScreenSize = (

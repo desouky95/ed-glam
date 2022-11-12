@@ -4,8 +4,8 @@ import { IOrderingQuestion } from '../Question.types';
 import styled from 'styled-components';
 import { Transition, animated, Spring } from 'react-spring';
 import { useImmer } from 'use-immer';
-import { Icon, Icons } from '@src/Icons';
-import Spacer from '@src/Spacer';
+import { Icon, Icons } from '../../Icons';
+import Spacer from '../../Spacer';
 import { FlexLayout } from '@eduact/ed-system';
 import { easings } from 'react-spring';
 import {

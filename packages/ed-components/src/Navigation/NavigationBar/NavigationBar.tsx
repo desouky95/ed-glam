@@ -1,7 +1,7 @@
 import { Color } from '@eduact/student-theme';
 import { Placement } from '@popperjs/core';
-import { Icon } from '@src/Icons';
-import { Popper } from '@src/Utils/Popper/Popper';
+import { Icon } from '../../Icons';
+import { Popper } from '../../Utils/Popper/Popper';
 import React, { HTMLProps, useState } from 'react';
 import styled from 'styled-components';
 import { variant } from 'styled-system';

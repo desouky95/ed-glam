@@ -1,5 +1,5 @@
-import { QuestionContentWrapper } from '@src/Test/Question.styled';
-import { Options } from '@src/Test/Question.types';
+import { QuestionContentWrapper } from '../../Test/Question.styled';
+import { Options } from '../../Test/Question.types';
 import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { Text } from '../OrderingAnswer/OrderingAnswer';

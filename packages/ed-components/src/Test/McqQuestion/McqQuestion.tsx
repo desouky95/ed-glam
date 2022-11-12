@@ -1,5 +1,5 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
-import Spacer from '@src/Spacer';
+import Spacer from '../../Spacer';
 import { rgba } from 'polished';
 import React from 'react';
 import styled from 'styled-components';

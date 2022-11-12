@@ -1,6 +1,4 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
-import { Avatar } from '@src/Avatar';
-import Spacer from '@src/Spacer';
 import { userInfo } from 'os';
 import { title } from 'process';
 import React from 'react';
