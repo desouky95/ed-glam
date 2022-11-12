@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/ed-components",
-	"version": "0.2.51",
+	"version": "0.2.52",
 	"description": "> TODO: description",
 	"author": "Ismail Moustafa <tubesniper@gmail.com>",
 	"homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -67,7 +67,7 @@
 		"@dnd-kit/modifiers": "^6.0.0",
 		"@dnd-kit/sortable": "^7.0.1",
 		"@eduact/ed-system": "^1.2.6",
-		"@eduact/student-theme": "^1.0.64",
+		"@eduact/student-theme": "^1.0.65",
 		"@eduact/utils": "^0.4.50",
 		"@loadable/component": "^5.15.2",
 		"@popperjs/core": "^2.11.5",
