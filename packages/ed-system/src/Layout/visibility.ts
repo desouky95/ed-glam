@@ -8,8 +8,8 @@ import {
 import { Property } from 'csstype';
 
 const VisibilityConfig: Config = {
-	mixBlendMode: {
-		property: 'mixBlendMode',
+	visibility: {
+		property: 'visibility',
 	},
 };
 
