@@ -430,6 +430,7 @@ const Icons = {
 	UserRejected,
 	UserVerified,
 	CircleCheck,
+	WideClose,
 };
 
 export { Icons };
