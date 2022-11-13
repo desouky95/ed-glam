@@ -1,9 +1,11 @@
+import { createRequire } from 'module';
+import childProcess from 'child_process';
+import glob from 'fast-glob';
+import path from 'path';
+import { promisify } from 'util';
+import fse from 'fs-extra';
+const require = createRequire(import.meta.url);
 const chalk = require('chalk');
-const childProcess = require('child_process');
-const glob = require('fast-glob');
-const fse = require('fs-extra');
-const path = require('path');
-const { promisify } = require('util');
 const yargs = require('yargs');
 
 const exec = promisify(childProcess.exec);
