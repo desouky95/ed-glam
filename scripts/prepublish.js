@@ -1,18 +1,9 @@
 /*jshint esversion: 8 */
-
+import { program } from 'commander';
 const { program } = require('commander');
-const { getPkgPath } = require('../utils/paths');
-const {
-	rmdir,
-	rm,
-	readdirSync,
-	rmdirSync,
-	rmSync,
-	existsSync,
-	copyFileSync,
-} = require('fs');
-const { glob } = require('glob');
-const path = require('path');
+import { readdirSync, existsSync, copyFileSync } from 'fs';
+import { glob } from 'glob';
+import path from 'path';
 let __pkgPath = '';
 program.option('-p, --path', 'Package Path');
 const options = program.opts();
