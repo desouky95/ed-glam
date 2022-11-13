@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"skipLibCheck": true,
 		"baseUrl": ".",
-		"paths": {}
+		"paths": {
+			"@src/*": ["src/*"]
+		}
 	},
 	"include": ["src/**/*", "test/**/*"]
 }

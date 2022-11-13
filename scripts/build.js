@@ -1,9 +1,14 @@
-const childProcess = require('child_process');
-const glob = require('fast-glob');
-const path = require('path');
-const { promisify } = require('util');
+import childProcess from 'child_process';
+import glob from 'fast-glob';
+import { createRequire } from 'module';
+import path from 'path';
+import { promisify } from 'util';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+//
+const require = createRequire(import.meta.url);
 const yargs = require('yargs');
-
 const exec = promisify(childProcess.exec);
 
 const validBundles = [
@@ -31,7 +36,7 @@ async function run(argv) {
 		NODE_ENV: 'production',
 		BABEL_ENV: bundle,
 	};
-	const babelConfigPath = path.resolve(__dirname, '../.babelrc');
+	const babelConfigPath = path.resolve(__dirname, '../.babelrc.js');
 	const srcDir = path.resolve('./src');
 	const extensions = ['.js', '.ts', '.tsx'];
 	const ignore = [
@@ -81,6 +86,7 @@ async function run(argv) {
 	}
 
 	const command = ['npx babel', ...babelArgs].join(' ');
+	console.log(command);
 	if (verbose) {
 		// eslint-disable-next-line no-console
 		console.log(`running '${command}' with ${JSON.stringify(env)}`);

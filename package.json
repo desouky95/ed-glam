@@ -1,6 +1,7 @@
 {
 	"version": "1.0.0",
 	"description": "My webpack project",
+	"type": "module",
 	"main": "./src/index.ts",
 	"scripts": {
 		"release:version": "npm run cleanup && lerna version",
@@ -100,6 +101,7 @@
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-typescript2": "^0.32.1",
+		"slash": "^5.0.0",
 		"styled-components": "^5.3.5",
 		"styled-system": "^5.1.5",
 		"ts-jest": "^27.1.4",
