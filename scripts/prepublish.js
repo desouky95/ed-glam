@@ -1,9 +1,10 @@
 /*jshint esversion: 8 */
 import { program } from 'commander';
-const { program } = require('commander');
+import { createRequire } from 'module';
 import { readdirSync, existsSync, copyFileSync } from 'fs';
-import { glob } from 'glob';
 import path from 'path';
+const require = createRequire(import.meta.url);
+const { glob } = require('glob');
 let __pkgPath = '';
 program.option('-p, --path', 'Package Path');
 const options = program.opts();
