@@ -17,6 +17,7 @@ import {
 	MaxWidthProps,
 	maxWidth,
 } from 'styled-system';
+import { visibility, VisibilityProps } from './visibility';
 
 export const GridLayout = styled.div<
 	GridProps & SpaceProps & FlexboxProps & LayoutProps
@@ -56,9 +57,10 @@ export const Stack = styled.div<PositionProps>`
 	${position}
 `;
 
-export const Box = styled.div<LayoutProps & SpaceProps>`
+export const Box = styled.div<LayoutProps & SpaceProps & VisibilityProps>`
 	${space};
-	${layout}
+	${layout};
+	${visibility};
 `;
 
 export const Container = styled.div<MaxWidthProps>`
