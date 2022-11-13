@@ -405,6 +405,20 @@ const WideClose = (props: any) => (
 	</svg>
 );
 
+const Bookmark = (props: any) => (
+	<svg
+		viewBox="0 0 96 96"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}
+	>
+		<path
+			d="M70.1449 8H25.8587C23.5154 8.00755 21.2709 8.94797 19.618 10.6148C17.9651 12.2816 17.0388 14.5385 17.0426 16.8901L17 88L48 74.6667L79 88V16.8901C78.9953 14.5343 78.061 12.2764 76.4014 10.6103C74.7419 8.94421 72.4923 8.00565 70.1449 8Z"
+			{...props}
+		/>
+	</svg>
+);
+
 const Icons = {
 	EyeIcon,
 	EyeoffIcon,
@@ -431,6 +445,7 @@ const Icons = {
 	UserVerified,
 	CircleCheck,
 	WideClose,
+	Bookmark,
 };
 
 export { Icons };
