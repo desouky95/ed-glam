@@ -1,7 +1,6 @@
 import React from 'react';
 import {
 	StyledAvatar,
-	StyledBackgroundImage,
 	StyledBodyContentContainer,
 	StyledBodyContentInnerContainer,
 	StyledBodyInnerContainer,
@@ -10,13 +9,11 @@ import {
 	StyledDataFooterText,
 	StyledEDCardIcon,
 	StyledEmail,
-	StyledEmailIcon,
 	StyledFooterContainer,
 	StyledFooterInfo,
 	StyledFooterInnerContainer,
 	StyledNameText,
 	StyledOuterContainer,
-	StyledPhoneIcon,
 	StyledPhoneText,
 	StyledQRContainer,
 	StyledStudentIDText,
@@ -25,7 +22,7 @@ import {
 } from './StudentID.styled';
 import EduactCardIcon from './Assets/eduact-card-icon.svg';
 import EduactCardBg from './Assets/card_bg.jpg';
-import QRCode from 'react-qr-code';
+// import QRCode from 'react-qr-code';
 import {
 	FlexLayout,
 	Typography,
@@ -36,6 +33,7 @@ import {
 import { MdOutlineMail, MdOutlinePhone } from 'react-icons/md';
 import { StudentCardProps } from './StudentID.types';
 import Spacer from '../..//Spacer';
+import QRCode from '@src/DataDisplay/QRCode';
 
 export type StudentIDProps = {
 	title?: string;
@@ -185,10 +183,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 							<StyledQRContainer>
 								<QRCode
 									onClick={() => onQRCodeClick?.()}
-									size={72 * scale}
-									additive={'sum'}
-									accentHeight={'30px'}
-									bgColor={'transparent'}
+									width={72 * scale}
 									value={userInfo?.username}
 								/>
 							</StyledQRContainer>

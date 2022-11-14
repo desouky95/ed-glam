@@ -13,7 +13,7 @@ export default {
 		userInfo: {
 			first_name: 'Mariam',
 			last_name: 'Walid',
-			username: 'ma314mar',
+			username: 'يح580573',
 			email: 'mariam.w@gmail.com',
 			phone: '01156596754',
 		},

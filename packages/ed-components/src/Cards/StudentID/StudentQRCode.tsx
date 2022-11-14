@@ -3,7 +3,7 @@ import { userInfo } from 'os';
 import { title } from 'process';
 import React from 'react';
 import { MdOutlinePhone, MdOutlineMail } from 'react-icons/md';
-import QRCode from 'react-qr-code';
+// import QRCode from 'react-qr-code';
 import {
 	StyledOuterContainer,
 	StyledCardHeaderContainer,
@@ -27,6 +27,7 @@ import {
 import { StudentCardProps } from './StudentID.types';
 import EduactCardIcon from './Assets/eduact-card-icon.svg';
 import { LayoutProps } from 'styled-system';
+import QRCode from '@src/DataDisplay/QRCode';
 
 type StudentQRCodeProps = {
 	title?: string;
@@ -76,13 +77,7 @@ const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 						{/*  qr code  */}
 						{userInfo && userInfo.username && (
 							<StyledQRContainer>
-								<QRCode
-									size={200 * scale}
-									additive={'sum'}
-									accentHeight={'30px'}
-									bgColor={'transparent'}
-									value={userInfo?.username}
-								/>
+								<QRCode width={200 * scale} value={userInfo?.username} />
 							</StyledQRContainer>
 						)}
 					</FlexLayout>
