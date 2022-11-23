@@ -16,6 +16,7 @@ export default {
 			username: 'يح580573',
 			email: 'mariam.w@gmail.com',
 			phone: '01156596754',
+			profile_photo: 'https://picsum.photos/200',
 		},
 		educationalInfo: {},
 		scale: 1,

@@ -48,6 +48,7 @@ export type StudentIDProps = {
 		username?: string;
 		phone?: string;
 		email?: string;
+		profile_photo?: string;
 	};
 	educationalInfo?: {
 		diploma?: string;
@@ -91,18 +92,21 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 							shape="square"
 							background="light"
 							avatarSize={'xlarge'}
+							img={userInfo?.profile_photo}
 						>
-							<FlexLayout
-								alignItems={'center'}
-								justifyContent={'center'}
-								width={'100%'}
-								height={'100%'}
-							>
-								<Typography fontSize={'1em'}>
-									{userInfo?.first_name?.[0]}
-									{userInfo?.last_name?.[0]}
-								</Typography>
-							</FlexLayout>
+							{!userInfo?.profile_photo && (
+								<FlexLayout
+									alignItems={'center'}
+									justifyContent={'center'}
+									width={'100%'}
+									height={'100%'}
+								>
+									<Typography fontSize={'1em'}>
+										{userInfo?.first_name?.[0]}
+										{userInfo?.last_name?.[0]}
+									</Typography>
+								</FlexLayout>
+							)}
 						</StyledAvatar>
 						<StyledBodyContentInnerContainer>
 							<div>
