@@ -27,7 +27,7 @@ const QRCode: React.VoidFunctionComponent<QRCodeProps> = ({
 		},
 		[value, margin, lightColor, darkColor, props]
 	);
-	return <canvas ref={initRefHandler}></canvas>;
+	return <canvas ref={initRefHandler} {...props}></canvas>;
 };
 
 export default QRCode;

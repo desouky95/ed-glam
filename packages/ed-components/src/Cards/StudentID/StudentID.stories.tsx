@@ -35,8 +35,11 @@ export const StudentIDCard: ComponentStory<typeof StudentID> = (args) => {
 		<Scene isFlipped={isFlipped}>
 			<div className="scene">
 				<div className="card">
-					<div className="card__face" onClick={() => setIsFlipped(!isFlipped)}>
-						<StudentID {...args} />
+					<div className="card__face">
+						<StudentID
+							onQRCodeClick={() => setIsFlipped(!isFlipped)}
+							{...args}
+						/>
 					</div>
 					<div
 						className="card__face card__face--back"

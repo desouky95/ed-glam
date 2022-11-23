@@ -15,7 +15,5 @@ export default {
 } as ComponentMeta<typeof QRCode>;
 
 export const QRCodeDefaultStory: ComponentStory<typeof QRCode> = (args) => {
-	return (
-		<QRCode darkColor="#960f0f" lightColor="#001aff" width={50} {...args} />
-	);
+	return <QRCode {...args} />;
 };
