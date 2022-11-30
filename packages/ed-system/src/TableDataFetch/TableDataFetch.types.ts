@@ -2,7 +2,7 @@ export type SortDirection = 'desc' | 'asc' | null;
 declare type Filter = {
 	name: string;
 	options: Array<{ name: string; value: string }>;
-	type: 'dropdown';
+	type: 'dropdown' | 'autocomplete';
 	value: string;
 };
 
