@@ -49,14 +49,19 @@ export type AutocompleteProps<T extends AutocompleteValue> = {
 // Guards
 const isObject = (value: any): value is AutocompleteOptionObject =>
 	typeof value === 'object' && 'label' in value;
-const isArrayOf = <T,>(
-	value: ReadonlyArray<any>,
-	checker?: (value: T) => value is T
-): value is Array<T> =>
-	Array.isArray(value) &&
-	value.length > 0 &&
-	((checker === undefined && value.every((_) => _ instanceof T)) ||
-		(checker !== undefined && value.every((_) => checker(_))));
+// const isArrayOf = <T,>(
+// 	value: ReadonlyArray<any>,
+// 	checker?: (value: T) => value is T
+// ): value is Array<T> =>
+// 	Array.isArray(value) &&
+// 	value.length > 0 &&
+// 	((checker === undefined && value.every((_) => _ instanceof T)) ||
+// 		(checker !== undefined && value.every((_) => checker(_))));
+
+const isArrayOfObjects = (
+	value: any
+): value is Array<AutocompleteOptionObject> =>
+	Array.isArray(value) && value.length > 0 && value.every((_) => isObject(_));
 
 const Autocomplete = <T extends AutocompleteValue>({
 	options,
@@ -114,11 +119,11 @@ const Autocomplete = <T extends AutocompleteValue>({
 			});
 			setFilteredOptions(filtered as unknown as T[]);
 		} else {
-			if (isArrayOf<AutocompleteOptionObject>(options, isObject)) {
+			if (isArrayOfObjects(options)) {
 				_filters = options.filter(
 					(_) => isObject(_) && _.label.includes(value)
 				);
-			} else if (isArrayOf<string>(options)) {
+			} else {
 				_filters = options.filter(
 					(_) => typeof _ === 'string' && _.includes(value)
 				);
