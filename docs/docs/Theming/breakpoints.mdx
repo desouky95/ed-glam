@@ -1,0 +1,24 @@
+# Breakpoints
+
+import { Breakpoints } from '@site/src/components/Breakpoints';
+
+| prefix |  Minimum Width  |                      CSS                       |
+| ------ | :-------------: | :--------------------------------------------: |
+| sm     | no minium width |                    `{...}`                     |
+| md     |       768       | `@media screen and (min-width : 768px) {...}`  |
+| lg     |      1200       | `@media screen and (min-width : 1200px) {...}` |
+| xl     |      1440       | `@media screen and (min-width : 1440px) {...}` |
+
+## Media Queries
+
+CSS media queries are the idiomatic approach to make your UI responsive. The theme provides default mediaQueries tokens to use it in specific component:
+
+```tsx {4,5,6} showLineNumbers
+import styled from 'styled-components';
+
+const Box = styled.div`
+	${({ theme }) => `${theme.mediaQueries.lg}{
+    // ...style
+    }`}
+`;
+```

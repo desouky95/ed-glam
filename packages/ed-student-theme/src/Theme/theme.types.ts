@@ -1,3 +1,8 @@
+import { AvatarShapes, AvatarSizes } from './avatars';
+import { ThemeButtonSizes } from './buttonSizes';
+import { ThemeFontFamily } from './fontFamily';
+import { ThemeTableLayouts } from './tableLayout';
+
 export const Colors = {
 	primary: '#5AC0FC',
 	light: '#FFF',
@@ -85,3 +90,124 @@ export type AxisPosition = {
 	vertical: YPosition;
 	horizontal: XPosition;
 };
+
+export type ButtonColor = {
+	background: string;
+	color: string;
+	borderColor: string;
+};
+export type ButtonColors = {
+	[key in Color]?: ButtonColor;
+};
+export type TextButtonColor = {
+	color: string;
+};
+export type TextButtonColors = {
+	[key in Color]?: {
+		color: string;
+	};
+};
+
+export type Backgrounds = {
+	[key in Color]: {
+		backgroundColor: string;
+	};
+};
+
+export type Background = {
+	backgroundColor: string;
+};
+
+export interface ITheme {
+	colors: {
+		[key in Color]: string;
+	};
+	modes: {
+		[key in Mode]?: {
+			colors?: {
+				[key in Color]?: string;
+			};
+			buttonColors?: {
+				[key in Color]?: {
+					background: string;
+					color: string;
+					borderColor: string;
+				};
+			};
+			textButtonColors?: {
+				[key in Color]?: {
+					color: string;
+				};
+			};
+
+			backgrounds?: {
+				[key in Color]: {
+					backgroundColor: string;
+				};
+			};
+			circularProgressColors?: {
+				[Key in Color]?: {
+					stroke: string;
+				};
+			};
+			direction?: 'rtl' | 'ltr';
+		};
+	};
+	buttonColors?: ButtonColors;
+	textButtonColors?: {
+		[key in Color]?: {
+			color: string;
+		};
+	};
+	backgrounds?: Backgrounds;
+
+	breakpoints: {
+		[key in Breakpoint]?: string;
+	};
+	breakpointsInPx: { [key in Breakpoint]: number };
+	mediaQueries: {
+		[key in MediaQuery]?: string;
+	};
+	borderRadii: {
+		[key in MediaQuery]: number;
+	};
+	fontSizes: number[];
+	fontSizesAliases: {
+		[key in FontAliases]?: number | string;
+	};
+	space: {
+		[key in Spaces]: number[];
+	};
+	fontFamilies: ThemeFontFamily;
+	avatarSizes: AvatarSizes;
+	avatarShapes: AvatarShapes;
+	tableLayout: ThemeTableLayouts;
+	buttonSizes: ThemeButtonSizes;
+	circularProgressColors: {
+		[Key in Color]?: {
+			stroke: string;
+		};
+	};
+	circularProgressSizes: {
+		[Key in MediaQuery]?: {
+			'--size': string;
+			width: string;
+			height: string;
+			fontSize: string;
+			'--stroke-width': string;
+		};
+	};
+	stepperIconSizes: {
+		[Key in MediaQuery]?: {
+			width: string;
+			height: string;
+		};
+	};
+	stepperIconColors: {
+		[Key in Color]?: {
+			background: string;
+			borderColor: string;
+		};
+	};
+	direction: DocumentDir;
+}

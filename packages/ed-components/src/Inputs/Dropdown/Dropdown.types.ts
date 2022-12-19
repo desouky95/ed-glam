@@ -19,3 +19,5 @@ export interface DropdownComposition
 	> {
 	Option: React.FC<DropdownOptionProps>;
 }
+
+export default DropdownProps;

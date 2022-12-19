@@ -1,0 +1,21 @@
+# Box
+
+Box is the most basic component of ed-glam UI — all other components make use of it for styling. By default, it’s a div element.
+
+```ts
+import { Box } from '@eduact/ed-system';
+```
+
+```tsx live
+function App() {
+	return (
+		<div>
+			<Box p={'1rem'}>
+				<TextInput placeholder="username" />
+				<TextInput placeholder="password" type="password" />
+				<RaisedButton>Login</RaisedButton>
+			</Box>
+		</div>
+	);
+}
+```

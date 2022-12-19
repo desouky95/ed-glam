@@ -1,10 +1,9 @@
-import { ThemeProvider } from '@eduact/student-theme';
+import { Theme, ThemeProvider } from '@eduact/student-theme';
 import React from 'react';
-
 export default function Root({ children }) {
 	return (
 		<>
-			<ThemeProvider>{children}</ThemeProvider>
+			<ThemeProvider theme={Theme}>{children}</ThemeProvider>
 		</>
 	);
 }

@@ -27,6 +27,7 @@ const config = {
 		locales: ['en'],
 	},
 
+	// themes : ['@docusaurus/theme-live-codeblock'],
 	presets: [
 		[
 			'classic',
@@ -54,6 +55,7 @@ const config = {
 		],
 	],
 	plugins: [
+		'@docusaurus/theme-live-codeblock',
 		// ['@eduact/ed-components', {}],
 		// ['@eduact/utils', {}],
 		// ['@eduact/ed-system',{}],
@@ -61,8 +63,15 @@ const config = {
 	],
 
 	themeConfig:
-		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+		/** @type {import('@docusaurus/preset-classic').ThemeConfig & import('@docusaurus/theme-live-codeblock')} */
 		({
+			liveCodeBlock: {
+				/**
+				 * The position of the live playground, above or under the editor
+				 * Possible values: "top" | "bottom"
+				 */
+				playgroundPosition: 'bottom',
+			},
 			docs: {
 				sidebar: {
 					hideable: true,
@@ -82,7 +91,6 @@ const config = {
 						label: 'Docs',
 					},
 
-					// {to: '/blog', label: 'Blog', position: 'left'},
 					{
 						href: 'https://github.com/facebook/docusaurus',
 						label: 'GitHub',

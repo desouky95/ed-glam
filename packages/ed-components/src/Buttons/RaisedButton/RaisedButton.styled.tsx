@@ -26,13 +26,17 @@ export const RaisedButtonStyled = styled.button<
 >`
 	position: relative;
 	border-width: ${(props) => (props.outlined ? '2px' : '')};
+	--fd: ${(props) => {
+		console.log(props.theme);
+		return '';
+	}};
 	border-style: solid;
 	${variant({ scale: 'buttonColors' })}
 
 	color: ${(props) =>
 		props.outlined ? props.theme.colors[props.variant] : ''};
 	font-weight: 500;
-	font-size: ${(props) => `${props.theme.fontSizesAliases.body ?? 1}rem`};
+	font-size: ${(props) => `${props.theme.fontSizesAliases?.body ?? 1}rem`};
 	border-radius: ${(props) =>
 		props.btnShape === 'circle'
 			? `${props.theme.borderRadii.medium}px`

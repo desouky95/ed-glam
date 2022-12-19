@@ -3,3 +3,57 @@ sidebar_position: 2
 ---
 
 # ThemeProvider
+
+ThemeProvider component can be used to change theme. It is not required if you decide to use the [default theme](/Theming/colors).
+
+## Set up the Provider
+
+Use the `<WuiProvider />` at the root of your application to set the theme and styled components for your project
+
+```tsx
+import React from 'react'
+import { createTheme, ThemeProvider } from '@eduact/student-theme'
+import { RaisedButton } from '@eduact/ed-components'
+
+const theme = createTheme()
+
+export default function Root() {
+    return (
+        <ThemeProvider theme={theme}>
+      <RaisedButton variant="dark">Setup Provider</RaisedButton>
+    </TheProvider>
+  )
+}
+```
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Codeblock from '@theme/CodeBlock';
+
+## Typescript
+
+Install needed types:
+
+<Tabs>
+	<TabItem value="npm" default label="npm">
+		<Codeblock>npm i -D @types/react-dom @types/styled-components</Codeblock>
+	</TabItem>
+	<TabItem value="yarn" label="yarn">
+		<Codeblock>yarn add @types/react-dom @types/styled-components</Codeblock>
+	</TabItem>
+</Tabs>
+
+In order to get your theme object typed with our theme, you have to override the default theme by adding this in a "styled.d.ts" file at the root of your project:
+
+```ts
+import 'styled-components';
+import { ITheme } from '@eduact/student-theme';
+
+interface AppTheme extends ITheme {
+	// customize your theme
+}
+
+declare module 'styled-components' {
+	export interface DefaultTheme extends AppTheme {}
+}
+```

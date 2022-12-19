@@ -1,0 +1,60 @@
+# Customize
+
+By default, we use our default theme create by **createTheme()** function.
+
+You can customize your theme with some options:
+
+- customize the theme values like colors, fonts, spacing etc.
+- customize each component separately using styled-component
+
+## Customize theme values
+
+To create your theme, use need to add some values from object on **createTheme()** function.
+
+```tsx {6,7,8,9,10} showLineNumbers
+import React from 'react';
+import { RaisedButton } from '@eduact/ed-components';
+import { createTheme, ThemeProvider } from '@eduact/student-theme';
+
+function App() {
+	const theme = createTheme({
+		colors: {
+			primary: '#13754b',
+		},
+	});
+	return (
+		<div className="App">
+			<ThemeProvider theme={theme}>
+				<RaisedButton>Test</RaisedButton>
+			</ThemeProvider>
+		</div>
+	);
+}
+
+export default App;
+```
+
+## Customizing component
+
+```tsx showLineNumbers {6,7,8}
+import React from 'react';
+import { RaisedButton } from '@eduact/ed-components';
+import { createTheme, ThemeProvider } from '@eduact/student-theme';
+import styled from 'styled-components';
+
+const DefaultRaisedButton = styled(RaisedButton)`
+	padding: 3rem;
+`;
+
+function App() {
+	return (
+		<div className="App">
+			<ThemeProvider theme={theme}>
+				<DefaultRaisedButton>Test</DefaultRaisedButton>
+			</ThemeProvider>
+		</div>
+	);
+}
+
+export default App;
+```

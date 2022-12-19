@@ -80,6 +80,6 @@ export const MainTable: ComponentStory<typeof InfoTable> = () => {
 			})}
 		</InfoTableData>
 	);
-	return <InfoTable Data={renderData} Header={renderHeader} />;
+	return <InfoTable rounded Data={renderData} Header={renderHeader} />;
 };
 MainTable.storyName = 'Info Table';

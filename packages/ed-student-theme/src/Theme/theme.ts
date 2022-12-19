@@ -15,7 +15,21 @@ import {
 	Spaces,
 	TableLayout,
 	Mode,
+	ITheme,
 } from './theme.types';
+import { getButtonColors } from './buttonColors';
+import { getTextButtonColors } from './textButtonColors';
+import { getBackgrounds } from './backgrounds';
+import { radii } from './radii';
+import { getFontFamily } from './fontFamily';
+import { getAvatarShapes, getAvatarSizes } from './avatars';
+import { tableLayouts } from './tableLayout';
+import { getButtonSizes } from './buttonSizes';
+import {
+	circularProgressSizes,
+	getCircularProgressColors,
+} from './circularProgress';
+import { getStepperIconsColors, stepperIconSizes } from './stepper';
 
 const breakpoints = ['640px', '769px', '1201px', '1441px'];
 
@@ -36,131 +50,6 @@ const aliasBreakpoints: { [key in Breakpoint]?: string } = {
 	// lg: '64rem',
 	xl: breakpoints[3],
 };
-
-interface ITheme {
-	colors: {
-		[key in Color]: string;
-	};
-	modes: {
-		[key in Mode]?: {
-			colors?: {
-				[key in Color]?: string;
-			};
-			buttonColors?: {
-				[key in Color]?: {
-					background: string;
-					color: string;
-					borderColor: string;
-				};
-			};
-			textButtonColors?: {
-				[key in Color]?: {
-					color: string;
-				};
-			};
-
-			backgrounds?: {
-				[key in Color]: {
-					backgroundColor: string;
-				};
-			};
-			circularProgressColors?: {
-				[Key in Color]?: {
-					stroke: string;
-				};
-			};
-			direction?: 'rtl' | 'ltr';
-		};
-	};
-	buttonColors?: {
-		[key in Color]?: {
-			background: string;
-			color: string;
-			borderColor: string;
-		};
-	};
-	textButtonColors?: {
-		[key in Color]?: {
-			color: string;
-		};
-	};
-	backgrounds?: {
-		[key in Color]: {
-			backgroundColor: string;
-		};
-	};
-
-	breakpoints: {
-		[key in Breakpoint]?: string;
-	};
-	breakpointsInPx: { [key in Breakpoint]: number };
-	mediaQueries: {
-		[key in MediaQuery]?: string;
-	};
-	borderRadii: {
-		[key in MediaQuery]: number;
-	};
-	fontSizes: number[];
-	fontSizesAliases: {
-		[key in FontAliases]?: number | string;
-	};
-	space: {
-		[key in Spaces]: number[];
-	};
-	fontFamilies: {
-		main: string;
-	};
-	avatarSizes: {
-		[key in MediaQuery]?: {
-			width: number;
-			height: number;
-			minWidth: number;
-			minHeight: number;
-		};
-	};
-	avatarShapes: {
-		[key in Shapes]: {
-			borderRadius: string;
-		};
-	};
-	tableLayout: {
-		[key in TableLayout]: {
-			tableLayout: TableLayout;
-		};
-	};
-	buttonSizes: {
-		[key in MediaQuery]?: {
-			padding: string;
-		};
-	};
-	circularProgressColors: {
-		[Key in Color]?: {
-			stroke: string;
-		};
-	};
-	circularProgressSizes: {
-		[Key in MediaQuery]?: {
-			'--size': string;
-			width: string;
-			height: string;
-			fontSize: string;
-			'--stroke-width': string;
-		};
-	};
-	stepperIconSizes: {
-		[Key in MediaQuery]?: {
-			width: string;
-			height: string;
-		};
-	};
-	stepperIconColors: {
-		[Key in Color]?: {
-			background: string;
-			borderColor: string;
-		};
-	};
-	direction: DocumentDir;
-}
 
 export const Theme: ITheme = {
 	colors: Colors,
@@ -188,30 +77,10 @@ export const Theme: ITheme = {
 			background: Colors.dark,
 			borderColor: Colors.dark,
 		},
-		light: {
-			color: Colors.dark,
-			background: Colors.light,
-			borderColor: Colors.light,
-		},
-		cultured: {
-			color: Colors.dark,
-			background: Colors.cultured,
-			borderColor: Colors.cultured,
-		},
-		platinum: {
-			color: Colors.dark,
-			background: Colors.platinum,
-			borderColor: Colors.platinum,
-		},
 		maxBluePurple: {
 			color: Colors.light,
 			background: Colors.maxBluePurple,
 			borderColor: Colors.maxBluePurple,
-		},
-		lavender: {
-			color: Colors.dark,
-			background: Colors.lavender,
-			borderColor: Colors.lavender,
 		},
 		independence: {
 			color: Colors.light,
@@ -228,16 +97,6 @@ export const Theme: ITheme = {
 			background: Colors.princetonOrange,
 			borderColor: Colors.princetonOrange,
 		},
-		darkCultured: {
-			color: Colors.dark,
-			background: Colors.darkCultured,
-			borderColor: Colors.darkCultured,
-		},
-		yellow: {
-			color: Colors.dark,
-			background: Colors.yellow,
-			borderColor: Colors.yellow,
-		},
 		silver: {
 			color: Colors.light,
 			background: Colors.silver,
@@ -247,11 +106,6 @@ export const Theme: ITheme = {
 			color: Colors.light,
 			background: Colors.purpleNavy,
 			borderColor: Colors.purpleNavy,
-		},
-		darkSilver: {
-			color: Colors.dark,
-			background: Colors.darkSilver,
-			borderColor: Colors.darkSilver,
 		},
 		green: {
 			color: Colors.light,
@@ -272,6 +126,41 @@ export const Theme: ITheme = {
 			color: Colors.light,
 			background: Colors.red,
 			borderColor: Colors.red,
+		},
+		light: {
+			color: Colors.dark,
+			background: Colors.light,
+			borderColor: Colors.light,
+		},
+		cultured: {
+			color: Colors.dark,
+			background: Colors.cultured,
+			borderColor: Colors.cultured,
+		},
+		platinum: {
+			color: Colors.dark,
+			background: Colors.platinum,
+			borderColor: Colors.platinum,
+		},
+		lavender: {
+			color: Colors.dark,
+			background: Colors.lavender,
+			borderColor: Colors.lavender,
+		},
+		darkCultured: {
+			color: Colors.dark,
+			background: Colors.darkCultured,
+			borderColor: Colors.darkCultured,
+		},
+		yellow: {
+			color: Colors.dark,
+			background: Colors.yellow,
+			borderColor: Colors.yellow,
+		},
+		darkSilver: {
+			color: Colors.dark,
+			background: Colors.darkSilver,
+			borderColor: Colors.darkSilver,
 		},
 	},
 	textButtonColors: {
@@ -394,12 +283,7 @@ export const Theme: ITheme = {
 		large: `@media screen and (min-width : ${aliasBreakpoints.lg})`,
 		xlarge: `@media screen and (min-width : ${aliasBreakpoints.xl})`,
 	},
-	borderRadii: {
-		small: 20,
-		medium: 30,
-		large: 40,
-		xlarge: 50,
-	},
+	borderRadii: radii,
 	fontSizes: [10, 12, 14],
 	fontSizesAliases: {
 		button: 0.875,
@@ -485,26 +369,6 @@ export const Theme: ITheme = {
 			stroke: Colors.primary,
 		},
 	},
-	stepperIconSizes: {
-		small: {
-			width: '1.406rem',
-			height: '1.406rem',
-		},
-	},
-	stepperIconColors: {
-		primary: {
-			background: Colors.primary,
-			borderColor: Colors.primary,
-		},
-		princetonOrange: {
-			background: Colors.princetonOrange,
-			borderColor: Colors.princetonOrange,
-		},
-		spanishGray: {
-			background: Colors.spanishGray,
-			borderColor: Colors.spanishGray,
-		},
-	},
 	circularProgressSizes: {
 		small: {
 			'--size': '30',
@@ -535,6 +399,26 @@ export const Theme: ITheme = {
 			'--stroke-width': '4',
 		},
 	},
+	stepperIconSizes: {
+		small: {
+			width: '1.406rem',
+			height: '1.406rem',
+		},
+	},
+	stepperIconColors: {
+		primary: {
+			background: Colors.primary,
+			borderColor: Colors.primary,
+		},
+		princetonOrange: {
+			background: Colors.princetonOrange,
+			borderColor: Colors.princetonOrange,
+		},
+		spanishGray: {
+			background: Colors.spanishGray,
+			borderColor: Colors.spanishGray,
+		},
+	},
 };
 export const getTheme = (mode?: Mode) => {
 	if (!mode) return Theme;
@@ -560,8 +444,24 @@ type DeepPartial<T> = T extends object
 			[P in keyof T]?: DeepPartial<T[P]>;
 	  }
 	: T;
-export const createTheme = (theme: DeepPartial<ITheme>) => {
-	return merge({}, Theme, theme);
+export const createTheme = (options: DeepPartial<ITheme>) => {
+	let theme = {} as ITheme;
+	theme.colors = Colors;
+	theme.borderRadii = radii;
+	theme.tableLayout = tableLayouts;
+	theme.circularProgressSizes = circularProgressSizes;
+	theme.stepperIconSizes = stepperIconSizes;
+	theme = merge({}, theme, options);
+	theme.fontFamilies = getFontFamily(theme);
+	theme.buttonSizes = getButtonSizes(theme);
+	theme.avatarShapes = getAvatarShapes(theme);
+	theme.avatarSizes = getAvatarSizes(theme);
+	theme.buttonColors = getButtonColors(theme);
+	theme.textButtonColors = getTextButtonColors(theme);
+	theme.backgrounds = getBackgrounds(theme);
+	theme.circularProgressColors = getCircularProgressColors(theme);
+	theme.stepperIconColors = getStepperIconsColors(theme);
+	return theme;
 };
 declare module 'styled-components' {
 	export interface DefaultTheme extends ITheme {}
