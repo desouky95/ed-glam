@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/ed-components",
-	"version": "0.2.65",
+	"version": "0.2.66",
 	"type": "module",
 	"description": "> TODO: description",
 	"author": "Ismail Moustafa <tubesniper@gmail.com>",
@@ -69,8 +69,8 @@
 		"@dnd-kit/modifiers": "^6.0.0",
 		"@dnd-kit/sortable": "^7.0.1",
 		"@eduact/ed-system": "^1.2.9",
-		"@eduact/student-theme": "^1.0.68",
-		"@eduact/utils": "^0.4.50",
+		"@eduact/student-theme": "^1.0.69",
+		"@eduact/utils": "^0.4.51",
 		"@loadable/component": "^5.15.2",
 		"@popperjs/core": "^2.11.5",
 		"@react-spring/web": "^9.4.5",
