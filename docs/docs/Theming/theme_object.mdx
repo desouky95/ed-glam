@@ -1,0 +1,378 @@
+---
+sidebar_position: 1
+---
+
+# Theme Object
+
+```ts
+interface ITheme {
+	colors: {
+		[key in Color]: string;
+	};
+	modes: {
+		[key in Mode]?: {
+			colors?: {
+				[key in Color]?: string;
+			};
+			buttonColors?: {
+				[key in Color]?: {
+					background: string;
+					color: string;
+					borderColor: string;
+				};
+			};
+			textButtonColors?: {
+				[key in Color]?: {
+					color: string;
+				};
+			};
+
+			backgrounds?: {
+				[key in Color]: {
+					backgroundColor: string;
+				};
+			};
+			circularProgressColors?: {
+				[Key in Color]?: {
+					stroke: string;
+				};
+			};
+			direction?: 'rtl' | 'ltr';
+		};
+	};
+	buttonColors?: {
+		[key in Color]?: {
+			background: string;
+			color: string;
+			borderColor: string;
+		};
+	};
+	textButtonColors?: {
+		[key in Color]?: {
+			color: string;
+		};
+	};
+	backgrounds?: {
+		[key in Color]: {
+			backgroundColor: string;
+		};
+	};
+
+	breakpoints: {
+		[key in Breakpoint]?: string;
+	};
+	breakpointsInPx: { [key in Breakpoint]: number };
+	mediaQueries: {
+		[key in MediaQuery]?: string;
+	};
+	borderRadii: {
+		[key in MediaQuery]: number;
+	};
+	fontSizes: number[];
+	fontSizesAliases: {
+		[key in FontAliases]?: number | string;
+	};
+	space: {
+		[key in Spaces]: number[];
+	};
+	fontFamilies: {
+		main: string;
+	};
+	avatarSizes: {
+		[key in MediaQuery]?: {
+			width: number;
+			height: number;
+			minWidth: number;
+			minHeight: number;
+		};
+	};
+	avatarShapes: {
+		[key in Shapes]: {
+			borderRadius: string;
+		};
+	};
+	tableLayout: {
+		[key in TableLayout]: {
+			tableLayout: TableLayout;
+		};
+	};
+	buttonSizes: {
+		[key in MediaQuery]?: {
+			padding: string;
+		};
+	};
+	circularProgressColors: {
+		[Key in Color]?: {
+			stroke: string;
+		};
+	};
+	circularProgressSizes: {
+		[Key in MediaQuery]?: {
+			'--size': string;
+			width: string;
+			height: string;
+			fontSize: string;
+			'--stroke-width': string;
+		};
+	};
+	stepperIconSizes: {
+		[Key in MediaQuery]?: {
+			width: string;
+			height: string;
+		};
+	};
+	stepperIconColors: {
+		[Key in Color]?: {
+			background: string;
+			borderColor: string;
+		};
+	};
+	direction: DocumentDir;
+}
+```
+
+## Usage
+
+To customize theme, pass theme override object to MantineProvider theme prop. Theme override will be deeply merged with default theme.
+
+```tsx
+import { ThemeProvider } from '@eduact/student-theme';
+
+function Demo() {
+	const [theme, setTheme] = useState<ITheme>({
+		colors: {
+			primary: '#FFF',
+		},
+
+		borderRadii: {
+			small: 5,
+			medium: 10,
+			large: 15,
+			xlarge: 20,
+		},
+		fontFamilies: {
+			main: 'Roboto',
+		},
+	});
+	return (
+		<ThemeProvider theme={theme}>
+			<App />
+		</ThemeProvider>
+	);
+}
+```
+
+## Theme Properties
+
+### colors
+
+`theme.colors` ed-glam includes a default color palette out-of-the-box that is a great starting point if you don't have your own specific branding in mind.
+You can access the colors through the theme object or or styled components, see the [theme object](/Theming/theme_object) for more information.
+
+### modes
+
+`theme.modes` ed-glam theme provides mode object for different modes themes
+
+```ts
+type Mode = 'light' | 'dark' | 'rtl' | 'ltr';
+...
+modes : {
+	'dark': themeObject as ITheme
+}
+...
+```
+
+### buttonColors
+
+`theme.buttonColors` controls RaisedButtons colors based on `theme.colors`.
+
+```ts
+buttonColors : {
+	'dark' : {
+		color: '#FFF';
+			background: '#000';
+			borderColor: '#000';
+	}
+}
+```
+
+:::note
+Any Theme theming object can be used as scale using [styled-system](https://styled-system.com/) variant [see how to use variant](https://styled-system.com/api#variant)
+
+```tsx
+import { Color } from '@eduact/student-theme';
+import { variant } from 'styled-system';
+import styled from 'styled-components';
+const Box = styled.div<{ color: Color }>`
+	${variant({ scale: 'buttonColors', prop: 'color' })}
+`;
+```
+
+:::
+
+### textButtonColors
+
+`theme.textButtonColors` used as theming object scale for TextButton component
+
+### backgrounds
+
+`theme.textButtonColors` used as theming object scale for any background usage
+
+### breakpoints
+
+`theme.breakpoints` controls breakpoints used by styled-system which include `'sm' | 'md' | 'lg' |'xl'`
+
+### mediaQueries
+
+`theme.mediaQueries` defines mediaQueries to be used in responsive styles. All mediaQueries works using min-width as ed-glam maintains components as a mobile-first css.
+
+### borderRadii
+
+`theme.borderRadii` used as theming object scale for border-radius for each breakpoint.
+
+### fontSizes
+
+`theme.fontSizes` defines all fontSizes scale
+
+### fontFamilies
+
+`theme.fontFamilies` controls main theme's font-family
+
+### avatarSizes
+
+### avatarShapes
+
+`theme.avatarSizes` & `theme.avatarShapes` used as Avatar component theming object scale
+
+### tableLayout
+
+`theme.tableLayout` controls Tables layout `'fixed' | 'auto'`
+
+### buttonSizes
+
+`theme.buttonSizes` controls any button size accross different breakpoints
+
+### circularProgressColors
+
+### circularProgressSizes
+
+`theme.circularProgressColors` & `theme.circularProgressSizes` used as CircularProgress component theming object scale
+
+### stepperIconSizes
+
+### stepperIconColors
+
+`theme.stepperIconSizes` & `theme.stepperIconColors` used as Stepper component theming object scale
+
+### direction
+
+`theme.direction : DocumentDir` controls theme direction to be used as main html document dir
+
+## Types
+
+### Breakpoint
+
+```ts
+type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl';
+```
+
+### DocumentDir
+
+```ts
+type DocumentDir = 'ltr' | 'rtl';
+```
+
+### MediaQuery
+
+```ts
+type MediaQuery = 'small' | 'medium' | 'large' | 'xlarge';
+```
+
+### Shapes
+
+```ts
+type Shapes = 'circle' | 'square';
+```
+
+### Mode
+
+```ts
+type Mode = 'light' | 'dark' | 'rtl' | 'ltr';
+```
+
+### TableLayout
+
+```ts
+type TableLayout = 'fixed' | 'auto';
+```
+
+### Orientation
+
+```ts
+type Orientation = 'horizontal' | 'vertical';
+```
+
+### FontFamily
+
+```ts
+type FontFamily = 'Montserrat' | 'Mulish' | 'Cairo' | 'AvantGarde';
+```
+
+### FontWeight
+
+```ts
+type FontWeight =
+	| 'normal'
+	| '500'
+	| 'bold'
+	| 'bolder'
+	| 'light'
+	| '400'
+	| '300'
+	| '200'
+	| '100'
+	| 'lighter'
+	| '800'
+	| '700'
+	| '600'
+	| '900';
+```
+
+### ResponsiveVal
+
+```ts
+type ResponsiveVal<T> = T | { [key in Breakpoint]?: T };
+```
+
+### Color
+
+```ts
+type Color = keyof typeof Colors;
+```
+
+### XPosition
+
+```ts
+type XPosition = 'left' | 'right' | 'center';
+```
+
+### YPosition
+
+```ts
+type YPosition = 'top' | 'bottom';
+```
+
+### AxisPosition
+
+```ts
+type AxisPosition = {
+	vertical: YPosition;
+	horizontal: XPosition;
+};
+```
+
+### brand
+
+import BrandColors from '@site/src/components/BrandColors';
+
+<BrandColors />

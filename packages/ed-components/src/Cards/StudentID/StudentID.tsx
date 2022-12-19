@@ -33,7 +33,7 @@ import {
 import { MdOutlineMail, MdOutlinePhone } from 'react-icons/md';
 import { StudentCardProps } from './StudentID.types';
 import Spacer from '../..//Spacer';
-import QRCode from '@src/DataDisplay/QRCode';
+import QRCode from '../../DataDisplay/QRCode';
 
 export type StudentIDProps = {
 	title?: string;

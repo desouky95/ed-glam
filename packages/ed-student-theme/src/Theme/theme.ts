@@ -14,8 +14,8 @@ import {
 	Shapes,
 	Spaces,
 	TableLayout,
+	Mode,
 } from './theme.types';
-import { Mode } from 'fs';
 
 const breakpoints = ['640px', '769px', '1201px', '1441px'];
 
@@ -247,6 +247,31 @@ export const Theme: ITheme = {
 			color: Colors.light,
 			background: Colors.purpleNavy,
 			borderColor: Colors.purpleNavy,
+		},
+		darkSilver: {
+			color: Colors.dark,
+			background: Colors.darkSilver,
+			borderColor: Colors.darkSilver,
+		},
+		green: {
+			color: Colors.light,
+			background: Colors.green,
+			borderColor: Colors.green,
+		},
+		lightRed: {
+			color: Colors.light,
+			background: Colors.lightRed,
+			borderColor: Colors.lightRed,
+		},
+		orange: {
+			color: Colors.light,
+			background: Colors.orange,
+			borderColor: Colors.orange,
+		},
+		red: {
+			color: Colors.light,
+			background: Colors.red,
+			borderColor: Colors.red,
 		},
 	},
 	textButtonColors: {
@@ -530,7 +555,14 @@ export const getTheme = (mode?: Mode) => {
 		),
 	});
 };
-
+type DeepPartial<T> = T extends object
+	? {
+			[P in keyof T]?: DeepPartial<T[P]>;
+	  }
+	: T;
+export const createTheme = (theme: DeepPartial<ITheme>) => {
+	return merge({}, Theme, theme);
+};
 declare module 'styled-components' {
 	export interface DefaultTheme extends ITheme {}
 }

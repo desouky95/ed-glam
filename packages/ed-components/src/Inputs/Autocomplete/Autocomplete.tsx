@@ -1,7 +1,7 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { useElementSize, useOutsideAlert } from '@eduact/utils';
 import { primitives } from '@react-spring/web/dist/declarations/src/primitives';
-import { Icons } from '@src/Icons';
+import { Icons } from '../../Icons';
 import React, { useState, useRef, forwardRef } from 'react';
 import { easings, Spring } from 'react-spring';
 import { useImmer } from 'use-immer';

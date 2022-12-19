@@ -1,0 +1,14 @@
+{
+	// This file is not used in compilation. It is here just for a nice editor experience.
+	"extends": "@tsconfig/docusaurus/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"lib": ["ES6", "DOM"]
+	},
+	"references": [
+		{ "path": "../packages/utils/tsconfig.build.json" },
+		{ "path": "../packages/ed-components/tsconfig.build.json" },
+		{ "path": "../packages/ed-student-theme/tsconfig.build.json" },
+		{ "path": "../packages/ed-system/tsconfig.build.json" }
+	]
+}

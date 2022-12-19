@@ -1,0 +1,26 @@
+{
+	"extends": "@tsconfig/docusaurus/tsconfig.json",
+	"compilerOptions": {
+		"paths": {
+			"@ed-glam/admin-theme": ["../packages/ed-admin-theme/src"],
+			"@ed-glam/admin-theme/*": ["../packages/ed-admin-theme/src/*"],
+			"@eduact/ed-components": ["./packages/ed-components/src"],
+			"@eduact/ed-components/*": ["../packages/ed-components/src/*"],
+			"@eduact/ed-system": ["../packages/ed-system/src"],
+			"@eduact/ed-system/*": ["../packages/ed-system/src/*"],
+			"@eduact/student-theme": ["../packages/ed-student-theme/src"],
+			"@eduact/student-theme/*": ["../packages/ed-student-theme/src/*"],
+			"@eduact/utils": ["../packages/utils/src"],
+			"@eduact/utils/*": ["../packages/utils/src/*"],
+			"@eduact/fonts": ["../packages/ed-fonts/src"],
+			"@eduact/fonts/*": ["../packages/ed-fonts/src/*"],
+			"scripts/*": ["../scripts/*"],
+			"@site/*": ["./*"]
+		},
+		"types": ["node", "react", "jest", "mocha"]
+	},
+	"references": [
+		{ "path": "../packages/ed-components/tsconfig.build.json" },
+		{ "path": "../packages/ed-system/tsconfig.build.json" }
+	]
+}

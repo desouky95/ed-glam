@@ -8,11 +8,13 @@ import GapQuestion from '../GapQuestion/GapQuestion';
 import { McqQuestion } from '../McqQuestion';
 import { OrderingQuestion } from '../OrderingQuestion';
 import {
+	isEssayQuestion,
 	isGapQuestion,
 	isMcqQuestion,
 	isOrderingQuestion,
 	Question,
 } from '../Question.types';
+import { EssayQuestion } from '../EssayQuestion';
 
 type Props = {
 	question: Question;
@@ -29,10 +31,12 @@ type Props = {
 	questionLabel?: string;
 	onFocus?: React.FocusEventHandler<HTMLDivElement>;
 	onBlur?: React.FocusEventHandler<HTMLDivElement>;
+	onAttachmentsChange?: (files: FileList | null) => void;
 };
 
 const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	question,
+	onAttachmentsChange,
 	withNavigation = false,
 	onNext,
 	onPrev,
@@ -78,6 +82,14 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 					)}
 					{isMcqQuestion(question) && (
 						<McqQuestion question={question} onChange={onChange} />
+					)}
+					{isEssayQuestion(question) && (
+						<EssayQuestion
+							uploadURL="https://v2.convertapi.com/upload"
+							onAttachmentsChange={onAttachmentsChange}
+							question={question}
+							onChange={onChange}
+						/>
 					)}
 				</div>
 			</QuestionWrapper>

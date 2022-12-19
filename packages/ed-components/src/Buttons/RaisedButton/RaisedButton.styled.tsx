@@ -8,6 +8,8 @@ import {
 	SpaceProps,
 	flexbox,
 	FlexboxProps,
+	BorderRadiusProps,
+	borderRadius,
 } from 'styled-system';
 
 export const RaisedButtonStyled = styled.button<
@@ -19,7 +21,8 @@ export const RaisedButtonStyled = styled.button<
 		btnShape?: Shapes;
 	} & LayoutProps &
 		SpaceProps &
-		FlexboxProps
+		FlexboxProps &
+		BorderRadiusProps
 >`
 	position: relative;
 	border-width: ${(props) => (props.outlined ? '2px' : '')};
@@ -57,6 +60,7 @@ export const RaisedButtonStyled = styled.button<
 	${layout};
 	${space};
 	${flexbox};
+	${borderRadius};
 	background: ${(props) => (props.outlined ? 'transparent' : '')};
 	background: ${(props) => (props.bgFallback ? props.theme.colors.light : '')};
 `;

@@ -27,7 +27,7 @@ import {
 import { StudentCardProps } from './StudentID.types';
 import EduactCardIcon from './Assets/eduact-card-icon.svg';
 import { LayoutProps } from 'styled-system';
-import QRCode from '@src/DataDisplay/QRCode';
+import QRCode from '../../DataDisplay/QRCode';
 
 type StudentQRCodeProps = {
 	title?: string;

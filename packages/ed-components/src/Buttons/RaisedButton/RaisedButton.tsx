@@ -19,6 +19,7 @@ import {
 	LayoutProps,
 	SpaceProps,
 	FlexboxProps,
+	BorderRadiusProps,
 } from 'styled-system';
 import { RefObject } from 'react';
 import { Ripple } from '../..//Surface';
@@ -35,6 +36,7 @@ export type RaisedButtonProps = {
 	SpaceProps &
 	TextAlignProps &
 	FlexboxProps &
+	BorderRadiusProps &
 	Omit<React.HTMLProps<HTMLButtonElement>, 'ref'>;
 
 export const RaisedButton: ForwardRefExoticComponent<RaisedButtonProps> =

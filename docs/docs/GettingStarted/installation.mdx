@@ -1,0 +1,80 @@
+---
+sidebar_position: 1
+---
+
+import { RaisedButton } from '@eduact/ed-components';
+
+# Installation
+
+To get started using ed-glam, install the package and its peer dependencies with your package manager of choice:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import InstallationTabs from '@site/src/components/InstallationTabs';
+
+## Default Installation
+
+First, make sure you have styled-components and styled-system
+
+<Tabs>
+	<TabItem value="npm" default label="npm">
+		<CodeBlock>npm install styled-components styled-system</CodeBlock>
+	</TabItem>
+	<TabItem value="yarn" label="yarn">
+		<CodeBlock>yarn add styled-components styled-system</CodeBlock>
+	</TabItem>
+</Tabs>
+
+Then install ed-glam
+
+<InstallationTabs />
+
+## Fonts
+
+ed-glam is designed to use the Montserrat font by default. You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
+
+### Fonts List
+
+1. Montserrat
+2. Roboto
+3. Cairo
+
+### Fontsource
+
+<Tabs>
+	<TabItem value="npm" default label="npm">
+		<CodeBlock>
+			npm install @fontsource/roboto @fontsource/montserrat @fontsource/cairo
+		</CodeBlock>
+	</TabItem>
+	<TabItem value="yarn" label="yarn">
+		<CodeBlock>
+			yarn add @fontsource/roboto @fontsource/montserrat @fontsource/cairo
+		</CodeBlock>
+	</TabItem>
+</Tabs>
+
+Then you can import it in your entry point like this:
+
+```js
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+```
+
+:::info
+Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration relies only on the 300, 400, 500, and 700 font weights.
+:::
+
+### Google Web Fonts
+
+To install the any Google font listed above in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
+
+```html
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=[font-name]:300,400,500,700&display=swap"
+/>
+```
