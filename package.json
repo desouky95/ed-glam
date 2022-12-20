@@ -5,8 +5,8 @@
 	"main": "./src/index.ts",
 	"scripts": {
 		"release:version": "npm run cleanup && lerna version",
-		"release:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=[@eduact/docs]",
-		"test:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=[@eduact/docs]",
+		"release:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=@eduact/docs,@eduact/testing-app",
+		"test:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=@eduact/docs,@eduact/testing-app",
 		"prepare": "node scripts/prepublish.js && husky install",
 		"publish": "lerna publish from-package --dist-tag latest --contents build",
 		"postpublish": "npm run cleanup",

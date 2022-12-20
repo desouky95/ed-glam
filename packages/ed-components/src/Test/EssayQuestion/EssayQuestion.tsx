@@ -139,13 +139,11 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 							<>
 								<progress
 									value={uploadProgress.progress.progress * 100}
-									min="0"
-									max="100"
 								></progress>
-								<div>
+								{/* <div>
 									{uploadProgress.file.name}
 									{uploadProgress.file.type}
-								</div>
+								</div> */}
 							</>
 						)}
 						<AttachmentAnswer

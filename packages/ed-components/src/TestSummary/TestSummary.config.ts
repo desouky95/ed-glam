@@ -8,5 +8,6 @@ export const TestSummaryConfig: TestSummaryConfigArgs = {
 		gap: 'fill in the gap',
 		mcq: 'mcq',
 		ordering: 'ordering',
+		essay: 'essay',
 	},
 };
