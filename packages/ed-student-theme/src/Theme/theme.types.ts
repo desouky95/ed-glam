@@ -1,5 +1,6 @@
 import { AvatarShapes, AvatarSizes } from './avatars';
 import { ThemeButtonSizes } from './buttonSizes';
+import { DocumentDir } from './direction';
 import { ThemeFontFamily } from './fontFamily';
 import { MediaQueries } from './mediaQueries';
 import { ThemeTableLayouts } from './tableLayout';
@@ -29,14 +30,14 @@ export const Colors = {
 
 export type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl';
 export type BreakpointInPx = 832 | 1024 | 1280;
-export type DocumentDir = 'ltr' | 'rtl';
+
 export type MediaQuery = 'small' | 'medium' | 'large' | 'xlarge';
 type FontScale = 't1' | 't2' | 't3' | 't4' | 't5';
 export type FontBx = `${MediaQuery}-${FontScale}`;
 export type Shapes = 'circle' | 'square';
 export type FontAliases = 'body' | 'display' | 'button' | FontBx;
 export type Spaces = 'margin' | 'margin-bottom';
-export type Mode = 'light' | 'dark' | 'rtl' | 'ltr';
+export type Mode = 'rtl' | 'ltr';
 
 export type TableLayout = 'fixed' | 'auto';
 export type Orientation = 'horizontal' | 'vertical';
@@ -123,37 +124,7 @@ export interface ITheme {
 	colors: {
 		[key in Color]: string;
 	};
-	modes: {
-		[key in Mode]?: {
-			colors?: {
-				[key in Color]?: string;
-			};
-			buttonColors?: {
-				[key in Color]?: {
-					background: string;
-					color: string;
-					borderColor: string;
-				};
-			};
-			textButtonColors?: {
-				[key in Color]?: {
-					color: string;
-				};
-			};
 
-			backgrounds?: {
-				[key in Color]: {
-					backgroundColor: string;
-				};
-			};
-			circularProgressColors?: {
-				[Key in Color]?: {
-					stroke: string;
-				};
-			};
-			direction?: 'rtl' | 'ltr';
-		};
-	};
 	buttonColors?: ButtonColors;
 	textButtonColors?: {
 		[key in Color]?: {

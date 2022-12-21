@@ -4,7 +4,6 @@ import {
 	Breakpoint,
 	Color,
 	Colors,
-	DocumentDir,
 	FontAliases,
 	FontFamily,
 	Fonts,
@@ -35,17 +34,11 @@ import {
 	breakpointsInPx,
 	mediaQueries,
 } from './mediaQueries';
+import { DocumentDir, getThemeDirection } from './direction';
 
 export const Theme: ITheme = {
 	colors: Colors,
-	modes: {
-		rtl: {
-			direction: 'rtl',
-		},
-		ltr: {
-			direction: 'ltr',
-		},
-	},
+
 	buttonColors: {
 		primary: {
 			color: Colors.light,
@@ -405,25 +398,7 @@ export const Theme: ITheme = {
 		},
 	},
 };
-export const getTheme = (mode?: Mode) => {
-	if (!mode) return Theme;
-	return merge({}, Theme, {
-		colors: get(Theme.modes[mode], mode, Theme.modes[mode]?.colors),
-		buttonColors: get(Theme.modes[mode], mode, Theme.modes[mode]?.buttonColors),
-		textButtonColors: get(
-			Theme.modes[mode],
-			mode,
-			Theme.modes[mode]?.textButtonColors
-		),
-		backgrounds: get(Theme.modes[mode], mode, Theme.modes[mode]?.backgrounds),
-		direction: get(Theme.modes[mode], mode, Theme.modes[mode]?.direction),
-		circularProgressColors: get(
-			Theme.modes[mode],
-			mode,
-			Theme.modes[mode]?.circularProgressColors
-		),
-	});
-};
+
 type DeepPartial<T> = T extends object
 	? {
 			[P in keyof T]?: DeepPartial<T[P]>;
@@ -449,6 +424,7 @@ export const createTheme = (options: DeepPartial<ITheme>) => {
 	theme.backgrounds = getBackgrounds(theme);
 	theme.circularProgressColors = getCircularProgressColors(theme);
 	theme.stepperIconColors = getStepperIconsColors(theme);
+	theme.direction = getThemeDirection();
 
 	theme = merge({}, theme, options);
 	return theme;
