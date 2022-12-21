@@ -7,7 +7,7 @@ import { Theme } from './theme';
 
 type ThemeTogglerOptions = {
 	theme: DefaultTheme;
-	// setTheme: React.Dispatch<DefaultTheme>;
+	setTheme?: React.Dispatch<DefaultTheme>;
 };
 export const ThemeContextProvider = createContext<ThemeTogglerOptions | null>(
 	null
@@ -16,9 +16,10 @@ export const ThemeContextProvider = createContext<ThemeTogglerOptions | null>(
 const ThemeProviderWrapper: React.FC<ThemeTogglerOptions> = ({
 	children,
 	theme,
+	setTheme,
 }) => {
 	return (
-		<ThemeContextProvider.Provider value={{ theme }}>
+		<ThemeContextProvider.Provider value={{ theme, setTheme }}>
 			<SThemeProvider theme={theme}>{children}</SThemeProvider>
 		</ThemeContextProvider.Provider>
 	);

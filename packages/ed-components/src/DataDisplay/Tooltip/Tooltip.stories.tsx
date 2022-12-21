@@ -29,7 +29,7 @@ export const TooltipStory: ComponentStory<typeof Tooltip> = ({
 	title,
 }) => {
 	return (
-		<Tooltip placement={'bottom'} variant={variant} title={title}>
+		<Tooltip placement={'bottom'} variant={'primary'} title={title}>
 			<AttachmentURL>
 				Buttonsfasssssssssssssssssssssssssssssssssssssssssssssssssssssssss
 			</AttachmentURL>
