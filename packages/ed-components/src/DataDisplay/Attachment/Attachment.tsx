@@ -122,8 +122,8 @@ const Attachment: React.VoidFunctionComponent<AttachmentProps> = ({
 						}}
 					>
 						Remove
-						<Icon>
-							<Icons.WideClose />
+						<Icon color="light">
+							<Icons.Trash />
 						</Icon>
 					</RemoveAttachment>
 				</StyledAttachment>
@@ -144,6 +144,7 @@ const RemoveAttachment = styled.div`
 	color: ${(props) => props.theme.colors.light};
 	font-size: 0.625rem;
 	transform: translateY(100%);
+	justify-content: space-between;
 	left: 0;
 	right: 0;
 	bottom: 0;

@@ -177,7 +177,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 				)}
 				{answerType === 'text' && (
 					<TextAnswer
-						value={value as string}
+						value={!value ? '' : (value as string)}
 						onChange={onTextChange}
 						placeholder="Type something here"
 					/>

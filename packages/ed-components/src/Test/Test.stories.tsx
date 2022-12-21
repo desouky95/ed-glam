@@ -15,6 +15,7 @@ import {
 import TestQuestion from './TestQuestion/TestQuestion';
 import React from 'react';
 import { EssayQuestion } from './EssayQuestion';
+import { current } from 'immer';
 
 export default {
 	subcomponents: {
@@ -151,12 +152,13 @@ export const Test = () => {
 						(_) => _.id === question.id
 					) as IEssayQuestion;
 					if (!selectedQuestion) return;
-					if (!selectedQuestion.answer.answer) {
+					if (!selectedQuestion.answer) {
 						selectedQuestion.answer = {
 							type: 'attachment',
 							answer: JSON.stringify([response.data.data.uri]),
 						};
 					} else {
+						if (!selectedQuestion.answer.answer) return;
 						const answerFiles = JSON.parse(
 							selectedQuestion.answer.answer
 						) as string[];
