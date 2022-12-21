@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import {
 	DefaultTheme,
 	ThemeProvider as SThemeProvider,
@@ -17,8 +17,6 @@ const ThemeProviderWrapper: React.FC<ThemeTogglerOptions> = ({
 	children,
 	theme,
 }) => {
-	// const [defaultTheme, setThemeInner] = useState(theme ?? Theme);
-
 	return (
 		<ThemeContextProvider.Provider value={{ theme }}>
 			<SThemeProvider theme={theme}>{children}</SThemeProvider>
@@ -26,4 +24,9 @@ const ThemeProviderWrapper: React.FC<ThemeTogglerOptions> = ({
 	);
 };
 
+export const useEdTheme = () => {
+	const context = useContext(ThemeContextProvider);
+	if (!context) throw new Error('No ThemeProvider found !!!');
+	return context.theme;
+};
 export const ThemeProvider = ThemeProviderWrapper;

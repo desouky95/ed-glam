@@ -1,16 +1,26 @@
 import { useCountdown } from '@eduact/utils';
 import { ComponentMeta } from '@storybook/react';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 import { GapQuestion } from './GapQuestion';
 import { OrderingQuestion } from './OrderingQuestion';
-import { Question } from './Question.types';
+import {
+	IEssayQuestion,
+	isEssayQuestion,
+	ObjectPairAnswer,
+	Question,
+	UploadProgressArgs,
+} from './Question.types';
 import TestQuestion from './TestQuestion/TestQuestion';
+import React from 'react';
+import { EssayQuestion } from './EssayQuestion';
 
 export default {
 	subcomponents: {
 		gap: GapQuestion,
 		ordering: OrderingQuestion,
+		essay: EssayQuestion,
 	},
 } as ComponentMeta<any>;
 
@@ -99,9 +109,69 @@ export const Test = () => {
 			correct: false,
 			options: [],
 			score: 5,
+			answerSchema: '*',
 		},
 	]);
-	console.log(questions);
+
+	const [uploadProgress, setUploadProgress] = useImmer<
+		UploadProgressArgs | undefined
+	>(undefined);
+	const onAttachmentsChange = async (
+		files: FileList | null,
+		question: Question
+	) => {
+		if (!files || files.length === 0) return;
+		const _files: Array<string> = [];
+		for (let index = 0; index < files.length; index++) {
+			const file = files?.item(index);
+			const formData = new FormData();
+			formData.append('file', file as Blob);
+			try {
+				const response = await axios.post(
+					'https://stag.api.eduact.me/api/upload/',
+					formData,
+					{
+						headers: {
+							Authorization:
+								'Bearer MTcwMw.MutvUmFFfQPaabb0mhtEbrXOdPz0AO9wi8N7LEFoGqb_QXUIziTOpbeylip1',
+						},
+						onUploadProgress(progressEvent) {
+							setUploadProgress({
+								file,
+								progress: progressEvent,
+							});
+						},
+					}
+				);
+				// _files.push(response.data.data.uri);
+				setUploadProgress(undefined);
+				setQuestions((_) => {
+					if (!isEssayQuestion(question)) return;
+					const selectedQuestion = _.find(
+						(_) => _.id === question.id
+					) as IEssayQuestion;
+					if (!selectedQuestion) return;
+					if (!selectedQuestion.answer.answer) {
+						selectedQuestion.answer = {
+							type: 'attachment',
+							answer: JSON.stringify([response.data.data.uri]),
+						};
+					} else {
+						const answerFiles = JSON.parse(
+							selectedQuestion.answer.answer
+						) as string[];
+						answerFiles.push(response.data.data.uri);
+						selectedQuestion.answer = {
+							type: 'attachment',
+							answer: JSON.stringify(answerFiles),
+						};
+					}
+				});
+			} catch (error) {
+				setUploadProgress(undefined);
+			}
+		}
+	};
 	return (
 		<div>
 			{questions.map((question, index) => {
@@ -113,10 +183,18 @@ export const Test = () => {
 								draft[index].answer = val;
 							});
 						}}
+						key={`${question.id}-${question.type}`}
 						index={index}
 						withNavigation
 						question={question}
 						showPrev={index > 0}
+						essayQuestionProps={{
+							accept: 'application/pdf, .png, .jpg, .jpeg',
+							onAttachmentsChange(files) {
+								onAttachmentsChange(files, question);
+							},
+							uploadProgress,
+						}}
 					/>
 				);
 			})}

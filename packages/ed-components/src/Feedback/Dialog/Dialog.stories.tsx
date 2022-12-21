@@ -12,7 +12,12 @@ export const DialogStory: ComponentStory<typeof Dialog> = (args) => {
 	return (
 		<>
 			<RaisedButton onClick={() => setOpen(true)}>Open</RaisedButton>
-			<Dialog onClose={() => setOpen(false)} open={open}>
+			<Dialog
+				width={'40vw'}
+				{...args}
+				onClose={() => setOpen(false)}
+				open={open}
+			>
 				Dialog
 			</Dialog>
 		</>

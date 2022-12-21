@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { layout, LayoutProps, position, PositionProps } from 'styled-system';
 
-type Props = { open: boolean; withBackdrop: boolean; center: boolean };
+type Props = {
+	open: boolean;
+	withBackdrop: boolean;
+	center: boolean;
+} & LayoutProps;
 export const Backdrop = styled.div<Props & PositionProps>`
 	position: fixed;
 	background: ${(props) => (props.withBackdrop ? 'rgba(0, 0, 0, 0.1)' : '')};
@@ -19,6 +23,7 @@ export const Backdrop = styled.div<Props & PositionProps>`
 	${({ open }) => `opacity : ${open ? '1' : '0'};`};
 	transition: opacity ease-in-out 500ms;
 	${position}
+	${layout}
 `;
 
 export const UnStyledBackdrop = styled.div<LayoutProps>`

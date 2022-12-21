@@ -104,7 +104,7 @@ export const getButtonColors = (theme: ITheme): ButtonColors => {
 			borderColor: colors.yellow,
 		},
 		darkSilver: {
-			...defaultDark,
+			...defaultLight,
 			background: colors.darkSilver,
 			borderColor: colors.darkSilver,
 		},

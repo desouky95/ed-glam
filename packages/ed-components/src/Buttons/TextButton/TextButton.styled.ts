@@ -31,7 +31,7 @@ type Props = {
 export const TextButtonStyled = styled.button<Props>`
 	padding: 1.125rem 2rem;
 	font-weight: 500;
-	font-size: ${(props) => `${props.theme.fontSizesAliases.body ?? 1}rem`};
+	font-size: ${(props) => `${props.theme.fontSizesAliases?.body ?? 1}rem`};
 	background: none;
 	border: none;
 	cursor: pointer;

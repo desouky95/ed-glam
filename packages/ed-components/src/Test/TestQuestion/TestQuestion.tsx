@@ -13,9 +13,9 @@ import {
 	isMcqQuestion,
 	isOrderingQuestion,
 	Question,
+	UploadProgressArgs,
 } from '../Question.types';
 import { EssayQuestion } from '../EssayQuestion';
-
 type Props = {
 	question: Question;
 	withNavigation?: boolean;
@@ -31,12 +31,15 @@ type Props = {
 	questionLabel?: string;
 	onFocus?: React.FocusEventHandler<HTMLDivElement>;
 	onBlur?: React.FocusEventHandler<HTMLDivElement>;
-	onAttachmentsChange?: (files: FileList | null) => void;
+	essayQuestionProps?: {
+		onAttachmentsChange?: (files: FileList | null) => void;
+		uploadProgress?: UploadProgressArgs;
+	} & Pick<React.HTMLProps<HTMLInputElement>, 'accept'>;
 };
 
 const TestQuestion: React.VoidFunctionComponent<Props> = ({
 	question,
-	onAttachmentsChange,
+	essayQuestionProps,
 	withNavigation = false,
 	onNext,
 	onPrev,
@@ -85,10 +88,9 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 					)}
 					{isEssayQuestion(question) && (
 						<EssayQuestion
-							uploadURL="https://v2.convertapi.com/upload"
-							onAttachmentsChange={onAttachmentsChange}
 							question={question}
 							onChange={onChange}
+							{...essayQuestionProps}
 						/>
 					)}
 				</div>

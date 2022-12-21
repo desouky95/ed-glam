@@ -26,10 +26,7 @@ export const RaisedButtonStyled = styled.button<
 >`
 	position: relative;
 	border-width: ${(props) => (props.outlined ? '2px' : '')};
-	--fd: ${(props) => {
-		console.log(props.theme);
-		return '';
-	}};
+
 	border-style: solid;
 	${variant({ scale: 'buttonColors' })}
 

@@ -1,6 +1,7 @@
 import { AvatarShapes, AvatarSizes } from './avatars';
 import { ThemeButtonSizes } from './buttonSizes';
 import { ThemeFontFamily } from './fontFamily';
+import { MediaQueries } from './mediaQueries';
 import { ThemeTableLayouts } from './tableLayout';
 
 export const Colors = {
@@ -165,9 +166,7 @@ export interface ITheme {
 		[key in Breakpoint]?: string;
 	};
 	breakpointsInPx: { [key in Breakpoint]: number };
-	mediaQueries: {
-		[key in MediaQuery]?: string;
-	};
+	mediaQueries: MediaQueries;
 	borderRadii: {
 		[key in MediaQuery]: number;
 	};

@@ -7,79 +7,124 @@ import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useImmer } from 'use-immer';
 import { QuestionContentWrapper } from '../Question.styled';
-import { EssayAnswerType, IEssayQuestion } from '../Question.types';
+import {
+	AttachmentAnswer as IAttachmentAnswer,
+	EssayAnswerType,
+	IEssayQuestion,
+	UploadProgressArgs,
+} from '../Question.types';
 import AttachmentAnswer from './AttachmentAnswer';
 import TextAnswer from './TextAnswer';
+import { Progress } from '@src/Feedback/Progress';
+import { Dialog } from '@src/Feedback';
 
 type EssayProps = {
 	question: IEssayQuestion;
-	onChange: (answer: string | FileList | null) => void;
+	onChange: (answer: IAttachmentAnswer) => void;
 	chooseTypeTitle?: string;
 	orLabel?: string;
 	onAttachmentsChange?: (files: FileList | null) => void;
-	uploadURL?: string;
-};
-type UploadProgressArgs = { progress: AxiosProgressEvent; file: File | null };
+	uploadProgress?: UploadProgressArgs;
+} & Pick<React.HTMLProps<HTMLInputElement>, 'accept'>;
+
 const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	onChange,
 	onAttachmentsChange,
-	uploadURL,
+	uploadProgress,
 	question,
 	chooseTypeTitle = 'Choose your form of answer',
 	orLabel = 'Or',
+	accept,
 }) => {
-	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>();
-	const [uploadProgress, setUploadProgress] =
-		useImmer<UploadProgressArgs | null>(null);
-	const changeType = () => {
-		if (answerType === 'attachment') {
-			setAnswerType('text');
-			return;
-		}
-		setAnswerType('attachment');
-	};
+	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>(
+		question.answerSchema !== '*'
+			? (question.answerSchema as EssayAnswerType)
+			: undefined
+	);
+
 	const otherOption = useMemo<EssayAnswerType>(() => {
 		if (answerType === 'attachment') return 'text';
 		return 'attachment';
 	}, [answerType]);
 
 	const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-		onChange(e.target.value);
+		onChange({ answer: e.target.value, type: 'text' });
 	const onAttachmentChange = async (files: FileList | null) => {
-		if (!uploadURL) return;
-		if (files) {
-			for (let index = 0; index < files.length; index++) {
-				const file = files.item(index);
-				const formData = new FormData();
-				formData.append('file', file as Blob);
-				await axios.post(`${uploadURL}`, formData, {
-					onUploadProgress: (progress) => {
-						setUploadProgress({ progress, file });
-					},
-				});
-				setUploadProgress(null);
-			}
-		}
+		onAttachmentsChange?.(files);
 	};
-	// onAttachmentsChange?.(files);
 
 	const value = useMemo(() => {
 		if (!question.answer) return;
-		if (question.answer.type === 'attachment') {
+		if (question.answer.type === 'attachment' && question.answer.answer) {
 			return JSON.parse(question.answer.answer) as string[];
 		}
 		return question.answer.answer;
-	}, []);
+	}, [question.answer]);
 
+	const [switchModalOpen, setSwitchModalOpen] = useState(false);
+
+	const changeType = () => {
+		setSwitchModalOpen(false);
+		if (answerType === 'attachment') {
+			setAnswerType('text');
+			onChange({
+				answer: null,
+				type: 'text',
+			});
+			return;
+		}
+		setAnswerType('attachment');
+		onChange({
+			answer: null,
+			type: 'attachment',
+		});
+	};
+	const handleChangeType = () => {
+		setSwitchModalOpen(true);
+	};
+	const handleCloseSwitchModal = () => {
+		setSwitchModalOpen(false);
+	};
 	return (
 		<Spacer>
 			<QuestionContentWrapper
 				dangerouslySetInnerHTML={{ __html: question.content }}
 			/>
+			<Dialog
+				maxWidth={'90vw'}
+				width={'fit-content'}
+				height={'fit-content'}
+				onClose={handleCloseSwitchModal}
+				open={switchModalOpen}
+			>
+				<FlexLayout p={'2rem'} flexDirection={'column'}>
+					<FlexLayout p={'2rem'} flexDirection={'column'}>
+						<Typography>Are you sure to switch answer type ?</Typography>
+						<Typography>NB: Answer will be erased</Typography>
+					</FlexLayout>
+					<FlexLayout
+						gridGap={{ sm: '0.5rem', lg: '2rem' }}
+						flexWrap={{ sm: 'wrap' }}
+						justifyContent={{ sm: 'flex-end', lg: 'initial' }}
+					>
+						<RaisedButton onClick={changeType} btnSize="small">
+							Switch
+						</RaisedButton>
+						<RaisedButton
+							onClick={handleCloseSwitchModal}
+							variant="princetonOrange"
+							btnSize="small"
+							outlined
+						>
+							Cancel
+						</RaisedButton>
+					</FlexLayout>
+				</FlexLayout>
+			</Dialog>
 			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout flexDirection="column">
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
-				{!answerType && (
+				{!answerType && question.answerSchema === '*' && (
 					<FlexLayout width={'100%'} justifyContent={'center'}>
 						<Box width={'fit-content'}>
 							<ChooseTypeTitle>{chooseTypeTitle}</ChooseTypeTitle>
@@ -111,8 +156,12 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 						</Box>
 					</FlexLayout>
 				)}
-				{answerType && (
-					<SwitchButton onClick={changeType} mb={6} justifyContent={'flex-end'}>
+				{answerType && question.answerSchema == '*' && (
+					<SwitchButton
+						onClick={handleChangeType}
+						mb={2}
+						justifyContent={'flex-end'}
+					>
 						<SwitchTypeLabel>Switch to {otherOption}</SwitchTypeLabel>
 						{answerType === 'text' && (
 							<Icon size={'1.2rem'}>
@@ -128,27 +177,48 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 				)}
 				{answerType === 'text' && (
 					<TextAnswer
-						value={value}
+						value={value as string}
 						onChange={onTextChange}
 						placeholder="Type something here"
 					/>
 				)}
 				{answerType === 'attachment' && (
 					<>
-						{uploadProgress?.progress.progress !== undefined && (
-							<>
-								<progress
-									value={uploadProgress.progress.progress * 100}
-								></progress>
-								{/* <div>
-									{uploadProgress.file.name}
-									{uploadProgress.file.type}
-								</div> */}
-							</>
-						)}
+						<FlexLayout gridGap={'0.5rem'} mb={4}>
+							<Box visibility={uploadProgress ? 'visible' : 'hidden'}>
+								<Progress
+									value={Math.floor(
+										(uploadProgress?.progress?.progress ?? 0) * 100
+									)}
+									min="0"
+									max="100"
+								>
+									{Math.floor((uploadProgress?.progress.progress ?? 0) * 100)}%
+								</Progress>
+								<Typography
+									display={'block'}
+									overflow={'hidden'}
+									maxWidth={{ sm: '20ch', lg: '40ch' }}
+									textOverflow="ellipsis"
+									fontSize={{ sm: '0.7rem' }}
+									fontWeight={600}
+									whiteSpace={'nowrap'}
+								>
+									{uploadProgress?.file?.name}
+								</Typography>
+							</Box>
+						</FlexLayout>
+
 						<AttachmentAnswer
+							accept={accept}
 							value={value as string[]}
 							onFileChange={onAttachmentChange}
+							onDelete={(data) => {
+								onChange({
+									type: 'attachment',
+									answer: JSON.stringify(data),
+								});
+							}}
 						/>
 					</>
 				)}

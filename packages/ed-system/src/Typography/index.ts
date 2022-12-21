@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import {
 	color,
 	ColorProps,
+	layout,
+	LayoutProps,
 	space,
 	SpaceProps,
 	textStyle,
@@ -14,6 +16,7 @@ import { cursor, CursorProps } from '../Utilities/cursor';
 import { createGlobalFont } from './createGlobalFont';
 import { generateMaterialIconsFontFaces } from './generateMaterialIconsFontFaces';
 import { textDecoration, TextDecorationProps } from './textDecoration';
+import { textOverflow, TextOverflowProps } from './textOverflow';
 import { textTransform, TextTransformProps } from './textTransform';
 import {
 	Fonts,
@@ -22,6 +25,7 @@ import {
 	MaterialIconFontFace,
 	MaterialIconsType,
 } from './typography.types';
+import { whiteSpace, WhiteSpaceProps } from './whiteSpace';
 import { wordSpacing, WordSpacingProps } from './wordSpacing';
 
 export const Typography = styled.span<
@@ -32,7 +36,10 @@ export const Typography = styled.span<
 		WordSpacingProps &
 		CursorProps &
 		ColorProps &
-		TextTransformProps
+		TextTransformProps &
+		TextOverflowProps &
+		LayoutProps &
+		WhiteSpaceProps
 >`
 	${typography};
 	${textStyle};
@@ -42,6 +49,9 @@ export const Typography = styled.span<
 	${cursor};
 	${color};
 	${textTransform};
+	${layout};
+	${textOverflow};
+	${whiteSpace};
 `;
 
 export const SingleLineCssTrim = css`

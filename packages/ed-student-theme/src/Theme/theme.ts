@@ -30,26 +30,11 @@ import {
 	getCircularProgressColors,
 } from './circularProgress';
 import { getStepperIconsColors, stepperIconSizes } from './stepper';
-
-const breakpoints = ['640px', '769px', '1201px', '1441px'];
-
-const breakpointsInPx = {
-	sm: 0,
-	default: 0,
-	md: 768,
-	lg: 1200,
-	xl: 1440,
-};
-
-const aliasBreakpoints: { [key in Breakpoint]?: string } = {
-	// sm: '',
-	// default: '',
-	md: breakpoints[1],
-	// md: '48rem',
-	lg: breakpoints[2],
-	// lg: '64rem',
-	xl: breakpoints[3],
-};
+import {
+	aliasBreakpoints,
+	breakpointsInPx,
+	mediaQueries,
+} from './mediaQueries';
 
 export const Theme: ITheme = {
 	colors: Colors,
@@ -451,6 +436,9 @@ export const createTheme = (options: DeepPartial<ITheme>) => {
 	theme.tableLayout = tableLayouts;
 	theme.circularProgressSizes = circularProgressSizes;
 	theme.stepperIconSizes = stepperIconSizes;
+	theme.mediaQueries = mediaQueries;
+	theme.breakpoints = aliasBreakpoints;
+	theme.breakpointsInPx = breakpointsInPx;
 	theme = merge({}, theme, options);
 	theme.fontFamilies = getFontFamily(theme);
 	theme.buttonSizes = getButtonSizes(theme);
@@ -461,6 +449,8 @@ export const createTheme = (options: DeepPartial<ITheme>) => {
 	theme.backgrounds = getBackgrounds(theme);
 	theme.circularProgressColors = getCircularProgressColors(theme);
 	theme.stepperIconColors = getStepperIconsColors(theme);
+
+	theme = merge({}, theme, options);
 	return theme;
 };
 declare module 'styled-components' {

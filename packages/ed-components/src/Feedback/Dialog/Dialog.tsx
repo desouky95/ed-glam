@@ -28,12 +28,24 @@ const Dialog: React.FC<DialogProps> = ({
 	open,
 	bgColor = 'light',
 	children,
+	withBackdrop,
+	withDelay,
+	withStyling,
+	persistent,
+	onClose,
 	...props
 }) => {
+	const modalProps = {
+		withBackdrop,
+		withDelay,
+		withStyling,
+		persistent,
+		onClose,
+	};
 	return (
-		<Modal {...props} open={open} withStyling center>
+		<Modal {...modalProps} open={open} withStyling center>
 			<StyledDialogWrapper {...props} bgColor={bgColor}>
-				<ToggleButton onClick={() => props.onClose?.()} top={0} right={0}>
+				<ToggleButton onClick={() => onClose?.()} top={0} right={0}>
 					<Spacer p={'0.5rem'}>
 						<Icons.Close />
 					</Spacer>

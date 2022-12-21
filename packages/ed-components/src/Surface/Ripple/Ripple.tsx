@@ -53,7 +53,7 @@ const Ripple: React.VoidFunctionComponent<RippleProps> = ({
 							<StyledRipple
 								mixBlendMode={mixBlendMode}
 								color={color}
-								key={`ripple-${index}`}
+								key={`ripple-${index}-${ripple.x}-${ripple.y}`}
 								onAnimationEnd={() => onTransitionEnd(index)}
 								style={{ top: `${ripple.y}px`, left: `${ripple.x}px` }}
 							/>

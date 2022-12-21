@@ -1,4 +1,7 @@
+import { AxiosProgressEvent } from 'axios';
+
 export type QuestionType = 'gap' | 'mcq' | 'ordering' | 'essay';
+export type EssayValidType = 'text' | 'attachment' | '*';
 export type EssayAnswerType = 'text' | 'attachment';
 export type OptionsPair = { gap: string | number; choices: string[] };
 export type KeyPairAnswer = {
@@ -28,10 +31,15 @@ export type OrderingAnswer = Array<string>;
 export type ObjectPairAnswer = {
 	answer: string;
 };
+export type AttachmentAnswer = {
+	type: EssayAnswerType;
+	answer: string | null;
+};
 export type QuestionAnswer =
 	| Array<KeyPairAnswer>
 	| OrderingAnswer
-	| ObjectPairAnswer;
+	| ObjectPairAnswer
+	| AttachmentAnswer;
 export type Question = {
 	parsed_content: string | null;
 	content: string | null;
@@ -45,6 +53,7 @@ export type Question = {
 	answer: QuestionAnswer | null;
 	score: number;
 	correct: boolean;
+	answerSchema?: EssayValidType;
 };
 
 export type IGapQuestion = Omit<Question, 'options' | 'type'> & {
@@ -66,10 +75,15 @@ export type IMcqQuestion = Omit<Question, 'options' | 'type'> & {
 	answer: ObjectPairAnswer;
 };
 
-export type IEssayQuestion = Omit<Question, 'type'> & {
+export type IEssayQuestion = Omit<Question, 'type' | 'answer'> & {
 	type: 'essay';
 	content: string;
-	answer: (ObjectPairAnswer & { type: EssayAnswerType }) | null;
+	answer: AttachmentAnswer;
+};
+
+export type UploadProgressArgs = {
+	progress: AxiosProgressEvent;
+	file: File | null;
 };
 export const isGapQuestion = (value: Question): value is IGapQuestion => {
 	return value !== undefined && value.type === 'gap';

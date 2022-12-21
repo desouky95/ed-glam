@@ -1,7 +1,6 @@
 {
 	"name": "@eduact/ed-components",
 	"version": "0.2.66",
-	"type": "module",
 	"description": "> TODO: description",
 	"author": "Ismail Moustafa <tubesniper@gmail.com>",
 	"homepage": "https://github.com/desouky95/ed-glam#readme",
@@ -93,6 +92,7 @@
 		"styled-components": "^5.3.5",
 		"styled-system": "^5.1.5",
 		"swiper": "^8.3.1",
+		"unzipper": "^0.10.11",
 		"use-immer": "^0.7.0"
 	},
 	"gitHead": "1fff4770a46e09e1d06ed520009a4c51a9450261"

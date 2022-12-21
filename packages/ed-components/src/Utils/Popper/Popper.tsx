@@ -40,7 +40,7 @@ export function useForkRef<InstanceA, InstanceB>(
 	}, [refA, refB]);
 }
 
-type PopperProps = {
+export type PopperProps = {
 	children: React.ReactElement;
 	title?: string;
 	placement?: Placement;
@@ -70,7 +70,7 @@ export const Popper = forwardRef<HTMLElement, PopperProps>(function Popper(
 		referenceElement.current,
 		popperElement,
 		{
-			placement: 'top',
+			placement,
 			modifiers: [
 				{
 					name: 'applyStyles',
@@ -106,6 +106,7 @@ export const Popper = forwardRef<HTMLElement, PopperProps>(function Popper(
 				<div
 					ref={(e) => setPopperElement(e)}
 					style={{ ...styles.popper }}
+					className="popper-element"
 					{...attributes.popper}
 				>
 					{props.title}
@@ -115,4 +116,6 @@ export const Popper = forwardRef<HTMLElement, PopperProps>(function Popper(
 	);
 });
 
-const PopperWrapper = styled.div``;
+const PopperWrapper = styled.div`
+	width: fit-content;
+`;
