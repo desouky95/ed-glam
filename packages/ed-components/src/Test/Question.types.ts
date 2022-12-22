@@ -53,7 +53,7 @@ export type Question = {
 	answer: QuestionAnswer | null;
 	score: number;
 	correct: boolean;
-	answerSchema?: EssayValidType;
+	answer_schema?: EssayValidType;
 };
 
 export type IGapQuestion = Omit<Question, 'options' | 'type'> & {

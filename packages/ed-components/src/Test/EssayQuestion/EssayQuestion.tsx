@@ -37,8 +37,8 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	accept,
 }) => {
 	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>(
-		question.answerSchema !== '*'
-			? (question.answerSchema as EssayAnswerType)
+		question.answer_schema !== '*'
+			? (question.answer_schema as EssayAnswerType)
 			: undefined
 	);
 
@@ -124,7 +124,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 			<Spacer mb={{ sm: '0.813rem', lg: '2.313rem' }} />
 			<FlexLayout flexDirection="column">
 				<Spacer mb={{ sm: '6px', lg: '1rem' }} />
-				{!answerType && question.answerSchema === '*' && (
+				{!answerType && question.answer_schema === '*' && (
 					<FlexLayout width={'100%'} justifyContent={'center'}>
 						<Box width={'fit-content'}>
 							<ChooseTypeTitle>{chooseTypeTitle}</ChooseTypeTitle>
@@ -156,7 +156,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 						</Box>
 					</FlexLayout>
 				)}
-				{answerType && question.answerSchema == '*' && (
+				{answerType && question.answer_schema == '*' && (
 					<SwitchButton
 						onClick={handleChangeType}
 						mb={2}
