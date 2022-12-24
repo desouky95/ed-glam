@@ -80,6 +80,7 @@ export type AttachmentProps = AttachmentUIProps & {
 	onClick?: AttachmentOnClickCallback;
 	url: string;
 	folded?: boolean;
+	withDelete?: boolean;
 };
 
 const Attachment: React.VoidFunctionComponent<AttachmentProps> = ({
@@ -90,6 +91,7 @@ const Attachment: React.VoidFunctionComponent<AttachmentProps> = ({
 	url,
 	folded = true,
 	onClick,
+	withDelete = true,
 }) => {
 	const theme = useEdTheme();
 	return (
@@ -115,17 +117,19 @@ const Attachment: React.VoidFunctionComponent<AttachmentProps> = ({
 						</>
 					)}
 					{folded && <AttachmentCorner />}
-					<RemoveAttachment
-						onClick={(e) => {
-							e.stopPropagation();
-							onDelete?.({ type, url });
-						}}
-					>
-						Remove
-						<Icon color="light">
-							<Icons.Trash />
-						</Icon>
-					</RemoveAttachment>
+					{withDelete && (
+						<RemoveAttachment
+							onClick={(e) => {
+								e.stopPropagation();
+								onDelete?.({ type, url });
+							}}
+						>
+							Remove
+							<Icon color="light">
+								<Icons.Trash />
+							</Icon>
+						</RemoveAttachment>
+					)}
 				</StyledAttachment>
 				<Tooltip placement="bottom" title={url.split('/').pop()}>
 					<AttachmentURL>{url.split('/').pop()}</AttachmentURL>
