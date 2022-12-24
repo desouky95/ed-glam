@@ -20,3 +20,4 @@ export * from './TestSummary';
 export * from './Navigation';
 export * from './Widgets';
 export * from './Utils/Popper';
+export * from './DataDisplay';
