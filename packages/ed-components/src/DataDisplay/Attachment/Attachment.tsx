@@ -5,8 +5,8 @@ import { rgba } from 'polished';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { variant } from 'styled-system';
-import { Modal } from '../..Feedback';
-import { Popper } from '../..Utils/Popper';
+import { Modal } from '../../Feedback';
+import { Popper } from '../../Utils/Popper';
 import { Tooltip } from '../Tooltip';
 
 // Types

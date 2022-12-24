@@ -37,7 +37,11 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	accept,
 }) => {
 	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>(
-		question.answer_schema === '*' ? undefined : question.answer.type
+		question.answer && question.answer.type
+			? question.answer.type
+			: question.answer_schema === '*'
+			? undefined
+			: (question.answer_schema as EssayAnswerType)
 	);
 
 	const otherOption = useMemo<EssayAnswerType>(() => {
