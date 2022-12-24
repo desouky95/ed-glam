@@ -15,8 +15,8 @@ import {
 } from '../Question.types';
 import AttachmentAnswer from './AttachmentAnswer';
 import TextAnswer from './TextAnswer';
-import { Progress } from '@src/Feedback/Progress';
-import { Dialog } from '@src/Feedback';
+import { Progress } from '../../Feedback/Progress';
+import { Dialog } from '../../Feedback';
 
 type EssayProps = {
 	question: IEssayQuestion;
@@ -37,9 +37,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	accept,
 }) => {
 	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>(
-		question.answer_schema !== '*'
-			? (question.answer_schema as EssayAnswerType)
-			: undefined
+		question.answer_schema === '*' ? undefined : question.answer.type
 	);
 
 	const otherOption = useMemo<EssayAnswerType>(() => {

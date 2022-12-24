@@ -13,7 +13,6 @@ const config = {
 	onBrokenLinks: 'throw',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'img/favicon.ico',
-
 	// GitHub pages deployment config.
 	// If you aren't using GitHub pages, you don't need these.
 	organizationName: 'eduact', // Usually your GitHub org/user name.
@@ -60,6 +59,7 @@ const config = {
 		// ['@eduact/utils', {}],
 		// ['@eduact/ed-system',{}],
 		// ['@eduact/student-theme',{}],
+		require.resolve('./sitePlugin'),
 	],
 
 	themeConfig:

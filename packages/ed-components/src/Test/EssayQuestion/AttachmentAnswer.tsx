@@ -1,6 +1,6 @@
 import { Color } from '@eduact/student-theme';
 import { RaisedButton } from '../../Buttons';
-// import { Icon, Icons } from '@src/Icons';
+// import { Icon, Icons } from '../..Icons';
 import { linearGradient, rgba } from 'polished';
 import React, { useRef, useState, useMemo } from 'react';
 import styled from 'styled-components';
@@ -13,11 +13,10 @@ import {
 	docsTypes,
 	imageTypes,
 } from '../../DataDisplay/Attachment';
-import { Dialog, Modal } from '@src/Feedback';
-import { Card } from '@src/Cards';
+import { Dialog, Modal } from '../../Feedback';
+import { Card } from '../../Cards';
 import { useCsvTable } from '@eduact/utils';
-import { CsvPreview } from '@src/Tables';
-import { Icon, Icons } from '@src/Icons';
+import { Icon, Icons } from '../../Icons';
 
 type AttachmentData = {
 	url: string;

@@ -14,8 +14,10 @@ import * as utils from '@eduact/utils';
 import { Popper } from '@site/../packages/ed-components/src';
 import { Color } from '@eduact/student-theme';
 import { useCopyClipboard } from '@eduact/utils';
-
+import { parse } from 'react-docgen';
 export default function BrandColors() {
+	console.log(parse('../../../packages/ed-system/src/Layout/index.ts'));
+
 	return (
 		<SnackbarProvider>
 			<FlexLayout gridGap={'0.5rem'} flexWrap={'wrap'}>

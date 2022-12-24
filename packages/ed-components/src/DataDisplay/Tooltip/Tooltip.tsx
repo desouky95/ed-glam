@@ -1,5 +1,5 @@
 import { Color } from '@eduact/student-theme';
-import { Popper, PopperProps } from '@src/Utils/Popper';
+import { Popper, PopperProps } from '../../Utils/Popper';
 import React from 'react';
 import styled from 'styled-components';
 import { ResponsiveValue, variant } from 'styled-system';
