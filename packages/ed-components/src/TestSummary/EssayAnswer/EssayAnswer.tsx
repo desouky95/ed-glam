@@ -20,7 +20,7 @@ const EssayAnswer: React.VoidFunctionComponent<EssayProps> = ({
 
 	return (
 		<QuestionContentWrapper>
-			{question.answer.content && (
+			{question.content && (
 				<StyledContainer
 					ref={gapRef}
 					dangerouslySetInnerHTML={{ __html: question?.content }}
