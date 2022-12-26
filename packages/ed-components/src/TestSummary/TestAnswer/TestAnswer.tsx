@@ -13,9 +13,11 @@ import {
 	isGapAnswer,
 	isMcqAnswer,
 	isOrderingAnswer,
+	isEssayAnswer,
 } from '../TestSummary.types';
 import { QuestionType } from '../../Test/Question.types';
 import { Icon, Icons } from '../../Icons';
+import { EssayAnswer } from '../EssayAnswer';
 
 type Props = {
 	question: SummaryQuestion;
@@ -80,6 +82,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 						)}
 						{isGapAnswer(question) && (
 							<GapAnswer question={question} test={test} status={status} />
+						)}
+						{isEssayAnswer(question) && (
+							<EssayAnswer question={question} test={test} status={status} />
 						)}
 					</div>
 				</QuestionWrapper>

@@ -125,6 +125,27 @@ export const Test = () => {
 					correct: false,
 					score: 0,
 				},
+				{
+					id: 906,
+					test_id: 67,
+					weight: 2,
+					content: '<p>how is your first essay test?</p>',
+					parsed_content: null,
+					type: 'essay',
+					feedback: '<p>how is your first essay test?</p>',
+					answer_schema: 'text',
+					order: 1,
+					answer: {
+						content: {
+							options: {
+								answer: 'not bad ...',
+								type: 'text',
+							},
+						},
+					},
+					correct: false,
+					score: 1,
+				},
 			],
 		},
 	});
