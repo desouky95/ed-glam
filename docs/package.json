@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/docs",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"private": true,
 	"scripts": {
 		"docusaurus": "docusaurus",
@@ -19,10 +19,10 @@
 		"@docusaurus/mdx-loader": "^2.2.0",
 		"@docusaurus/preset-classic": "2.2.0",
 		"@docusaurus/theme-live-codeblock": "^2.2.0",
-		"@eduact/ed-components": "^0.2.73",
-		"@eduact/ed-system": "^1.2.10",
-		"@eduact/student-theme": "^1.0.72",
-		"@eduact/utils": "^0.4.52",
+		"@eduact/ed-components": "^0.2.74",
+		"@eduact/ed-system": "^1.2.11",
+		"@eduact/student-theme": "^1.0.73",
+		"@eduact/utils": "^0.4.53",
 		"@mdx-js/react": "^1.6.22",
 		"babel-plugin-module-resolver": "^4.1.0",
 		"clsx": "^1.2.1",
