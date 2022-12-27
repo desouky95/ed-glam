@@ -24,6 +24,10 @@ type GapOption = {
 	correct: boolean;
 	target: number;
 };
+type EssayOption = {
+	answer: string | Array<string>;
+	type: string;
+};
 type McqAnswers = {
 	content?: {
 		options: McqOption;
@@ -39,20 +43,28 @@ type OrderAnswers = {
 		options: OrderOption;
 	};
 } & Answers;
+type EssayAnswers = {
+	content?: {
+		options: EssayOption;
+	};
+} & Answers;
 
 type QuestionOptions = Array<Options | string | OptionsPair>;
 type GapAnswerOptions = GapAnswers;
 type OrderAnswerOptions = OrderAnswers;
 type McqAnswerOptions = McqAnswers;
+type EssayAnswerOptions = EssayAnswers;
 
 type QuestionAnswer =
 	| Array<KeyPairAnswer>
 	| OrderingAnswer
 	| GapAnswerOptions
 	| OrderAnswerOptions
-	| McqAnswerOptions;
+	| McqAnswerOptions
+	| EssayAnswerOptions;
 export type SummaryQuestion = {
 	parsed_content: string | null;
+	answer_schema?: string;
 	content: string | null;
 	id: number;
 	test_id: number;
@@ -60,7 +72,7 @@ export type SummaryQuestion = {
 	weight: number;
 	feedback: string | null;
 	order: number;
-	options: QuestionOptions;
+	options?: QuestionOptions;
 	answer: QuestionAnswer;
 	score: number;
 	correct: boolean;
@@ -144,6 +156,12 @@ export type IGapAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
 	parsed_content: string;
 	answer: GapAnswerOptions;
 };
+export type IEssayAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
+	type: 'essay';
+	options: Array<Options>;
+	parsed_content: string;
+	answer: EssayAnswerOptions;
+};
 export type IOrderingAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
 	type: 'ordering';
 	options: QuestionOptions;
@@ -159,6 +177,11 @@ export type IMcqAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
 
 export const isGapAnswer = (value: SummaryQuestion): value is IGapAnswer => {
 	return value !== undefined && value.type === 'gap';
+};
+export const isEssayAnswer = (
+	value: SummaryQuestion
+): value is IEssayAnswer => {
+	return value !== undefined && value.type === 'essay';
 };
 export const isOrderingAnswer = (
 	value: SummaryQuestion
