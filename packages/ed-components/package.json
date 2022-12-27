@@ -56,6 +56,8 @@
 		"@types/swiper": "^6.0.0",
 		"babel-loader": "^8.2.5",
 		"csstype": "^3.1.0",
+		"prop-types": "^15.8.1",
+		"react-docgen": "^5.4.3",
 		"react-hook-form": "^7.33.1",
 		"react-is": "^17.0.2",
 		"tsconfig-paths-webpack-plugin": "^3.5.2",

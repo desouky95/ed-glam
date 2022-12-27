@@ -15,8 +15,9 @@ import { Popper } from '@site/../packages/ed-components/src';
 import { Color } from '@eduact/student-theme';
 import { useCopyClipboard } from '@eduact/utils';
 import { parse } from 'react-docgen';
+import { useDynamicImport } from 'docusaurus-plugin-react-docgen-typescript/dist/esm/hooks';
 export default function BrandColors() {
-	console.log(parse('../../../packages/ed-system/src/Layout/index.ts'));
+	// console.log(parse('../../../packages/ed-system/src/Layout/index.ts'));
 
 	return (
 		<SnackbarProvider>

@@ -60,6 +60,29 @@ const config = {
 		// ['@eduact/ed-system',{}],
 		// ['@eduact/student-theme',{}],
 		require.resolve('./sitePlugin'),
+		[
+			'docusaurus-plugin-react-docgen-typescript',
+			{
+				src: [
+					'../packages/ed-components/src/**',
+					'../packages/ed-system/src/Layout/index.ts',
+					'!path/to/**/*test.*',
+				],
+				global: true,
+				parserOptions: {
+					// pass parserOptions to react-docgen-typescript
+					// here is a good starting point which filters out all
+					// types from react
+					propFilter: (prop, component) => {
+						if (prop.parent) {
+							return !prop.parent.fileName.includes('@types/react');
+						}
+
+						return true;
+					},
+				},
+			},
+		],
 	],
 
 	themeConfig:

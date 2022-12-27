@@ -18,7 +18,7 @@ import {
 	maxWidth,
 } from 'styled-system';
 import { visibility, VisibilityProps } from './visibility';
-
+import PropTypes from 'prop-types';
 export const GridLayout = styled.div<
 	GridProps & SpaceProps & FlexboxProps & LayoutProps
 >`
@@ -77,3 +77,6 @@ export const Container = styled.div<MaxWidthProps>`
 	${maxWidth};
 	margin: 0 auto;
 `;
+Box.propTypes = {
+	display: PropTypes.string,
+};

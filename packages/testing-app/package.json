@@ -43,6 +43,8 @@
 		"@dealmore/craco-plugin-babel-include": "^1.0.0",
 		"babel-loader": "^8.2.5",
 		"babel-plugin-styled-components": "1.10.7",
-		"craco-babel-loader-plugin": "^1.0.3"
+		"craco-babel-loader-plugin": "^1.0.3",
+		"prop-types": "^15.8.1",
+		"react-docgen": "^5.4.3"
 	}
 }
