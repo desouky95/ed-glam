@@ -204,7 +204,7 @@ const AttachmentAnswer: React.VoidFunctionComponent<AttachmentAnswerProps> = ({
 				>
 					Add
 				</RaisedButton>
-				<Typography>Max size 5mb</Typography>
+				<Typography>Max size: 5MB</Typography>
 			</FlexLayout>
 			<input
 				onChange={filesChange}
