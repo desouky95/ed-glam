@@ -4,6 +4,7 @@ import { QuestionContentWrapper } from '../../Test/Question.styled';
 import { IEssayAnswer, Test } from '../TestSummary.types';
 import { Text } from '../OrderingAnswer/OrderingAnswer';
 import { FeedbacktWrapper } from '../GapAnswer/GapAnswer';
+import AnswerAttachments from './AnswerAttachments';
 
 type EssayProps = {
 	question: IEssayAnswer;
@@ -26,7 +27,14 @@ const EssayAnswer: React.VoidFunctionComponent<EssayProps> = ({
 					dangerouslySetInnerHTML={{ __html: question?.content }}
 				/>
 			)}
-			<Answer>{question.answer.content?.options.answer}</Answer>
+			{question.answer.content?.options.type === 'text' && (
+				<Answer>{question.answer.content?.options.answer}</Answer>
+			)}
+			{question.answer.content?.options.type === 'attachment' && (
+				<AnswerAttachments
+					answer={question.answer.content?.options.answer as string}
+				/>
+			)}
 			{question.feedback !== null && (
 				<>
 					<FeebackText>Feedback</FeebackText>

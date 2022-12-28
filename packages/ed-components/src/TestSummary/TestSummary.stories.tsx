@@ -1,10 +1,11 @@
-import { GapQuestion } from '@src/Test/GapQuestion';
-import { OrderingQuestion } from '@src/Test/OrderingQuestion';
 import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
 import { TestAnswer } from './TestAnswer';
 import styled from 'styled-components';
 import { Attempt } from './TestSummary.types';
+import React from 'react';
+import { GapQuestion } from '../Test/GapQuestion';
+import { OrderingQuestion } from '../Test/OrderingQuestion';
 
 export default {
 	subcomponents: {
@@ -138,8 +139,9 @@ export const Test = () => {
 					answer: {
 						content: {
 							options: {
-								answer: 'not bad ...',
-								type: 'text',
+								answer:
+									'["https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229684877.pdf","https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229687478.pdf","https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229692665.pdf"]',
+								type: 'attachment',
 							},
 						},
 					},
