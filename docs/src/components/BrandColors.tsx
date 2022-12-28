@@ -17,7 +17,9 @@ import { useCopyClipboard } from '@eduact/utils';
 import { parse } from 'react-docgen';
 import { useDynamicImport } from 'docusaurus-plugin-react-docgen-typescript/dist/esm/hooks';
 export default function BrandColors() {
-	// console.log(parse('../../../packages/ed-system/src/Layout/index.ts'));
+	const props = useDynamicImport(
+		'../../../packages/ed-components/src/Avatar/Avatar.tsx'
+	);
 
 	return (
 		<SnackbarProvider>

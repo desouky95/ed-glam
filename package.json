@@ -11,6 +11,7 @@
 		"publish": "lerna publish from-package --dist-tag latest --contents build",
 		"postpublish": "npm run cleanup",
 		"cleanup": "node scripts/cleanup.js",
+		"propTypes": "node scripts/props.js",
 		"format": "prettier . --write",
 		"test": "jest"
 	},

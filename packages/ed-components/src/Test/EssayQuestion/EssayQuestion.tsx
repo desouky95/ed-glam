@@ -50,7 +50,10 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	}, [answerType]);
 
 	const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-		onChange({ answer: e.target.value, type: 'text' });
+		onChange({
+			answer: e.target.value === '' ? null : e.target.value,
+			type: 'text',
+		});
 	const onAttachmentChange = async (files: FileList | null) => {
 		onAttachmentsChange?.(files);
 	};
