@@ -137,7 +137,7 @@ export const Test = () => {
 					{
 						headers: {
 							Authorization:
-								'Bearer MTcwMw.MutvUmFFfQPaabb0mhtEbrXOdPz0AO9wi8N7LEFoGqb_QXUIziTOpbeylip1',
+								'Bearer MTgxMw.DAWJeisfmx3_V5_bgyMvjTLaYfF9Xgt0VewjGIfavIeeXUv0pc56WBYN4U0F',
 						},
 						onUploadProgress(progressEvent) {
 							setUploadProgress({
@@ -155,7 +155,7 @@ export const Test = () => {
 						(_) => _.id === question.id
 					) as IEssayQuestion;
 					if (!selectedQuestion) return;
-					if (!selectedQuestion.answer) {
+					if (!selectedQuestion.answer || !selectedQuestion.answer.answer) {
 						selectedQuestion.answer = {
 							type: 'attachment',
 							answer: JSON.stringify([response.data.data.uri]),
