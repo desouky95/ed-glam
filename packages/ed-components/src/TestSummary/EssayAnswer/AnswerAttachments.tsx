@@ -9,6 +9,7 @@ import {
 	docsTypes,
 	imageTypes,
 } from '@eduact/ed-components';
+import Spacer from '../../Spacer';
 
 type Props = {
 	answer: string;
@@ -64,7 +65,8 @@ const AnswerAttachments: React.VoidFunctionComponent<Props> = ({ answer }) => {
 					)}
 				</>
 			</Dialog>
-			<FlexLayout gridGap={'1rem'}>
+			<Spacer mb={{ sm: '6px', lg: '1.5rem' }} />
+			<FlexLayout gridGap={'1rem'} marginTop={'1rem'} flexWrap="wrap">
 				{attachments?.map((attachment) => {
 					return (
 						<Attachment

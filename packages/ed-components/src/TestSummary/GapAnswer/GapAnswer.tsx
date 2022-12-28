@@ -41,9 +41,10 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
-		const answer = question?.answer.content?.options;
-
+		const answer = question?.answer?.content?.options;
 		const isAns = answer?.find((_) => _.target === options.gap);
+		console.log({ isAns });
+
 		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
 			isAns?.answer
 		}</span>  ${
@@ -54,13 +55,33 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 				: ''
 		}`;
 	};
+	const getGapQuestion = (options: Options) => {
+		const option = options.correct;
+
+		return `<span class=${option ? 'correct' : 'wrong'}>${option}</span>  ${
+			!option && (showCorrectAnswer || isStudentFailedRightAnswer)
+				? `${!option && showDash && `/`} <span class="correct">${
+						options?.correct
+				  }</span>`
+				: ''
+		}`;
+	};
 
 	const generateAnswer = () => {
-		const { parsed_content, options, answer } = question;
-		let newContent = parsed_content.toLocaleLowerCase();
+		const { parsed_content, options } = question;
+		let newContent = parsed_content?.toLocaleLowerCase();
 		for (const option of options) {
-			const toBeReplacedKey = `$$${option.gap}`.toLocaleLowerCase();
-			newContent = newContent.replace(toBeReplacedKey, getGapAnswer(option));
+			const toBeReplacedKey = `$$${option.gap}`?.toLocaleLowerCase();
+			newContent = newContent?.replace(toBeReplacedKey, getGapAnswer(option));
+		}
+		return newContent;
+	};
+	const generateQuestion = () => {
+		const { parsed_content, options } = question;
+		let newContent = parsed_content?.toLocaleLowerCase();
+		for (const option of options) {
+			const toBeReplacedKey = `$$${option.gap}`?.toLocaleLowerCase();
+			newContent = newContent?.replace(toBeReplacedKey, getGapQuestion(option));
 		}
 		return newContent;
 	};
@@ -71,6 +92,12 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 				<StyledContainer
 					ref={gapRef}
 					dangerouslySetInnerHTML={{ __html: generateAnswer() }}
+				/>
+			)}
+			{!question.answer.content && question.parsed_content && (
+				<StyledContainer
+					ref={gapRef}
+					dangerouslySetInnerHTML={{ __html: generateQuestion() }}
 				/>
 			)}
 			{question.feedback !== null && (

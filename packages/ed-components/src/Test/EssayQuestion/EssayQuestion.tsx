@@ -184,6 +184,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 						placeholder="Type something here"
 					/>
 				)}
+
 				{answerType === 'attachment' && (
 					<>
 						<FlexLayout gridGap={'0.5rem'} mb={4}>
