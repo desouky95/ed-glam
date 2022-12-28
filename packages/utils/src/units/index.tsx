@@ -12,7 +12,8 @@ export type UnitProgressStatus =
 	| 'in progress'
 	| 'failed'
 	| 'not attended'
-	| 'completed';
+	| 'completed'
+	| 'review';
 type ContentInfo<P> = {
 	type: P;
 	mdIcon: string;
