@@ -1,9 +1,41 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { debounce } from 'lodash';
+type Props = Omit<React.HTMLProps<HTMLTextAreaElement>, 'ref' | 'as'> & {
+	textChangeDelay?: number;
+};
+const TextAnswer: React.VoidFunctionComponent<Props> = ({
+	value,
+	onChange,
+	textChangeDelay = 2000,
+	...props
+}) => {
+	const [innerValue, setInnerValue] = React.useState(value);
+	const [innerEvent, setInnerEvent] = React.useState<
+		React.ChangeEvent<HTMLTextAreaElement> | undefined
+	>();
+	React.useEffect(() => {
+		const debounced = debounce(handleOnChange, textChangeDelay);
+		debounced();
+		return () => {
+			debounced.cancel();
+		};
+	}, [innerValue]);
 
-type Props = Omit<React.HTMLProps<HTMLTextAreaElement>, 'ref' | 'as'>;
-const TextAnswer: React.VoidFunctionComponent<Props> = ({ ...props }) => {
-	return <TextArea {...props} />;
+	const handleOnChange = () => {
+		console.log('DEBOUNCE');
+		innerEvent && onChange?.(innerEvent);
+	};
+	const handleDebounceOnChange = (
+		e: React.ChangeEvent<HTMLTextAreaElement>
+	) => {
+		setInnerEvent(e);
+		setInnerValue(e.target.value);
+	};
+
+	return (
+		<TextArea onChange={handleDebounceOnChange} value={innerValue} {...props} />
+	);
 };
 
 export default TextAnswer;

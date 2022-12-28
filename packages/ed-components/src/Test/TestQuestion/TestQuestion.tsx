@@ -34,6 +34,7 @@ type Props = {
 	essayQuestionProps?: {
 		onAttachmentsChange?: (files: FileList | null) => void;
 		uploadProgress?: UploadProgressArgs;
+		textChangeDelay?: number;
 	} & Pick<React.HTMLProps<HTMLInputElement>, 'accept'>;
 };
 

@@ -17,7 +17,7 @@ import AttachmentAnswer from './AttachmentAnswer';
 import TextAnswer from './TextAnswer';
 import { Progress } from '../../Feedback/Progress';
 import { Dialog } from '../../Feedback';
-
+import { debounce } from 'lodash';
 type EssayProps = {
 	question: IEssayQuestion;
 	onChange: (answer: IAttachmentAnswer) => void;
@@ -25,6 +25,7 @@ type EssayProps = {
 	orLabel?: string;
 	onAttachmentsChange?: (files: FileList | null) => void;
 	uploadProgress?: UploadProgressArgs;
+	textChangeDelay?: number;
 } & Pick<React.HTMLProps<HTMLInputElement>, 'accept'>;
 
 const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
@@ -35,6 +36,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	chooseTypeTitle = 'Choose your form of answer',
 	orLabel = 'Or',
 	accept,
+	textChangeDelay = 5000,
 }) => {
 	const [answerType, setAnswerType] = useState<EssayAnswerType | undefined>(
 		question.answer && question.answer.type
@@ -49,11 +51,13 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 		return 'attachment';
 	}, [answerType]);
 
-	const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
+	const onTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		onChange({
 			answer: e.target.value === '' ? null : e.target.value,
 			type: 'text',
 		});
+	};
+
 	const onAttachmentChange = async (files: FileList | null) => {
 		onAttachmentsChange?.(files);
 	};
@@ -184,6 +188,7 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 					<TextAnswer
 						value={!value ? '' : (value as string)}
 						onChange={onTextChange}
+						textChangeDelay={textChangeDelay}
 						placeholder="Type something here"
 					/>
 				)}

@@ -2,7 +2,9 @@ import { AvatarShapes, AvatarSizes } from './avatars';
 import { ThemeButtonSizes } from './buttonSizes';
 import { DocumentDir } from './direction';
 import { ThemeFontFamily } from './fontFamily';
+import { FontSizesAliases } from './fonts';
 import { MediaQueries } from './mediaQueries';
+import { ThemeSpace } from './space';
 import { ThemeTableLayouts } from './tableLayout';
 
 export const Colors = {
@@ -142,12 +144,8 @@ export interface ITheme {
 		[key in MediaQuery]: number;
 	};
 	fontSizes: number[];
-	fontSizesAliases: {
-		[key in FontAliases]?: number | string;
-	};
-	space: {
-		[key in Spaces]: number[];
-	};
+	fontSizesAliases: FontSizesAliases;
+	space: ThemeSpace;
 	fontFamilies: ThemeFontFamily;
 	avatarSizes: AvatarSizes;
 	avatarShapes: AvatarShapes;

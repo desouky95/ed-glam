@@ -106,11 +106,14 @@ export const Test = () => {
 			type: 'essay',
 			feedback: 'no',
 			order: 5,
-			answer: null,
+			answer: {
+				answer: 'sadsad',
+				type: 'text',
+			},
 			correct: false,
 			options: [],
 			score: 5,
-			answerSchema: '*',
+			answer_schema: '*',
 		},
 	]);
 
@@ -196,6 +199,7 @@ export const Test = () => {
 								onAttachmentsChange(files, question);
 							},
 							uploadProgress,
+							textChangeDelay: 15000,
 						}}
 					/>
 				);

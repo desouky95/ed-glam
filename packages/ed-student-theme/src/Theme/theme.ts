@@ -35,6 +35,8 @@ import {
 	mediaQueries,
 } from './mediaQueries';
 import { DocumentDir, getThemeDirection } from './direction';
+import { fontSizes, fontSizesAliases } from './fonts';
+import { space } from './space';
 
 export const Theme: ITheme = {
 	colors: Colors,
@@ -414,6 +416,9 @@ export const createTheme = (options: DeepPartial<ITheme>) => {
 	theme.mediaQueries = mediaQueries;
 	theme.breakpoints = aliasBreakpoints;
 	theme.breakpointsInPx = breakpointsInPx;
+	theme.fontSizes = fontSizes;
+	theme.fontSizesAliases = fontSizesAliases;
+	theme.space = space;
 	theme = merge({}, theme, options);
 	theme.fontFamilies = getFontFamily(theme);
 	theme.buttonSizes = getButtonSizes(theme);

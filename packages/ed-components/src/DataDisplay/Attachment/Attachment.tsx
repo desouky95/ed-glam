@@ -19,7 +19,8 @@ export type AttachmentType =
 	| 'zip'
 	| 'rar'
 	| 'png'
-	| 'jpg';
+	| 'jpg'
+	| 'jpeg';
 const attachmentTypesEnum: Array<AttachmentType> = [
 	'pdf',
 	'csv',
@@ -30,6 +31,7 @@ const attachmentTypesEnum: Array<AttachmentType> = [
 	'rar',
 	'png',
 	'jpg',
+	'jpeg',
 ];
 const isAttachmentType = (value: any): value is AttachmentType =>
 	value !== undefined && attachmentTypesEnum.includes(value);
@@ -50,6 +52,7 @@ const attachmentsColors: AttachmentTypeColors = {
 	image: 'transparent',
 	png: 'transparent',
 	jpg: 'transparent',
+	jpeg: 'transparent',
 };
 const attachmentsIcons: AttachmentTypeIcons = {
 	doc: <Icons.DocFile />,
@@ -61,9 +64,15 @@ const attachmentsIcons: AttachmentTypeIcons = {
 	jpg: <></>,
 	png: <></>,
 	image: <></>,
+	jpeg: <></>,
 };
 
-export const imageTypes: Array<AttachmentType> = ['image', 'png', 'jpg'];
+export const imageTypes: Array<AttachmentType> = [
+	'image',
+	'png',
+	'jpg',
+	'jpeg',
+];
 export const compressedTypes: Array<AttachmentType> = ['zip', 'rar'];
 export const docsTypes: Array<AttachmentType> = ['doc', 'pdf'];
 
