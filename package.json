@@ -119,6 +119,7 @@
 	],
 	"name": "ed-glam",
 	"dependencies": {
+		"@eduact/ed-components": "^0.2.73",
 		"@types/axios": "^0.14.0",
 		"axios": "^1.2.1",
 		"core-js": "^3.6.5",

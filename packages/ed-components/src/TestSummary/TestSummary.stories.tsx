@@ -1,10 +1,12 @@
-import { GapQuestion } from '@src/Test/GapQuestion';
-import { OrderingQuestion } from '@src/Test/OrderingQuestion';
 import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
 import { TestAnswer } from './TestAnswer';
 import styled from 'styled-components';
 import { Attempt } from './TestSummary.types';
+import React from 'react';
+import { GapQuestion } from '../Test/GapQuestion';
+import { OrderingQuestion } from '../Test/OrderingQuestion';
+import { isNullOrUndefined } from 'util';
 
 export default {
 	subcomponents: {
@@ -41,7 +43,7 @@ export const Test = () => {
 				model_mode: 'single',
 				shuffle_questions: true,
 				shuffle_answers: true,
-				show_correct_if_passed: true,
+				show_correct_if_passed: false,
 				show_correct_if_failed: false,
 				start_text: 'uyiuhj',
 				end_text: null,
@@ -138,9 +140,42 @@ export const Test = () => {
 					answer: {
 						content: {
 							options: {
-								answer: 'not bad ...',
-								type: 'text',
+								answer:
+									'["https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229684877.pdf","https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229687478.pdf","https://s3.eu-west-1.amazonaws.com/files.eduact.me/uncategorized/1672229692665.pdf"]',
+								type: 'attachment',
 							},
+						},
+					},
+					correct: false,
+					score: 1,
+				},
+				{
+					id: 3575,
+					test_id: 67,
+					weight: 2,
+					content: '<p>how is your first essay test?</p>',
+					type: 'gap',
+					// parsed_content: null,
+					parsed_content: '<p>Ismail is $$1 and bolla is?</p>',
+					feedback: '<p>how is your first gap test?</p>',
+					order: 1,
+					options: [
+						{
+							choices: '[great|eight|sobeet]',
+							correct: 'great',
+							gap: 1,
+							test_question_id: 3575,
+						},
+					],
+					answer: {
+						content: {
+							options: [
+								{
+									answer: 'eight',
+									correct: false,
+									target: 1,
+								},
+							],
 						},
 					},
 					correct: false,
