@@ -42,35 +42,32 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	const gapRef = useRef<HTMLDivElement>(null);
 	const getGapAnswer = (options: Options) => {
 		const answer = question?.answer?.content?.options;
+		const option = options.correct;
 		const isAns = answer?.find((_) => _.target === options.gap);
 
-		if (showStudentAnswer || isStudentFailed) {
-			return '';
-		} else {
-			return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
-				isAns?.answer
-			}</span>  ${
-				!isAns?.correct && (showCorrectAnswer || isStudentFailedRightAnswer)
-					? `${!isAns?.correct && showDash && `/`} <span class="correct">${
-							options?.correct
-					  }</span>`
-					: ''
-			}`;
-		}
+		return `<span class=${
+			showStudentAnswer || isStudentFailed
+				? isAns?.correct
+					? 'correct'
+					: 'wrong'
+				: ''
+		}>${isAns?.answer}</span>  ${
+			!isAns?.correct && (showCorrectAnswer || isStudentFailedRightAnswer)
+				? `${!isAns?.correct && showDash && `/`} <span class="correct">${
+						options?.correct
+				  }</span>`
+				: ''
+		}`;
 	};
 	const getGapQuestion = (options: Options) => {
 		const option = options.correct;
-		if (showStudentAnswer || isStudentFailed) {
-			return '';
-		} else {
-			return `<span class=${option ? 'correct' : 'wrong'}>${option}</span>  ${
-				!option && (showCorrectAnswer || isStudentFailedRightAnswer)
-					? `${!option && showDash && `/`} <span class="correct">${
-							options?.correct
-					  }</span>`
-					: ''
-			}`;
-		}
+		return `<span class=${option ? 'correct' : 'wrong'}>${option}</span>  ${
+			!option && (showCorrectAnswer || isStudentFailedRightAnswer)
+				? `${!option && showDash && `/`} <span class="correct">${
+						options?.correct
+				  }</span>`
+				: ''
+		}`;
 	};
 
 	const generateAnswer = () => {
@@ -94,12 +91,12 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	return (
 		<QuestionContentWrapper>
-			{!question.answer.content && (
+			{question.answer.content && (
 				<StyledContainer
 					ref={gapRef}
 					dangerouslySetInnerHTML={{
 						__html: `${
-							(!showStudentAnswer || !isStudentFailed) && generateAnswer()
+							showStudentAnswer || isStudentFailed ? '' : generateAnswer()
 						}`,
 					}}
 				/>
@@ -109,7 +106,7 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 					ref={gapRef}
 					dangerouslySetInnerHTML={{
 						__html: `${
-							(!showStudentAnswer || !isStudentFailed) && generateQuestion()
+							showStudentAnswer || isStudentFailed ? '' : generateQuestion()
 						}`,
 					}}
 				/>
