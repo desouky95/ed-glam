@@ -171,7 +171,7 @@ const AttachmentAnswer: React.VoidFunctionComponent<AttachmentAnswerProps> = ({
 						<Attachment
 							onClick={(attachment) => {
 								if (
-									!imageTypes.includes(attachment.type) ||
+									!imageTypes.includes(attachment.type) &&
 									attachment.type !== 'pdf'
 								) {
 									window.open(attachment.url, '_blank');
