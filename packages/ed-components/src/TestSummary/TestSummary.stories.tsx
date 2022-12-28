@@ -43,7 +43,7 @@ export const Test = () => {
 				model_mode: 'single',
 				shuffle_questions: true,
 				shuffle_answers: true,
-				show_correct_if_passed: true,
+				show_correct_if_passed: false,
 				show_correct_if_failed: false,
 				start_text: 'uyiuhj',
 				end_text: null,

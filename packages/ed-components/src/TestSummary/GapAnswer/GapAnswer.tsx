@@ -43,28 +43,34 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 	const getGapAnswer = (options: Options) => {
 		const answer = question?.answer?.content?.options;
 		const isAns = answer?.find((_) => _.target === options.gap);
-		console.log({ isAns });
 
-		return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
-			isAns?.answer
-		}</span>  ${
-			!isAns?.correct && (showCorrectAnswer || isStudentFailedRightAnswer)
-				? `${!isAns?.correct && showDash && `/`} <span class="correct">${
-						options?.correct
-				  }</span>`
-				: ''
-		}`;
+		if (showStudentAnswer || isStudentFailed) {
+			return '';
+		} else {
+			return `<span class=${isAns?.correct ? 'correct' : 'wrong'}>${
+				isAns?.answer
+			}</span>  ${
+				!isAns?.correct && (showCorrectAnswer || isStudentFailedRightAnswer)
+					? `${!isAns?.correct && showDash && `/`} <span class="correct">${
+							options?.correct
+					  }</span>`
+					: ''
+			}`;
+		}
 	};
 	const getGapQuestion = (options: Options) => {
 		const option = options.correct;
-
-		return `<span class=${option ? 'correct' : 'wrong'}>${option}</span>  ${
-			!option && (showCorrectAnswer || isStudentFailedRightAnswer)
-				? `${!option && showDash && `/`} <span class="correct">${
-						options?.correct
-				  }</span>`
-				: ''
-		}`;
+		if (showStudentAnswer || isStudentFailed) {
+			return '';
+		} else {
+			return `<span class=${option ? 'correct' : 'wrong'}>${option}</span>  ${
+				!option && (showCorrectAnswer || isStudentFailedRightAnswer)
+					? `${!option && showDash && `/`} <span class="correct">${
+							options?.correct
+					  }</span>`
+					: ''
+			}`;
+		}
 	};
 
 	const generateAnswer = () => {
@@ -88,16 +94,24 @@ const GapAnswer: React.VoidFunctionComponent<GapProps> = ({
 
 	return (
 		<QuestionContentWrapper>
-			{question.answer.content && (
+			{!question.answer.content && (
 				<StyledContainer
 					ref={gapRef}
-					dangerouslySetInnerHTML={{ __html: generateAnswer() }}
+					dangerouslySetInnerHTML={{
+						__html: `${
+							(!showStudentAnswer || !isStudentFailed) && generateAnswer()
+						}`,
+					}}
 				/>
 			)}
 			{!question.answer.content && question.parsed_content && (
 				<StyledContainer
 					ref={gapRef}
-					dangerouslySetInnerHTML={{ __html: generateQuestion() }}
+					dangerouslySetInnerHTML={{
+						__html: `${
+							(!showStudentAnswer || !isStudentFailed) && generateQuestion()
+						}`,
+					}}
 				/>
 			)}
 			{question.feedback !== null && (
