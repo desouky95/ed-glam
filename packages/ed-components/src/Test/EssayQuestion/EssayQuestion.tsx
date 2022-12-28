@@ -89,9 +89,10 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 	};
 	return (
 		<Spacer>
-			<QuestionContentWrapper
-				dangerouslySetInnerHTML={{ __html: question.content }}
-			/>
+			<QuestionContent dangerouslySetInnerHTML={{ __html: question.content }} />
+			<AnswersLabel fontSize={{ sm: '0.5rem', lg: '1rem' }}>
+				Answer
+			</AnswersLabel>
 			<Dialog
 				maxWidth={'90vw'}
 				width={'fit-content'}
@@ -184,7 +185,6 @@ const EssayQuestion: React.VoidFunctionComponent<EssayProps> = ({
 						placeholder="Type something here"
 					/>
 				)}
-
 				{answerType === 'attachment' && (
 					<>
 						<FlexLayout gridGap={'0.5rem'} mb={4}>
@@ -234,8 +234,15 @@ export default EssayQuestion;
 
 const AnswersLabel = styled(Typography)`
 	color: ${(props) => props.theme.colors.silver};
+	font-size: 1rem;
+	font-weight: 300;
+	@media screen and (min-width: 769px) {
+		margin-bottom: 0.75rem;
+	}
 `;
-
+const QuestionContent = styled(QuestionContentWrapper)`
+	margin-bottom: 1.5rem;
+`;
 const ChooseTypeTitle = styled.div`
 	font-size: 1.375rem;
 	font-family: 'Roboto';
