@@ -6,3 +6,4 @@ export * from './useNightTime';
 export * from './useHover';
 export * from './useCopyClipboard';
 export * from './useCsvTable';
+export * from './useWorkerInterval';

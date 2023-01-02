@@ -22,7 +22,6 @@ const Avatar: React.FC<AvatarProps> = ({
 	img,
 	background = 'primary',
 	borderColor = 'yellow',
-	onClick,
 	children,
 	withBorder,
 	...props
@@ -31,7 +30,6 @@ const Avatar: React.FC<AvatarProps> = ({
 		<AvatarStyled
 			withBorder={withBorder}
 			borderColor={borderColor}
-			onClick={(e) => onClick && onClick(e)}
 			background={background}
 			shape={shape}
 			size={avatarSize}

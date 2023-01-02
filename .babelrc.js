@@ -14,7 +14,12 @@ function customResolvePath(sourceFile, currentFile, opts) {
 
 export default {
 	presets: [
-		'@babel/preset-env',
+		[
+			'@babel/preset-env',
+			{
+				useBuiltIns: 'usage',
+			},
+		],
 		'@babel/preset-react',
 		[
 			'@babel/preset-typescript',
@@ -30,5 +35,16 @@ export default {
 			},
 		],
 		'@babel/plugin-syntax-jsx',
+		'@babel/plugin-proposal-object-rest-spread',
+		'@babel/plugin-transform-spread',
+		[
+			'@babel/plugin-proposal-optional-chaining',
+			{
+				loose: false,
+			},
+		],
 	],
+	assumptions: {
+		iterableIsArray: true,
+	},
 };

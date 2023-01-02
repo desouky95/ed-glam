@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"module": "ESNext",
+		"module": "ES2015",
 		"target": "ES5",
 		"lib": ["ES2020", "DOM"],
 		"jsx": "react",
@@ -15,6 +15,7 @@
 		"noErrorTruncation": false,
 		"allowJs": true,
 		"skipLibCheck": true,
+		"pretty": true,
 		"paths": {
 			"@ed-glam/admin-theme": ["./packages/ed-admin-theme/src"],
 			"@ed-glam/admin-theme/*": ["./packages/ed-admin-theme/src/*"],
