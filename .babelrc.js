@@ -14,12 +14,7 @@ function customResolvePath(sourceFile, currentFile, opts) {
 
 export default {
 	presets: [
-		[
-			'@babel/preset-env',
-			{
-				useBuiltIns: 'usage',
-			},
-		],
+		['@babel/preset-env', {}],
 		'@babel/preset-react',
 		[
 			'@babel/preset-typescript',
