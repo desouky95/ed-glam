@@ -75,6 +75,8 @@
 		"@loadable/component": "^5.15.2",
 		"@popperjs/core": "^2.11.5",
 		"@react-spring/web": "^9.4.5",
+		"@types/ua-parser-js": "^0.7.36",
+		"@types/uuid": "^9.0.0",
 		"html2canvas": "^1.4.1",
 		"immer": "^9.0.15",
 		"lodash": "^4.17.21",
@@ -94,8 +96,10 @@
 		"styled-components": "^5.3.5",
 		"styled-system": "^5.1.5",
 		"swiper": "^8.3.1",
+		"ua-parser-js": "^1.0.32",
 		"unzipper": "^0.10.11",
-		"use-immer": "^0.7.0"
+		"use-immer": "^0.7.0",
+		"uuid": "^9.0.0"
 	},
 	"gitHead": "1fff4770a46e09e1d06ed520009a4c51a9450261"
 }

@@ -40,7 +40,11 @@
 	"gitHead": "e3edea92cbdf70c6b4aaa0311ad9ee8c50455fc3",
 	"dependencies": {
 		"@types/styled-system": "^5.1.15",
+		"@types/ua-parser-js": "^0.7.36",
+		"@types/uuid": "^9.0.0",
 		"react-router-dom": "^6.4.2",
-		"styled-components": "^5.3.5"
+		"styled-components": "^5.3.5",
+		"ua-parser-js": "^1.0.32",
+		"uuid": "^9.0.0"
 	}
 }
