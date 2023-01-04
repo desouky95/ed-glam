@@ -1,3 +1,3 @@
-import { useDeviceManager } from './useDeviceInfo';
+import { useDeviceInfo } from './useDeviceInfo';
 
-export { useDeviceManager };
+export { useDeviceInfo };

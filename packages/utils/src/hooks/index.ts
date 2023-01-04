@@ -7,3 +7,4 @@ export * from './useHover';
 export * from './useCopyClipboard';
 export * from './useCsvTable';
 export * from './useWorkerInterval';
+export * from './useDeviceInfo';

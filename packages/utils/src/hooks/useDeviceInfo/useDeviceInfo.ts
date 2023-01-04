@@ -35,7 +35,7 @@ const DEFAULT_OPTIONS = {
 	keyName: 'deviceUUID',
 	detectLocation: false,
 };
-export const useDeviceManager = (
+export const useDeviceInfo = (
 	options: UseDeviceManagerArgs = DEFAULT_OPTIONS
 ) => {
 	const [isOnline, setIsOnline] = useState(navigator.onLine);
