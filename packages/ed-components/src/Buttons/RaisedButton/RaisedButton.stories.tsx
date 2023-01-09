@@ -49,18 +49,15 @@ const RaisedTemplate: ComponentStory<typeof RaisedButton> = (
 	const { counterString, startCounter, stopCounter, resetCounter } =
 		useCountdownInterval({
 			start,
+			end: 0,
+			initOnStart: true,
 		});
-	useEffect(() => {
-		if (start) {
-			startCounter;
-		}
-	}, [start]);
 
 	return (
 		<>
 			<RaisedButton
 				onClick={() => {
-					startCounter();
+					// startCounter();
 				}}
 				{...args}
 			>

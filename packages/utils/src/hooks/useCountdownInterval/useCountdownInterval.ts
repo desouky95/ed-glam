@@ -30,8 +30,8 @@ export const useCountdownInterval = ({
 				}
 			};
 		}
-		if (initOnStart) {
-			startWorker;
+		if (initOnStart && worker) {
+			startWorker();
 		}
 		return () => {
 			worker?.terminate();
