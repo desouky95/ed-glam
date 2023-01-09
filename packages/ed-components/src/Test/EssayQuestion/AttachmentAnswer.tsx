@@ -78,7 +78,6 @@ const AttachmentAnswer: React.VoidFunctionComponent<AttachmentAnswerProps> = ({
 				withStyling
 				center
 				onClose={() => {
-					console.log('CLOSE');
 					setSelectedPreview(null);
 					setModalOpen(false);
 				}}

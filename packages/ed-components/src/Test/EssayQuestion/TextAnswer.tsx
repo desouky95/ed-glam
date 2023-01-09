@@ -23,7 +23,6 @@ const TextAnswer: React.VoidFunctionComponent<Props> = ({
 	}, [innerValue]);
 
 	const handleOnChange = () => {
-		console.log('DEBOUNCE');
 		innerEvent && onChange?.(innerEvent);
 	};
 	const handleDebounceOnChange = (

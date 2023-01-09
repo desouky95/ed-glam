@@ -2,7 +2,7 @@ import { DevTool } from '@hookform/devtools';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import Autocomplete from './Autocomplete';
-
+import React from 'react';
 export default {
 	title: 'Inputs/Autocomplete',
 	component: Autocomplete,
@@ -30,7 +30,6 @@ export const AutocompleteReactHookForm: ComponentStory<
 		mode: 'all',
 	});
 	const { ref, ...rhf } = register('autocomplete');
-	console.log(watch('autocomplete'));
 	return (
 		<>
 			<DevTool control={control} />
@@ -38,7 +37,6 @@ export const AutocompleteReactHookForm: ComponentStory<
 				innerRef={ref}
 				{...rhf}
 				filterOptions={(options, state) => {
-					console.log(state);
 					return options.filter((_) => _.id <= 1);
 				}}
 				options={[

@@ -16,7 +16,6 @@ const SingleOTPInput: React.FC<SingleOtpInputProps> = ({
 	const inputRef = useRef<HTMLInputElement>(null);
 	const prevFocus = usePrevious(!!focus);
 
-	// console.log({prevFocus})
 	useLayoutEffect(() => {
 		if (inputRef.current) {
 			if (focus) {

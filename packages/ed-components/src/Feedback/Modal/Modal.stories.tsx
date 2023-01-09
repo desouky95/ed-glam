@@ -1,6 +1,6 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { RaisedButton } from '../..';
 import Modal from './Modal';
 
@@ -20,7 +20,6 @@ export const ModalStory: ComponentStory<typeof Modal> = (args) => {
 			<Modal
 				open={_open}
 				onClose={() => {
-					console.log('ON CLOSE');
 					// setOpen(false);
 				}}
 				withBackdrop

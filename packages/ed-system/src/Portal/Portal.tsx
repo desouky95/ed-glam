@@ -10,7 +10,6 @@ const Portal: React.FC<PortalProps> = ({ children, parent }) => {
 	let el = useMemo(() => document.createElement('div'), []);
 
 	useEffect(() => {
-		console.log(parent);
 		const target = parent?.current ? parent.current : document.body;
 		const classList = ['ed-portal-container'];
 		target.appendChild(el);

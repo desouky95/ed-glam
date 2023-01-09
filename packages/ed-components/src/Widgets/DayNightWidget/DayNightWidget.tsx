@@ -23,7 +23,6 @@ const DayNightWidget: React.VoidFunctionComponent<
 		return <TextInput placeholder="Search" />;
 	};
 	useEffect(() => {
-		console.log('TEST');
 		setTitle('Testdfsdfsdf');
 		// setAction(DropdownList);
 	}, []);

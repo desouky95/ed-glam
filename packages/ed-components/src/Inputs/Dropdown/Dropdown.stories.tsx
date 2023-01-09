@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropdown from './Dropdown';
 import { useForm, Controller } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
@@ -30,7 +30,6 @@ export const DropdownDefault: ComponentStory<typeof Dropdown> = (args) => {
 					placeholder="Test"
 					value={value}
 					onChange={(e) => {
-						console.log(e);
 						setValue(e);
 					}}
 					{...args}
@@ -52,7 +51,6 @@ export const DropdownDefault: ComponentStory<typeof Dropdown> = (args) => {
 					placeholder="Test"
 					value={value}
 					onChange={(e) => {
-						console.log(e);
 						setValue(e);
 					}}
 				>
@@ -72,7 +70,6 @@ export const DropdownDefault: ComponentStory<typeof Dropdown> = (args) => {
 					placeholder="Test"
 					value={value}
 					onChange={(e) => {
-						console.log(e);
 						setValue(e);
 					}}
 				>
@@ -129,7 +126,6 @@ const WithRHS = () => {
 					field: { name, onChange, value, ref, onBlur },
 					fieldState: { isDirty, error, isTouched },
 				}) => {
-					console.log({ error, isTouched, isDirty });
 					return (
 						<Dropdown
 							placeholder="ttttt"

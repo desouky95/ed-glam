@@ -59,7 +59,6 @@ const useCsvTable = (args: UseCsvTableArgs) => {
 		while (allTextLines.length) {
 			lines.push(allTextLines.shift()?.split(','));
 		}
-		console.log(lines);
 		// drawOutput(lines);
 	};
 

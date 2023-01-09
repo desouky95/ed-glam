@@ -42,7 +42,6 @@ const useSwipe = (ref: UseSwipeRef, config?: UseSwipeArgs) => {
 		setElTranslate(`translateX(${xPos}px`);
 	};
 
-	console.log({ translate });
 	useEffect(() => {
 		if (ref.current) {
 			ref.current.addEventListener('mousedown', lock, false);

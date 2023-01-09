@@ -1,6 +1,6 @@
 import { FlexLayout, GridLayout } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { TextInput } from '../TextInput';
@@ -28,7 +28,6 @@ export const PhoneNumberInputDefault: ComponentStory<
 		},
 	});
 	const watchPhone = watch('phone');
-	console.log(watchPhone);
 
 	return (
 		<>

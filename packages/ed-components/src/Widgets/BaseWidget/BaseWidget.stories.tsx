@@ -35,12 +35,8 @@ export const BaseWidgetDefault: ComponentStory<typeof BaseWidget> = ({
 	useElementScroll({
 		ref: elRef,
 		// wait: 1000,
-		onChange(scrollPosition) {
-			console.log(scrollPosition);
-		},
-		onScrollToBottom() {
-			console.log('END');
-		},
+		onChange(scrollPosition) {},
+		onScrollToBottom() {},
 	});
 
 	return (

@@ -183,7 +183,6 @@ export const Test = () => {
 				return (
 					<TestQuestion
 						onChange={(val) => {
-							console.log(val);
 							setQuestions((draft) => {
 								draft[index].answer = val;
 							});

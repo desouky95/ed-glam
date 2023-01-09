@@ -1,4 +1,3 @@
-import { Portal } from '@eduact/ed-system';
 import React, {
 	createRef,
 	forwardRef,
