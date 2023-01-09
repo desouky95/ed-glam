@@ -1,13 +1,12 @@
 import { FlexItem, FlexLayout, useElementScroll } from '@eduact/ed-system';
 import { Colors } from '@eduact/student-theme';
-import { Card } from '@src/Cards';
-import { Mosaic } from '@src/Surface/MosaicLayout';
+import { Mosaic } from '../../Surface';
 import { useRef } from '@storybook/addons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import styled from 'styled-components';
 import BaseWidget from './BaseWidget';
 import loadable from '@loadable/component';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { DayNightWidget } from '../DayNightWidget';
 
 export default {

@@ -17,7 +17,7 @@ type CountdownNumberArgs = {
 	start: CountdownTime;
 	end?: CountdownTime;
 } & CountdownBaseArgs;
-type CountdownArgs = CountdownNumberArgs;
+export type CountdownArgs = CountdownNumberArgs;
 
 function useCountdown(options: CountdownArgs) {
 	const {

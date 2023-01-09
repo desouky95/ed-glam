@@ -7,7 +7,7 @@ import { GridLayout, Typography } from '@eduact/ed-system';
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import { DateFormatter } from '@eduact/utils';
-import { Icon, Icons } from '@src/Icons';
+import { Icon, Icons } from '../../Icons';
 export default {
 	title: 'Inputs/TextInput',
 	component: TextInput,

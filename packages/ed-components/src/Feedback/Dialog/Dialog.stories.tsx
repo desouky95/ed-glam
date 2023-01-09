@@ -1,6 +1,6 @@
-import { RaisedButton } from '@src/Buttons';
+import { RaisedButton } from '../../Buttons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Dialog from './Dialog';
 
 export default { title: 'Feedback/Dialog', component: Dialog } as ComponentMeta<

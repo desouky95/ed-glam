@@ -1,5 +1,5 @@
 import { FlexLayout } from '@eduact/ed-system';
-import { RaisedButton } from '@src/Buttons';
+import { RaisedButton } from '../../Buttons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { MdAddAPhoto } from 'react-icons/md';
 import styled from 'styled-components';

@@ -1,7 +1,7 @@
 import { FlexLayout } from '@eduact/ed-system';
 import { Color } from '@eduact/student-theme';
 import { useCountdown } from '@eduact/utils';
-import { RaisedButton } from '@src/Buttons';
+import { RaisedButton } from '../../Buttons';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useMemo } from 'react';
 import CircularProgress from './CircularProgress';

@@ -1,6 +1,5 @@
-import { RaisedButton } from '@src/Buttons';
-import { RaisedButtonStyled } from '@src/Buttons/RaisedButton/RaisedButton.styled';
-import Spacer from '@src/Spacer';
+import { RaisedButton } from '../../Buttons';
+import Spacer from '../../Spacer';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useEffect } from 'react';
 import { MutableRefObject, useRef } from 'react';

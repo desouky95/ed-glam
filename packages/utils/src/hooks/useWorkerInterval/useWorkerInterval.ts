@@ -32,7 +32,6 @@ const useWorkerInterval = (interval: number) => {
 		const blob = new Blob([blobUrl], { type: 'application/javascript' });
 		const blobURL = URL.createObjectURL(blob);
 		const worker: EdWorker = new Worker(blobURL);
-		debugger;
 		worker._url = blobURL;
 
 		return worker;

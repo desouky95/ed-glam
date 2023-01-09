@@ -5,8 +5,8 @@ import { RaisedButton } from '.';
 
 import { RaisedButtonStyled } from './RaisedButton.styled';
 import Spacer from '../../Spacer';
-import { useCountdown } from '@eduact/utils';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCountdown, useCountdownInterval } from '@eduact/utils';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 export default {
@@ -36,68 +36,58 @@ export default {
 	},
 } as ComponentMeta<typeof RaisedButton>;
 
-const RaisedTemplate: ComponentStory<typeof RaisedButton> = ({ ...args }) => {
-	const [status, setStatus] = useState('Not Attended');
-	const handleOnEnd = () => {
-		// alert('Finished');
-		// resetCountdown();
-		// startCountdown();
-		setStatus('Finished');
-	};
-	const startDate = new Date();
-	const end_date = '2022-09-18T14:10:12.233+00:00';
-	const [tabVisible, setTabVisible] = useState(true);
+const RaisedTemplate: ComponentStory<typeof RaisedButton> = (
+	{ ...args },
+	{ name, hooks, title }
+) => {
 	const start = useMemo(() => {
-		const nowDate = Date.now();
-		const endDate = new Date(end_date);
-		const diff = Math.abs(endDate.getTime() - nowDate);
-		let seconds = Math.floor(diff / 1000);
-		let minutes = Math.floor(seconds / 60);
-		let hours = Math.floor(minutes / 60);
-		seconds = seconds % 60;
-		minutes = minutes % 60;
-		hours = hours % 24;
-		return { hours, seconds, minutes };
-	}, [end_date, tabVisible]);
-	// const [time, setTime] = useState(start());
-	const { countdown, startCountdown, resetCountdown, stopCountdown } =
-		useCountdown({
-			start,
-			end: { hours: 0, minutes: 0, seconds: 0 },
-			onEnd: handleOnEnd,
-		});
-	useEffect(() => {
-		document.addEventListener('visibilitychange', function (e) {
-			if (document.visibilityState === 'visible') {
-				console.log('TAB FOCUS');
-				setTabVisible(true);
-				// setTime(start());
-			} else {
-				setTabVisible(false);
-			}
-		});
+		let startDate = new Date('1/9/2023, 3:00:00 PM');
+		let endDate = new Date();
+		let diff = endDate.getTime() - startDate.getTime();
+		return diff;
 	}, []);
-
+	const { counterString, startCounter, stopCounter, resetCounter } =
+		useCountdownInterval({
+			start,
+		});
 	useEffect(() => {
-		resetCountdown();
+		if (start) {
+			startCounter;
+		}
 	}, [start]);
 
 	return (
 		<>
-			<RaisedButton onClick={() => startCountdown()} {...args}>
-				{countdown ? (
+			<RaisedButton
+				onClick={() => {
+					startCounter();
+				}}
+				{...args}
+			>
+				{counterString ? (
 					<>
-						{countdown.hours} : {countdown.minutes} : {countdown.seconds}
+						{counterString.hours} : {counterString.minutes} :{' '}
+						{counterString.seconds}
 					</>
 				) : (
 					args.children
 				)}
 			</RaisedButton>
 			<div>{status}</div>
-			<RaisedButton variant="princetonOrange" onClick={() => stopCountdown()}>
+			<RaisedButton
+				variant="princetonOrange"
+				onClick={() => {
+					stopCounter();
+				}}
+			>
 				Stop
 			</RaisedButton>
-			<RaisedButton variant="princetonOrange" onClick={() => resetCountdown()}>
+			<RaisedButton
+				variant="princetonOrange"
+				onClick={() => {
+					resetCounter();
+				}}
+			>
 				Reset
 			</RaisedButton>
 			<CustomButton Test></CustomButton>

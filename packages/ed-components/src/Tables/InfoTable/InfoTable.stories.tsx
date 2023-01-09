@@ -18,7 +18,7 @@ import {
 	InfoTableHeaderSubTitle,
 	InfoTableHeaderTitle,
 } from './InfoTable.styled';
-import { RaisedButton } from '@src/Buttons/RaisedButton';
+import { RaisedButton } from '../../Buttons';
 export default {
 	title: 'Tables/InfoTable',
 	component: InfoTable,
