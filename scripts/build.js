@@ -36,7 +36,7 @@ async function run(argv) {
 		NODE_ENV: 'production',
 		BABEL_ENV: bundle,
 	};
-	const babelConfigPath = path.resolve(__dirname, '../.babelrc.js');
+	const babelConfigPath = path.resolve(__dirname, '../.babelrc.cjs');
 	const srcDir = path.resolve('./src');
 	const extensions = ['.js', '.ts', '.tsx'];
 	const ignore = [
