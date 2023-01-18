@@ -3,7 +3,7 @@ import { ThemeButtonSizes } from './buttonSizes';
 import { DocumentDir } from './direction';
 import { ThemeFontFamily } from './fontFamily';
 import { FontSizesAliases } from './fonts';
-import { MediaQueries } from './mediaQueries';
+import { MediaQueries, MediaQueriesFnx } from './mediaQueries';
 import { ThemeSpace } from './space';
 import { ThemeTableLayouts } from './tableLayout';
 
@@ -34,6 +34,7 @@ export type Breakpoint = 'default' | 'sm' | 'md' | 'lg' | 'xl';
 export type BreakpointInPx = 832 | 1024 | 1280;
 
 export type MediaQuery = 'small' | 'medium' | 'large' | 'xlarge';
+export type MediaQueriesFns = 'max' | 'min';
 type FontScale = 't1' | 't2' | 't3' | 't4' | 't5';
 export type FontBx = `${MediaQuery}-${FontScale}`;
 export type Shapes = 'circle' | 'square';
@@ -139,7 +140,7 @@ export interface ITheme {
 		[key in Breakpoint]?: string;
 	};
 	breakpointsInPx: { [key in Breakpoint]: number };
-	mediaQueries: MediaQueries;
+	mediaQueries: MediaQueries & MediaQueriesFnx;
 	borderRadii: {
 		[key in MediaQuery]: number;
 	};

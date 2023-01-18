@@ -1,7 +1,10 @@
-import { Breakpoint, ITheme, MediaQuery } from './theme.types';
+import { Breakpoint, ITheme, MediaQueriesFns, MediaQuery } from './theme.types';
 
 export type MediaQueries = {
-	[key in MediaQuery]?: string;
+	[key in MediaQuery]: string;
+};
+export type MediaQueriesFnx = {
+	[key in MediaQueriesFns]: (value: number) => string;
 };
 
 export const getMediaQueries = (theme: ITheme): MediaQueries => {
@@ -29,9 +32,11 @@ export const aliasBreakpoints: { [key in Breakpoint]?: string } = {
 	// lg: '64rem',
 	xl: breakpoints[3],
 };
-export const mediaQueries: MediaQueries = {
+export const mediaQueries: MediaQueries & MediaQueriesFnx = {
 	small: `@media screen and (max-width : ${aliasBreakpoints.md})`,
 	medium: `@media screen and (min-width : ${aliasBreakpoints.md})`,
 	large: `@media screen and (min-width : ${aliasBreakpoints.lg})`,
 	xlarge: `@media screen and (min-width : ${aliasBreakpoints.xl})`,
+	min: (value: number) => `@media screen and (min-width : ${value}px)`,
+	max: (value: number) => `@media screen and (max-width : ${value}px)`,
 };
