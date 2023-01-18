@@ -262,6 +262,8 @@ export const Theme: ITheme = {
 		medium: `@media screen and (min-width : ${aliasBreakpoints.md})`,
 		large: `@media screen and (min-width : ${aliasBreakpoints.lg})`,
 		xlarge: `@media screen and (min-width : ${aliasBreakpoints.xl})`,
+		min: (value: number) => `@media screen and (min-width : ${value}px)`,
+		max: (value: number) => `@media screen and (max-width : ${value}px)`,
 	},
 	borderRadii: radii,
 	fontSizes: [10, 12, 14],
