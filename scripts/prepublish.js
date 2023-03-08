@@ -48,7 +48,7 @@ program.action(async () => {
 		.filter((_) => _.isDirectory())
 		.map((_) => path.resolve(`./packages/${_.name}`).replace(/\\/g, '/'));
 	for (let index = 0; index < dirs.length; index++) {
-		const element = array[index];
+		const pathToResolve = dirs[index];
 		if (existsSync(pathToResolve) && existsSync(`${pathToResolve}/build`)) {
 			await createPackageFile(pathToResolve, 'build');
 		}
