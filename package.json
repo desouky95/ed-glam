@@ -8,7 +8,6 @@
 		"release:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=@eduact/docs,@eduact/testing-app",
 		"test:build": "npm run cleanup && nx run-many --target=build --all --parallel --exclude=@eduact/docs,@eduact/testing-app",
 		"prepare": "node scripts/prepublish.js && husky install",
-		"prepublish": "node scripts/prepublish.js",
 		"publish": "lerna publish from-package --dist-tag latest --contents build",
 		"postpublish": "npm run cleanup",
 		"cleanup": "node scripts/cleanup.js",
