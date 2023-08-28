@@ -58,6 +58,7 @@ export type StudentIDProps = {
 		section?: string;
 	};
 	onQRCodeClick?: () => void;
+	qrCodeSize?: number;
 } & StudentCardProps;
 const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	educationalInfo,
@@ -72,6 +73,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	withShadow = true,
 	onQRCodeClick,
 	bodyProps,
+	qrCodeSize = 72,
 	...props
 }) => {
 	return (
@@ -189,7 +191,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 							<StyledQRContainer>
 								<QRCode
 									onClick={() => onQRCodeClick?.()}
-									width={72 * scale}
+									width={qrCodeSize * scale}
 									value={userInfo?.username}
 								/>
 							</StyledQRContainer>

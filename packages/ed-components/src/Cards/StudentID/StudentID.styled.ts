@@ -131,6 +131,7 @@ export const StyledUserContact = styled.div`
 export const StyledFooterContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
+	align-items: flex-start;
 `;
 export const StyledFooterInnerContainer = styled.div`
 	display: grid;

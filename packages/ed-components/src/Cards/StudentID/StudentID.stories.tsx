@@ -60,9 +60,13 @@ export const StudentIDCardWithNoAnimation: ComponentStory<typeof StudentID> = (
 	const [isFlipped, setIsFlipped] = useState(false);
 	return (
 		<>
-			<StudentID onQRCodeClick={() => setIsFlipped(!isFlipped)} {...args} />
+			<StudentID
+				qrCodeSize={200}
+				onQRCodeClick={() => setIsFlipped(!isFlipped)}
+				{...args}
+			/>
 
-			<StudentQRCode bodyProps={{ pb: '12rem' }} {...args} />
+			<StudentQRCode {...args} />
 		</>
 	);
 };
