@@ -1,6 +1,7 @@
-import { LayoutProps } from 'styled-system';
+import { LayoutProps, SpaceProps } from 'styled-system';
 
 export type StudentCardProps = {
 	withShadow?: boolean;
 	scale?: number;
-} & LayoutProps;
+} & LayoutProps &
+	SpaceProps;

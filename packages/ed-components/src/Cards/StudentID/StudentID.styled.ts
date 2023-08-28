@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { MdOutlinePhone, MdOutlineMail } from 'react-icons/md';
 import bgImage from './Assets/card_bg.jpg';
 import { rgba } from 'polished';
-import { layout, LayoutProps } from 'styled-system';
+import { layout, LayoutProps, space, SpaceProps } from 'styled-system';
 import { Avatar } from '../..//Avatar';
 export const StyledOuterContainer = styled.div<
 	{
 		scale: number;
 		withShadow: boolean;
-	} & LayoutProps
+	} & LayoutProps &
+		SpaceProps
 >`
 	font-size: ${(props) => `${props.scale}rem`};
 	/* width: fit-content; */
@@ -27,6 +28,7 @@ export const StyledOuterContainer = styled.div<
     //    height: 239px;
     }`}
 	${layout}
+	${space}
 `;
 export const StyledEDCardIcon = styled.img`
 	width: 20px;
@@ -60,8 +62,10 @@ export const StyledBodyOuterContainer = styled.div`
 	flex: 1;
 	background: url(${bgImage}), ${rgba('#5AC0FC', 0.1)};
 `;
-export const StyledBodyInnerContainer = styled.div`
+export const StyledBodyInnerContainer = styled.div<SpaceProps>`
 	padding: 0.5rem 1.125rem;
+	${space};
+	/* padding: 2rem 1.125rem; */
 `;
 export const StyledBodyContentContainer = styled.div`
 	display: flex;

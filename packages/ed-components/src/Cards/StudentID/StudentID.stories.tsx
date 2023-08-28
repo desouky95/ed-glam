@@ -54,6 +54,19 @@ export const StudentIDCard: ComponentStory<typeof StudentID> = (args) => {
 	);
 };
 
+export const StudentIDCardWithNoAnimation: ComponentStory<typeof StudentID> = (
+	args
+) => {
+	const [isFlipped, setIsFlipped] = useState(false);
+	return (
+		<>
+			<StudentID onQRCodeClick={() => setIsFlipped(!isFlipped)} {...args} />
+
+			<StudentQRCode {...args} />
+		</>
+	);
+};
+
 const Scene = styled.div<{ isFlipped: boolean }>`
 	.scene {
 		width: 400px;

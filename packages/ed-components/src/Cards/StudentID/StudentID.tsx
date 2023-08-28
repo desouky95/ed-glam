@@ -34,6 +34,9 @@ import { MdOutlineMail, MdOutlinePhone } from 'react-icons/md';
 import { StudentCardProps } from './StudentID.types';
 import Spacer from '../..//Spacer';
 import QRCode from '../../DataDisplay/QRCode';
+import { SpaceProps } from 'styled-system';
+
+type BodyProps = SpaceProps;
 
 export type StudentIDProps = {
 	title?: string;
@@ -57,6 +60,7 @@ export type StudentIDProps = {
 		section?: string;
 	};
 	onQRCodeClick?: () => void;
+	bodyProps: BodyProps;
 } & StudentCardProps;
 const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	educationalInfo,
@@ -70,6 +74,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	scale = 1,
 	withShadow = true,
 	onQRCodeClick,
+	bodyProps,
 	...props
 }) => {
 	return (
@@ -86,7 +91,7 @@ const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 			{/* card body, wrapper for absolute bg and content  */}
 			<StyledBodyOuterContainer>
 				{/*  card body content  */}
-				<StyledBodyInnerContainer>
+				<StyledBodyInnerContainer {...bodyProps}>
 					<StyledBodyContentContainer>
 						<StyledAvatar
 							shape="square"
