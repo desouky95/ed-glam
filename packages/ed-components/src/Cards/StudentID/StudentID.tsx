@@ -36,8 +36,6 @@ import Spacer from '../..//Spacer';
 import QRCode from '../../DataDisplay/QRCode';
 import { SpaceProps } from 'styled-system';
 
-type BodyProps = SpaceProps;
-
 export type StudentIDProps = {
 	title?: string;
 	usernameTitle?: string;
@@ -60,7 +58,6 @@ export type StudentIDProps = {
 		section?: string;
 	};
 	onQRCodeClick?: () => void;
-	bodyProps: BodyProps;
 } & StudentCardProps;
 const StudentID: React.VoidFunctionComponent<StudentIDProps> = ({
 	educationalInfo,

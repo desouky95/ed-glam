@@ -55,6 +55,7 @@ const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 	scale = 1,
 	userInfo,
 	title,
+	bodyProps,
 	...props
 }) => {
 	return (
@@ -71,7 +72,7 @@ const StudentQRCode: React.VoidFunctionComponent<StudentQRCodeProps> = ({
 			{/* card body, wrapper for absolute bg and content  */}
 			<StyledBodyOuterContainer>
 				{/*  card body content  */}
-				<StyledBodyInnerContainer>
+				<StyledBodyInnerContainer {...bodyProps}>
 					{/* card footer  */}
 					<FlexLayout justifyContent={'center'}>
 						{/*  qr code  */}

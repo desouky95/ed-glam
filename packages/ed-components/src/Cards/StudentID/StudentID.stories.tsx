@@ -1,6 +1,6 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import StudentID from './StudentID';
 import StudentQRCode from './StudentQRCode';
@@ -62,7 +62,7 @@ export const StudentIDCardWithNoAnimation: ComponentStory<typeof StudentID> = (
 		<>
 			<StudentID onQRCodeClick={() => setIsFlipped(!isFlipped)} {...args} />
 
-			<StudentQRCode {...args} />
+			<StudentQRCode bodyProps={{ pb: '12rem' }} {...args} />
 		</>
 	);
 };
