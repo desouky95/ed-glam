@@ -11,11 +11,13 @@ import {
 	isEssayQuestion,
 	isGapQuestion,
 	isMcqQuestion,
+	isMrqQuestion,
 	isOrderingQuestion,
 	Question,
 	UploadProgressArgs,
 } from '../Question.types';
 import { EssayQuestion } from '../EssayQuestion';
+import { MrqQuestion } from '../MrqQuestion';
 type Props = {
 	question: Question;
 	withNavigation?: boolean;
@@ -86,6 +88,9 @@ const TestQuestion: React.VoidFunctionComponent<Props> = ({
 					)}
 					{isMcqQuestion(question) && (
 						<McqQuestion question={question} onChange={onChange} />
+					)}
+					{isMrqQuestion(question) && (
+						<MrqQuestion question={question} onChange={onChange} />
 					)}
 					{isEssayQuestion(question) && (
 						<EssayQuestion

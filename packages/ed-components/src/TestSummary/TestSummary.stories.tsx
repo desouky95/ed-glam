@@ -2,11 +2,12 @@ import { ComponentMeta } from '@storybook/react';
 import { useState } from 'react';
 import { TestAnswer } from './TestAnswer';
 import styled from 'styled-components';
-import { Attempt } from './TestSummary.types';
+import { Attempt, IMrqAnswer } from './TestSummary.types';
 import React from 'react';
 import { GapQuestion } from '../Test/GapQuestion';
 import { OrderingQuestion } from '../Test/OrderingQuestion';
 import { isNullOrUndefined } from 'util';
+import { IMrqQuestion } from '@src/Test/Question.types';
 
 export default {
 	subcomponents: {
@@ -21,7 +22,7 @@ export const Test = () => {
 			id: 476,
 			student_id: 2,
 			test_id: 67,
-			status: 'passed',
+			status: 'failed',
 			score: 0,
 			grade: null,
 			test_model_id: null,
@@ -48,8 +49,8 @@ export const Test = () => {
 				parent_notification_options: [],
 				passing_unit: 'point',
 				passing_value: 2,
-				show_correct_if_failed: false,
-				show_correct_if_passed: false,
+				show_correct_if_failed: true,
+				show_correct_if_passed: true,
 				show_grade: true,
 				show_score_percentage: true,
 				show_score_value: true,
@@ -71,6 +72,7 @@ export const Test = () => {
 					weight: 1,
 					content: '<p>this is question 1</p>',
 					parsed_content: null,
+
 					type: 'mcq',
 					feedback: null,
 					order: 1,
@@ -95,13 +97,65 @@ export const Test = () => {
 						content: {
 							options: {
 								answer: '2',
-								correct: false,
+								correct: true,
 							},
 						},
 					},
 					correct: true,
 					score: 0,
 				},
+				{
+					id: 120,
+					test_id: 67,
+					weight: 1,
+					content: '<p>this is question 1 MRQ</p>',
+					parsed_content: null,
+					type: 'mrq',
+					feedback: null,
+					order: 1,
+					options: [
+						{
+							is_correct: true,
+							test_question_id: 120,
+							choice: '1',
+						},
+						{
+							is_correct: false,
+							test_question_id: 120,
+							choice: '2',
+						},
+						{
+							is_correct: false,
+							test_question_id: 120,
+							choice: '3',
+						},
+						{
+							is_correct: true,
+							test_question_id: 120,
+							choice: '4',
+						},
+					],
+					answer: {
+						content: {
+							options: [
+								{
+									answer: '1',
+									correct: true,
+								},
+								{
+									answer: '2',
+									correct: false,
+								},
+								{
+									answer: '4',
+									correct: true,
+								},
+							],
+						},
+					},
+					correct: false,
+					score: 0,
+				} as IMrqAnswer,
 				{
 					id: 121,
 					test_id: 67,

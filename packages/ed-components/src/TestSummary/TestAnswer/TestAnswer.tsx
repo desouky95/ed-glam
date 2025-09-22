@@ -14,10 +14,12 @@ import {
 	isMcqAnswer,
 	isOrderingAnswer,
 	isEssayAnswer,
+	isMrqAnswer,
 } from '../TestSummary.types';
 import { QuestionType } from '../../Test/Question.types';
 import { Icon, Icons } from '../../Icons';
 import { EssayAnswer } from '../EssayAnswer';
+import { MrqAnswer } from '../MrqAnswer';
 
 type Props = {
 	question: SummaryQuestion;
@@ -76,6 +78,9 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 					<div>
 						{isMcqAnswer(question) && (
 							<McqAnswer question={question} test={test} status={status} />
+						)}
+						{isMrqAnswer(question) && (
+							<MrqAnswer question={question} test={test} status={status} />
 						)}
 						{isOrderingAnswer(question) && (
 							<OrderingAnswer question={question} test={test} status={status} />

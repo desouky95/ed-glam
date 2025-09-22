@@ -9,5 +9,6 @@ export const TestSummaryConfig: TestSummaryConfigArgs = {
 		mcq: 'mcq',
 		ordering: 'ordering',
 		essay: 'essay',
+		mrq: 'mrq',
 	},
 };

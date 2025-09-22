@@ -33,6 +33,14 @@ type McqAnswers = {
 		options: McqOption;
 	};
 } & Answers;
+type MrqAnswers = {
+	content?: {
+		options: Array<{
+			answer: string;
+			correct: boolean;
+		}>;
+	};
+} & Answers;
 type GapAnswers = {
 	content?: {
 		options: Array<GapOption>;
@@ -53,6 +61,7 @@ type QuestionOptions = Array<Options | string | OptionsPair>;
 type GapAnswerOptions = GapAnswers;
 type OrderAnswerOptions = OrderAnswers;
 type McqAnswerOptions = McqAnswers;
+type MrqAnswerOptions = MrqAnswers;
 type EssayAnswerOptions = EssayAnswers;
 
 type QuestionAnswer =
@@ -174,6 +183,12 @@ export type IMcqAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
 	content: string;
 	answer: McqAnswerOptions;
 };
+export type IMrqAnswer = Omit<SummaryQuestion, 'options' | 'type'> & {
+	type: 'mrq';
+	options: Array<Options>;
+	content: string;
+	answer: MrqAnswerOptions;
+};
 
 export const isGapAnswer = (value: SummaryQuestion): value is IGapAnswer => {
 	return value !== undefined && value.type === 'gap';
@@ -190,4 +205,8 @@ export const isOrderingAnswer = (
 };
 export const isMcqAnswer = (value: SummaryQuestion): value is IMcqAnswer => {
 	return value !== undefined && value.type === 'mcq';
+};
+
+export const isMrqAnswer = (value: SummaryQuestion): value is IMrqAnswer => {
+	return value !== undefined && value.type === 'mrq';
 };

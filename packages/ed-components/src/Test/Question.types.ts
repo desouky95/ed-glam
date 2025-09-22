@@ -1,6 +1,6 @@
 import { AxiosProgressEvent } from 'axios';
 
-export type QuestionType = 'gap' | 'mcq' | 'ordering' | 'essay';
+export type QuestionType = 'gap' | 'mcq' | 'ordering' | 'essay' | 'mrq';
 export type EssayValidType = 'text' | 'attachment' | '*';
 export type EssayAnswerType = 'text' | 'attachment';
 export type OptionsPair = { gap: string | number; choices: string[] };
@@ -28,6 +28,7 @@ export type Options = {
 };
 export type QuestionOptions = Array<Options | string | OptionsPair>;
 export type OrderingAnswer = Array<string>;
+export type ObjectPairMultipleAnswer = { answer: Array<string> };
 export type ObjectPairAnswer = {
 	answer: string;
 };
@@ -75,6 +76,13 @@ export type IMcqQuestion = Omit<Question, 'options' | 'type'> & {
 	answer: ObjectPairAnswer;
 };
 
+export type IMrqQuestion = Omit<Question, 'options' | 'type'> & {
+	type: 'mrq';
+	options: Array<string>;
+	content: string;
+	answer: ObjectPairMultipleAnswer;
+};
+
 export type IEssayQuestion = Omit<Question, 'type' | 'answer'> & {
 	type: 'essay';
 	content: string;
@@ -95,6 +103,10 @@ export const isOrderingQuestion = (
 };
 export const isMcqQuestion = (value: Question): value is IMcqQuestion => {
 	return value !== undefined && value.type === 'mcq';
+};
+
+export const isMrqQuestion = (value: Question): value is IMrqQuestion => {
+	return value !== undefined && value.type === 'mrq';
 };
 
 export const isEssayQuestion = (value: Question): value is IEssayQuestion =>
