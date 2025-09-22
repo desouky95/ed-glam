@@ -40,8 +40,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	}, []);
 
 	const getMcqColor = (item: Options) => {
-		if (question.answer.content?.options.answer === item.choice)
-			if (question.answer.content?.options.correct)
+		if (question.answer?.content?.options?.answer === item.choice)
+			if (question.answer?.content?.options?.correct)
 				return 'rgba(0, 214, 107, 0.1)';
 			else return '#ffd5cc';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
@@ -50,8 +50,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 		return '#FFF';
 	};
 	const bulletColor = (item: Options): Color => {
-		if (question.answer.content?.options.answer === item.choice)
-			if (question.answer.content?.options.correct) return 'green';
+		if (question.answer?.content?.options?.answer === item.choice)
+			if (question.answer?.content?.options.correct) return 'green';
 			else return 'lightRed';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'green';
