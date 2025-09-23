@@ -39,6 +39,7 @@ export type AttachmentAnswer = {
 export type QuestionAnswer =
 	| Array<KeyPairAnswer>
 	| OrderingAnswer
+	| ObjectPairMultipleAnswer
 	| ObjectPairAnswer
 	| AttachmentAnswer;
 export type Question = {
@@ -76,11 +77,11 @@ export type IMcqQuestion = Omit<Question, 'options' | 'type'> & {
 	answer: ObjectPairAnswer;
 };
 
-export type IMrqQuestion = Omit<Question, 'options' | 'type'> & {
+export type IMrqQuestion = Omit<Question, 'options' | 'type'|'answer'> & {
 	type: 'mrq';
 	options: Array<string>;
 	content: string;
-	answer: Array<string>;
+	answer: ObjectPairMultipleAnswer
 };
 
 export type IEssayQuestion = Omit<Question, 'type' | 'answer'> & {
