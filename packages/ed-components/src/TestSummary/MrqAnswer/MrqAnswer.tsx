@@ -33,20 +33,18 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	}, []);
 
 	const getMcqColor = (item: Options) => {
-		const chosenOption = question.answer.content?.options.find(
-			(_) => _.answer === item.choice
-		);
+		const chosenOption = question.options.find((_) => _.choice === item.choice);
 		const option = item;
 
 		if (
 			!(showCorrectAnswer || isStudentFailedRightAnswer) &&
-			option.choice === chosenOption?.answer &&
+			option.choice === chosenOption?.choice &&
 			chosenOption?.correct &&
 			!question.correct
 		)
 			return 'rgba(174, 174, 174, 0.1)';
 		// return 'rgba(0, 214, 107, 0.1)';
-		if (option.choice === chosenOption?.answer && !chosenOption?.correct)
+		if (option.choice === chosenOption?.choice && !chosenOption?.correct)
 			return '#ffd5cc';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'rgba(0, 214, 107, 0.1)';
@@ -54,19 +52,17 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 		return '#FFF';
 	};
 	const bulletColor = (item: Options): Color => {
-		const chosenOption = question.answer.content?.options.find(
-			(_) => _.answer === item.choice
-		);
+		const chosenOption = question.options.find((_) => _.choice === item.choice);
 		const option = item;
 
 		if (
 			!(showCorrectAnswer || isStudentFailedRightAnswer) &&
-			option.choice === chosenOption?.answer &&
+			option.choice === chosenOption?.choice &&
 			chosenOption?.correct &&
 			!question.correct
 		)
 			return 'silver';
-		if (option.choice === chosenOption?.answer && !chosenOption?.correct)
+		if (option.choice === chosenOption?.choice && !chosenOption?.correct)
 			return 'red';
 		if (chosenOption?.correct || (option && option.is_correct && !chosenOption))
 			return 'green';
@@ -81,8 +77,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	};
 	const bulletState = (item: Options) => {
 		if (
-			question.answer?.content?.options
-				.map((i) => i.answer)
+			question.answer?.content?.options.answer
+				.map((i) => i)
 				.includes(item.choice!)
 		)
 			return true;

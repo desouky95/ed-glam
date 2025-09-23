@@ -35,10 +35,10 @@ type McqAnswers = {
 } & Answers;
 type MrqAnswers = {
 	content?: {
-		options: Array<{
-			answer: string;
+		options: {
+			answer: string[];
 			correct: boolean;
-		}>;
+		};
 	};
 } & Answers;
 type GapAnswers = {
