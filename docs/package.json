@@ -1,6 +1,6 @@
 {
 	"name": "@eduact/docs",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"private": true,
 	"scripts": {
 		"docusaurus": "docusaurus",
@@ -19,7 +19,7 @@
 		"@docusaurus/mdx-loader": "^2.2.0",
 		"@docusaurus/preset-classic": "2.2.0",
 		"@docusaurus/theme-live-codeblock": "^2.2.0",
-		"@eduact/ed-components": "^0.4.4",
+		"@eduact/ed-components": "^0.4.5",
 		"@eduact/ed-system": "^1.3.2",
 		"@eduact/student-theme": "^1.1.2",
 		"@eduact/utils": "^0.5.2",
