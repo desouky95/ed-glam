@@ -23,19 +23,22 @@ const MrqQuestion: React.VoidFunctionComponent<MrqProps> = ({
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.checked) {
 			const new_value = [...(question?.answer || []), e.target.value];
-			onChange(new_value);
+			onChange({ answer: new_value });
 			return;
 		} else {
 			const new_value = question?.answer?.filter(
 				(item) => item !== e.target.value
 			);
-			onChange(new_value);
+			onChange({ answer: new_value });
 		}
 	};
 	const handleOnSpanClick = (value: string) => {
 		if (question?.answer?.map((_) => _).includes(value))
-			return onChange(question?.answer?.filter((item) => item !== value));
-		else onChange([...(question?.answer?.map((_) => _) || []), value]);
+			return onChange({
+				answer: question?.answer?.filter((item) => item !== value),
+			});
+		else
+			onChange({ answer: [...(question?.answer?.map((_) => _) || []), value] });
 	};
 
 	return (
