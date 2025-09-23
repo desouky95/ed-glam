@@ -13,6 +13,13 @@ const MrqQuestion: React.VoidFunctionComponent<MrqProps> = ({
 	question,
 	onChange,
 }) => {
+	console.log('question', question);
+	console.log('options', question.options);
+	console.log('answer', question.answer);
+	console.log(
+		'checked',
+		question.options.filter((_) => question.answer.includes(_))
+	);
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.checked) {
 			const new_value = [...(question?.answer || []), e.target.value];
@@ -55,10 +62,7 @@ const MrqQuestion: React.VoidFunctionComponent<MrqProps> = ({
 									onChange={handleOnChange}
 									type={'checkbox'}
 									id={mcqItem}
-									checked={
-										question?.answer &&
-										question?.answer?.map((_) => _).includes(mcqItem)
-									}
+									checked={question?.answer?.map((_) => _).includes(mcqItem)}
 									value={mcqItem}
 									name={`answer-${question.id}`}
 								/>
