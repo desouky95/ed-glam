@@ -18,7 +18,7 @@ const MrqQuestion: React.VoidFunctionComponent<MrqProps> = ({
 	console.log('answer', question.answer);
 	console.log(
 		'checked',
-		question.options.filter((_) => question.answer.includes(_))
+		question.options.filter((_) => question.answer?.includes(_))
 	);
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.checked) {

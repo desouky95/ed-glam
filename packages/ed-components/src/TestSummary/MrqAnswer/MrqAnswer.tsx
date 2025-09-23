@@ -35,7 +35,18 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	const getMcqColor = (item: Options) => {
 		const chosenOption = question.options.find((_) => _.choice === item.choice);
 		const option = item;
+		const isExist = question.answer?.content?.options.find(
+			(_) => _.answer === option.choice
+		);
+		if (!isExist) return '';
 
+		console.log({
+			showCorrectAnswer,
+			isStudentFailedRightAnswer,
+			option,
+			chosenOption,
+			question,
+		});
 		if (
 			!(showCorrectAnswer || isStudentFailedRightAnswer) &&
 			option.choice === chosenOption?.choice &&
@@ -44,7 +55,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 		)
 			return 'rgba(174, 174, 174, 0.1)';
 		// return 'rgba(0, 214, 107, 0.1)';
-		if (option.choice === chosenOption?.choice && !chosenOption?.correct)
+		if (option.choice === chosenOption?.choice && !chosenOption?.is_correct)
 			return '#ffd5cc';
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'rgba(0, 214, 107, 0.1)';
@@ -62,14 +73,11 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			!question.correct
 		)
 			return 'silver';
-		if (option.choice === chosenOption?.choice && !chosenOption?.correct)
+		if (option.choice === chosenOption?.choice && !chosenOption?.is_correct)
 			return 'red';
 		if (chosenOption?.correct || (option && option.is_correct && !chosenOption))
 			return 'green';
-		// if(question.answer.content?.options.find(_ => _.answer === item.choice)?.correct)
-		// if (question.answer.content?.options. === item.choice)
-		// 	if (question.answer.content?.options.correct) return 'green';
-		// 	else return 'lightRed';
+
 		if (showCorrectAnswer || isStudentFailedRightAnswer)
 			if (item?.is_correct) return 'green';
 			else return 'silver';
