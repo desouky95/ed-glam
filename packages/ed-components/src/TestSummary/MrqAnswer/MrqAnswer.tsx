@@ -77,8 +77,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	};
 	const bulletState = (item: Options) => {
 		if (
-			question.answer?.content?.options.answer
-				.map((i) => i)
+			question.answer?.content?.options
+				.map((i) => i.answer)
 				.includes(item.choice!)
 		)
 			return true;
