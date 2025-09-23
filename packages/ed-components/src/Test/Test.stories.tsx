@@ -107,7 +107,7 @@ export const Test = () => {
 			feedback: 'no',
 			order: 10,
 			options: ['first option', 'second option', 'third option'],
-			answer: null,
+			answer: ['first option'],
 			correct: false,
 			score: 0,
 		},

@@ -80,7 +80,7 @@ export type IMrqQuestion = Omit<Question, 'options' | 'type'> & {
 	type: 'mrq';
 	options: Array<string>;
 	content: string;
-	answer: ObjectPairMultipleAnswer;
+	answer: Array<string>;
 };
 
 export type IEssayQuestion = Omit<Question, 'type' | 'answer'> & {
