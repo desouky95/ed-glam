@@ -39,8 +39,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			)
 				return '#ffd5cc';
 			if (!showAnswer && chosenOption?.correct) return '#aeaeae19';
-			if (showAnswer && (chosenOption?.correct || item.is_correct))
-				return '#00d66b19';
+			if (showAnswer && chosenOption?.correct) return '#00d66b19';
+			if (showAnswer && item.is_correct) return '#00a05056';
 
 			return '#FFF';
 		},
@@ -58,8 +58,8 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 			)
 				return 'red';
 			if (!showAnswer && chosenOption?.correct) return 'silver';
-			if (showAnswer && (chosenOption?.correct || item.is_correct))
-				return 'green';
+			if (showAnswer && chosenOption?.correct) return 'green';
+			if (showAnswer && item.is_correct) return 'green';
 			return 'silver';
 		},
 		[showAnswer, question.answer.content?.options]
