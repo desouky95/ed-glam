@@ -1,6 +1,6 @@
 import { FlexLayout, Typography } from '@eduact/ed-system';
 import Spacer from '../../Spacer';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import styled from 'styled-components';
 import { QuestionContentWrapper } from '../../Test/Question.styled';
 import { IMcqAnswer, IMrqAnswer, Test } from '../TestSummary.types';
@@ -20,81 +20,60 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 	test,
 	status,
 }) => {
-	const isCorrect = useMemo(() => {
-		return question.correct;
-	}, [question]);
-
-	const showCorrectAnswer = useMemo(() => {
-		return status === 'passed' && test?.show_correct_if_passed === true;
-	}, []);
-
-	const isStudentFailedRightAnswer = useMemo(() => {
-		return status === 'failed' && test?.show_correct_if_failed === true;
-	}, []);
-
-	const getMcqColor = (item: Options) => {
-		const chosenOption = question.options.find((_) => _.choice === item.choice);
-		const option = item;
-		const isExist = question.answer?.content?.options.find(
-			(_) => _.answer === option.choice
+	const showAnswer = useMemo(() => {
+		return (
+			(status === 'failed' && test?.show_correct_if_failed === true) ||
+			(status === 'passed' && test?.show_correct_if_passed === true)
 		);
-		if (!isExist) return '';
+	}, [status, test?.show_correct_if_failed, test?.show_correct_if_passed]);
 
-		console.log({
-			showCorrectAnswer,
-			isStudentFailedRightAnswer,
-			option,
-			chosenOption,
-			question,
-		});
-		if (
-			!(showCorrectAnswer || isStudentFailedRightAnswer) &&
-			option.choice === chosenOption?.choice &&
-			chosenOption?.correct &&
-			!question.correct
-		)
-			return 'rgba(174, 174, 174, 0.1)';
-		// return 'rgba(0, 214, 107, 0.1)';
-		if (option.choice === chosenOption?.choice && !chosenOption?.is_correct)
-			return '#ffd5cc';
-		if (showCorrectAnswer || isStudentFailedRightAnswer)
-			if (item?.is_correct) return 'rgba(0, 214, 107, 0.1)';
-			else return '';
-		return '#FFF';
-	};
-	const bulletColor = (item: Options): Color => {
-		const chosenOption = question.options.find((_) => _.choice === item.choice);
-		const option = item;
+	const getMcqColor = useCallback(
+		(item: Options) => {
+			const chosenOption = question.answer.content?.options.find(
+				(_) => _.answer === item.choice
+			);
 
-		if (
-			!(showCorrectAnswer || isStudentFailedRightAnswer) &&
-			option.choice === chosenOption?.choice &&
-			chosenOption?.correct &&
-			!question.correct
-		)
+			if (
+				(!showAnswer && chosenOption?.correct === false) ||
+				(chosenOption && !chosenOption.correct)
+			)
+				return '#ffd5cc';
+			if (!showAnswer && chosenOption?.correct) return '#aeaeae19';
+			if (showAnswer && (chosenOption?.correct || item.is_correct))
+				return '#00d66b19';
+
+			return '#FFF';
+		},
+		[question.answer.content?.options, showAnswer]
+	);
+	const bulletColor = useCallback(
+		(item: Options): Color => {
+			const chosenOption = question.answer.content?.options.find(
+				(_) => _.answer === item.choice
+			);
+
+			if (
+				(!showAnswer && chosenOption?.correct === false) ||
+				(chosenOption && !chosenOption.correct)
+			)
+				return 'red';
+			if (!showAnswer && chosenOption?.correct) return 'silver';
+			if (showAnswer && (chosenOption?.correct || item.is_correct))
+				return 'green';
 			return 'silver';
-		if (option.choice === chosenOption?.choice && !chosenOption?.is_correct)
-			return 'red';
-		if (chosenOption?.correct || (option && option.is_correct && !chosenOption))
-			return 'green';
+		},
+		[showAnswer, question.answer.content?.options]
+	);
+	const bulletState = useCallback(
+		(item: Options) => {
+			const isExist = question.answer.content?.options.find(
+				(_) => _.answer === item.choice
+			);
 
-		if (showCorrectAnswer || isStudentFailedRightAnswer)
-			if (item?.is_correct) return 'green';
-			else return 'silver';
-		return 'silver';
-	};
-	const bulletState = (item: Options) => {
-		if (
-			question.answer?.content?.options
-				.map((i) => i.answer)
-				.includes(item.choice!)
-		)
-			return true;
-		if (showCorrectAnswer || isStudentFailedRightAnswer)
-			if (item?.is_correct) return true;
-			else return false;
-		return false;
-	};
+			return !!isExist;
+		},
+		[question.answer.content?.options]
+	);
 	return (
 		<Spacer p={{ sm: '1rem' }}>
 			<QuestionContentWrapper
@@ -120,6 +99,7 @@ const McqAnswer: React.VoidFunctionComponent<McqProps> = ({
 							>
 								<AnswerBullet
 									filled={bulletState(mcqItem)}
+									// state={'orange'}
 									state={bulletColor(mcqItem)}
 								/>
 
