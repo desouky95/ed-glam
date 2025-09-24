@@ -279,6 +279,10 @@ export const Test = () => {
 								questionNum={'Q'}
 								points={'points'}
 								notAnswered={'not answered'}
+								extraContent={({ question, showCorrectAnswer }) => {
+									if (question.type !== 'mrq' || !showCorrectAnswer) return null;
+									return <div>Content</div>;
+								}}
 							/>
 						);
 					})}

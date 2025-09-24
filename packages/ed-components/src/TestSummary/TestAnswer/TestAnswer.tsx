@@ -1,6 +1,6 @@
 import { Typography, DefaultBrowserCss } from '@eduact/ed-system';
 import Spacer from '../../Spacer';
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import GapAnswer from '../GapAnswer/GapAnswer';
 import McqAnswer from '../McqAnswer/McqAnswer';
@@ -21,6 +21,14 @@ import { Icon, Icons } from '../../Icons';
 import { EssayAnswer } from '../EssayAnswer';
 import { MrqAnswer } from '../MrqAnswer';
 
+type ExtraContentState = {
+	question: SummaryQuestion;
+	test: Test | undefined;
+	status: string | undefined;
+	index: number;
+	notAnswered: string | undefined;
+	showCorrectAnswer: boolean;
+};
 type Props = {
 	question: SummaryQuestion;
 	index: number;
@@ -30,6 +38,7 @@ type Props = {
 	questionNum: string | undefined;
 	points: string | undefined;
 	notAnswered: string | undefined;
+	extraContent?: (state: ExtraContentState) => JSX.Element | null;
 };
 
 const TestAnswer: React.VoidFunctionComponent<Props> = ({
@@ -41,9 +50,17 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 	questionNum,
 	points,
 	notAnswered,
+	extraContent,
 }) => {
 	const isNotAnswered = Object.keys(question?.answer).length === 0;
 
+	const showCorrectAnswer = useMemo(() => {
+		return (
+			(test?.show_correct_if_passed && status === 'passed') ||
+			(test?.show_correct_if_failed && status === 'failed') ||
+			false
+		);
+	}, [test?.show_correct_if_failed, test?.show_correct_if_passed, status]);
 	return (
 		<QuestionContainer tabIndex={question.id}>
 			<HeaderWrapper>
@@ -92,6 +109,14 @@ const TestAnswer: React.VoidFunctionComponent<Props> = ({
 							<EssayAnswer question={question} test={test} status={status} />
 						)}
 					</div>
+					{extraContent?.({
+						question,
+						test,
+						status,
+						index,
+						notAnswered,
+						showCorrectAnswer,
+					})}
 				</QuestionWrapper>
 			</HeaderWrapper>
 		</QuestionContainer>
